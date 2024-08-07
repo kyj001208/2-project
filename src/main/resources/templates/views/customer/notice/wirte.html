@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout::frame(~{this::head}, ~{this::main})}">
+	<head>
+	    <link rel="stylesheet" href="/css/cs/notice.css">
+	</head>
+	<main>
+		<h1>공지사항 등록</h1>
+		<div class="wrap container">
+			<p class="page-title">공지사항 등록</p>
+			<section id="notice-write">
+				<h1>컨텐츠</h1>
+				<div class="content">
+					<form>
+						<ul>
+							<li>
+								<label>제목</label>
+								<input type="text" name="title">
+								
+							</li>
+							<li>
+								<label>내용</label>
+								<textarea name="content" placeholder="내용을 입력하세요."></textarea>
+							</li>
+							<li>
+								<button>등록</button>
+							</li>
+						</ul>
+					</form>
+				</div>
+			</section>
+		</div>
+	</main>
+</html>
+
