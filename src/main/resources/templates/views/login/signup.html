@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!-- <html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout::frame(~{this::head}, ~{this::main})}"> -->
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/login/signup.css" />
+<link rel="stylesheet" href="/css/commons/common.css" />
+</head>
+<body>
+	<main>
+		<div class=signup>
+			<div class="signup-menu">
+				<div class="signup_top">
+					<img src="/img/logo.png" id="singupimg">
+					<div class="signup_name">PETFIR</div>
+				</div>
+
+				<form>
+
+					<div class="login-input">
+						<div>기본정보</div>
+						
+						<div class="userid">
+						<label for="userid">아이디</label>
+						<input id="userid" type="text" name="userid"placeholder="(영문소문자/숫자,4~16자)" required>
+						</div>
+						
+						<div class="userpass">
+						<label for="password">비밀번호</label>
+						<input id="password" type="password" name="password" placeholder="(영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 8자~16자))" required>
+						</div>
+						
+						<div class="userpass1">
+						<label for="password_1">비밀번호 확인</label>
+						<input id="password_1" type="password" name="password_1" placeholder="비밀번호 확인" required>
+						</div>
+						
+						<div class="username">
+						<label for="username">이름</label>
+						<input id="username" type="text" name="username" placeholder="이름" required>
+						</div>
+						
+						<div class="useradress">
+						<label for="useradress">주소</label>
+						<input id="useradress" type="text" name="useradress" placeholder="주소" required><button>우편번호</button><br>
+						<input id="useradress_detail" type="text" name="useradress_detail" placeholder="상세주소" required><br>
+						</div>
+						
+						<div class="usernumber">
+						<label for="usernumber">휴대전화</label>
+						<input id="usernumber" type="text" name="usernumber" placeholder="전화번호" required><br>
+						</div>
+						
+						<label for="useremail">이메일</label>
+						<input id="useremail" type="text" name="useremail" placeholder="이메일" required><br>
+						
+						<div>추가정보</div>
+						<label for="petname">내새꾸 이름</label>
+						<input id="petname" type="text" name="petname" placeholder="이름" required><br>
+						
+						<label for="petbreed">내새꾸 품종</label>
+						<input id="petbreed" type="text" name="petbreed" placeholder="품종" required><br>
+						
+					</div>
+					<a href="/common/login"><button type="button" class="sign_but">회원가입 완료하기</button></a>
+
+				</form>
+
+				
+			</div>
+
+
+
+		</div>
+		
+
+	</main>
+
+</body>
+</html>

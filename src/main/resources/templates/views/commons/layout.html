@@ -8,13 +8,37 @@
     <link rel="stylesheet" href="/css/commons/common.css">
     <link rel="stylesheet" href="/css/commons/layout.css">
     <link rel="stylesheet" href="/css/commons/index.css">
+    <link rel="stylesheet" href="/css/commons/chat.css"> <!-- 채팅 스타일 시트 추가 -->
     <script src="/js/layout.js"></script>
+    <script src="/js/chat.js" defer></script> <!-- 채팅 스크립트 추가 -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
     <th:block th:replace="${pHead}" />
 </head>
 <body>
-    <header th:replace="~{views/commons/header}"></header>
-    <main th:replace="${pMain}"></main>
-    <footer th:replace="~{views/commons/footer}"></footer>
+<header th:replace="~{views/commons/header}"></header>
+<main th:replace="${pMain}"></main>
+<footer th:replace="~{views/commons/footer}"></footer>
+
+<!-- 채팅 아이콘 -->
+<div class="chat-icon" onclick="toggleChatPopup()">
+    <img src="/img/chatbot.png" alt="Chat Icon">
+</div>
+
+<!-- 팝업 창 HTML -->
+<!-- 채팅 팝업 -->
+<div class="chat-popup" id="chat-popup">
+    <div class="chat-popup-header">
+        <span>챗봇</span>
+        <button class="close-btn" onclick="toggleChatPopup()">×</button>
+    </div>
+    <div class="chat-popup-body" id="chat-messages">
+        <!-- 대화 내용이 표시되는 영역 -->
+    </div>
+    <div class="chat-popup-footer">
+        <textarea id="chat-input" placeholder="메시지를 입력하세요..."></textarea>
+        <button onclick="sendMessage()">전송</button>
+    </div>
+</div>
+
 </body>
 </html>

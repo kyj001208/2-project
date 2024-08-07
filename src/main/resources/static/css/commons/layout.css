@@ -23,6 +23,7 @@ i.logo-img {
     background-image: url(/img/logo.png);
     width: 100px;
     height: 100px;
+    
     background-size: contain;
     display: inline-block; /* 인라인 블록으로 설정 */
     margin-right: 10px; /* 로고와 텍스트 사이의 간격 조절 */
@@ -221,10 +222,11 @@ nav>ul>li>a:hover {
 
 }
 footer {
+	color : var(--grey);
+	font-size: 20px;
     width: 100%; /* 변경: 1903px에서 100%로 수정 */
     height: 300px;
-    max-width: 1903px; /* 최대 너비 설정 */
-    background-color: var(--main-pink);
+    background-color: var(--sub-grey);
     padding-top: 50px; /* 푸터 안쪽 여백 */
     overflow-x: hidden; /* 가로 스크롤 제거 */
 }

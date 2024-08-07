@@ -1,0 +1,60 @@
+.content {
+    padding : 40px;
+	margin-right: 1100px;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    border: 2px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.stat-item {
+    text-align: center;
+    font-size: 24px;
+}
+
+.charts {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.chart-item {
+	margin : 10px;
+    padding: 20px;
+    border: 2px solid #ddd;
+}
+
+.chart-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.visitor-stats,
+.inventory {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.inventory {
+    border: 1px solid #ddd;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+table th {
+    background-color: #f2f2f2;
+}

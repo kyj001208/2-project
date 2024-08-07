@@ -1,6 +1,6 @@
 @charset "UTF-8";
+/* @import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
-
 :root{
     --main-pink:#F9F3EC;
     --sub-pink:#F7EEE4;
@@ -19,7 +19,7 @@
 .between{justify-content: space-between;}
 
 /* css reset */
-html, body, div, span, applet, object, iframe,
+html, body, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -47,14 +47,9 @@ a {
 	text-decoration: none;
 }
 body {
-    font-family: "Dongle", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    color: #777777;
-    margin: 0;	
-    padding: 0;
-    text-decoration: none;
-    list-style: none;
-    
+	margin: 0;
+	font-family: "Dongle", sans-serif;
+	font-size : 30px;
+	display: flex;
 }
 

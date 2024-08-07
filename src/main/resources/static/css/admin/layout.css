@@ -1,0 +1,74 @@
+.logo {
+	font-family: "Dongle", sans-serif;
+	display: flex;
+	align-items: center;
+	height: 73px;
+}
+
+.sidebar {
+	width: 200px;
+	background-color: black;
+	color: #fff;
+	display: flex;
+	flex-direction: column;
+	padding-top: 100px; /* 탑바 높이만큼 패딩 추가 */
+	position: fixed;
+	height: 100%;
+}
+
+.sidebar .tag a {
+	text-decoration: none;
+	color: #fff;
+	padding: 20px;
+	display: block;
+	text-align: center;
+}
+
+.sidebar .tag a:hover {
+	background-color: #575757;
+}
+
+.topbar {
+	width: 1880px;
+	background-color: #f4f4f4;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	height: 50px;
+}
+
+
+.user-profile {
+	display: flex;
+	align-items: center;
+}
+
+.profile {
+	height: 100px;
+	border-radius: 50%;
+	margin : 0px 20px;
+}
+.name{
+	margin-right : 20px;
+}
+.logout {
+	margin : 0px 30px;
+	height: 45px;
+	width: 35px;
+}
+
+.shopname{
+	color : var(--logo-brown)
+}
+
+
+.content {
+	margin-top: 60px; /* 탑바 높이만큼 마진 추가 */
+	margin-left: 200px; /* 사이드바 넓이만큼 마진 추가 */
+	width: calc(100% - 200px); /* 사이드바 넓이만큼 컨텐츠 너비 조정 */
+}

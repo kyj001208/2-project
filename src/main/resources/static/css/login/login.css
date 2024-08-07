@@ -1,0 +1,79 @@
+
+.login{
+	
+	height:100vh;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	flex-direction: column; /* 추가: 자식 요소들을 수직으로 정렬 */
+}
+
+.login-menu{
+	
+	border-radius: 1em;
+	text-align: center;
+	max-width: 300px;
+	width: 100%;
+	border: 1px solid var(--sub-grey);
+	padding-bottom: 5px;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+	margin-bottom: 20px;
+	flex-direction: column;
+}
+
+.login_top , .social_log {
+	display: flex;               
+	justify-content: center;      
+	align-items: center;          
+	text-align: center;           
+}
+
+.login_name {
+	font-size: 30px;              
+	margin-left: 10px;            
+}
+
+#loginimg {
+	height: 80px;              
+	width: 80px;                 
+}
+
+
+.login-input{
+	
+	padding: 1em;
+
+}
+
+.login-input > input{
+	
+	border: none;
+	height: 30px;
+	font-family: "Dongle", sans-serif;
+	font-size: 20px;
+	
+}
+
+.login-menu > form {
+	
+	padding-bottom: 5px;
+}
+
+.logi_but, .sign_but{
+	
+	
+	background-color: var(--sub-pink);
+	width: 200px;
+	height: 30px;
+	font-family: "Dongle", sans-serif;
+	font-size: 20px;
+	border-radius: 1em ;
+	border: 1px;
+	margin-bottom: 5px;
+	
+}
+
+.social_log> div{
+	
+	font-size: 20px;
+}

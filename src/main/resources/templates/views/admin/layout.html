@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+th:fragment="layout(pHead,pMain)">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/admin/common.css">
+    <link rel="stylesheet" href="/css/admin/layout.css">
+    <th:block th:replace="${pHead}" />
+</head>
+<body>
+    <div class="sidebar">
+    	<div class="tag">
+	        <a href="/admin/product_add">상품등록</a>
+    	</div>
+    	<div class="tag">
+	        <a href="/admin/order">주문관리</a>
+    	</div>
+    	<div class="tag">
+	        <a href="/admin/deliver">배송관리</a>
+    	</div>
+    	<div class="tag">
+	        <a href="/admin/board">게시판관리</a>
+    	</div>
+    </div>
+    <div class="topbar">
+        <div class="logo">
+            <img src="/img/logo.png" class="logo">
+            <span class="shopname">PETFIR</span>
+        </div>
+        <div class="user-profile">
+        	<img class="profile" src="/img/logo.png" alt="User Profile">
+            <span class="name">회원명</span>
+            <img class="logout" src="/img/logout.png" alt="User Profile">
+        </div>
+    </div>
+    	<main th:replace="${pMain}"></main>
+</body>
+
+</html>
