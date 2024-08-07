@@ -1,44 +1,146 @@
 @charset "UTF-8";
 
-@import url('https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap');
-body{
-  font-family: "Hi Melody", sans-serif !important;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 16px;
-  line-height: 1.6
-}
-label{
+@import
+	url('https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap');
+
+* {box-sizing: border-box;} /*헤더영향*/
+button{border: none;}
+body {
+	font-family: "Hi Melody", sans-serif !important;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 16px;
+	line-height: 1.6
 	
-}	
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
 
 /* 공지사항 css */
-h1{position: absolute;left: -9999px}
-.page-title{
+.topbar{
+	width: 100vw;
+	min-width: 960px;
+}
+h1 {
+	position: absolute;
+	left: -9999px
+}
+
+.page-title {
 	font-size: 20px;
 	font-weight: 700;
 	color: #222;
 	padding-bottom: 30px;
-	border-bottom:1px solid #ebebeb;
+	border-bottom: 1px solid #ebebeb;
 	margin-bottom: 30px;
 }
-input,textarea{box-sizing: border-box;}
+
+
+
 main>.wrap {
-    padding: 40px 0 0 40px;
+	padding: 40px 40px 0 40px;
+	min-width: 760px;
 }
 
-#cs{
+#cs {
 	margin: 50px 0 0 200px;
 	width: calc(100vw - 200px);
 }
-
-#summernote ~ .note-editor > .note-editing-area{height: 350px;}
+#summernote ~ .note-editor{
+	width: 100%;
+}
+#summernote ~ .note-editor>.note-editing-area {
+	height: 350px;
+}
 
 /* ##공지사항 등록-관리자#### */
-#notice-write > .contents > form{width: 800px}
-#notice-write > .contents > form > ul > li{margin: 20px 0;}
-#notice-write > .contents > form > ul > li > label{display: block;}
-#notice-write > .contents > form > ul > li > input{width: 100%}
-#notice-write > .contents > form > ul > li > textarea{width: 100%}
 
+
+#notice-write>.contents>form>ul>li {
+	margin: 20px 0;
+	display: flex;
+}
+
+#notice-write>.contents>form>ul>li>label {
+	display: block;
+	margin-right: 30px; 
+}
+
+#notice-write>.contents>form>ul>li>input {
+	width: 100%
+}
+
+#notice-write>.contents>form>ul>li>textarea {
+	width: 100%
+}
+#notice-write>.contents>form>ul>li:last-child>button{
+	width: 120px; 
+	padding: 10px 16px; 
+	color: #fff;
+	background-color: var(--point-purple);
+	margin: 0 5px;
+	font-weight: 700;
+}
+	
+
+
+/* #################################################### */
 /* ##공지사항 리스트-관리자#### */
+/* #################################################### */
+#notice-admin-list>.contents {
+	width: 800px
+}
+
+#notice-admin-list>.contents>table tr td {
+	padding: 14px 16px 13px 16px;
+	border-bottom: 1px solid #d9d9d9;
+	text-align: center;
+}
+
+#notice-admin-list>.contents>table>thead>tr>td {
+	border-bottom: 1px solid #bbb;
+	font-weight: 700;
+}
+
+#notice-admin-list>.contents>table>thead>tr>td.no {
+	width: 100px;
+}
+
+#notice-admin-list>.contents>table>thead>tr>td.title {
+	width: 550px;
+}
+
+#notice-admin-list>.contents>table>tbody>tr>td.title {
+	text-align: left;
+}
+
+#notice-admin-list>.contents>table>thead>tr>td.create-at {
+	width: 150px;
+}
+
+#notice-admin-list>.contents>ol.paginate {
+	margin-top: 30px;
+}
+
+#notice-admin-list>.contents>ol.paginate>li {
+	margin: 0 2px;
+}
+
+#notice-admin-list>.contents>ol.paginate>li>a {
+	min-width: 30px;
+	height: 30px;
+	padding: 0 10px;
+	border: 1px solid #e9e9e9;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	line-height: 1;
+}
+
+#notice-admin-list>.contents>ol.paginate>li>a:hover {
+	background-color: #333;
+	color: #fff;
+}
