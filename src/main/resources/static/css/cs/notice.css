@@ -7,16 +7,9 @@ h1{position: absolute;left: -9999px}
 	padding: 30px 0;
 	border-bottom:1px solid #ebebeb;
 }
+input,textarea{box-sizing: border-box;}
 .container {
     margin: 0 auto;
 }
-
-/* ##공지사항 등록-관리자#### */
-#notice-write > .content > form{width: 600px}
-#notice-write > .content > form > ul > li > label{display: block;}
-#notice-write > .content > form > ul > li > input{width: 100%}
-#notice-write > .content > form > ul > li > textarea{width: 100%}
-
-/* ##공지사항 리스트-관리자#### */
 
 /* ##공지사항 리스트#### */

@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap');
+body{
+  font-family: "Hi Melody", sans-serif !important;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1.6
+}
+label{
+	
+}	
+
+/* 공지사항 css */
+h1{position: absolute;left: -9999px}
+.page-title{
+	font-size: 20px;
+	font-weight: 700;
+	color: #222;
+	padding-bottom: 30px;
+	border-bottom:1px solid #ebebeb;
+	margin-bottom: 30px;
+}
+input,textarea{box-sizing: border-box;}
+main>.wrap {
+    padding: 40px 0 0 40px;
+}
+
+#cs{
+	margin: 50px 0 0 200px;
+	width: calc(100vw - 200px);
+}
+
+#summernote ~ .note-editor > .note-editing-area{height: 350px;}
+
+/* ##공지사항 등록-관리자#### */
+#notice-write > .contents > form{width: 800px}
+#notice-write > .contents > form > ul > li{margin: 20px 0;}
+#notice-write > .contents > form > ul > li > label{display: block;}
+#notice-write > .contents > form > ul > li > input{width: 100%}
+#notice-write > .contents > form > ul > li > textarea{width: 100%}
+
+/* ##공지사항 리스트-관리자#### */
