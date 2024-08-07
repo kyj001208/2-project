@@ -1,4 +1,4 @@
-package com.green.petfirst.cs;
+package com.green.petfirst.controller.cs;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
