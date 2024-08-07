@@ -174,8 +174,7 @@ a.logo {
     padding: 10px;
     z-index: 1;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
-    width: 120px;
-    font-size: 10px;
+    width: 140px;
     line-height: 45px;
 }
 
@@ -214,5 +213,59 @@ nav>ul>li>a {
 .icons>a>span>i:hover,
 nav>ul>li>a:hover {
     color: var(--logo-brown); /* Hover 시 배경색 변경 */
+}
+/*푸터*/
+.footer-logo{
+    font-size: 24px;
+
+}
+#footer {
+	color : var(--grey);
+	font-size: 20px;
+    width: 100%; /* 변경: 1903px에서 100%로 수정 */
+    height: 300px;
+    background-color: var(--sub-grey);
+    padding-top: 50px; /* 푸터 안쪽 여백 */
+    display: flex;
+    justify-content: center;
+  
+}
+
+.footer-wrap {
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: flex-start; /* 수직 중앙 정렬 */
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap; /* 작은 화면에서 요소가 줄 바꿈 되도록 */
+    gap: 20px; /* 요소 간 간격 */
+}
+
+.com-info {
+    flex: 1; /* 가능한 모든 공간을 차지 */
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+}
+
+.com-info .info-text {
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+}
+
+.cs-center,
+.sns {
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+    flex: 0 0 auto; /* 고정 너비 */
+    margin-left: auto; /* 오른쪽으로 정렬 */
+    margin-right: 0; /* 오른쪽으로 정렬 */
+    padding: 20px;
+}
+
+.sns span {
+    display: block; /* SNS SERVICE 텍스트 블록 요소로 설정 */
+    margin-bottom: 10px; /* 텍스트와 아이콘 사이 간격 */
+}
+
+.sns i {
+    font-size: 24px; /* 아이콘 크기 */
+    margin-left: 10px; /* 아이콘 사이 간격 */
 }
 
