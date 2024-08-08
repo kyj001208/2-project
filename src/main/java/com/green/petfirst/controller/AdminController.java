@@ -2,6 +2,8 @@ package com.green.petfirst.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class AdminController {
@@ -20,6 +22,11 @@ public class AdminController {
 	@GetMapping("/admin/order")
 	public String order() {
 		return "views/admin/order";
+	}
+	
+	@GetMapping("/admin/deliver")
+	public String deliver() {
+		return "views/admin/deliver";
 	}
 	
 }

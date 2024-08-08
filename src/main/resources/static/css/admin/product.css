@@ -1,5 +1,5 @@
 .container {
-	width: 85%;
+	width: 100%;
 	padding: 20px;
 	background-color: #fff;
 }
@@ -10,7 +10,7 @@ h1 {
 }
 
 table {
-	width: 100%;
+	width: 85%;
 	border-collapse: collapse;
 	margin-bottom: 20px;
 	font-size: 24px;
@@ -101,6 +101,6 @@ button[type="submit"] {
 }
 
 button[type="reset"] {
-	background-color: #B9B9B9;
+	background-color: var(--grey);
 	color: white;
 }
