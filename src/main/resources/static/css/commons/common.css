@@ -48,6 +48,7 @@ ol, ul {
 }
 a {
 	text-decoration: none;
+	color: inherit;
 }
 body {
 	font-family: "Hi Melody", sans-serif !important;
