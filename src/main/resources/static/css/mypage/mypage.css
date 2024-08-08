@@ -31,22 +31,56 @@
 }
 
 .top-box-inner{
-	display: flex;
-	padding: 25px 40px;
-	align-items: center;
+     display: flex;
+        justify-content: space-between;
+        align-items: center;
 	width: 1200px;
 	border: 1px solid var(--sub-grey);
 }
 
 .profile-container{
 	display: flex;
-	
+	 align-items: center;
 	}
+	 .user-name-wrap {
+        margin-left: 10px;
+    }
+.profile-container>div{
+	display: flex;
+	width: 100%;
+	margin: 10px;
+}
+	
 .myprofile{
 	display:flex;
 	width: 140px;
 	height: 140px;
 }
+.mypage-btn-container{
+	display: flex;
+	flex-direction: column;
+	width: 540px;
+	gap: 10px;
+	
+}
+    .mypage-btn-container button {
+        display: flex;
+        align-items: center;
+    }
+
+    .mypage-btn {
+        display: flex;
+        align-items: center;
+    }
+
+    .mypage-btn span {
+        margin-right: 5px;
+    }
+
+    .mypage-btn strong {
+        margin-left: 5px;
+    }
+
 
 /**/
 
@@ -97,17 +131,21 @@
 .mypage-main {
     flex-grow: 1; /* 남은 공간을 차지 */
     padding: 20px;
-    background-color: #fff;
+    background-color: var(--white);
 }
 
 .mypage-main h2 {
+	font-size: 40px;
+	font-weight: bold;
     margin-top: 0;
 }
 
 .order-container {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    padding: 10px;
+    padding: 50px 15px;
     background-color: var(--sub-grey);
     border: 1px solid var(--sub-grey);
     border-radius: 4px;
@@ -115,8 +153,11 @@
 
 .order-container i {
     margin-right: 10px;
-    font-size: 24px;
+    font-size: 60px;
     color: var(--grey);
+}
+.order-container span {
+	font-size: 20px;
 }
 
 
