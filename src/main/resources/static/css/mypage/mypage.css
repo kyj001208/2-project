@@ -33,11 +33,11 @@
 .nav-rootbar{
 	display: flex;
 	width:100%;
-	
 	background-color: var(--main-pink);
 	justify-content: center;
 	vertical-align: middle;
 	font-size: 20px;
+	height: 36px;
 	
 }
 

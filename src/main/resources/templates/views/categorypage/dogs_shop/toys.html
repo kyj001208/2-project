@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout::frame(~{this::head}, ~{this::main})}">
+
+<head>
+<meta charset="UTF-8">
+<title>PETFIR</title>
+<link rel="stylesheet" href="/css/categorypage/categorypage.css" />
+<link rel="stylesheet" href="/css/commons/common.css" />
+</head>
+<body>
+<main>
+<div th:replace="~{views/categorypage/top}"></div>
+
+<div class="categorypage-wrap">
+ <div class="categorypage-container">
+<div th:replace="~{views/categorypage/sidebar}"></div>
+        <section>
+        <div class="category-title flex"><h2>장난감</h2></div>
+        
+            <div class="products">
+            
+            <div class="product">
+                <i class="img"></i>
+                <h3>로얄캐닌 푸들 어덜트 3kg 피모관리</h3>
+                <p class="price"><span class="discount">28% </span>39,200원</p>
+            </div>
+            <div class="product">
+                <i class="img"></i>
+                <h3>네츄럴코어 홀리스틱 베네 M32 멀티프로테인 6kg</h3>
+                <p class="price"><span class="discount">46% </span>40,300원</p>
+            </div>
+            <div class="product">
+                <i class="img"></i>
+                <h3>네츄럴코어 애프코 9a 시니어 오리&고구마 6kg</h3>
+                <p class="price"><span class="discount">26% </span>50,800원</p>
+            </div>
+            <div class="product">
+                <i class="img"></i>
+                <h3>ANF 식스프리프랑스 인도어 닭 소고기&연어 5.6kg</h3>
+                <p class="price"><span class="discount">6% </span>59,900원</p>
+            </div>
+            <div class="product">
+                <i class="img"></i>
+                <h3>로얄캐닌 멀티즌 어덜트 3kg 피모관리</h3>
+                <p class="price"><span class="discount">22% </span>39,600원</p>
+            </div>
+            <div class="product">
+                <i class="img"></i>
+                <h3>네츄럴코어 애프코 4 오리고기 슬림다운 6kg</h3>
+                <p class="price"><span class="discount">28% </span>49,900원</p>
+            </div>
+        </div>
+        </section>
+    </div>
+</div>
+</main>
+</body>
+</html>

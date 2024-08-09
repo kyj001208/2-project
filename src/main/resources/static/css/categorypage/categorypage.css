@@ -1,56 +1,111 @@
-.container {
+.nav-rootbar{
+	display: flex;
+	width:100%;
+	height:36px;
+	background-color: var(--main-pink);
+	justify-content: center;
+	vertical-align: middle;
+	font-size: 20px;
+}
+
+.nav-container{
+	display: flex;
+	width: 1200px;
+	justify-content: flex-start;
+}
+.categorypage-wrap{
+	display: flex;
+	justify-content: center;
+    min-width: 1200px;
+    margin: 30px 0;
+    
+    
+}
+.categorypage-container {
     display: flex;
-    max-width: 1200px;
-    margin: 0 auto;
+    justify-content: center;
+    width: 1200px;   
 }
 
 .sidebar {
-    width: 20%;
-    background-color: #fff;
+    width: 250px;
+    background-color: none;
+    color: var(--grey);
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
 }
 
-.sidebar h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
+.category-all>span{
+	font-size: 30px;
+	font-weight: bold;
 }
-
-.sidebar ul {
+.category-parent{
+	margin: 20px;
+}
+.category-parent span {
+	font-size: 24px;
     list-style-type: none;
-    padding: 0;
+    padding: 10px;
+    font-weight: bold;
+
+}
+.category-child{
+	padding-left: 20px;
+	font-size: 20px;
+	
+}
+.sidebar>ul>li {
+	font-size: 20px;
+    list-style-type: none;
+   
+    
+}
+.sidebar li {
+	margin-bottom: 10px;
+	cursor: pointer;
+    
 }
 
-.sidebar ul li {
-    margin-bottom: 10px;
+/*//////////상품목록///////////*/
+.category-title {
+    display: flex;
+    justify-content: space-between; /* 자식 요소들 간의 간격을 설정 */
+    
+    padding: 20px 0; /* 위, 아래 패딩을 추가하여 공간을 확보 */
+    border-bottom: 1px solid #ddd; /* 아래에 경계선을 추가하여 분리 */
+}
+.category-title h2 {
+    font-size: 24px;
+    margin: 0;
 }
 
 .products {
-    width: 80%;
-    display: flex;
-    flex-wrap: wrap;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
     background-color: #fff;
+    padding: 20px;
+   
+    
 }
 
 .product {
-    width: 31%;
-    margin-right: 3.5%;
-    margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
     padding: 15px;
     background-color: #fff;
 }
 
-.product img {
-    width: 100%;
-    height: auto;
+.img {
+	display: flex;
+    width: 230px;
+    height: 230px;
+    background-color: var(--grey);
+    margin-bottom: 10px;
 }
 
 .product h3 {
     font-size: 16px;
-    margin: 10px 0;
+    margin-bottom: 10px;
 }
 
 .product .price {
@@ -61,8 +116,4 @@
 .product .discount {
     color: #d9534f;
     font-weight: bold;
-}
-
-.product:nth-child(3n) {
-    margin-right: 0;
 }
