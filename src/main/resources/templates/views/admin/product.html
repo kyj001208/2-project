@@ -9,52 +9,92 @@
 
 <main>
 	<div class="container">
-		<h1>상품등록</h1>
-		<form action="/submit" method="post" enctype="multipart/form-data">
-			<table>
-				<tr>
-					<th class="tag">상품명</th>
-					<td><input class="pdtName" type="text" name="productName" required></td>
-				</tr>
-				<tr>
-					<th class="tag">판매가</th>
-					<td><input class="price" type="text" name="price" required> 원</td>
-				</tr>
-				<tr>
-					<th class="tag">분류</th>
-					<td><input type="text" name="category" required></td>
-				</tr>
-				<tr>
-					<th class="tag">상품수량</th>
-					<td><input class="quantity" type="text" name="quantity" required></td>
-				</tr>
-				<tr>
-					<th class="tag">상품설명</th>
-					<td><textarea class="des" name="description" rows="5" required></textarea></td>
-				</tr>
-				<tr>
-					<th class="tag">이미지</th>
-					<td>
-						<label class="fileUpload">
-							<input type="file" id="itemFile" onchange="fileupload(this)" style="display: none;">
-							<span>+</span>
-						</label> 
-						<label class="detail1">
-							<input type="file" id="itemFile" onchange="fileupload(this)" style="display: none;">
-							<span>+</span>
-						</label> 
-						<label class="detail2">
-							<input type="file" id="itemFile" onchange="fileupload(this)" style="display: none;">
-							<span>+</span>
-						</label> 
-					</td>
-				</tr>
-			</table>
+	    <h1>상품등록</h1>
+	    <form action="/submit" method="post" enctype="multipart/form-data">
+	        <table>
+	        	
+	            <tr>
+	                <th class="tag">카테고리</th>
+	                <td><input class="pdtCategory" type="text" name="category1" placeholder="대분류" required></td>
+	                
+	                <td><input class="pdtCategory" type="text" name="category2" placeholder="중분류" required></td>
+	                
+	                <td><input class="pdtCategory" type="text" name="category3" placeholder="소분류" required></td>
+	            </tr>
+	           	
+	            <tr>
+	                <th class="tag">#1 다중 카테고리</th>
+	                <td><input class="pdtCategory" type="text" name="category1" placeholder="대분류" required></td>
+	                
+	                <td><input class="pdtCategory" type="text" name="category2" placeholder="중분류" required></td>
+	                
+	                <td><input class="pdtCategory" type="text" name="category3" placeholder="소분류" required></td>
+	            </tr>
+	            <tr>
+	                <th class="tag">#2 다중 카테고리</th>
+	                <td><input class="pdtCategory" type="text" name="category1" placeholder="대분류" required></td>
+	                
+	                <td><input class="pdtCategory" type="text" name="category2" placeholder="중분류" required></td>
+	                
+	                <td><input class="pdtCategory" type="text" name="category3" placeholder="소분류" required></td>
+	            </tr>
+	            
+	            </table>
+	            <table>
+	            <tr>
+	                <th class="tag">상품명</th>
+	                <td colspan="5"><input class="pdtName" type="text" name="productName" required></td>
+	                
+	            </tr>
+	            <tr>
+	                <th class="tag">판매가</th>
+	                <td><input class="price" type="text" name="price" placeholder="숫자만 입력" required> 원</td>
+	                <th class="tag">즉시할인</th>
+	                <td><input class="price" type="text" name="discount" placeholder="숫자만 입력" required> 원 / %</td>
+	                <th class="tag">즉시할인가</th>
+	                <td><input class="price" type="text" name="discountedPrice" placeholder="숫자만 입력" required> 원</td>
+	            </tr>
+	            <tr>
+	                <th class="tag">재고수량</th>
+	                <td colspan="5"><input class="quantity" type="text" name="quantity" placeholder="숫자만 입력" required> 개</td>
+	            </tr>
+	            <tr>
+	                <th class="tag">상품설명</th>
+	                <td colspan="5"><textarea class="des" name="description" rows="5" required></textarea></td>
+	            </tr>
+	            <tr>
+	                <th class="tag">대표 이미지</th>
+	                <td colspan="5">
+	                    <label class="fileUpload">
+	                        <input type="file" id="itemFile1" name="mainImage" onchange="fileupload(this)" style="display: none;">
+	                        <span>+</span>
+	                    </label> 
+	                </td>
+	            </tr>
+	            <tr>
+	                <th class="tag">추가 이미지</th>
+	                <td colspan="5">
+	                    <label class="fileUpload">
+	                        <input type="file" id="itemFile2" name="additionalImage1" onchange="fileupload(this)" style="display: none;">
+	                        <span>+</span>
+	                    </label> 
+	                    <label class="fileUpload">
+	                        <input type="file" id="itemFile3" name="additionalImage2" onchange="fileupload(this)" style="display: none;">
+	                        <span>+</span>
+	                    </label>
+	                    <label class="fileUpload">
+	                        <input type="file" id="itemFile4" name="additionalImage3" onchange="fileupload(this)" style="display: none;">
+	                        <span>+</span>
+	                    </label>
+	                </td>
+	            </tr>
+	
+	        </table>
 			<div class="form-buttons">
 				<button type="submit">상품등록</button>
 				<button type="reset">취소</button>
 			</div>
-		</form>
+	    </form>
 	</div>
 </main>
 </html>
