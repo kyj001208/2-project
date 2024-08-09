@@ -8,5 +8,5 @@ import com.green.petfirst.domain.entity.MemberEntity;
 
 public interface SignupRepository extends JpaRepository<MemberEntity, Long> {
 
-	Optional<MemberEntity> findByUserId(String userid);
+	Optional<MemberEntity> findByUserId(String userId);
 }

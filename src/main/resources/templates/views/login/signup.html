@@ -25,7 +25,7 @@
 						
 						<div class="userid">
 						<label for="userid">아이디</label>
-						<input id="userid" type="text" name="userid"placeholder="(영문소문자/숫자,4~16자)" >
+						<input id="userid" type="text" name="userId"placeholder="(영문소문자/숫자,4~16자)" >
 						</div>
 						
 						<div class="userpass">
@@ -40,7 +40,7 @@
 						
 						<div class="username">
 						<label for="username">이름</label>
-						<input id="username" type="text" name="username" placeholder="이름" >
+						<input id="username" type="text" name="name" placeholder="이름" >
 						</div>
 						
 						<div class="useradress">
@@ -57,29 +57,30 @@
 						
 						<div class="usernumber">
 						<label for="usernumber">휴대전화</label>
-						<input id="usernumber" type="text" name="usernumber" placeholder="전화번호" ><br>
+						<input id="usernumber" type="text" name="phone" placeholder="전화번호" ><br>
 						</div>
 						
 						<div class="useremail">
 						<label for="useremail">이메일</label>
-						<input id="useremail" type="text" name="useremail" placeholder="이메일" ><br>
+						<input id="useremail" type="text" name="email" placeholder="이메일" ><br>
 						</div>
 						
 						<div class="addprofile">추가정보</div>
 						
 						<div class="petname">
 						<label for="petname">내새꾸 이름</label>
-						<input id="petname" type="text" name="petname" placeholder="이름" ><br>
+						<input id="petname" type="text" name="petName" placeholder="이름" ><br>
 						</div>
 						
 						<div class="petbreed">
 						<label for="petbreed">내새꾸 품종</label>
-						<input id="petbreed" type="text" name="petbreed" placeholder="품종" ><br>
+						<input id="petbreed" type="text" name="petBreed" placeholder="품종" ><br>
 						</div>
 						
 					</div>
 					
 					<div class="sign_button">
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 					<button  class="sign_but" >회원가입 완료하기</button>
 					</div>
 				</form>

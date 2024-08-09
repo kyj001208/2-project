@@ -32,38 +32,38 @@ public class PetfirAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 		
 
 			clearAuthenticationAttributes(request); //인증실패하거나 인증관련 메시지와 상태정보가 이후 요청에 영향을 미치지 않도록 제거
-			String targetUrl=getDefaultTargetUrl();
 			
+			String targetUrl="/";  //기본 리다이렉트 url
+			
+			// SavedRequest를 통해 원래 요청했던 URL 가져오기
 			SavedRequest savedRequest=requestCache.getRequest(request, response);
 			
-			
-			String prevPage=(String) request.getSession().getAttribute("prevPage");
-			
-			//권한 확인 방법 
-			Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-			boolean hasAdminRole = authorities.stream()
-			.anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"));
-			
-			
-			//어드민 권한이 있을 경우 어드민 화면으로 리다이렉트
-			if (hasAdminRole) {
-		        targetUrl = "/admin/petfir";
-		    } 
-			
-			else if(savedRequest != null && !savedRequest.getRedirectUrl().contains("login") ) {
-				targetUrl=savedRequest.getRedirectUrl().split("[?]")[0];
-				
-			}else if(prevPage != null) {
-				targetUrl=prevPage;
-				request.getSession().removeAttribute("prevPage");
-			}
-			
-			System.out.println("targetUrl: "+targetUrl);
-			
-			
-			redirectStrategy.sendRedirect(request, response, targetUrl);
-		
-		}
+			 if (savedRequest != null) {
+		            // 저장된 요청의 URL을 가져와 리다이렉트 URL로 설정
+		            targetUrl = savedRequest.getRedirectUrl().split("[?]")[0];
+		            
+		        } else {
+		            // 원래 요청된 URL이 없을 경우 세션에서 이전 페이지 URL 가져오기
+		            String prevPage = (String) request.getSession().getAttribute("prevPage");
+		            
+		            if (prevPage != null) {
+		                targetUrl = prevPage;
+		                request.getSession().removeAttribute("prevPage");
+		            }
+		        }
+		        
+		        // 권한에 따라 URL 설정 어드민 권한 리다이렉트 
+		        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+		        boolean hasAdminRole = authorities.stream()
+		                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN")); //어드민
+		       
+		        
+		        if (hasAdminRole) {
+		            targetUrl = "/admin/petfir";
+		        } 
+		        // 리다이렉트 수행
+		        redirectStrategy.sendRedirect(request, response, targetUrl);
+		    }
 
 
 }

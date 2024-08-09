@@ -24,12 +24,12 @@ public class PetfirUserDetailsService implements UserDetailsService{
 	private final SignupRepository repository;
 
 	@Override
-	public UserDetails loadUserByUsername(String userid) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
 	
 	// TODO Auto-generated method stub
 	
 		
-		return new PetfirUserDetails(repository.findByUserId(userid).orElseThrow());
+		return new PetfirUserDetails(repository.findByUserId(userId).orElseThrow());
 
 	}
 

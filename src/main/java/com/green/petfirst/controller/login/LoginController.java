@@ -13,7 +13,7 @@ public class LoginController {
 		String referer=request.getHeader("Referer");
 		System.out.println("referer"+referer);
 		//302리다이렉트 페이지
-		if(referer != null && !referer.contains("/signup") && !referer.contains("/login")) {
+		if(referer != null && !referer.contains("/public/signup") && !referer.contains("/public/login")) {
 		request.getSession().setAttribute("prevPage", referer);
 		}
 		return "/views/login/login";
