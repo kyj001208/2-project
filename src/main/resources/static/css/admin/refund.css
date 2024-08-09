@@ -73,17 +73,28 @@ select.exchange-status {
 	padding-top: 60px;
 }
 
-.modal-content {
-	background-color: #fefefe;
+.modal-content1, .modal-content2 {
+	background-color: #fff;
 	margin: 5% auto;
 	padding: 20px;
-	border: 1px solid #888;
 	width: 80%;
 	max-width: 600px;
 }
 
+.modal-content1 {
+	width: 550px;
+	height: 480px;
+	margin-top: 200px;
+}
+
+.modal-content2 {
+	width: 500px;
+	height: 250px;
+	margin-top: 300px;
+}
+
 .close {
-	color: #aaa;
+	color: #d9d9d9;
 	float: right;
 	font-size: 28px;
 	font-weight: bold;
@@ -93,4 +104,46 @@ select.exchange-status {
 	color: black;
 	text-decoration: none;
 	cursor: pointer;
+}
+
+
+
+.tags{
+	background-color: #f1f1f1;
+	vertical-align: middle;
+	text-align: center;
+}
+
+h2 {
+	font-size: 36px;
+}
+
+.item {
+	font-size: 24px;
+	padding: 10px 0 15px 20px;
+}
+
+.option-button {
+	display: inline-block;
+	width: 200px;
+	height: 70px;
+	padding: 10px;
+	margin: 5px 0;
+	margin-left:20px;
+	border: 1px solid #ddd;
+	background-color: #fcfcfc;
+	cursor: pointer;
+	font-size: 16px;
+	border-radius: 4px;
+}
+
+th, .detail {
+	padding: 10px;
+	border: 1px solid #ddd;
+	text-align: left;
+}
+
+.modal-table{
+	margin: 20px 0 20px 60px;
+	font-size: 20px;
 }
