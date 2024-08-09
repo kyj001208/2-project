@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout::frame(~{this::head}, ~{this::main})}">
+
+<head>
+<meta charset="UTF-8">
+<title>PETFIR</title>
+<link rel="stylesheet" href="/css/mypage/mypage.css" />
+<link rel="stylesheet" href="/css/commons/common.css" />
+</head>
+<body>
+<main class="mypage">
+
+<div th:replace="~{views/mypage/top}"></div>
+	<div class="mypage-main-container">
+<div th:replace="~{views/mypage/sidebar}"></div>
+		
+		<div class="mypage-main">
+			<h2>주문·배송</h2>
+			<div>
+				<div class="order-container">
+					<span><i class="ri-shopping-bag-3-line"></i></span>
+					<span>주문 및 배송조회 가능한 내역이 없습니다.</span>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+
+</main>
+</body>
+</html>
