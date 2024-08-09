@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout::frame(~{this::head}, ~{this::main})}">
+
+<head>
+<meta charset="UTF-8">
+<title>PETFIR</title>
+<link rel="stylesheet" href="/css/categorypage/categorypage.css" />
+<link rel="stylesheet" href="/css/commons/common.css" />
+</head>
+<body>
+<main class="category">
+
+ <div class="container">
+        <aside class="sidebar">
+            <ul>
+                <li><div><span>카테고리</span></div>
+                    <ul>
+                        <li>강아지 샵
+                        
+                        </li>
+
+                    </ul>
+                </li>
+
+            </ul>
+        </aside>
+        <main class="products">
+            <div class="product">
+                <img src="image1.jpg" alt="로얄캐닌">
+                <h3>로얄캐닌 푸들 어덜트 3kg 피모관리</h3>
+                <p class="price">39,200원 <span class="discount">28% 할인</span></p>
+            </div>
+            <div class="product">
+                <img src="image2.jpg" alt="네츄럴코어">
+                <h3>네츄럴코어 홀리스틱 베네 M32 멀티프로테인 6kg</h3>
+                <p class="price">40,300원 <span class="discount">46% 할인</span></p>
+            </div>
+            <!-- 추가적인 제품들 -->
+        </main>
+    </div>
+
+</main>
+</body>
+</html>
