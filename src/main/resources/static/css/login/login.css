@@ -13,7 +13,7 @@
 	
 	border-radius: 1em;
 	text-align: center;
-	height:500px;
+	height:600px;
 	max-width: 500px;
 	width: 100%;
 	border: 1px solid var(--sub-grey);
@@ -23,12 +23,20 @@
 	flex-direction: column;
 }
 
-.login_top , .social_log {
+.login_top  {
 	display: flex;               
 	justify-content: center;      
 	align-items: center;          
 	text-align: center;          
 	font-size: 35px; 
+}
+
+.social_log{
+	justify-content: center;      
+	align-items: center;          
+	text-align: center;          
+	font-size: 35px; 
+	
 }
 
 .login_name {

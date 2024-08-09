@@ -269,3 +269,9 @@ nav>ul>li>a:hover {
     margin-left: 10px; /* 아이콘 사이 간격 */
 }
 
+.logout_btn{
+	
+	font-family: "Hi Melody", sans-serif !important;
+	border: none;
+	background-color: var(--main-pink);
+}
