@@ -2,9 +2,43 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta name="_csrf" th:content="${_csrf.token}"/>
+<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 <link rel="stylesheet" href="/css/login/login.css" />
 <link rel="stylesheet" href="/css/commons/common.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+
+	<script>
+			
+		function onSubmitted(event,form){
+			
+			event.preventDefault(); 
+			
+			var token = $("meta[name='_csrf']").attr("content");
+			var header = $("meta[name='_csrf_header']").attr("content");
+			
+			//$(document).ajaxSend로 진행해야지 문제가 없음
+			$(document).ajaxSend(function(e, xhr, opt) {xhr.setRequestHeader(header, token);});
+				
+			
+			$.ajax({
+				
+				//beforeSend:	function(xhr) {xhr.setRequestHeader(header, token);},
+				url:"/login-action",
+				type:"post",
+				data: $(form).serialize(),
+				success:function(){
+					console.log("로그인성공");
+				}
+			
+			});
+		}
+		
+	</script>
+
+
+
 </head>
 <body>
 	<main>
@@ -15,11 +49,11 @@
 					<div class="login_name">PETFIR</div>
 				</div>
 
-				<form>
+				<form action="/login-action" method="post">
 
 					<div class="login-input">
-						<input id="useremain" type="text" name="username" placeholder="아이디" > 
-						<input id="password" type="password" name="password" placeholder="비밀번호" ><br>
+						<div><input id="useremain" type="text" name="userid" placeholder="아이디" > </div>
+						<div><input id="password" type="password" name="password" placeholder="비밀번호" ><br></div>
 					</div>
 					<button type="button" class="logi_but">로그인</button>
 					<a href="/public/signup"><button class="sign_but" type="button">회원가입</button></a>
@@ -28,7 +62,7 @@
 
 				<div class="social_log">
 				<img width="30" height="30" src="https://img.icons8.com/offices/30/google-logo.png" alt="google-logo"/>
-				<div>Google 로그인</div>
+				<a href="/oauth2/authorization/google">Google</a>
 				</div>
 			</div>
 	

@@ -11,10 +11,7 @@ public class LoginController {
 		return "/views/login/login";
 	}
 	
-	@GetMapping("/public/signup")
-	public String signup() {
-		return "/views/login/signup";
-	}
+
 	
 	
 
