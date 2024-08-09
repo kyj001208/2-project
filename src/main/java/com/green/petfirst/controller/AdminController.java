@@ -29,4 +29,9 @@ public class AdminController {
 		return "views/admin/deliver";
 	}
 	
+	@GetMapping("/admin/exchange")
+	public String exchange() {
+		return "views/admin/exchange";
+	}
+	
 }
