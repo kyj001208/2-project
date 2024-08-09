@@ -20,7 +20,7 @@
 
 <main>
     <div class="container">
-        <h1>교환</h1>
+        <h1>환불</h1>
         <div class="header">
             <span>목록 결과 총 12 개</span>
         </div>
@@ -60,28 +60,51 @@
 
     <!-- 교환내역 모달 -->
     <div id="exchangeModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content1">
             <span class="close" onclick="closeModal('exchangeModal')">&times;</span>
+            <h2>환불상세</h2>
             <div class="exchange-info">
-                <div>환불상태: 환불접수</div>
-                <div>환불 요청자: 회원명</div>
-                <div>환불 번호: 12345</div>
-                <div>주문일시: 2022-01-06 (15:55:04)</div>
-                <div>주문번호: 2201070001</div>
-                <div>환불 접수일시: 2022-01-07 (16:19:25)</div>
-                <div>환불 사유: 2022-01-07 (16:19:25)</div>
-                <!-- 이곳에 상세 교환 정보를 추가하세요 -->
-            </div>
+				<table class="modal-table">
+					<tr>
+						<th class="tags">환불상태</th>
+						<td class="detail">환불접수</td>
+					</tr>
+					<tr>
+						<th class="tags">환불 요청자</th>
+						<td class="detail">회원명</td>
+					</tr>
+					<tr>
+						<th class="tags">환불 번호</th>
+						<td class="detail">12345</td>
+					</tr>
+					<tr>
+						<th class="tags">주문일시</th>
+						<td class="detail">2022-01-06 (15:55:04)</td>
+					</tr>
+					<tr>
+						<th class="tags">주문번호</th>
+						<td class="detail">2201070001</td>
+					</tr>
+					<tr>
+						<th class="tags">환불 접수일시</th>
+						<td class="detail">2022-01-07 (16:19:25)</td>
+					</tr>
+					<tr>
+						<th class="tags">사유</th>
+						<td class="detail">사유설명</td>
+					</tr>
+				</table>
+			</div>
             <button onclick="closeModal('exchangeModal')">닫기</button>
         </div>
     </div>
 
     <!-- 환불옵션 모달 -->
     <div id="optionsModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content2">
             <span class="close" onclick="closeModal('optionsModal')">&times;</span>
             <h2>환불 관리옵션</h2>
-            <div>실행하실 항목을 선택하세요.</div>
+            <div class="item">실행하실 항목을 선택하세요.</div>
             <button class="option-button" type="submit">승인</button>
             <button class="option-button" type="submit">취소</button>
         </div>

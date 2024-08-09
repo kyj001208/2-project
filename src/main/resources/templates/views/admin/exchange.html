@@ -19,73 +19,94 @@
 </head>
 
 <main>
-    <div class="container">
-        <h1>교환</h1>
-        <div class="header">
-            <span>목록 결과 총 12 개</span>
-        </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>요청번호</th>
-                    <th>관리</th>
-                    <th>요청상태</th>
-                    <th>교환 접수일시</th>
-                    <th>주문번호</th>
-                    <th>요청자</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>12345</td>
-                    <td>
-                        <button class="exchange-history" onclick="openModal('exchangeModal')">교환상세</button>
-                        <button class="options" onclick="openModal('optionsModal')">옵션</button>
-                    </td>
-                    <td>
-                        <select class="exchange-status">
-                            <option value="교환접수">교환접수</option>
-                            <option value="교환완료">교환완료</option>
-                            <option value="교환취소">교환취소</option>
-                        </select>
-                    </td>
-                    <td>2022-01-07 16:19</td>
-                    <td>2201070001</td>
-                    <td>회원명</td>
-                </tr>
-                <!-- 추가 행을 필요에 따라 더 추가하세요 -->
-            </tbody>
-        </table>
-    </div>
+	<div class="container">
+		<h1>교환</h1>
+		<div class="header">
+			<span>목록 결과 총 12 개</span>
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<th>요청번호</th>
+					<th>관리</th>
+					<th>요청상태</th>
+					<th>교환 접수일시</th>
+					<th>주문번호</th>
+					<th>요청자</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>12345</td>
+					<td>
+						<button class="exchange-history"
+							onclick="openModal('exchangeModal')">교환상세</button>
+						<button class="options" onclick="openModal('optionsModal')">옵션</button>
+					</td>
+					<td><select class="exchange-status">
+							<option value="교환접수">교환접수</option>
+							<option value="교환완료">교환완료</option>
+							<option value="교환취소">교환취소</option>
+					</select></td>
+					<td>2022-01-07 16:19</td>
+					<td>2201070001</td>
+					<td>회원명</td>
+				</tr>
+				<!-- 추가 행을 필요에 따라 더 추가하세요 -->
+			</tbody>
+		</table>
+	</div>
 
-    <!-- 교환내역 모달 -->
-    <div id="exchangeModal" class="modal">
-        <div class="modal-content1">
-            <span class="close" onclick="closeModal('exchangeModal')">&times;</span>
-            <h2>교환상세</h2>
-            <div class="exchange-info">
-                <div>교환상태: 교환접수</div>
-                <div>교환 요청자: 회원명</div>
-                <div>교환 번호: 12345</div>
-                <div>주문일시: 2022-01-06 (15:55:04)</div>
-                <div>주문번호: 2201070001</div>
-                <div>교환 접수일시: 2022-01-07 (16:19:25)</div>
-                <div>교환 사유: 2022-01-07 (16:19:25)</div>
-                <!-- 이곳에 상세 교환 정보를 추가하세요 -->
-            </div>
-            <button onclick="closeModal('exchangeModal')">닫기</button>
-        </div>
-    </div>
+	<!-- 교환내역 모달 -->
+	<div id="exchangeModal" class="modal">
+		<div class="modal-content1">
+			<span class="close" onclick="closeModal('exchangeModal')">&times;</span>
+			<h2>교환상세</h2>
+			<div class="exchange-info">
+				<table class="modal-table">
+					<tr>
+						<th class="tags">교환상태</th>
+						<td class="detail">교환접수</td>
+					</tr>
+					<tr>
+						<th class="tags">교환 요청자</th>
+						<td class="detail">회원명</td>
+					</tr>
+					<tr>
+						<th class="tags">교환 번호</th>
+						<td class="detail">12345</td>
+					</tr>
+					<tr>
+						<th class="tags">주문일시</th>
+						<td class="detail">2022-01-06 (15:55:04)</td>
+					</tr>
+					<tr>
+						<th class="tags">주문번호</th>
+						<td class="detail">2201070001</td>
+					</tr>
+					<tr>
+						<th class="tags">교환 접수일시</th>
+						<td class="detail">2022-01-07 (16:19:25)</td>
+					</tr>
+					<tr>
+						<th class="tags">사유</th>
+						<td class="detail">사유설명</td>
+					</tr>
+				</table>
+			</div>
+			<button onclick="closeModal('exchangeModal')">닫기</button>
+		</div>
+	</div>
 
-    <!-- 주문 관리옵션 모달 -->
-    <div id="optionsModal" class="modal">
-        <div class="modal-content2">
-            <span class="close" onclick="closeModal('optionsModal')">&times;</span>
-            <h2>교환 관리옵션</h2>
-            <div class="item" >실행하실 항목을 선택하세요.</div>
-            <button class="option-button" type="submit">교환승인</button>
-            <button class="option-button" type="submit">교환거절</button>
-        </div>
-    </div>
+	<!-- 주문 관리옵션 모달 -->
+	<div id="optionsModal" class="modal">
+		<div class="modal-content2">
+			<span class="close" onclick="closeModal('optionsModal')">&times;</span>
+			<h2>교환 관리옵션</h2>
+			<div class="item">실행하실 항목을 선택하세요.</div>
+			<button class="option-button" type="submit">교환승인</button>
+			<button class="option-button" type="submit">교환취소</button>
+		</div>
+	</div>
 </main>
 </html>
