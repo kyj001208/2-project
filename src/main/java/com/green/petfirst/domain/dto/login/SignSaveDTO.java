@@ -2,40 +2,40 @@ package com.green.petfirst.domain.dto.login;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.green.petfirst.domain.entity.login.SignupEntity;
+import com.green.petfirst.domain.entity.MemberEntity;
 
 import lombok.Setter;
 
 @Setter
 public class SignSaveDTO {
 	
-	private String userid; 
+	private String userId; 
 	
 	private String password; 
 	
-	private String username; 
+	private String name; 
 	
 	private String adress; 
 	
-	private String usernumber; 
+	private String phone; 
 	
-	private String useremail; 
+	private String email; 
 	
-	private String petname; 
+	private String petName; 
 	
-	private String petbreed;
+	private String petBreed;
 
-	public SignupEntity toEntity(PasswordEncoder pass) {
+	public MemberEntity toEntity(PasswordEncoder pass) {
 		
-		return SignupEntity.builder()
-				.userID(userid)
+		return MemberEntity.builder()
+				.userId(userId)
 				.password(pass.encode(password))
-				.name(username)
+				.name(name)
 				.adress(adress)
-				.usernumber(usernumber)
-				.useremail(useremail)
-				.petname(petname)
-				.petbreed(petbreed)
+				.phone(phone)
+				.email(email)
+				.petName(petName)
+				.petBreed(petBreed)
 				.build();
 	}
 
