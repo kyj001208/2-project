@@ -4,12 +4,10 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public enum Status {
-    EMPLOYEE("사원")
-    ,ASSISTANT_MANAGER("대리")
-    ,MANAGER("과장")
-    ,DEPUTY_GENERAL_MANAGER("차장")
-    ,GENERAL_MANAGER("부장")
-    ,TEAM_LEADER("팀장")
+	PENDING("대기중"), // 대기중
+	CONFIRMED("확인됨"), // 확인됨
+	PROCESSING("처리중"), // 처리중
+	DELIVERED("배송완료") // 배송 완료
     ;
 
     private final String roleName;

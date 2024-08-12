@@ -69,11 +69,19 @@ dl dt,dl p,dl dd, dl span{line-height: 1.6}
 }
 
 
-main {
-	margin-left: 200px; /* 사이드바 넓이만큼 마진 추가 */
-
-	width: calc(100% - 200px); /* 사이드바 넓이만큼 컨텐츠 너비 조정 */
+main{
+	width: calc(100vw - 200px);
+	height: 100vh;
+	padding-top: 70px;
 }
+
+main>.wrap {
+	padding: 40px 40px 0 40px;
+	min-width: 760px;
+}
+
+
+#admin-menu h1{position: absolute;left: -9999px;}
 
 #admin-menu>.wrap{
 	padding-top:70px;
@@ -96,7 +104,7 @@ main {
 	margin: 0;
 }
 #menu-list>.wrap dl dt:hover{
-	background-color: #613701;
+	background-color: var(--logo-new);
 }
 #menu-list>.wrap dl dt{
 	font-weight: 700;
@@ -114,7 +122,7 @@ main {
 }
 
 #menu-list>.wrap dl dd:not(.sub) a:hover{
-	background-color: #613701;
+	background-color: var(--logo-new);
 }
 #menu-list>.wrap dl dd:not(.sub) a{
 	font-size: 16px;

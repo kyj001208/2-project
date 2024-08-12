@@ -3,15 +3,29 @@ package com.green.petfirst.domain.entity;
 import java.time.LocalDate;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicUpdate;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@DynamicUpdate
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "orders")
+@Entity
 public class OrderEntity {
 
 	@Id
@@ -23,23 +37,25 @@ public class OrderEntity {
 	
 	@OneToOne
 	@JoinColumn(name = "payNo", nullable = false)
-	//private PayEntity pay; // 주문번호 (fk)
+	private PayEntity pay; // 주문번호 (fk)
 	
 	@ManyToOne
 	@JoinColumn(name = "productNo", nullable = false)
-//	private ProductEntity product; // 주문번호 (fk)
+	private ProductEntity product; // 주문번호 (fk)
 	
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private Status status; // 요청상태
 	
-	@CreationTimestamp
-	@Column(columnDefinition = "timestamp", nullable = false)
-	private LocalDate requestDate; // 요청일자
 	
-	@Column(columnDefinition = "text", nullable = false)
-	private String reason; // 사유
-
+	@Column(nullable = false)
+	private long quantity;
+	
+	@Column(nullable = false)
+	private long unitPrice;
+	
+	@Column(nullable = false)
+	private long total;
 	
 	
 }
