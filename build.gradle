@@ -21,6 +21,7 @@ configurations {
 
 repositories {
 	mavenCentral()
+	maven { url 'https://jitpack.io' }
 }
 
 ext {
@@ -28,8 +29,11 @@ ext {
 }
 
 dependencies {
+
 	implementation 'com.github.mwiede:jsch:0.2.18'
-	
+
+	implementation 'org.springframework.boot:spring-boot-starter-amqp'
+	implementation 'com.github.shin285:KOMORAN:3.3.9'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
