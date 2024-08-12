@@ -1,60 +1,62 @@
 .content {
-    padding : 40px;
-	margin-right: 1100px;
+	padding: 0 40px 40px 40px;
+	font-size: 24px;
+}
+
+.today {
+    font-size: 30px;     /* 글씨 크기 조절 */
+    padding-left: 45px;
+    padding-top: 50px;
 }
 
 .stats {
-    display: flex;
-    justify-content: space-around;
+	display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 세 개의 동일한 너비의 열 생성 */
+    gap: 15px; /* 그리드 항목 간의 간격 */
     border: 2px solid #ddd;
     padding: 20px;
     margin-bottom: 20px;
+    margin-left: 65px;
+    width: 1500px;
 }
 
 .stat-item {
-    text-align: center;
-    font-size: 24px;
+	
+	text-align: center;
 }
 
-.charts {
-    display: block;
-    margin-bottom: 20px;
+.visitor{
+	font-size: 30px;     /* 글씨 크기 조절 */
+    padding-left: 10px;
 }
 
-.chart-item {
-	margin : 10px;
-    padding: 20px;
-    border: 2px solid #ddd;
+.visitor-stats, .inventory {
+	background-color: #fff;
+	padding: 20px;
+	width: 1550px;
 }
 
-.chart-title {
-    font-size: 24px;
-    margin-bottom: 10px;
+.inv{
+	font-size: 30px;
+    padding-left: 15px;
 }
 
-.visitor-stats,
-.inventory {
-    background-color: #fff;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-.inventory {
-    border: 1px solid #ddd;
+.visitor-stats, .inventory, table{
+	margin-left: 10px;
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+	width: 1550px;
+	border-collapse: collapse;
+	margin-bottom: 20px;
 }
 
 table th, table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
+	border: 1px solid #ddd;
+	padding: 5px;
+	text-align: center;
 }
 
 table th {
-    background-color: #f2f2f2;
+	background-color: #f2f2f2;
 }

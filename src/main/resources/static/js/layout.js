@@ -26,15 +26,3 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const header = document.querySelector('header');
-    const sticky = header.offsetTop; // 헤더의 초기 위치
-
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset > sticky) {
-            header.classList.add('sticky'); // 스크롤 시 헤더에 sticky 클래스 추가
-        } else {
-            header.classList.remove('sticky'); // 스크롤 시 헤더에 sticky 클래스 제거
-        }
-    });
-});

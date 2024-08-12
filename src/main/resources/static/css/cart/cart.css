@@ -1,0 +1,138 @@
+
+
+.shopcart-top{
+	
+	padding-top:100px;
+	align-items: center;
+	display: flex;
+	flex-direction: column; /* 추가: 자식 요소들을 수직으로 정렬 */
+	
+}
+
+.shopcart1{
+	
+	border-radius: 1em;
+	max-width: 1200px;
+	width: 100%;
+	border: 1px solid var(--sub-grey);
+	padding-bottom: 5px;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+	margin-bottom: 20px;
+	flex-direction: column;
+
+	
+}
+
+.cart_top{
+	
+	display: flex;                   
+	align-items:inherit;     
+	text-align: center;    
+}
+
+.cart-menu-t{
+	
+	margin: 1em;
+}
+
+
+
+.cart_name {
+	font-size: 40px;            
+	margin-left: 10px;            
+}
+
+#cartimage {
+	height: 30px;              
+	width: 30px;                 
+}
+
+.cart-check{
+	
+	height: 100px;
+	font-size: 20px;
+}
+
+.cart-menu-m{
+	
+	justify-content:space-between;
+	display: flex;
+	padding-bottom: 30px;
+	height: 300px;
+	margin: 1em;
+	
+}
+
+.cart-title{
+	
+	display: flex;
+}
+
+.cart-d-btn{
+	
+	width:80px;
+	background-color: var(--sub-pink);
+	font-family: "Hi Melody", sans-serif;
+	font-size: 16px;
+	border-radius: 1em;
+	color: var(--grey);
+	border: none;
+	
+}
+
+
+.cart-menu-b{
+	
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	gap: 100px;
+	padding-bottom: 20px;
+	
+	
+}
+
+.cartpay{
+	
+	text-align: center;
+	
+}
+
+.cartpay-btn{
+	
+	width: 300px;
+	background-color: var(--sub-pink);
+	font-family: "Hi Melody", sans-serif;
+	font-size: 16px;
+	border-radius: 1em;
+	color: var(--grey);
+	border: none;
+}
+
+/* ///////////////////////////////////아래 강아지들//////////////////// */
+.shopcart-dogs {
+	
+	display: flex;
+	padding-top: 5rem;
+	width: 100%;
+	flex-wrap: wrap;
+	gap: 5px;
+	box-sizing: border-box;
+	padding-bottom: 5rem;
+}
+
+.shopcart-dogs >div {
+	
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#dog1 {
+	
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: cover;
+	border-radius: 1em;
+}

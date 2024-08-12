@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout::frame(~{this::head}, ~{this::main})}">
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/cart/pay.css" />
+<link rel="stylesheet" href="/css/commons/common.css" />
+<meta name="_csrf" th:content="${_csrf.token}" />
+<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+</head>
+
+<body>
+  <main>
+
+		<div class="pays">
+
+			<div class="pay_top">
+				<div class="pay_name">결제페이지</div>
+			</div>
+
+			<div class="pays1">
+
+				
+
+				
+
+
+			</div>
+			
+			<div class="shopcart-dogs">
+			<div><img src="/img/cart-pay/cat.jpg" id="dog1"></div>
+			<div><img src="/img/cart-pay/dog1.jpg" id="dog1"></div>
+			<div><img src="/img/cart-pay/dog2.jpg" id="dog1"></div>
+			<div><img src="/img/cart-pay/dog3.jpg" id="dog1"></div>
+			<div><img src="/img/cart-pay/rabbit.jpg" id="dog1"></div>
+			<div><img src="/img/cart-pay/dog4.jpg" id="dog1"></div>
+			</div>
+			
+			
+		</div>
+		
+
+	</main>
+
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout::frame(~{this::head}, ~{this::main})}">
+
+<head>
+<meta charset="UTF-8">
+<title>PETFIR</title>
+<link rel="stylesheet" href="/css/mypage/mypage.css" />
+<link rel="stylesheet" href="/css/commons/common.css" />
+</head>
+<body>
+<main class="mypage">
+
+<div th:replace="~{views/mypage/top}"></div>
+	<div class="mypage-main-container">
+<div th:replace="~{views/mypage/sidebar}"></div>
+		
+		<div class="mypage-main">
+		<h2>회원정보</h2>
+			<div class="myinfo-container">
+        
+        
+        <div class="section">
+            <h2>나의 정보</h2>
+            <div class="info">
+                <div class="info-item">
+                    <span class="label">이메일</span>
+                    <span class="value">test1234@testmail.com</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">기본정보</span>
+                    <span class="value">김여름(여, 1999년)</span>
+                    <button class="edit-btn">수정</button>
+                </div>
+                <div class="info-item">
+                    <span class="label">휴대전화</span>
+                    <span class="value">01045694222</span>
+                    <button class="edit-btn">수정</button>
+                </div>
+            </div>
+
+            <div class="notification-settings">
+                <span class="label">알림설정</span>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+                <span>이메일</span>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+                <span>SMS</span>
+            </div>
+
+            <div class="actions">
+                <button class="logout-btn">로그아웃</button>
+                <button class="delete-account-btn">회원탈퇴</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>내 새꾸</h2>
+            <div class="dog-list">
+                <div class="dog-card">
+                    <span class="dog-name">럭키</span>
+                    <span class="dog-info">대표</span>
+                    <span class="dog-breed">말티푸 | 여아</span>
+                </div>
+                <div class="add-dog">
+                    <button class="add-dog-btn">강아지 등록하기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+			
+			
+			
+		</div>
+		
+	</div>
+
+</main>
+</body>
+</html>

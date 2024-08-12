@@ -1,12 +1,92 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" 
-th:replace="~{views/admin/layout::layout(~{::head}, ~{::main})}">
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{views/admin/layout::layout(~{::head}, ~{::main})}">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/admin/petfir.css">
-    <title>상품등록</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/css/admin/product.css">
+<script src="/js/category/category.js"></script>
+<title>상품등록</title>
 </head>
-<main>
 
+<main>
+	<div class="container">
+	    <h1>상품등록</h1>
+	    <form action="/submit" method="post" enctype="multipart/form-data">
+   <table>
+        <tr>
+            <th class="tag">카테고리</th>
+            <td>
+                <select class="pdtCategory" id="category1" name="category1" required>
+                    <option value="">대분류 선택</option>
+                </select>
+            </td>
+            <td>
+                <select class="pdtCategory" id="category2" name="category2" required>
+                    <option value="">중분류 선택</option>
+                </select>
+            </td>
+            <td>
+                <select class="pdtCategory" id="category3" name="category3" required>
+                    <option value="">소분류 선택</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+	            <table>
+	            <tr>
+	                <th class="tag">상품명</th>
+	                <td colspan="5"><input class="pdtName" type="text" name="productName" required></td>
+	                
+	            </tr>
+	            <tr>
+	                <th class="tag">판매가</th>
+	                <td><input class="price" type="text" name="price" placeholder="숫자만 입력" required> 원</td>
+	                <th class="tag">즉시할인</th>
+	                <td><input class="price" type="text" name="discount" placeholder="숫자만 입력" required> 원 / %</td>
+	                <th class="tag">즉시할인가</th>
+	                <td><input class="price" type="text" name="discountedPrice" placeholder="숫자만 입력" required> 원</td>
+	            </tr>
+	            <tr>
+	                <th class="tag">재고수량</th>
+	                <td colspan="5"><input class="quantity" type="text" name="quantity" placeholder="숫자만 입력" required> 개</td>
+	            </tr>
+	            <tr>
+	                <th class="tag">상품설명</th>
+	                <td colspan="5"><textarea class="des" name="description" rows="5" required></textarea></td>
+	            </tr>
+	            <tr>
+	                <th class="tag">대표 이미지</th>
+	                <td colspan="5">
+	                    <label class="fileUpload">
+	                        <input type="file" id="itemFile1" name="mainImage" onchange="fileupload(this)" style="display: none;">
+	                        <span>+</span>
+	                    </label> 
+	                </td>
+	            </tr>
+	            <tr>
+	                <th class="tag">추가 이미지</th>
+	                <td colspan="5">
+	                    <label class="fileUpload">
+	                        <input type="file" id="itemFile2" name="additionalImage1" onchange="fileupload(this)" style="display: none;">
+	                        <span>+</span>
+	                    </label> 
+	                    <label class="fileUpload">
+	                        <input type="file" id="itemFile3" name="additionalImage2" onchange="fileupload(this)" style="display: none;">
+	                        <span>+</span>
+	                    </label>
+	                    <label class="fileUpload">
+	                        <input type="file" id="itemFile4" name="additionalImage3" onchange="fileupload(this)" style="display: none;">
+	                        <span>+</span>
+	                    </label>
+	                </td>
+	            </tr>
+	
+	        </table>
+			<div class="form-buttons">
+				<button type="submit">상품등록</button>
+				<button type="reset">취소</button>
+			</div>
+	    </form>
+	</div>
 </main>
 </html>

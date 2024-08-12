@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout::frame(~{this::head}, ~{this::main})}">
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/cart/cart.css" />
+<link rel="stylesheet" href="/css/commons/common.css" />
+</head>
+
+<body>
+  <main>
+
+		<div class="shopcart-top">
+
+			<div class="cart_top">
+				<img src="/img/cart-pay/shopping.png" id="cartimage">
+				<div class="cart_name">쇼핑Cart</div>
+			</div>
+
+			<div class="shopcart1">
+
+				<form>
+					<div class="cart-menu-t">
+						<div class="cart-check">
+							<span>전체선택</span>
+
+						</div>
+
+						<div class="cart-menu-m">
+							<div class="cart-title">
+								<img src="/img/cart-pay/shopping.png" id="cartimage">
+								<div class="cart_name">사료</div>
+
+							</div>
+							<div class="cart-count">
+								<div>카운트ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ</div>
+
+							</div>
+							<div class="cart-price">13,900원</div>
+							<div class="cart-delete">
+								<button class="cart-d-btn">삭제</button>
+							</div>
+						</div>
+
+						<div class="cart-menu-b">
+							<div class="totalprice">
+								<div>
+									<span>총 상품금액</span>
+								</div>
+								<div>0원</div>
+							</div>
+
+							<div class="deliverprice">
+								<span>총 배송비</span><br> <span>무료</span>
+							</div>
+
+
+
+						</div>
+
+						<div class="cartpay">
+
+							<a href="/petfir/pay"><button type="button" class="cartpay-btn">결제하기</button></a>
+
+						</div>
+
+
+					</div>
+
+				</form>
+
+
+			</div>
+			
+			<div class="shopcart-dogs">
+			<div><img src="/img/cart-pay/cat.jpg" id="dog1"></div>
+			<div><img src="/img/cart-pay/dog1.jpg" id="dog1"></div>
+			<div><img src="/img/cart-pay/dog2.jpg" id="dog1"></div>
+			<div><img src="/img/cart-pay/dog3.jpg" id="dog1"></div>
+			<div><img src="/img/cart-pay/rabbit.jpg" id="dog1"></div>
+			<div><img src="/img/cart-pay/dog4.jpg" id="dog1"></div>
+			</div>
+			
+			
+		</div>
+		
+
+	</main>
+
+
+</body>
+</html>

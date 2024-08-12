@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap');
 
 .signup{
 	
-	height:100vh;
-	justify-content: center;
+	
+	padding-top: 100px;
+	padding-bottom:100px;
 	align-items: center;
 	display: flex;
 	flex-direction: column; /* 추가: 자식 요소들을 수직으로 정렬 */
@@ -12,14 +14,24 @@
 .signup-menu{
 	
 	border-radius: 1em;
-	text-align: center;
-	max-width: 800px;
+	max-width: 1000px;
 	width: 100%;
 	border: 1px solid var(--sub-grey);
 	padding-bottom: 5px;
 	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
 	margin-bottom: 20px;
 	flex-direction: column;
+	
+}
+
+.login-input{
+	
+	padding-left: 150px;
+}
+
+.login-input>div{
+	
+	padding-bottom: 10px;
 }
 
 .signup_top{
@@ -31,11 +43,154 @@
 }
 
 .signup_name {
-	font-size: 30px;              
+	font-size: 50px;              
 	margin-left: 10px;            
 }
 
 #singupimg {
-	height: 80px;              
-	width: 80px;                 
+	height: 100px;              
+	width: 100px;                 
 }
+
+.orgprofile, .addprofile{
+	
+	font-family: "Hi Melody", sans-serif;
+	font-size: 20px;
+	font-weight: 600;
+	padding-bottom: 10px;
+}
+
+.userid > label{
+	
+	display: inline-block;
+	width: 150px;
+	font-size: 20px;
+}
+
+#userid, #password, #password_1, #username, #useradress, #sample6_address, #sample6_detailAddress,
+#sample6_extraAddress, #usernumber, #useremail, #petname, #petbreed{
+	
+	font-family: "Hi Melody", sans-serif;
+	width: 400px;
+	border: 1px solid var(--sub-grey);
+	font-size: 18px;
+	
+}
+
+#sample6_postcode{
+	
+	font-family: "Hi Melody", sans-serif;
+	width: 150px;
+	border: 1px solid var(--sub-grey);
+	font-size: 18px;
+	
+}
+
+.userpass > label{
+	
+	display: inline-block;
+	width: 150px;
+	font-size: 20px;
+}
+
+
+.userpass1 > label{
+	
+	display: inline-block;
+	width: 150px;
+	font-size: 20px;
+	
+}
+
+.username> label{
+	
+	display: inline-block;
+	width: 150px;
+	font-size: 20px;
+}
+.useradress {
+	
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+.useradress > label {
+	
+	display: inline-block;
+	width: 150px;
+	font-size: 20px;
+}
+#adressbtn{
+	
+	margin-left: 20px;
+	border: none;
+	width: 100px;
+	background-color: var(--sub-pink);
+	font-family: "Hi Melody", sans-serif;
+	font-size: 16px;
+	border-radius: 1em;
+	color: var(--grey);
+}
+
+#sample6_address, #sample6_detailAddress, #sample6_extraAddress{
+	
+	margin-left: 153px;
+}
+
+.usernumber > label {
+	
+	display: inline-block;
+	width: 150px;
+	font-size: 20px;
+}
+
+.useremail > label {
+	
+	display: inline-block;
+	width: 150px;
+	font-size: 20px;
+}
+
+.addprofile{
+	
+	padding-top: 30px;
+}
+
+.petname> label {
+	
+	display: inline-block;
+	width: 150px;
+	font-size: 20px;
+}
+
+.petbreed > label {
+	
+	display: inline-block;
+	width: 150px;
+	font-size: 20px;
+}
+
+.sign_button{
+	
+	justify-content: center;
+	align-content: center;
+	text-align: center;
+	padding:1em;
+	
+}
+
+.sign_but{
+	
+	width: 200px;
+	border: none;
+	background-color: var(--sub-pink);
+	font-family: "Hi Melody", sans-serif;
+	font-size: 20px;
+	border-radius: 1em;
+	color: var(--grey);
+
+}
+
+
+
+

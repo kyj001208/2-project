@@ -1,0 +1,67 @@
+
+
+.pays{
+	
+	padding-top:100px;
+	align-items: center;
+	display: flex;
+	flex-direction: column; /* 추가: 자식 요소들을 수직으로 정렬 */
+	
+}
+
+.pays1{
+	
+	border-radius: 1em;
+	max-width: 1200px;
+	width: 100%;
+	border: 1px solid var(--sub-grey);
+	padding-bottom: 5px;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+	margin-bottom: 20px;
+	flex-direction: column;
+	height: 500px;
+
+	
+}
+
+.pay_top{
+	
+	display: flex;                   
+	align-items:inherit;     
+	text-align: center;    
+}
+
+
+.pay_name {
+	font-size: 40px;            
+	margin-left: 10px;            
+}
+
+
+/* ///////////////////////////////////아래 강아지들//////////////////// */
+.shopcart-dogs {
+	
+	display: flex;
+	padding-top: 5rem;
+	width: 100%;
+	flex-wrap: wrap;
+	gap: 5px;
+	box-sizing: border-box;
+	padding-bottom: 5rem;
+}
+
+.shopcart-dogs >div {
+	
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#dog1 {
+	
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: cover;
+	border-radius: 1em;
+}

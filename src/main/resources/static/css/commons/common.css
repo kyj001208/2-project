@@ -1,11 +1,13 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap');
 
+*{box-sizing:border-box;}
 :root{
     --main-pink:#F9F3EC;
     --sub-pink:#F7EEE4;
     --point-purple:#9747FF;
     --logo-brown:#DFB074;
+    --logo-new: #F46B3F;
     --grey:#777777;
     --sub-grey:#f0f0f0;
     --white:#fff;
@@ -17,6 +19,7 @@
 .column{flex-direction: column;}
 .center{justify-content: center;}
 .between{justify-content: space-between;}
+.middle{vertical-align: middle;}
 
 /* css reset */
 html, body, div, span, applet, object, iframe,
@@ -45,16 +48,11 @@ ol, ul {
 }
 a {
 	text-decoration: none;
+	color: inherit;
 }
 body {
-    font-family: "Dongle", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    color: #777777;
-    margin: 0;	
-    padding: 0;
-    text-decoration: none;
-    list-style: none;
-    
+	font-family: "Hi Melody", sans-serif !important;
+	font-style: normal;
+	font-size: 16px;
+	color: var(--grey);
 }
-

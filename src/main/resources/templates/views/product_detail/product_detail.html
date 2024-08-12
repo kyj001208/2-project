@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{views/commons/layout :: frame(pHead=~{::head}, pMain=~{::main}, pHeader=~{::header}, pFooter=~{::footer})}">
+<head th:fragment="head">
+    <title>Product Detail</title>
+    <!-- 추가적인 CSS가 필요하면 여기에 추가 -->
+    <link rel="stylesheet" href="/css/product_detail/product_detail.css">
+    <script src="/js/product_detail.js"></script>
+</head>
+<body>
+<header th:fragment="header" class="header">
+    <div class="header__title">Header Content</div>
+    <!-- Header content can be defined or included here -->
+</header>
+<main th:fragment="main" class="main-content container">
+    <div class="product-detail">
+        <div class="product-detail__left-column">
+            <img class="product-detail__main-image" id="main-image" img src="//s3.ap-northeast-2.amazonaws.com/nowon.images.host123/product/animal/dog/dogFood/dogFood.png" alt="Product Image">
+            <!-- Additional thumbnail images can be added here -->
+        </div>
+        <div class="product-detail__right-column">
+            <h2 class="product-info  product-detail__name">탐사6free강아지 사료 연어 레시피, 3kg, 연어, 1개</h2>
+            <div class="product-info  product-detail__reviews">상품평 (10)</div>
+            <div class="product-info  product-detail__price">20,000원</div>
+            <dl class="product-info  number">
+                <dt>옵션선택</dt>
+                <dd class="totalPriceArea">
+                    <div class="numberBox" id="numberBox" data-discount_price="11800" data-regular_discount_rate="">
+                        <a href="#" class="orderPMBtn_m btnMinus btn_numDown" onclick="javascript:btnMinusClick(event, this);"><span class="blind">수량빼기</span></a>
+                        <input type="text" id="quantity" class="ea quantity numInput" maxlength="3" value="1" title="수량입력" onchange="javascript:quantityChange(this);">
+                        <a href="#" class="orderPMBtn_p btnPlus btn_numUp" onclick="javascript:btnPlusClick(event,this);"><span class="blind">수량더하기</span></a>
+                    </div>
+                    <span id="eaPrice" class="priceBox">11,800원</span>
+
+                </dd>
+                <dd>
+                    <p class="orderPtotal_tit">
+                        <span id="count_tit" class="count_tit">
+                            <span>총 수량</span><span class="num">1</span><span>개</span>
+                        </span>
+                        <span id="totalPrice" class="orderPtotal_num totPrice">
+                            <strong>11,800</strong>원
+                        </span>
+                    </p>
+                </dd>
+            </dl>
+            <div class="product-info  product-detail__buttons">
+                <button class="product-detail__cart-button">장바구니 담기</button>
+                <button class="product-detail__buy-button">바로구매</button>
+            </div>
+            <div class="prod-description">
+                <ul class="prod-description-attribute">
+
+                    <li class="prod-attr-item" style="display: list-item;">유통기한: 2025-02-28 이거나 그 이후인 상품</li>
+
+                    <li class="prod-attr-item" style="display: list-item;">대상연령: 전연령</li>
+
+                    <li class="prod-attr-item" style="display: list-item;">사료 타입: 건식사료</li>
+
+                    <li class="prod-attr-item" style="display: list-item;">총 중량: 3kg</li>
+
+                    <li class="prod-attr-item" style="display: list-item;">대상크기: 전대상견용</li>
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="product-description">
+        <h3 class="product-description__title">상품 상세 정보</h3>
+        <img class="product-description__image" src="//thumbnail9.coupangcdn.com/thumbnails/remote/q89/image/retail/images/85328037924503-38086694-367e-4e57-8d01-689d81c07e92.jpg" alt="Detail Image 1">
+        <img class="product-description__image" src="//thumbnail10.coupangcdn.com/thumbnails/remote/q89/image/retail/images/84056781434192-4909ff22-a2de-473e-aca5-5d1edda8ec4c.jpg" alt="Detail Image 2">
+        <img class="product-description__image" src="//thumbnail8.coupangcdn.com/thumbnails/remote/q89/image/retail/images/84056893179749-bdb4e1dc-3977-4035-8c3e-6ca166c36d76.jpg" alt="Detail Image 3">
+        <img class="product-description__image" src="//thumbnail9.coupangcdn.com/thumbnails/remote/q89/image/retail/images/85328130644518-a0885bcb-77b7-4a01-80e2-a48740243479.jpg" alt="Detail Image 4">
+        <img class="product-description__image" src="//thumbnail10.coupangcdn.com/thumbnails/remote/q89/image/retail/images/14885410147348466-82263c64-9452-40a0-bf8a-4a2017e34cdd.jpg" alt="Detail Image 5">
+        <img class="product-description__image" src="//thumbnail8.coupangcdn.com/thumbnails/remote/q89/image/retail/images/172553743569477-109c0894-7e31-44e1-b590-27327e42d078.jpg" alt="Detail Image 6">
+        <img class="product-description__image" src="//thumbnail9.coupangcdn.com/thumbnails/remote/q89/image/retail/images/2106977879181253-2ba99487-958f-45a1-bb97-2bdbc2d765e5.jpg" alt="Detail Image 7">
+        <img class="product-description__image" src="//thumbnail10.coupangcdn.com/thumbnails/remote/q89/image/retail/images/84056928397373-b61b4083-a152-4dc2-8675-7471e4df8483.jpg" alt="Detail Image 8">
+        <!-- Additional detail images can be added here -->
+    </div>
+    <div class="product-reviews">
+        <h3 class="product-reviews__title">상품평</h3>
+        <div class="product-reviews__review">상품평 1</div>
+        <div class="product-reviews__review">상품평 2</div>
+        <!-- Additional reviews can be added here -->
+    </div>
+
+</main>
+<footer th:fragment="footer" class="footer">
+    <!-- Footer content can be defined or included here -->
+</footer>
+</body>
+</html>

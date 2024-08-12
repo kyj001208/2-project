@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout::frame(~{this::head}, ~{this::main})}">
+
+<head>
+<meta charset="UTF-8">
+<title>PETFIR</title>
+<link rel="stylesheet" href="/css/mypage/mypage.css" />
+<link rel="stylesheet" href="/css/commons/common.css" />
+</head>
+<body>
+<main class="mypage">
+
+<div th:replace="~{views/mypage/top}"></div>
+	<div class="mypage-main-container">
+<div th:replace="~{views/mypage/sidebar}"></div>
+		
+		<div class="mypage-main">
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>쿠폰</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h2>쿠폰 확인</h2>
+
+    <div class="coupon-container">
+        
+        
+        <div class="tab-menu">
+            <span class="tab active">받은 쿠폰 <strong>3</strong></span>
+            <span class="tab">쿠폰 받기 <strong>0</strong></span>
+        </div>
+
+        <div class="coupon-list">
+            <div class="coupon">
+                <div class="coupon-info">
+                    <div class="coupon-title">10% 할인</div>
+                    <div class="coupon-details">
+                        하림펫푸드 10% 쿠폰<br>
+                        <span class="coupon-expiry">3일 남음 (2024.08.11)</span><br>
+                        3만원 이상 구매 시 최대 4천원 할인
+                    </div>
+                </div>
+                <button class="apply-button">적용 상품 보기 &gt;</button>
+            </div>
+
+            <div class="coupon">
+                <div class="coupon-info">
+                    <div class="coupon-title">8,000원 할인</div>
+                    <div class="coupon-details">
+                        강대위크 썸머 빅세일 쿠폰<br>
+                        <span class="coupon-expiry">10일 남음 (2024.08.18)</span><br>
+                        6만원 이상 구매 시 사용가능
+                    </div>
+                </div>
+            </div>
+
+            <div class="coupon">
+                <div class="coupon-info">
+                    <div class="coupon-title">5,000원 할인</div>
+                    <div class="coupon-details">
+                        신규회원 Welcome 5,000원 쿠폰<br>
+                        <span class="coupon-expiry">6일 남음 (2024.08.14)</span><br>
+                        2만원 이상 구매 시 사용가능
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+			
+			
+			
+		</div>
+		
+	</div>
+
+</main>
+</body>
+</html>

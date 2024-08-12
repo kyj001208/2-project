@@ -5,20 +5,21 @@ th:fragment="layout(pHead,pMain)">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/admin/common.css">
+    <link rel="stylesheet" href="/css/commons/common.css">
     <link rel="stylesheet" href="/css/admin/layout.css">
+    <link rel="icon" href="/img/logo_favicon.png">
     <th:block th:replace="${pHead}" />
 </head>
 <body>
     <div class="topbar">
         <div class="logo">
             <img src="/img/logo.png" class="logo">
-            <span class="shopname">PETFIR</span>
+            <a  class="shopname" href="/admin/petfir">PETFIR</a>
         </div>
         <div class="user-profile">
-        	<img class="profile" src="/img/logo.png" alt="User Profile">
+        	<img class="profile" src="/img/logo.png">
             <span class="name">회원명</span>
-            <img class="logout" src="/img/logout.png" alt="User Profile">
+            <img class="logout" src="/img/logout.png">
         </div>
     </div>
 	<div class="flex">
