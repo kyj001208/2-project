@@ -1,0 +1,18 @@
+@charset "UTF-8";
+/* 공지사항 css */
+h1{position: absolute;left: -9999px}
+.page-title{
+	font-size: 20px;
+	color: #222;
+	padding: 30px 0;
+	border-bottom:1px solid #ebebeb;
+}
+input,textarea{box-sizing: border-box;}
+.container {
+    margin: 0 auto;
+}
+
+/* ##공지사항 리스트#### */
+
+
+

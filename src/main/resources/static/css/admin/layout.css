@@ -1,8 +1,11 @@
+body{display: block; line-height: 1.6;}
+dl dt,dl p,dl dd, dl span{line-height: 1.6}
 .logo {
 	display: flex;
 	align-items: center;
 	height: 73px;
 }
+
 
 .sidebar {
 	width: 200px;
@@ -40,7 +43,7 @@
 	left: 0;
 	z-index: 1000;
 	height: 70px;
-	font-size: 24px;
+
 }
 
 
@@ -68,5 +71,63 @@
 
 main {
 	margin-left: 200px; /* 사이드바 넓이만큼 마진 추가 */
-	margin-top : 70px; /* 탑바 높이만큼 마진 추가 */
+
+	width: calc(100% - 200px); /* 사이드바 넓이만큼 컨텐츠 너비 조정 */
 }
+
+#admin-menu>.wrap{
+	padding-top:70px;
+	width: 200px;
+	min-height: 100vh;
+	background-color: rgba(0,10,30,1);
+	color: #fff;
+	font-size: 16px;	
+}
+#admin-menu>.wrap a{
+	color: #fff;
+
+}
+#menu-top{
+	padding: 40px 20px;
+	font-weight: 700;
+}
+#menu-list>.wrap dl{
+	border-top: 1px solid rgba(255,255,255,.15);
+	margin: 0;
+}
+#menu-list>.wrap dl dt:hover{
+	background-color: #613701;
+}
+#menu-list>.wrap dl dt{
+	font-weight: 700;
+	padding: 1em 0;
+	padding-left:1em;
+}
+#menu-list>.wrap dl dd{
+	padding: 0 1em;
+	display: none;
+	transition: all 3s;
+}
+#menu-list>.wrap dl.active dd {
+    display: block;
+    transition: all 3s;
+}
+
+#menu-list>.wrap dl dd:not(.sub) a:hover{
+	background-color: #613701;
+}
+#menu-list>.wrap dl dd:not(.sub) a{
+	font-size: 16px;
+	padding: .5em 1em;
+	display: block;
+}
+#menu-list>.wrap dl p.sub{
+	font-size: 15px;
+	color: rgba(255,255,255,0.5);
+	margin: 0;
+}
+
+#menu-list>.wrap dl dt {
+    cursor: pointer;
+}
+

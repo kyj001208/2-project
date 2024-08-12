@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<section id="admin-menu">
+	<h1>관리자-메뉴</h1>
+	<div class="wrap">
+		<section id="menu-top">
+			<h1>메뉴-상단영역</h1>
+			<div class="wrap">
+				<a href="#">관리자 홈</a>
+			</div>
+		</section>
+		<section id="menu-list">
+			<h1>메뉴-메인영역</h1>
+			<div class="wrap">
+				<dl>
+					<dt>
+						<span>상품관리</span>
+					</dt>
+					<dd>
+						<div>
+							<a href="/admin/product_add">상품등록</a>
+						</div>
+						<div>
+							<a href="#">상품목록</a>				
+						</div>
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						<span>판매관리</span>
+					</dt>
+					
+					<dd>
+						<div>
+							<a href="/admin/order">주문검색</a>
+						</div>
+						<div>
+							<a href="/admin/deliver">배송현황 관리</a>					
+						</div>
+						<div>
+							<a href="#">취소 관리</a>				
+						</div>
+						<div>
+							<a href="#">반품 관리</a>				
+						</div>
+						<div>
+							<a href="#">교환 관리</a>				
+						</div>
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						<span>고객센터</span>
+					</dt>
+					<dd>
+						<p class="sub">
+							<span>FAQ</span>
+						</p>
+						<div>
+							<a href="#">FAQ 등록</a>
+						</div>
+						<div>
+							<a>FAQ 리스트</a>						
+						</div>
+						<p class="sub">
+							<span>공지사항</span>
+						</p>
+						<div>
+							<a href="/admin/customer/notices/new">공지사항 등록</a>
+						</div>
+						<div>
+							<a href="/admin/customer/notices">공지사항 리스트</a>			
+						</div>
+						<p class="sub">
+							<span>Q&A</span>
+						</p>
+						<div>
+							<a href="#">Q&A 등록</a>
+						</div>
+						<div>
+							<a href="#">Q&A 리스트</a>			
+						</div>
+					</dd>
+				</dl>
+			</div>
+		</section>
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+	            var dts = document.querySelectorAll('.wrap dl dt');
+
+	            // 페이지 로드 시 상태 복원
+	            var activeDlIndex = localStorage.getItem('activeDlIndex');
+	            if (activeDlIndex !== null) {
+	                var activeDl = document.querySelectorAll('.wrap dl')[activeDlIndex];
+	                activeDl.classList.add('active');
+	            }
+
+	            dts.forEach(function(dt, index) {
+	                dt.addEventListener('click', function() {
+	                    var currentDl = this.parentElement;
+	                    currentDl.classList.toggle('active');
+
+	                    // 클릭된 dl의 인덱스를 localStorage에 저장
+	                    if (currentDl.classList.contains('active')) {
+	                        localStorage.setItem('activeDlIndex', index);
+	                    } else {
+	                        localStorage.removeItem('activeDlIndex');
+	                    }
+
+	                    // 다른 모든 dl 요소들이 열려있다면 닫습니다.
+	                    var allDl = document.querySelectorAll('.wrap dl');
+	                    allDl.forEach(function(dl, i) {
+	                        if (dl !== currentDl) {
+	                            dl.classList.remove('active');
+	                        }
+	                    });
+	                });
+	            });
+	        });
+
+		</script>
+	</div>
+</section>
+</html>

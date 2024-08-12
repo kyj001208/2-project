@@ -11,26 +11,6 @@ th:fragment="layout(pHead,pMain)">
     <th:block th:replace="${pHead}" />
 </head>
 <body>
-    <div class="sidebar">
-    	<div class="tag">
-	        <a href="/admin/product_add">상품등록</a>
-    	</div>
-    	<div class="tag">
-	        <a href="/admin/exchange">교환</a>
-    	</div>
-    	<div class="tag">
-	        <a href="/admin/refund">환불</a>
-    	</div>
-    	<div class="tag">
-	        <a href="/admin/order">주문목록</a>
-    	</div>
-    	<div class="tag">
-	        <a href="/admin/deliver">배송관리</a>
-    	</div>
-    	<div class="tag">
-	        <a href="/admin/board">고객센터</a>
-    	</div>
-    </div>
     <div class="topbar">
         <div class="logo">
             <img src="/img/logo.png" class="logo">
@@ -42,7 +22,10 @@ th:fragment="layout(pHead,pMain)">
             <img class="logout" src="/img/logout.png">
         </div>
     </div>
-    	<main th:replace="${pMain}"></main>
+	<div class="flex">
+		<th:block th:replace="~{views/admin/left-menu}" />
+	    <main th:replace="${pMain}"></main>
+	</div>
 </body>
 
 </html>
