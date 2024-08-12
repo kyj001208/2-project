@@ -40,12 +40,11 @@ a.logo {
     display: inline-block;
     width: 50px;
 }
-
+ 
  .loginwrap > span> a {
 	color: inherit;
     display: inline-flex;
-    padding: 15px;
-    font-size: 20px;
+    padding: 5px;
     text-align: center;
     vertical-align: middle;
     align-items: center;
@@ -60,8 +59,7 @@ a.logo {
 	
 	color: inherit;
     display: inline-flex;
-    padding: 15px;
-    font-size: 20px;
+    padding: 5px;
     text-align: center;
     vertical-align: middle;
     align-items: center;
@@ -74,13 +72,13 @@ a.logo {
 	
 	color: inherit;
     display: inline-flex;
-    padding: 15px;
-    font-size: 20px;
+    padding: 5px;
     text-align: center;
     vertical-align: middle;
     align-items: center;
     justify-content: center;
     padding-right: 5px;
+    
 	
 } 
 
@@ -92,6 +90,10 @@ a.logo {
 	background-color: var(--main-pink);
 	
 }
+
+
+
+
 
 .container {
     width: 1200px;
@@ -116,6 +118,14 @@ a.logo {
     display: flex; /* 아이콘이 flex 컨테이너 내에서 수직 가운데 정렬되도록 설정 */
     align-items: center;
 }
+
+.icons > a> span> i{
+	
+	padding: 15px;
+	
+}
+
+
 .search-form {
     display: flex;
 }

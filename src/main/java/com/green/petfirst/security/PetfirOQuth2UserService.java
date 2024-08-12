@@ -10,6 +10,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import com.green.petfirst.domain.entity.MemberEntity;
+import com.green.petfirst.service.login.MemberService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,6 +21,7 @@ public class PetfirOQuth2UserService  extends DefaultOAuth2UserService{
 	
 	
 	private final PasswordEncoder pass;
+	private final MemberService service;
 
 	@Override
 	public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
@@ -87,6 +89,8 @@ public class PetfirOQuth2UserService  extends DefaultOAuth2UserService{
 				.password(pass.encode(String.valueOf(System.currentTimeMillis())))
 
 				.build().addRole(Role.SOCIALUSER);
+		
+		service.saveSocial(entity);
 
 		return new PetfirUserDetails(entity);
 

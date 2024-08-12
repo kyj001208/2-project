@@ -42,22 +42,22 @@ public class MemberEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long memNo;
 	
-	@Column(nullable = false, unique = true)
+	@Column(unique = true)
 	private String userId; //아이디
 	
 	@Column(nullable = false)
 	private String password; //비빌번호
 	
-	@Column(nullable = false)
+	
 	private String name; //이름
 	
-	@Column(nullable = false)
+	
 	private String adress; //주소
 	
-	@Column(nullable = false)
+	
 	private String phone;
 	
-	@Column(nullable = false, unique = true)
+	
 	private String email;
 	
 	
