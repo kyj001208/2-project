@@ -22,7 +22,7 @@
                 </span>
             </div>
             
-            <div sec:authorize="isAuthenticated()">
+            <div sec:authorize="isAuthenticated()" class="logoutwrap">
 			<span>
 				<b sec:authentication="principal.name">이름</b>
 				<i sec:authentication="principal.email"></i>

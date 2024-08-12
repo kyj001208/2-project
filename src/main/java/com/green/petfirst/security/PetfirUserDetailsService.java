@@ -12,7 +12,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 
-import com.green.petfirst.domain.repository.SignupRepository;
+import com.green.petfirst.domain.repository.MemberRepository;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class PetfirUserDetailsService implements UserDetailsService{
 	
-	private final SignupRepository repository;
+	private final MemberRepository repository;
 
 	@Override
 	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {

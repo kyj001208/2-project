@@ -40,7 +40,8 @@ a.logo {
     display: inline-block;
     width: 50px;
 }
-.loginwrap > a {
+
+ .loginwrap > span> a {
 	color: inherit;
     display: inline-flex;
     padding: 15px;
@@ -49,6 +50,47 @@ a.logo {
     vertical-align: middle;
     align-items: center;
     justify-content: center;
+    padding-right: 5px;
+}
+.logoutwrap {
+	display: flex;
+}
+
+.logoutwrap >form{
+	
+	color: inherit;
+    display: inline-flex;
+    padding: 15px;
+    font-size: 20px;
+    text-align: center;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+    padding-right: 5px;
+	
+}
+
+.logoutwrap > span > b, i{
+	
+	color: inherit;
+    display: inline-flex;
+    padding: 15px;
+    font-size: 20px;
+    text-align: center;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+    padding-right: 5px;
+	
+} 
+
+
+.logout_btn{
+	
+	font-family: "Hi Melody", sans-serif !important;
+	border: none;
+	background-color: var(--main-pink);
+	
 }
 
 .container {
@@ -67,7 +109,7 @@ a.logo {
 .icons {
     font-size: 20px;
     display: flex; /* Flexbox를 사용하여 요소들을 가로로 배치 */
-    gap: 20px; /* 아이콘들 사이의 간격 설정 */
+    
 }
 
 .icons span {
@@ -267,11 +309,4 @@ nav>ul>li>a:hover {
 .sns i {
     font-size: 24px; /* 아이콘 크기 */
     margin-left: 10px; /* 아이콘 사이 간격 */
-}
-
-.logout_btn{
-	
-	font-family: "Hi Melody", sans-serif !important;
-	border: none;
-	background-color: var(--main-pink);
 }
