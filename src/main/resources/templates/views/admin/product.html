@@ -12,27 +12,27 @@
 	<div class="container">
 	    <h1>상품등록</h1>
 	    <form action="/submit" method="post" enctype="multipart/form-data">
-   <table>
-        <tr>
-            <th class="tag">카테고리</th>
-            <td>
-                <select class="pdtCategory" id="category1" name="category1" required>
-                    <option value="">대분류 선택</option>
-                </select>
-            </td>
-            <td>
-                <select class="pdtCategory" id="category2" name="category2" required>
-                    <option value="">중분류 선택</option>
-                </select>
-            </td>
-            <td>
-                <select class="pdtCategory" id="category3" name="category3" required>
-                    <option value="">소분류 선택</option>
-                </select>
-            </td>
-        </tr>
-    </table>
-	            <table>
+		<table>
+		    <tr>
+		        <th class="tag">카테고리</th>
+		        <td>
+		            <select class="pdtCategory" id="category1" name="category1" required>
+		                <option value="">대분류 선택</option>
+		            </select>
+		        </td>
+		        <td>
+		            <select class="pdtCategory" id="category2" name="category2" required>
+		                <option value="">중분류 선택</option>
+		            </select>
+		        </td>
+		        <td>
+		            <select class="pdtCategory" id="category3" name="category3" required>
+		                <option value="">소분류 선택</option>
+		            </select>
+		        </td>
+		    </tr>
+		</table>
+		<table>
 	            <tr>
 	                <th class="tag">상품명</th>
 	                <td colspan="5"><input class="pdtName" type="text" name="productName" required></td>
@@ -88,5 +88,6 @@
 			</div>
 	    </form>
 	</div>
+	<script src="/js/category/category.js"></script>
 </main>
 </html>

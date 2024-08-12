@@ -49,7 +49,7 @@ public class CategoryEntity {
     
     @Builder.Default //children 리스트의 기본 값
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
-    
     private List<CategoryEntity> children = new ArrayList<>();  // 자식 카테고리들
 
+    
 }

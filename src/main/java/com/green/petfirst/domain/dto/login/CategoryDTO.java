@@ -13,17 +13,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CategoryDTO {
-    private Long id;
+    private long id;
     private String name;
-    private Long depth;
+    private long depth;
     private List<CategoryDTO> children;
 
-    public static CategoryDTO of(CategoryEntity category) {
-        return new CategoryDTO(
-                category.getCategoryNo(),
-                category.getCategoryName(),
-                category.getDepth(),
-                category.getChildren().stream().map(CategoryDTO::of).collect(Collectors.toList())
-        );
-    }
 }
