@@ -42,9 +42,9 @@ public class SecurityConfig {
 	            //authorizeHttpRequests: 요청하는 url에 대한 보안
 	            .authorizeHttpRequests(authorize -> authorize
 	            		.requestMatchers("/css/**","/js/**","/img/**").permitAll()
-	            		.requestMatchers("/**","/public/**").permitAll() 
-	            		//.requestMatchers("/petfir/**").hasRole("PETFIR")
-	            		//.requestMatchers("/admin/**","/petfir/**").hasRole("ADMIN") 
+	            		.requestMatchers("/","/public/**").permitAll() 
+	            		.requestMatchers("/petfir/**").hasRole("PETFIR")
+	            		.requestMatchers("/admin/**","/petfir/**").hasRole("ADMIN") 
 	                    .anyRequest().authenticated() 
 	                
 	            )
