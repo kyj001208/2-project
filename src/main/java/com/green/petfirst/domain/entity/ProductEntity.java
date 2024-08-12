@@ -31,11 +31,11 @@ public class ProductEntity {
 
     @ManyToOne
     @JoinColumn(name = "categoryNo")
-    private CategoryEntity categoryNo;  // 카테고리 번호
+    private CategoryEntity category;  // 카테고리 번호
     
     @ManyToOne
     @JoinColumn(name = "memNo")
-    private MemberEntity memNo;  // 회원번호
+    private MemberEntity member;  // 회원번호
     
     @Column(nullable = false)
     private String productName;  // 상품명
@@ -43,7 +43,7 @@ public class ProductEntity {
     @Column(nullable = false)
     private long price;  // 상품가격
     
-    @Column(nullable = false)
+    @Column(columnDefinition = "text", nullable = false)
     private String productDetail;  // 상품설명
     
     @Column(nullable = false)

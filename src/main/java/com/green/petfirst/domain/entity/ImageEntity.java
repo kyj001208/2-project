@@ -30,15 +30,15 @@ public class ImageEntity {
     
     @ManyToOne
     @JoinColumn(name = "productNo")
-	private ProductEntity productNo; //상품번호
+	private ProductEntity product; //상품번호
     
-    @Column(columnDefinition = "Blob", nullable = false)
+    @Column(columnDefinition = "blob", nullable = false)
 	private String imgUrl; //이미지url
     
-    @Column(nullable = false)
+    @Column(columnDefinition = "text", nullable = false)
 	private String bucketKey; //버킷키
 	
-    @Column(nullable = false)
+    @Column(columnDefinition = "text", nullable = false)
 	private String fileName; //파일이름
 	
 }
