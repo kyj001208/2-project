@@ -83,7 +83,7 @@ select.exchange-status {
 
 .modal-content1 {
 	width: 550px;
-	height: 480px;
+	height: 540px;
 	margin-top: 200px;
 }
 
@@ -106,9 +106,7 @@ select.exchange-status {
 	cursor: pointer;
 }
 
-
-
-.tags{
+.tags {
 	background-color: #f1f1f1;
 	vertical-align: middle;
 	text-align: center;
@@ -129,7 +127,7 @@ h2 {
 	height: 70px;
 	padding: 10px;
 	margin: 5px 0;
-	margin-left:20px;
+	margin-left: 20px;
 	border: 1px solid #ddd;
 	background-color: #fcfcfc;
 	cursor: pointer;
@@ -143,7 +141,36 @@ th, .detail {
 	text-align: left;
 }
 
-.modal-table{
+.modal-table {
 	margin: 20px 0 20px 60px;
 	font-size: 20px;
+}
+/* /////////////////// */
+.tab {
+	display: flex;
+	cursor: pointer;
+	padding: 10px;
+	background-color: var(--sub-grey);
+	border-bottom: none;
+}
+
+.tab div {
+	flex: 1;
+	padding: 14px 16px;
+	text-align: center;
+}
+
+.tab div:hover {
+	background-color: var(--grey);
+	color : white;
+}
+
+div.active {
+	background-color: white;
+}
+
+.tabcontent {
+	display: none;
+	padding: 16px;
+	border-top: none;
 }

@@ -65,13 +65,16 @@ dl dt,dl p,dl dd, dl span{line-height: 1.6}
 }
 
 .shopname{
-	color : var(--logo-new)
+	color : var(--logo-new);
+	font-size: 24px;
 }
 
+.name{
+	font-size: 24px;
+}
 
 main{
 	width: calc(100vw - 200px);
-	height: 100vh;
 	padding-top: 70px;
 }
 
@@ -87,6 +90,7 @@ main>.wrap {
 	padding-top:70px;
 	width: 200px;
 	min-height: 100vh;
+	height: 100%;
 	background-color: rgba(0,10,30,1);
 	color: #fff;
 	font-size: 16px;	

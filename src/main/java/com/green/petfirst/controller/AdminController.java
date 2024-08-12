@@ -1,15 +1,23 @@
 package com.green.petfirst.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.green.petfirst.service.admin.AdminService;
+
+import lombok.RequiredArgsConstructor;
 
 
 @Controller
+@RequiredArgsConstructor
 public class AdminController {
 	
+	private final AdminService service;
 	
 	@GetMapping("/admin/petfir")
-	public String list() {
+	public String list(Model model) {
+		service.ListProcess(model);
 		return "views/admin/petfir";
 	}
 	
@@ -28,13 +36,9 @@ public class AdminController {
 		return "views/admin/deliver";
 	}
 	
-	@GetMapping("/admin/exchange")
+	@GetMapping("/admin/exchangeRefund")
 	public String exchange() {
-		return "views/admin/exchange";
+		return "views/admin/excRef";
 	}
 	
-	@GetMapping("/admin/refund")
-	public String refund() {
-		return "views/admin/refund";
-	}
 }
