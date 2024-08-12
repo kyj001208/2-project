@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.green.petfirst.domain.dto.cs.notice.NoticeDetailDTO;
 import com.green.petfirst.domain.dto.cs.notice.NoticeListDTO;
 
 import org.springframework.web.bind.annotation.PutMapping;
@@ -51,7 +52,7 @@ public class NoticeController {
 	}
 
 	/**
-	 * 관리자가 공지사항을 등록 후 목록으로 이동
+	 * 관리자가 공지사항을 등록처리 후 목록으로 이동
 	 */
 	@PostMapping("/admin/customer/notices")
 	public String save() {
@@ -82,8 +83,26 @@ public class NoticeController {
 		return "redirect:/admin/customer/notices";
 	}
 
+	/**
+	 * 관리자가 공지사항 상세페이지으로 이동
+	 */
 	@GetMapping("/admin/customer/notices/{noticeNo}")
-	public String detail(@PathVariable("noticeNo") long noticeNo) {
+	public String detail(@PathVariable("noticeNo") long noticeNo, Model model) {
+		//데모 상세데이터
+		String content=""
+				+ "<p>공지사항 내용이 여기에 표시됩니다.</p>"
+				+ "<p>강아지와 고양이 펫 관련된 상품판매 사이트입니다.</p>"
+				+ "<p>사이트 이름은 PETFIR 입니다.</p>"
+				+ "<p>감사합니다.</p>";
+		NoticeDetailDTO dto=NoticeDetailDTO.builder()
+					.noticeNo(noticeNo)
+					.title("공지사항 제목 입니다.")
+					.content(content)
+					.createAt(LocalDateTime.now().minusDays(noticeNo))
+					.build();
+		
+		model.addAttribute("detail", dto);
+		
 		return "views/customer/notice/admin-detail";
 	}
 }

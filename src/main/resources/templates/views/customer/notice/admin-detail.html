@@ -1,43 +1,94 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/admin/layout::layout(~{this::head}, ~{this::main})}">
-	<head>
-		<!-- include libraries(jQuery, bootstrap) -->
-		<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<head>
+    <!-- include libraries(jQuery, bootstrap) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-		<!-- include summernote css/js -->
-		<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-		<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-		<script>
-			$(document).ready(function () {
-				$('#summernote').summernote();
-			});
-		</script>
-	    <link rel="stylesheet" href="/css/cs/notice-admin.css">
-	</head>
-	<main id="cs">
-		<h1>공지사항 상세</h1>
-		<div class="wrap">
-			<p class="page-title">공지사항 상세</p>
-			<section id="notice-write">
-				<h1>컨텐츠</h1>
-				<div class="contents">
-					<table>
-						<tfoot>
-							<tr>
-								<td></td>
-							</tr>
-						</tfoot>
-					</table>
-					<div>
-						<a href="/admin/customer/notices">
-							<button>목록</button>
-						</a>
-					</div>
-				</div>
-			</section>
-		</div>
-	</main>
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <link rel="stylesheet" href="/css/cs/notice-admin.css">
+
+    <!-- include custom JavaScript -->
+    <script src="/js/noticedetail.js"></script>
+</head>
+<main id="cs">
+    <h1>공지사항 상세</h1>
+    <div class="wrap">
+        <section id="notice-detail" class="notice-detail">
+            <h1>컨텐츠</h1>
+            <div class="contents">
+                <p class="page-title">공지사항 상세</p>
+                <table>
+                    <tfoot>
+                        <tr>
+                            <td class="notice-title">
+                                <div class="title-date-container">
+                                    <strong class="notice-title-text" th:text="${detail.title}">공지사항 제목 입니다.</strong>
+                                    <span class="notice-date" th:text="${detail.createAt.toLocalDate}">등록일</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="notice-content" th:utext="${detail.content}">
+                                공지사항내용이들어갑니다
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <div class="button-container">
+                    <a href="/admin/customer/notices" class="button-list">
+                        <button class="btn-style">목록</button>
+                    </a>
+                    <button id="edit-button" class="btn-style">수정</button>
+                    <a href="/admin/customer/notices/delete" class="button-delete">
+                        <button class="btn-style">삭제</button>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section id="notice-update" class="notice-detail">
+            <h1>컨텐츠</h1>
+            <div class="contents">
+                <p class="page-title">공지사항 수정</p>
+                <div id="edit-form">
+                    <form action="#" method="post">
+                        <ul>
+                            <li>
+                                <label>
+                                    번&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;호
+                                </label>
+                                <span th:text="${detail.noticeNo}"></span>
+                            </li>
+                            <li>
+                                <label>
+                                    등&nbsp;&nbsp;록&nbsp;&nbsp;일
+                                </label>
+                                <span th:text="${detail.createAt.toLocalDate}"></span>
+                            </li>
+                            <li>
+                                <label>
+                                    제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목
+                                </label>
+                                <input type="text" name="title" th:value="${detail.title}">
+                            </li>
+                            <li>
+                                <label>
+                                    내&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;용
+                                </label>
+                                <textarea id="summernote" name="content" placeholder="내용을 입력하세요.">[(${detail.content})]</textarea>
+                            </li>
+                            <li class="center">
+                                <button type="submit" class="btn-style">수정 완료</button>
+                                <button type="button" id="cancel-button" class="btn-style">취소</button>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
 </html>
-

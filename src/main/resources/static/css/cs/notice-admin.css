@@ -4,7 +4,7 @@
 	url('https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap');
 
 * {box-sizing: border-box;} /*헤더영향*/
-button{border: none;}
+button{border: none; margin-top: 10px;}
 body {
 	font-family: "Hi Melody", sans-serif !important;
 	font-weight: 400;
@@ -38,17 +38,17 @@ h1 {
 	margin-bottom: 30px;
 }
 
-
+main{
+	width: calc(100vw - 200px);
+	height: 100vh;
+	padding-top: 70px;
+}
 
 main>.wrap {
 	padding: 40px 40px 0 40px;
 	min-width: 760px;
 }
 
-#cs {
-	margin: 50px 0 0 200px;
-	width: calc(100vw - 200px);
-}
 #summernote ~ .note-editor{
 	width: 100%;
 }
@@ -56,33 +56,38 @@ main>.wrap {
 	height: 350px;
 }
 
+#notice-update #summernote ~ .note-editor>.note-editing-area {
+	height: auto;
+}
+
 /* ##공지사항 등록-관리자#### */
 
-
+#notice-update>.contents form>ul>li,
 #notice-write>.contents>form>ul>li {
 	margin: 20px 0;
 	display: flex;
 }
-
+#notice-update>.contents form>ul>li>label,
 #notice-write>.contents>form>ul>li>label {
 	display: block;
 	margin-right: 30px; 
 }
-
+#notice-update>.contents form>ul>li>input,
 #notice-write>.contents>form>ul>li>input {
 	width: 100%
 }
-
+#notice-update>.contents form>ul>li>textarea,
 #notice-write>.contents>form>ul>li>textarea {
 	width: 100%
 }
-#notice-write>.contents>form>ul>li:last-child>button{
-	width: 120px; 
+.btn-style{
+	min-width: 120px; 
 	padding: 10px 16px; 
 	color: #fff;
 	background-color: var(--point-purple);
 	margin: 0 5px;
 	font-weight: 700;
+	text-align: center;
 }
 	
 
@@ -143,4 +148,64 @@ main>.wrap {
 #notice-admin-list>.contents>ol.paginate>li>a:hover {
 	background-color: #333;
 	color: #fff;
+}
+/* #################################################### */
+/* ##공지사항 상세페이지#### */
+/* #################################################### */
+
+
+/* 수정 버튼 클릭 시 수정 모드 전환 */
+.edit-mode #notice-detail {
+    display: none; /* 기존 제목과 등록일 숨기기 */
+}
+
+.edit-mode #notice-update {
+    display: block; /* 수정 폼 보이기 */
+}
+
+#notice-update {
+    display: none; /* 기본적으로 숨김 상태 */
+}
+
+/* 공지사항 제목과 등록일을 수평으로 배치 */
+#notice-detail .title-date-container {
+    display: flex; /* 제목과 등록일을 수평으로 배치 */
+    justify-content: space-between; /* 제목과 등록일 사이의 공간을 최대화 */
+    align-items: center; /* 제목과 등록일을 수직으로 중앙 정렬 */
+    border-bottom: 1px solid #ccc; /* 제목 아래에 구분선 추가 */
+    padding-bottom: 10px; /* 제목과 구분선 사이의 여백 */
+    margin-bottom: 20px; /* 제목과 내용 사이의 여백 */
+}
+
+/* 제목 스타일 */
+#notice-detail .notice-title-text {
+    font-size: 25px; /* 제목 크기 */
+    font-weight: bold; /* 제목 두께 */
+    margin-right: 20px; 
+}
+
+/* 등록일 스타일 */
+#notice-detail .notice-date {
+    font-size: 14px; /* 등록일 폰트 크기 */
+    color: gray; /* 등록일 텍스트 색상 */
+}
+
+/* 내용 박스 스타일 */
+#notice-detail .notice-content {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 30px; 
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 800px; 
+    height: 500px;
+    max-width: 1200px; 
+    margin: 0 auto 40px; 
+    text-align: left; 
+}
+/* 버튼 컨테이너 여백 설정 */
+.button-container {
+    margin-top: 30px; /* 공지사항 내용과 버튼 사이의 여백 */
+    display: flex;
+    gap: 10px; /* 버튼 간격 설정 */
 }
