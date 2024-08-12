@@ -1,13 +1,16 @@
 package com.green.petfirst.domain.dto.login;
 
+import java.util.Set;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.green.petfirst.domain.entity.MemberEntity;
+import com.green.petfirst.security.Role;
 
 import lombok.Setter;
 
 @Setter
-public class SignSaveDTO {
+public class MemberDTO {
 	
 	private String userId; 
 	
@@ -36,6 +39,7 @@ public class SignSaveDTO {
 				.email(email)
 				.petName(petName)
 				.petBreed(petBreed)
+				.roles(Set.of(Role.PETFIR))
 				.build();
 	}
 
