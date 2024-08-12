@@ -40,7 +40,7 @@ public class MemberEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long no;
+	private long memNo;
 	
 	@Column(nullable = false, unique = true)
 	private String userId; //아이디
@@ -57,7 +57,7 @@ public class MemberEntity {
 	@Column(nullable = false)
 	private String phone;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String email;
 	
 	
