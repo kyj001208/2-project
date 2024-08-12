@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/admin/product.css">
+<script src="/js/category/category.js"></script>
 <title>상품등록</title>
 </head>
 
@@ -11,35 +12,26 @@
 	<div class="container">
 	    <h1>상품등록</h1>
 	    <form action="/submit" method="post" enctype="multipart/form-data">
-	        <table>
-	        	
-	            <tr>
-	                <th class="tag">카테고리</th>
-	                <td><input class="pdtCategory" type="text" name="category1" placeholder="대분류" required></td>
-	                
-	                <td><input class="pdtCategory" type="text" name="category2" placeholder="중분류" required></td>
-	                
-	                <td><input class="pdtCategory" type="text" name="category3" placeholder="소분류" required></td>
-	            </tr>
-	           	
-	            <tr>
-	                <th class="tag">#1 다중 카테고리</th>
-	                <td><input class="pdtCategory" type="text" name="category1" placeholder="대분류" required></td>
-	                
-	                <td><input class="pdtCategory" type="text" name="category2" placeholder="중분류" required></td>
-	                
-	                <td><input class="pdtCategory" type="text" name="category3" placeholder="소분류" required></td>
-	            </tr>
-	            <tr>
-	                <th class="tag">#2 다중 카테고리</th>
-	                <td><input class="pdtCategory" type="text" name="category1" placeholder="대분류" required></td>
-	                
-	                <td><input class="pdtCategory" type="text" name="category2" placeholder="중분류" required></td>
-	                
-	                <td><input class="pdtCategory" type="text" name="category3" placeholder="소분류" required></td>
-	            </tr>
-	            
-	            </table>
+   <table>
+        <tr>
+            <th class="tag">카테고리</th>
+            <td>
+                <select class="pdtCategory" id="category1" name="category1" required>
+                    <option value="">대분류 선택</option>
+                </select>
+            </td>
+            <td>
+                <select class="pdtCategory" id="category2" name="category2" required>
+                    <option value="">중분류 선택</option>
+                </select>
+            </td>
+            <td>
+                <select class="pdtCategory" id="category3" name="category3" required>
+                    <option value="">소분류 선택</option>
+                </select>
+            </td>
+        </tr>
+    </table>
 	            <table>
 	            <tr>
 	                <th class="tag">상품명</th>
