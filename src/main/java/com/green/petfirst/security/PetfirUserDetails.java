@@ -21,7 +21,7 @@ public class PetfirUserDetails extends User implements OAuth2User{
 private static final long serialVersionUID = 1L;
 	
 	//principal 에서 확인하기 위해 추가로 등록 가능(선택 사항)
-	private String userId; //username과 동일 
+	//private String userId; //username과 동일 
 	private String name;
 	private String email;
 	
@@ -29,13 +29,13 @@ private static final long serialVersionUID = 1L;
 	
 
 	public PetfirUserDetails(MemberEntity entity){
-		super(entity.getUserId(),entity.getPassword(),
+		super(entity.getEmail(),entity.getPassword(),
 				entity.getRoles().stream()
 				.map(role->new SimpleGrantedAuthority("ROLE_"+role))
 				.collect(Collectors.toSet()));
 		
 		
-		userId=entity.getUserId();
+		//userId=entity.getUserId();
 		name=entity.getName();
 		email=entity.getEmail();
 	
