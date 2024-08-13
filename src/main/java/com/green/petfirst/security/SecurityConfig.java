@@ -37,14 +37,13 @@ public class SecurityConfig {
 		 
 	        http
 	        
-	        	
 	            .csrf(Customizer.withDefaults()) //표기하지 않아도 기본으로 crsf 보안이 적용-get 요청을 제외한 모든 요청에 대해 post, put, delete 등 발행 필요
 	            //authorizeHttpRequests: 요청하는 url에 대한 보안
 	            .authorizeHttpRequests(authorize -> authorize
 	            		.requestMatchers("/css/**","/js/**","/img/**").permitAll()
 	            		.requestMatchers("/","/public/**").permitAll() 
-	            		.requestMatchers("/petfir/**").hasAnyRole("PETFIR", "SOCIALUSER")
-	            		.requestMatchers("/admin/**","/petfir/**").hasRole("ADMIN") 
+	            		.requestMatchers("/petfir/**").hasAnyRole("PETFIR", "SOCIALUSER","ADMIN" )
+	            		.requestMatchers("/admin/**").hasRole("ADMIN") 
 	                    .anyRequest().authenticated() 
 	                
 	            )
