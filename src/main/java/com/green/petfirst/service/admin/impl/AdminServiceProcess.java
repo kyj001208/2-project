@@ -1,5 +1,7 @@
 package com.green.petfirst.service.admin.impl;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,10 +37,22 @@ public class AdminServiceProcess implements AdminService {
 	}
 
 	@Override
-	public void DeliverList(Model model) {
-	    List<DeliverEntity> delivers = deliverRep.findAll();
-	    List<DeliverDTO> deliverDTO = delivers.stream()
-	            .map((DeliverEntity deliver) -> {
+	public void DeliverList(String devNo, String devTime, String devComplete, String devCompany, Model model) {
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+	    LocalDate start = (devTime != null && !devTime.isEmpty()) ? LocalDate.parse(devTime, formatter) : null;
+	    LocalDate end = (devComplete != null && !devComplete.isEmpty()) ? LocalDate.parse(devComplete, formatter) : null;
+
+	    List<DeliverEntity> delivers = deliverRep.findAll()
+	            .stream()
+	            .filter(deliver -> (devNo == null || devNo.isEmpty() || String.valueOf(deliver.getDevNo()).contains(devNo))
+	                    && (start == null || !deliver.getDevTime().isBefore(start))
+	                    && (end == null || !deliver.getDevComplete().isAfter(end))
+	                    && (devCompany == null || devCompany.isEmpty() || deliver.getDevCompany().equals(devCompany)))
+	            .collect(Collectors.toList());
+
+	    List<DeliverDTO> deliverDTOs = delivers.stream()
+	            .map(deliver -> {
 	                String address = memberRep.findById(deliver.getMember().getMemNo())
 	                        .map(MemberEntity::getAddress)
 	                        .orElse("주소 미등록");
@@ -53,8 +67,14 @@ public class AdminServiceProcess implements AdminService {
 	            })
 	            .collect(Collectors.toList());
 
-	    model.addAttribute("delivers", deliverDTO);
+	    model.addAttribute("delivers", deliverDTOs);
+	    model.addAttribute("companies", deliverRep.findDistinctCompanies());
+	    model.addAttribute("selectedCompany", devCompany);
+	    model.addAttribute("devNo", devNo);
+	    model.addAttribute("devTime", devTime);
+	    model.addAttribute("devComplete", devComplete);
 	}
+
 
 
 

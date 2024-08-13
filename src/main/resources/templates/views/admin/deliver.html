@@ -4,12 +4,36 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/admin/deliver.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <title>배송내역</title>
 </head>
-
 <main>
 	<div class="container">
 		<h1>배송관리</h1>
+		<form th:action="@{/admin/deliver}" method="get">
+		    <div class="filter-group">
+		        <label for="devNo">배송번호:</label>
+		        <input type="text" id="devNo" name="devNo" th:value="${devNo}">
+		        
+		        <label for="devTime">배송일자 시작:</label>
+		        <input type="date" id="devTime" name="devTime" th:value="${devTime}">
+		        
+		        <label for="devComplete">배송완료일자 끝:</label>
+		        <input type="date" id="devComplete" name="devComplete" th:value="${devComplete}">
+		        
+		        <label for="devCompany">배송업체:</label>
+		        <select id="devCompany" name="devCompany">
+		            <option value="">전체</option>
+		            <option th:each="company : ${companies}" 
+		                    th:value="${company}" 
+		                    th:text="${company}" 
+		                    th:selected="${company == selectedCompany}"></option>
+		        </select>
+		
+		        <button type="submit">검색</button>
+		    </div>
+		</form>
+		
 		<table>
 			<thead>
 				<tr>

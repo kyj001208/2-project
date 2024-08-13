@@ -1,6 +1,6 @@
 package com.green.petfirst.domain.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
@@ -37,11 +37,15 @@ public class OrderEntity {
 	
 	@OneToOne
 	@JoinColumn(name = "payNo", nullable = false)
-	private PayEntity pay; // 주문번호 (fk)
+	private PayEntity pay; // 결제번호 (fk)
 	
 	@ManyToOne
 	@JoinColumn(name = "productNo", nullable = false)
-	private ProductEntity product; // 주문번호 (fk)
+	private ProductEntity product; // 상품번호 (fk)
+	
+	@ManyToOne
+	@JoinColumn(name = "memberNo", nullable = false)
+	private MemberEntity member; // 회원번호 (fk)
 	
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
@@ -56,6 +60,10 @@ public class OrderEntity {
 	
 	@Column(nullable = false)
 	private long total;
+	
+	@CreationTimestamp
+	@Column(columnDefinition = "timestamp", nullable = false)
+	private LocalDateTime orderDate; //주문일자
 	
 	
 }
