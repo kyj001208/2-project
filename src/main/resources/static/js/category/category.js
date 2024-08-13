@@ -1,7 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
+const token = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+const header = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+
     const category1 = document.getElementById('category1');
     const category2 = document.getElementById('category2');
     const category3 = document.getElementById('category3');
+
+
 
     category1.addEventListener('change', (event) => {
         // 대분류가 변경될 때 중분류를 로드합니다.
