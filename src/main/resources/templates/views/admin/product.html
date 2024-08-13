@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{views/admin/layout::layout(~{::head}, ~{::main})}">
+<html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/admin/product.css">
@@ -11,7 +10,7 @@
 <main>
 	<div class="container">
 	    <h1>상품등록</h1>
-	    <form action="/submit" method="post" enctype="multipart/form-data">
+	    <form action="/admin/product_add" method="post" enctype="multipart/form-data">
 		<table>
 		    <tr>
 		        <th class="tag">카테고리</th>
@@ -52,7 +51,7 @@
 	            </tr>
 	            <tr>
 	                <th class="tag">상품설명</th>
-	                <td colspan="5"><textarea class="des" name="description" rows="5" required></textarea></td>
+	                <td colspan="5"><textarea class="des" name="productDetail" rows="5" required></textarea></td>
 	            </tr>
 	            <tr>
 	                <th class="tag">대표 이미지</th>
@@ -80,7 +79,7 @@
 	                    </label>
 	                </td>
 	            </tr>
-	
+
 	        </table>
 			<div class="form-buttons">
 				<button type="submit">상품등록</button>

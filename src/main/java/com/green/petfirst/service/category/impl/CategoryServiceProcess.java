@@ -7,12 +7,13 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.green.petfirst.domain.dto.login.CategoryDTO;
+import com.green.petfirst.domain.dto.category.CategoryDTO;
 import com.green.petfirst.domain.entity.CategoryEntity;
 import com.green.petfirst.domain.repository.CategoryRepository;
 import com.green.petfirst.service.category.CategoryService;
 
 import lombok.RequiredArgsConstructor;
+
 
 @Service
 @RequiredArgsConstructor
@@ -20,30 +21,37 @@ public class CategoryServiceProcess implements CategoryService {
 
     private final CategoryRepository categoryRepository;
 
-
     @Override
-    public List<CategoryDTO> getAllCategories() {
-        return convertToDTO(categoryRepository.findAll());
-    }
-
-    @Override
-    public List<CategoryDTO> getMajorCategories() {
-        return convertToDTO(categoryRepository.findByDepth(1)); // 대분류 depth = 1
-    }
-
-    @Override
-    public List<CategoryDTO> getMediumCategories() {
-        return convertToDTO(categoryRepository.findByDepth(2)); // 중분류 depth = 2
-    }
-
-    @Override
-    public List<CategoryDTO> getMinorCategories() {
-        return convertToDTO(categoryRepository.findByDepth(3)); // 소분류 depth = 3
-    }
-
-    private List<CategoryDTO> convertToDTO(List<CategoryEntity> categories) {
+    @Transactional(readOnly = true)
+    public List<CategoryDTO> getCategories(Long depth, Long parentNo) {
+        List<CategoryEntity> categories;
+        if (parentNo == null) {
+            categories = categoryRepository.findByDepth(depth);
+        } else {
+            categories = categoryRepository.findByDepthAndParent_CategoryNo(depth, parentNo);
+        }
         return categories.stream()
-            .map(category -> new CategoryDTO(category.getCategoryNo(), category.getCategoryName(), category.getDepth(), null))
-            .collect(Collectors.toList());
+                         .map(this::convertToDTO)
+                         .collect(Collectors.toList());
+    }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public List<CategoryDTO> getCategoriesByDepth(Long depth) {
+        List<CategoryEntity> categories = categoryRepository.findByDepth(depth);
+        return categories.stream()
+                         .map(this::convertToDTO)
+                         .collect(Collectors.toList());
+    }
+    
+    
+    
+    private CategoryDTO convertToDTO(CategoryEntity category) {
+        return new CategoryDTO(
+            category.getCategoryNo(),
+            category.getCategoryName(),
+            category.getDepth(),
+            category.getParent() != null ? category.getParent().getCategoryNo() : null
+        );
     }
 }
