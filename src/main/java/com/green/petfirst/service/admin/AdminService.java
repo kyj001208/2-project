@@ -10,5 +10,7 @@ public interface AdminService {
 
 	void ListProcess(Model model);
 
+	void DeliverList(Model model);
+
 
 }

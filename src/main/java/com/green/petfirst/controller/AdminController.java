@@ -18,6 +18,7 @@ public class AdminController {
 	@GetMapping("/admin/petfir")
 	public String list(Model model) {
 		service.ListProcess(model);
+		System.out.println(model);
 		return "views/admin/petfir";
 	}
 	
@@ -32,9 +33,11 @@ public class AdminController {
 	}
 	
 	@GetMapping("/admin/deliver")
-	public String deliver() {
-		return "views/admin/deliver";
-	}
+    public String deliver(Model model) {
+        service.DeliverList(model);  // 배송 데이터 가져오기
+        System.out.println(model);
+        return "views/admin/deliver";
+    }
 	
 	@GetMapping("/admin/exchangeRefund")
 	public String exchange() {

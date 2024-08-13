@@ -28,60 +28,60 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td>오늘 (금)</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
+						<td>(금)</td>
+						<td>1</td>
+						<td>2</td>
+						<td>1</td>
+						<td>3</td>
 					</tr>
 					<tr>
-						<td>어제 (목)</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
+						<td>(목)</td>
+						<td>2</td>
+						<td>2</td>
+						<td>1</td>
+						<td>4</td>
 					</tr>
 					<tr>
-						<td>오늘 (수)</td>
+						<td>(수)</td>
+						<td>1</td>
+						<td>1</td>
 						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
+						<td>2</td>
 					</tr>
 					<tr>
-						<td>어제 (화)</td>
+						<td>(화)</td>
+						<td>2</td>
 						<td>0</td>
 						<td>0</td>
-						<td>0</td>
-						<td>0</td>
+						<td>4</td>
 					</tr>
 					<tr>
-						<td>오늘 (월)</td>
+						<td>(월)</td>
+						<td>1</td>
 						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
+						<td>2</td>
+						<td>2</td>
 					</tr>
 					<tr>
-						<td>어제 (일)</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
+						<td>(일)</td>
+						<td>2</td>
+						<td>3</td>
+						<td>1</td>
+						<td>5</td>
 					</tr>
 					<tr>
-						<td>오늘 (토)</td>
+						<td>(토)</td>
+						<td>2</td>
 						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
+						<td>1</td>
+						<td>2</td>
 					</tr>
 					<tr>
 						<th>주간 합계</th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
+						<th>11</th>
+						<th>8</th>
+						<th>6</th>
+						<th>22</th>
 					</tr>
 					<!-- 나머지 행들 -->
 				</tbody>
@@ -98,12 +98,12 @@
 					</tr>
 				</thead>
 				<tbody>
-                    <tr th:each="product : ${products}">
-                        <td th:text="${product.product_no}"></td>
-                        <td th:text="${product.name}"></td>
-                        <td th:text="${product.quantity}"></td>
-                    </tr>
-                </tbody>
+				    <tr th:each="product : ${products}">
+				        <td th:text="${product.productNo}"></td>
+				        <td th:text="${product.productName}"></td>
+				        <td th:text="${product.quantity}"></td>
+				    </tr>
+				</tbody>
 			</table>
 		</div>
 	</div>
