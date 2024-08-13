@@ -19,32 +19,31 @@
             <!-- Additional thumbnail images can be added here -->
         </div>
         <div class="product-detail__right-column">
-            <h2 class="product-info  product-detail__name">탐사6free강아지 사료 연어 레시피, 3kg, 연어, 1개</h2>
-            <div class="product-info  product-detail__reviews">상품평 (2)</div>
-            <div class="product-info  product-detail__price">15,990원</div>
-            <dl class="product-info  number">
+            <h2 class="product-info product-detail__name" th:text="${product.product_name}"></h2>
+            <div class="product-info product-detail__reviews" th:text="'상품평 (' + ${product.reviewCount} + ')'"></div>
+            <div class="product-info product-detail__price" th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')} + '원'"></div>
+            <dl class="product-info number">
                 <dt>옵션선택</dt>
                 <dd class="totalPriceArea">
-                    <div class="numberBox" id="numberBox" data-discount_price="11800" data-regular_discount_rate="">
+                    <div class="numberBox" id="numberBox" th:attr="data-discount_price=${product.discount_price}, data-regular_discount_rate=${product.discount}">
                         <a href="#" class="orderPMBtn_m btnMinus btn_numDown" onclick="javascript:btnMinusClick(event, this);"><span class="blind">수량빼기</span></a>
                         <input type="text" id="quantity" class="ea quantity numInput" maxlength="3" value="1" title="수량입력" onchange="javascript:quantityChange(this);">
                         <a href="#" class="orderPMBtn_p btnPlus btn_numUp" onclick="javascript:btnPlusClick(event,this);"><span class="blind">수량더하기</span></a>
                     </div>
-                    <span id="eaPrice" class="priceBox">15,990원</span>
-
+                    <span id="eaPrice" class="priceBox" th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')} + '원'"></span>
                 </dd>
                 <dd>
                     <p class="orderPtotal_tit">
-                        <span id="count_tit" class="count_tit">
-                            <span>총 수량</span><span class="num">1</span><span>개</span>
-                        </span>
+                <span id="count_tit" class="count_tit">
+                    <span>총 수량</span><span class="num">1</span><span>개</span>
+                </span>
                         <span id="totalPrice" class="orderPtotal_num totPrice">
-                            <strong>15,990</strong>원
-                        </span>
+                    <strong th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}"></strong>원
+                </span>
                     </p>
                 </dd>
             </dl>
-            <div class="product-info  product-detail__buttons">
+            <div class="product-info product-detail__buttons">
                 <button class="product-detail__cart-button">장바구니 담기</button>
                 <button class="product-detail__buy-button">바로구매</button>
             </div>
