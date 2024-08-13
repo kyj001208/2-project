@@ -36,6 +36,60 @@
 	font-size: 40px;            
 	margin-left: 10px;            
 }
+/* /////////////////////////////////////////////////////////////////////////////////// */
+
+
+
+.formtable{
+	
+	display: flex;
+	
+}
+
+.paytitle{
+	
+	font-size: 25px;
+	padding-bottom: 20px;
+	text-align: center;
+}
+
+.pay-left, .pay-right{
+	
+	width: 100%;
+	height: 500px;
+}
+
+.pay-left{
+	
+	border-right: 1px solid var(--sub-grey);
+}
+
+#paynumber, #payname, #sample6_address, #sample6_postcode, #sample6_extraAddress, #sample6_detailAddress {
+	
+	font-family: "Hi Melody", sans-serif;
+	width: 200px;
+	border: 1px solid var(--sub-grey);
+	font-size: 18px;
+	
+}
+
+
+.payname, .payaddress{
+	
+	padding-bottom: 20px;
+}
+
+
+.payname >label{
+	
+	width: 100px;
+	display: inline-block;
+}
+
+
+
+
+
 
 
 /* ///////////////////////////////////아래 강아지들//////////////////// */
