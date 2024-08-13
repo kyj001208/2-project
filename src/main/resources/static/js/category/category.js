@@ -1,53 +1,66 @@
-document.addEventListener("DOMContentLoaded", function () {
-    loadCategories(1, 0, document.getElementById("category1")); // 대분류 로드
+document.addEventListener('DOMContentLoaded', () => {
+    const category1 = document.getElementById('category1');
+    const category2 = document.getElementById('category2');
+    const category3 = document.getElementById('category3');
 
-    document.getElementById("category1").addEventListener("change", function () {
-        const parentNo = this.value; // 대분류의 ID
-        loadCategories(2, parentNo, document.getElementById("category2")); // 중분류 로드
-        clearSubCategories("category3"); // 소분류 초기화
+    category1.addEventListener('change', (event) => {
+        // 대분류가 변경될 때 중분류를 로드합니다.
+        loadCategories(category1.value, 2, category2); // depth는 1로 설정 (중분류)
     });
 
-    document.getElementById("category2").addEventListener("change", function () {
-        const parentNo = this.value; // 중분류의 ID
-        loadCategories(3, parentNo, document.getElementById("category3")); // 소분류 로드
+    category2.addEventListener('change', (event) => {
+        // 중분류가 변경될 때 소분류를 로드합니다.
+        loadCategories(category2.value, 3, category3); // depth는 2로 설정 (소분류)
     });
+
+    // 처음 페이지 로드 시 대분류를 로드
+    loadCategories(null, 1, category1); // depth는 0으로 설정 (대분류)
 });
 
-// 카테고리 로드 함수
-function loadCategories(depth, parentNo, selectElement) {
-    fetch(`/api/categories?depth=${depth}&parentNo=${parentNo}`) // API 호출 시 parentNo 포함
-        .then(response => response.json())
+function loadCategories(parentNo, depth, selectElement) {
+    if (!selectElement) {
+        console.error(`Select element not found for depth ${depth}.`);
+        return;
+    }
+
+    // API 호출 URL 구성
+    const apiUrl = `/api/categories?depth=${depth}${parentNo !== null && parentNo !== '' ? `&parentNo=${parentNo}` : ''}`;
+
+    // fetch로 API 호출
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Network response was not ok. Status: ${response.status}`);
+            }
+            return response.json(); // 응답을 JSON으로 변환
+        })
         .then(data => {
-            updateSelectOptions(selectElement, data);
+            console.log('Fetched categories:', data); // 디버깅을 위한 로그 추가
+            updateSelectOptions(selectElement, data); // 옵션 업데이트
         })
         .catch(error => {
-            console.error('Error loading categories:', error);
+            console.error('Error fetching categories:', error);
+            alert('카테고리를 불러오는 중 오류가 발생했습니다. 다시 시도해주세요.');
         });
 }
 
-// 선택된 카테고리 옵션 업데이트 함수
 function updateSelectOptions(selectElement, categories) {
-    if (!selectElement) {
-        console.error('Select element is undefined'); // 디버깅을 위한 로그 추가
-        return; // selectElement가 undefined일 경우 함수 종료
-    }
-
-    // 기존 옵션 제거
+    // 기존 옵션 제거 및 기본값 추가
     selectElement.innerHTML = '<option value="">선택하세요</option>';
+
+    if (categories.length === 0) {
+        const option = document.createElement("option");
+        option.value = "";
+        option.textContent = "해당 분류 없음";
+        selectElement.appendChild(option);
+        return;
+    }
 
     // 카테고리 추가
     categories.forEach(category => {
         const option = document.createElement("option");
-        option.value = category.id; // 카테고리 번호
-        option.textContent = category.name; // 카테고리 이름
+        option.value = category.categoryNo;  // `categoryNo` 사용
+        option.textContent = category.categoryName;  // 카테고리 이름 사용
         selectElement.appendChild(option);
     });
-}
-
-// 소분류 초기화
-function clearSubCategories(selectId) {
-    const selectElement = document.getElementById(selectId);
-    if (selectElement) { // selectElement가 정의되어 있는지 확인
-        selectElement.innerHTML = '<option value="">선택하세요</option>'; // 소분류 초기화
-    }
 }

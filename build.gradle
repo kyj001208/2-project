@@ -28,6 +28,10 @@ ext {
 }
 
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
+//	implementation 'org.ehcache:ehcache:3.10.8'
+    
+    
 	implementation 'com.github.mwiede:jsch:0.2.18'
 	
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
