@@ -29,6 +29,11 @@ ext {
 }
 
 dependencies {
+	
+		// https://mvnrepository.com/artifact/io.awspring.cloud/spring-cloud-aws-starter
+	implementation 'io.awspring.cloud:spring-cloud-aws-starter-s3:3.1.1'
+	
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 
 	implementation 'org.springframework.boot:spring-boot-starter-cache'
 

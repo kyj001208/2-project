@@ -16,7 +16,6 @@ public class Product_addDTO {
 
 	private long productNo; //상품번호
 	private CategoryEntity category;  // 카테고리 번호
-	
 	private String productName;  // 상품명
 	private long price;  // 상품가격
 	private String productDetail;  // 상품설명

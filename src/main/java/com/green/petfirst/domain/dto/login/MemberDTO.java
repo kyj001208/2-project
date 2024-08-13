@@ -18,7 +18,7 @@ public class MemberDTO {
 	
 	private String name; 
 	
-	private String adress; 
+	private String address; 
 	
 	private String phone; 
 	
@@ -34,7 +34,7 @@ public class MemberDTO {
 				.userId(userId)
 				.password(pass.encode(password))
 				.name(name)
-				.adress(adress)
+				.address(address)
 				.phone(phone)
 				.email(email)
 				.petName(petName)

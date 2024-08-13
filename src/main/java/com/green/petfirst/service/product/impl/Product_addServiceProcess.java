@@ -1,6 +1,7 @@
 package com.green.petfirst.service.product.impl;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.green.petfirst.domain.dto.product.Product_addDTO;
 import com.green.petfirst.domain.entity.ProductEntity;
@@ -16,31 +17,20 @@ public class Product_addServiceProcess implements Product_addService {
     private final Product_addRepository productRepository;
 
     @Override
-    public Product_addDTO createProduct(Product_addDTO productDTO) {
+    @Transactional
+    public void addProduct(Product_addDTO productAddDTO) {
         // DTO를 Entity로 변환
         ProductEntity productEntity = ProductEntity.builder()
-                .category(productDTO.getCategory())
-                .productName(productDTO.getProductName())
-                .price(productDTO.getPrice())
-                .productDetail(productDTO.getProductDetail())
-                .quantity(productDTO.getQuantity())
-                .discount(productDTO.getDiscount())
-                .discountPrice(productDTO.getDiscountPrice())
+                .productName(productAddDTO.getProductName())
+                .price(productAddDTO.getPrice())
+                .productDetail(productAddDTO.getProductDetail())
+                .quantity(productAddDTO.getQuantity())
+                .discount(productAddDTO.getDiscount())
+                .discountPrice(productAddDTO.getDiscountPrice())
+                .category(productAddDTO.getCategory()) // 카테고리 설정
                 .build();
 
-        // DB에 저장
-        ProductEntity savedProduct = productRepository.save(productEntity);
-
-        // 저장된 Entity를 다시 DTO로 변환하여 반환
-        return Product_addDTO.builder()
-                .productNo(savedProduct.getProductNo())
-                .category(savedProduct.getCategory())
-                .productName(savedProduct.getProductName())
-                .price(savedProduct.getPrice())
-                .productDetail(savedProduct.getProductDetail())
-                .quantity(savedProduct.getQuantity())
-                .discount(savedProduct.getDiscount())
-                .discountPrice(savedProduct.getDiscountPrice())
-                .build();
+        // 상품 엔티티 저장
+        productRepository.save(productEntity);
     }
 }
