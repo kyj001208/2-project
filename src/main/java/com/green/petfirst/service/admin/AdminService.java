@@ -10,7 +10,7 @@ public interface AdminService {
 
 	void ListProcess(Model model);
 
-	void DeliverList(Model model);
+	void DeliverList(String devNo, String devTime, String devComplete, String devCompany, Model model);
 
 
 }
