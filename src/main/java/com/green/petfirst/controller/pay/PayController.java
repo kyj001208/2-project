@@ -10,5 +10,11 @@ public class PayController {
 	public String login() {
 		return "/views/cart/pay";
 	}
+	
+	
+	@GetMapping("/petfir/pay/detail")
+	public String paydetail() {
+		return "/views/cart/paydetail";
+	}
 
 }

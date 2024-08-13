@@ -7,7 +7,8 @@
 <link rel="stylesheet" href="/css/cart/pay.css" />
 <link rel="stylesheet" href="/css/commons/common.css" />
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="/js/pay.js"></script>
+<script src="/js/pay/payaddress.js"></script>
+<link rel="stylesheet" href="/css/cart/paystyle.css" />
 <meta name="_csrf" th:content="${_csrf.token}" />
 <meta name="_csrf_header" th:content="${_csrf.headerName}" />
 </head>
@@ -75,14 +76,14 @@
 						</div>
 						<div>0원</div>
 					  </div>
-					  
-				<div class="cartpay">
 
-				<a href="#"><button type="button" class="pay-btn">결제하기</button></a>
+						<div class="cartpay">
 
-				</div>
-				
-				</div>
+							<button onclick="window.open('http://localhost:8080/petfir/pay/detail','window_name','width=600,height=700,location=no,status=no,scrollbars=yes,left=400,top=200');">결제하기</button>
+						
+						</div>
+
+					</div>
 				
 				
 			</form>
@@ -106,7 +107,8 @@
 		
 
 	</main>
-
+	
+	<script type="module" src="/js/pay/pay.js"></script>
 
 </body>
 </html>
