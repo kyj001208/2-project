@@ -4,6 +4,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.green.petfirst.domain.dto.login.MemberDTO;
+import com.green.petfirst.domain.entity.MemberEntity;
 import com.green.petfirst.domain.repository.MemberRepository;
 import com.green.petfirst.service.login.MemberService;
 
@@ -20,6 +21,12 @@ public class MemberServiceProcess implements MemberService {
 	public void save(MemberDTO dto) {
 		
 		repository.save(dto.toEntity(pass));
+		
+	}
+
+	@Override
+	public void saveSocial(MemberEntity entity) {
+		repository.save(entity);
 		
 	}
 
