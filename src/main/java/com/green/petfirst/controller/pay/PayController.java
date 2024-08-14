@@ -16,5 +16,23 @@ public class PayController {
 	public String paydetail() {
 		return "/views/cart/paydetail";
 	}
+	
+	
+	
+	@GetMapping("/petfir/pay/detail/success")
+	public String paysuccess() {
+		return "/views/cart/success";
+	}
+	
+	
+	@GetMapping("/petfir/pay/detail/fail")
+	public String payFail() {
+		return "/views/cart/fail";
+	}
+	
+	
+
+	
+	
 
 }

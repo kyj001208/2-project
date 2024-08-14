@@ -33,16 +33,21 @@ public class SecurityConfig {
 	     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		 
 
-		 
+		 	//토스 페이 경우 extraHeaders 불가 지원 안함 그래서 비활성화
 		 
 	        http
+	        	.csrf(csrf -> csrf
+	                .ignoringRequestMatchers("/petfir/pay/detail/success", "/petfir/pay/detail/fail")
+	            )
+	        	
 	        
 	            .csrf(Customizer.withDefaults()) //표기하지 않아도 기본으로 crsf 보안이 적용-get 요청을 제외한 모든 요청에 대해 post, put, delete 등 발행 필요
 	            //authorizeHttpRequests: 요청하는 url에 대한 보안
 	            .authorizeHttpRequests(authorize -> authorize
 	            		.requestMatchers("/css/**","/js/**","/img/**").permitAll()
-	            		.requestMatchers("/","/public/**").permitAll() 
-	            		.requestMatchers("/petfir/**").hasAnyRole("PETFIR", "SOCIALUSER","ADMIN" )
+	            		.requestMatchers("/","/public/**").permitAll()
+	            		.requestMatchers("/petfir/**").hasAnyRole("PETFIR", "SOCIALUSER","ADMIN")
+						.requestMatchers("/chatbot/**").permitAll() // 웹소켓 엔드포인트 허용
 	            		.requestMatchers("/admin/**").hasRole("ADMIN") 
 	                    .anyRequest().authenticated() 
 	                

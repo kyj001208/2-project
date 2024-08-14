@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>주문 상세 정보</title>
+<link rel="stylesheet" href="/css/admin/order/order-detail.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script th:src="@{/js/order/detail.js}"></script>
+</head>
+<body>
+	
+	<div class="details-card" id="details-card">
+	<div class="title">주문 상세</div>
+	<span class="close" onclick="closeTooltip()">&times;</span>
+		<table class="detail-table">
+			<tr>
+				<th class="tags">주문번호</th>
+				<td class="detail" th:text="${order.orderNo}"></td>
+			</tr>
+			<tr>
+				<th class="tags">회원번호</th>
+				<td class="detail" th:text="${order.member.memNo}"></td>
+			</tr>
+			<tr>
+				<th class="tags">상품명</th>
+				<td class="detail" th:text="${order.product.productName}"></td>
+			</tr>
+			<tr>
+				<th class="tags">수량</th>
+				<td class="detail" th:text="${order.quantity}"></td>
+			</tr>
+			<tr>
+				<th class="tags">단가</th>
+				<td class="detail" th:text="${order.unitPrice}"></td>
+			</tr>
+			<tr>
+				<th class="tags">총액</th>
+				<td class="detail" th:text="${order.total}"></td>
+			</tr>
+			<tr>
+				<th class="tags">주문일자</th>
+				<td class="detail" th:text="${order.orderDate}"></td>
+			</tr>
+			<tr>
+				<th class="tags">상태</th>
+				<td class="detail" th:text="${order.status.roleName}"></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

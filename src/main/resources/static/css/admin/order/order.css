@@ -8,9 +8,17 @@ main {
 	font-size: 24px;
 }
 
+.filter-group{
+	margin-left: 760px;
+}
+
 h1 {
 	font-size: 36px;
 	margin: 40px 0px 20px 80px;
+}
+
+span{
+	cursor: pointer;
 }
 
 table {
@@ -27,7 +35,7 @@ table th, table td {
 	vertical-align: middle;
 }
 
-table th {
+table .order {
 	background-color: #f2f2f2;
 	height: 70px;
 	width: 200px;
@@ -53,4 +61,17 @@ table td {
 
 .pagination a:hover {
 	background-color: #d9d9d9;
+}
+
+/* 툴팁 스타일 */
+.tooltip {
+	display: none; /* 기본적으로 숨김 */
+	position: absolute;
+	z-index: 1000;
+	max-width: 1000px;
+	/* 기타 스타일 추가 가능 */
+}
+
+.show-tooltip {
+	display: block; /* 툴팁 보이기 */
 }

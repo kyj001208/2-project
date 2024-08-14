@@ -1,6 +1,7 @@
 package com.green.petfirst.service.admin.impl;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,10 +10,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.green.petfirst.domain.dto.deliver.DeliverDTO;
+import com.green.petfirst.domain.dto.order.OrderDTO;
 import com.green.petfirst.domain.entity.DeliverEntity;
+import com.green.petfirst.domain.entity.ExchangeRefundEntity;
 import com.green.petfirst.domain.entity.MemberEntity;
+import com.green.petfirst.domain.entity.OrderEntity;
 import com.green.petfirst.domain.entity.ProductEntity;
 import com.green.petfirst.domain.repository.DeliverRepository;
+import com.green.petfirst.domain.repository.ExchangeRefundRepository;
 import com.green.petfirst.domain.repository.MemberRepository;
 import com.green.petfirst.domain.repository.ProductRepository;
 import com.green.petfirst.service.admin.AdminService;
@@ -26,6 +31,8 @@ public class AdminServiceProcess implements AdminService {
 	private final MemberRepository memberRep;
 	private final ProductRepository productRep;
 	private final DeliverRepository deliverRep;
+	private final ExchangeRefundRepository exreRep;
+	
 
 	@Override
 	public void ListProcess(Model model) {
@@ -75,7 +82,10 @@ public class AdminServiceProcess implements AdminService {
 	    model.addAttribute("devComplete", devComplete);
 	}
 
-
-
+	@Override
+	public void exreListProcess(Model model) {
+		List<ExchangeRefundEntity> exRe = exreRep.findAll();
+        model.addAttribute("exRef", exRe);
+	}
 
 }

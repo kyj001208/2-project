@@ -1,0 +1,64 @@
+.box {
+	border: 1px solid black;
+	background-color:white;
+	display: flex;
+    align-items: center;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: white;
+    width: 350px; /* 최대 너비 조정 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    font-size: 20px;
+}
+
+h2{
+	font-size: 24px;
+	position: absolute; /* 절대 위치로 설정 */
+    top: 5px; /* 상단에서 10px 떨어진 위치 */
+    left: 15px; /* 오른쪽에서 10px 떨어진 위치 */
+    font-size: 24px; /* 글꼴 크기 */
+    z-index: 1000; /* 다른 요소 위에 표시 */
+}
+
+.close {
+    position: absolute; /* 절대 위치로 설정 */
+    top: 5px; /* 상단에서 10px 떨어진 위치 */
+    right: 15px; /* 오른쪽에서 10px 떨어진 위치 */
+    font-size: 24px; /* 글꼴 크기 */
+    cursor: pointer; /* 커서가 포인터로 변경 */
+    z-index: 1000; /* 다른 요소 위에 표시 */
+}
+
+.memOd-table{
+	font-size: 20px;
+	margin-left: 25px;
+	margin-top : 30px;
+}
+
+.member{
+	background-color: #f2f2f2;
+}
+
+table th, table td {
+	border: 1px solid #ddd;
+	padding: 5px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+table td {
+	height: 48px;
+}
+
+.tooltip {
+    position: absolute;
+    display: none;
+    z-index: 999;
+    top: 18%;
+    left: 87%;
+    transform: translateX(-50%);
+    transition: opacity 0.3s ease;
+    opacity: 0; /* 기본 투명도 */
+    
+}

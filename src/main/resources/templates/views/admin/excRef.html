@@ -65,21 +65,17 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>12345</td>
+				<tr th:each="ex : ${exRef}">
+                        <td th:text="${ex.requestNo}">요청번호</td>
 					<td>
 						<button class="exchange-history"
 							onclick="openModal('exchangeModal')">교환상세</button>
 						<button class="options" onclick="openModal('optionsModal')">옵션</button>
 					</td>
-					<td><select class="exchange-status">
-							<option value="교환접수">교환접수</option>
-							<option value="교환완료">교환완료</option>
-							<option value="교환취소">교환취소</option>
-					</select></td>
-					<td>2022-01-07 16:19</td>
-					<td>2201070001</td>
-					<td>회원명</td>
+					<td th:text="${ex.requestStatus}">요청상태</td>
+                    <td th:text="${ex.requestDate}">요청날짜</td>
+                    <td th:text="${ex.order.orderNo}">주문번호</td>
+                    <td th:text="${ex.member.name}">회원명</td>
 				</tr>
 				<!-- 추가 행을 필요에 따라 더 추가하세요 -->
 			</tbody>
@@ -94,33 +90,33 @@
 			<div class="exchange-info">
 				<table class="modal-table">
 					<tr>
-						<th class="tags">교환상태</th>
-						<td class="detail">교환접수</td>
-					</tr>
-					<tr>
-						<th class="tags">교환 요청자</th>
-						<td class="detail">회원명</td>
-					</tr>
-					<tr>
-						<th class="tags">교환 번호</th>
-						<td class="detail">12345</td>
-					</tr>
-					<tr>
-						<th class="tags">주문일시</th>
-						<td class="detail">2022-01-06 (15:55:04)</td>
-					</tr>
-					<tr>
-						<th class="tags">주문번호</th>
-						<td class="detail">2201070001</td>
-					</tr>
-					<tr>
-						<th class="tags">교환 접수일시</th>
-						<td class="detail">2022-01-07 (16:19:25)</td>
-					</tr>
-					<tr>
-						<th class="tags">사유</th>
-						<td class="detail">사유설명</td>
-					</tr>
+                        <th class="tags">교환상태</th>
+                        <td class="detail" th:text="${exRef[0].requestStatus}">교환접수</td>
+                    </tr>
+                    <tr>
+                        <th class="tags">교환 요청자</th>
+                        <td class="detail" th:text="${exRef[0].member.name}">회원명</td>
+                    </tr>
+                    <tr>
+                        <th class="tags">교환 번호</th>
+                        <td class="detail" th:text="${exRef[0].requestNo}">12345</td>
+                    </tr>
+                    <tr>
+                        <th class="tags">주문일시</th>
+                        <td class="detail" th:text="${exRef[0].order.orderDate}">2022-01-06 (15:55:04)</td>
+                    </tr>
+                    <tr>
+                        <th class="tags">주문번호</th>
+                        <td class="detail" th:text="${exRef[0].order.orderNo}">2201070001</td>
+                    </tr>
+                    <tr>
+                        <th class="tags">교환 접수일시</th>
+                        <td class="detail" th:text="${exRef[0].requestDate}">2022-01-07 (16:19:25)</td>
+                    </tr>
+                    <tr>
+                        <th class="tags">사유</th>
+                        <td class="detail" th:text="${exRef[0].reason}">사유설명</td>
+                    </tr>
 				</table>
 			</div>
 			<button onclick="closeModal('exchangeModal')">닫기</button>
@@ -157,22 +153,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>12345</td>
+                <tr th:each="ex : ${exRef}">
+                        <td th:text="${ex.requestNo}">요청번호</td>
                     <td>
                         <button class="exchange-history" onclick="openModal('refundModal')">환불상세</button>
                         <button class="options" onclick="openModal('refundOptionsModal')">옵션</button>
                     </td>
-                    <td>
-                        <select class="exchange-status">
-                            <option value="환불접수">환불접수</option>
-                            <option value="환불완료">환불완료</option>
-                            <option value="환불취소">환불취소</option>
-                        </select>
-                    </td>
-                    <td>2022-01-07 16:19</td>
-                    <td>2201070001</td>
-                    <td>회원명</td>
+                    <td th:text="${ex.requestStatus}">요청상태</td>
+                    <td th:text="${ex.requestDate}">요청날짜</td>
+                    <td th:text="${ex.order.orderNo}">주문번호</td>
+                    <td th:text="${ex.member.name}">회원명</td>
                 </tr>
                 <!-- 추가 행을 필요에 따라 더 추가하세요 -->
             </tbody>
@@ -187,33 +177,33 @@
             <div class="exchange-info">
 				<table class="modal-table">
 					<tr>
-						<th class="tags">환불상태</th>
-						<td class="detail">환불접수</td>
-					</tr>
-					<tr>
-						<th class="tags">환불 요청자</th>
-						<td class="detail">회원명</td>
-					</tr>
-					<tr>
-						<th class="tags">환불 번호</th>
-						<td class="detail">12345</td>
-					</tr>
-					<tr>
-						<th class="tags">주문일시</th>
-						<td class="detail">2022-01-06 (15:55:04)</td>
-					</tr>
-					<tr>
-						<th class="tags">주문번호</th>
-						<td class="detail">2201070001</td>
-					</tr>
-					<tr>
-						<th class="tags">환불 접수일시</th>
-						<td class="detail">2022-01-07 (16:19:25)</td>
-					</tr>
-					<tr>
-						<th class="tags">사유</th>
-						<td class="detail">사유설명</td>
-					</tr>
+                        <th class="tags">환불상태</th>
+                        <td class="detail" th:text="${exRef[0].requestStatus}">교환접수</td>
+                    </tr>
+                    <tr>
+                        <th class="tags">환불 요청자</th>
+                        <td class="detail" th:text="${exRef[0].member.name}">회원명</td>
+                    </tr>
+                    <tr>
+                        <th class="tags">환불 번호</th>
+                        <td class="detail" th:text="${exRef[0].requestNo}">12345</td>
+                    </tr>
+                    <tr>
+                        <th class="tags">주문일시</th>
+                        <td class="detail" th:text="${exRef[0].order.orderDate}">2022-01-06 (15:55:04)</td>
+                    </tr>
+                    <tr>
+                        <th class="tags">주문번호</th>
+                        <td class="detail" th:text="${exRef[0].order.orderNo}">2201070001</td>
+                    </tr>
+                    <tr>
+                        <th class="tags">환불 접수일시</th>
+                        <td class="detail" th:text="${exRef[0].requestDate}">2022-01-07 (16:19:25)</td>
+                    </tr>
+                    <tr>
+                        <th class="tags">사유</th>
+                        <td class="detail" th:text="${exRef[0].reason}">사유설명</td>
+                    </tr>
 				</table>
 			</div>
             <button onclick="closeModal('refundModal')">닫기</button>
