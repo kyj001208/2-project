@@ -1,0 +1,67 @@
+.details-card {
+   display: flex;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: white;
+    width: 500px; /* 최대 너비 조정 */
+    height: 500px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    font-size: 20px;
+}
+
+.title {
+    position: absolute; /* 절대 위치로 설정 */
+    top: 5px; /* 상단에서 10px 떨어진 위치 */
+    left: 15px; /* 오른쪽에서 10px 떨어진 위치 */
+    font-size: 24px; /* 글꼴 크기 */
+    z-index: 1000; /* 다른 요소 위에 표시 */
+}
+
+/* X 버튼 스타일 */
+.close {
+    position: absolute; /* 절대 위치로 설정 */
+    top: 5px; /* 상단에서 10px 떨어진 위치 */
+    right: 15px; /* 오른쪽에서 10px 떨어진 위치 */
+    font-size: 24px; /* 글꼴 크기 */
+    cursor: pointer; /* 커서가 포인터로 변경 */
+    z-index: 1000; /* 다른 요소 위에 표시 */
+}
+
+.detail-table{
+	margin-top: 40px;
+	margin-left: 40px;
+}
+
+.tags {
+	background-color: #f2f2f2;
+	vertical-align: middle;
+	text-align: center;
+}
+
+h2 {
+	font-size: 36px;
+}
+
+th, .detail {
+	padding: 10px;
+	text-align: left;
+}
+.tooltip {
+    position: absolute;
+    display: none;
+    z-index: 999;
+    top: 18%;
+    left: 87%;
+    transform: translateX(-50%);
+    transition: opacity 0.3s ease;
+    opacity: 0; /* 기본 투명도 */
+    
+}
+
+.tooltip.show-tooltip {
+    display: block;
+    opacity: 1; /* 보일 때는 불투명하게 */
+}

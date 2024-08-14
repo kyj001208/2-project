@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{views/admin/layout::layout(~{::head}, ~{::main})}">
+<head>
+<meta charset="UTF-8">
+<meta name="_csrf" th:content="${_csrf.token}" />
+<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+<link rel="stylesheet" href="/css/admin/order/order-detail.css">
+<link rel="stylesheet" href="/css/admin/order/order.css">
+<link rel="stylesheet" href="/css/admin/order/member-order.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script th:src="@{/js/order/detail.js}"></script>
+<script th:src="@{/js/order/order.js}"></script>
+<title>주문목록</title>
+</head>
+
+<main>
+    <div class="container">
+        <h1>주문목록</h1>
+        <!-- 검색 및 필터링 폼 -->
+        <form th:action="@{/admin/order}" method="get">
+            <div class="filter-group">
+                <label for="orderNo">주문번호:</label>
+                <input type="text" id="orderNo" name="orderNo" th:value="${orderNo}">
+                
+                <label for="memNo">회원번호:</label>
+                <input type="text" id="memNo" name="memNo" th:value="${memNo}">
+                
+                <label for="orderDate">주문일자:</label>
+                <input type="date" id="orderDate" name="orderDate" th:value="${orderDate}">
+                
+                <button type="submit">검색</button>
+            </div>
+        </form>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th class="order">주문번호</th>
+                    <th class="order">회원번호</th>
+                    <th class="order">주문일자</th>
+                    <th class="order">처리상태</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="order : ${orders}">
+                    <td>
+                        <span th:onclick="'loadOrderDetail(' + ${order.orderNo} + ', event); return false;'" th:text="${order.orderNo}">주문번호</span>
+                    </td>
+                    <td>
+					    <span th:onclick="'loadMemberOrder(' + ${order.memNo} + ', event); return false;'" th:text="${order.memNo}">회원번호</span>
+					</td>
+                    <td th:text="${order.orderDate}">주문일자</td>
+                    <td>
+					    <select th:onchange="updateOrderStatus([[${order.status.roleName}]], this.value)">
+					        <option th:value="PENDING" th:text="'주문대기'" th:selected="${order.status.roleName == 'PENDING'}"></option>
+					        <option th:value="CONFIRMED" th:text="'주문확인'" th:selected="${order.status.roleName == 'CONFIRMED'}"></option>
+					        <option th:value="PROCESSING" th:text="'주문처리'" th:selected="${order.status.roleName == 'PROCESSING'}"></option>
+					        <option th:value="DELIVERED" th:text="'배송완료'" th:selected="${order.status.roleName == 'DELIVERED'}"></option>
+					        <option th:each="status : ${statusList}"
+					                th:value="${status}"
+					                th:text="${status == 'PENDING' ? '주문대기' : 
+					                         status == 'CONFIRMED' ? '주문확인' :
+					                         status == 'PROCESSING' ? '주문처리' :
+					                         status == 'DELIVERED' ? '배송완료' : status}"
+					                th:selected="${status == order.status.roleName}">
+					        </option>
+					    </select>
+					</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- 페이지네이션 추가 -->
+        <div class="pagination">
+            <a href="#" class="disabled">« </a>
+            <a href="#" class="active">1</a>
+            <a href="#" class="disabled">2</a>
+            <a href="#" class="disabled">3</a>
+            <a href="#">» </a>
+        </div>
+        <div class="tooltip" id="tooltip"></div>
+    </div>
+</main>
+</html>

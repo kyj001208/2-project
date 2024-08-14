@@ -68,17 +68,16 @@ select.exchange-status {
 	width: 100%;
 	height: 100%;
 	overflow: auto;
-	background-color: rgb(0, 0, 0); /* 기본 색상 */
-	background-color: rgba(0, 0, 0, 0.4); /* 블랙 투명도 */
 	padding-top: 60px;
 }
 
 .modal-content1, .modal-content2 {
-	background-color: #fff;
+	background-color: #f2f2f2;
 	margin: 5% auto;
 	padding: 20px;
 	width: 80%;
 	max-width: 600px;
+	border: 1px solid #9d9d9d;
 }
 
 .modal-content1 {
@@ -94,7 +93,7 @@ select.exchange-status {
 }
 
 .close {
-	color: #d9d9d9;
+	color: black;
 	float: right;
 	font-size: 28px;
 	font-weight: bold;
@@ -107,9 +106,14 @@ select.exchange-status {
 }
 
 .tags {
-	background-color: #f1f1f1;
+	background-color: black;
 	vertical-align: middle;
 	text-align: center;
+	color: white;
+}
+
+.detail{
+	background-color: #f9f9f9;
 }
 
 h2 {
@@ -137,7 +141,7 @@ h2 {
 
 th, .detail {
 	padding: 10px;
-	border: 1px solid #ddd;
+	border: 1px solid black;
 	text-align: left;
 }
 
