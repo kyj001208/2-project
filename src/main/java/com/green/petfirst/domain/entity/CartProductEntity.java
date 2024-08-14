@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "cartproduct")
 @Entity
-public class CartProduct {
+public class CartProductEntity {
 
 	
 	@Id
@@ -40,4 +40,12 @@ public class CartProduct {
 	
 	@Column(nullable = false)
 	private long count; 
+	
+	@Column(nullable = false)
+	private long totalPrice; 
+	
+	
+	
 	}
+
+	

@@ -44,7 +44,7 @@ public class OrderEntity {
 	private ProductEntity product; // 상품번호 (fk)
 	
 	@ManyToOne
-	@JoinColumn(name = "memberNo", nullable = false)
+	@JoinColumn(name = "memNo", nullable = false)
 	private MemberEntity member; // 회원번호 (fk)
 	
 	@Enumerated(EnumType.STRING)
