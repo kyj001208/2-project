@@ -14,7 +14,7 @@ import com.green.petfirst.domain.entity.MemberEntity;
 import com.green.petfirst.domain.entity.ProductEntity;
 import com.green.petfirst.domain.repository.DeliverRepository;
 import com.green.petfirst.domain.repository.MemberRepository;
-import com.green.petfirst.domain.repository.Product_addRepository;
+import com.green.petfirst.domain.repository.ProductRepository;
 import com.green.petfirst.service.admin.AdminService;
 
 import lombok.RequiredArgsConstructor;
@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class AdminServiceProcess implements AdminService {
 
 	private final MemberRepository memberRep;
-	private final Product_addRepository productRep;
+	private final ProductRepository productRep;
 	private final DeliverRepository deliverRep;
 
 	@Override

@@ -95,7 +95,7 @@ button {
 	cursor: pointer;
 }
 
-button[type="submit"] {
+.submitbtn[type="submit"] {
 	background-color: var(--logo-brown);
 	color: white;
 }

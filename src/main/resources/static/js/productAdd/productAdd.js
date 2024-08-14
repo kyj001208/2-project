@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const token = document.querySelector('meta[name="_csrf"]').getAttribute('content');
 const header = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
 
-
+/** * *****************카테고리 영역************************** */
     const category1 = document.getElementById('category1');
     const category2 = document.getElementById('category2');
     const category3 = document.getElementById('category3');
@@ -70,3 +70,27 @@ function updateSelectOptions(selectElement, categories) {
         selectElement.appendChild(option);
     });
 }
+/*가격 자동계산*/
+function calculateDiscountPrice() {
+        // 판매가와 할인율을 가져옵니다.
+        const priceInput = document.querySelector('input[name="price"]');
+        const discountInput = document.querySelector('input[name="discount"]');
+        const discountPriceInput = document.querySelector('input[name="discountPrice"]');
+
+        const price = parseFloat(priceInput.value) || 0; // 판매가
+        const discount = parseFloat(discountInput.value) || 0; // 할인율
+
+        let discountPrice = price;
+
+        // 할인율이 퍼센트일 경우
+        if (discount > 0 && discount <= 100) {
+            discountPrice = price - (price * (discount / 100));
+        } 
+        // 원화 할인일 경우
+        else if (discount > 0) {
+            discountPrice = price - discount;
+        }
+
+        // 계산된 할인 가격을 discountPrice 입력란에 표시
+        discountPriceInput.value = Math.max(discountPrice, 0).toFixed(0); // 0보다 작지 않도록 하고 소수점 없이 표시
+    }

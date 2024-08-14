@@ -2,34 +2,36 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	th:replace="~{views/admin/layout::layout(~{::head}, ~{::main})}">
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="/css/admin/product.css">
-<script src="/js/category/category.js"></script>
-<meta name="_csrf" th:content="${_csrf.token}" />
-<meta name="_csrf_header" th:content="${_csrf.headerName}" />
-<title>상품등록</title>
+	<meta charset="UTF-8">
+	<meta name="_csrf" th:content="${_csrf.token}" />
+	<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+	<title>상품등록</title>
+	<link rel="stylesheet" href="/css/admin/product.css">
+	<script src="/js/productAdd/productAdd.js"></script>
+	<script src="/js/fileupload.js"></script>
+	
 </head>
 
 <main>
 	<div class="container">
 	    <h1>상품등록</h1>
-	    <form action="/admin/product_add" method="post" enctype="multipart/form-data">
-	    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+	    <form action="/admin/product" method="post" enctype="multipart/form-data">
+	    <input type="hidden" th:if="${_csrf}" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 		<table>
 		    <tr>
 		        <th class="tag">카테고리</th>
 		        <td>
-		            <select class="pdtCategory" id="category1" name="category1" required>
+		            <select class="pdtCategory" id="category1"  required>
 		                <option value="">대분류 선택</option>
 		            </select>
 		        </td>
 		        <td>
-		            <select class="pdtCategory" id="category2" name="category2" required>
+		            <select class="pdtCategory" id="category2"  required>
 		                <option value="">중분류 선택</option>
 		            </select>
 		        </td>
 		        <td>
-		            <select class="pdtCategory" id="category3" name="category3" required>
+		            <select class="pdtCategory" id="category3" name="categoryNo">
 		                <option value="">소분류 선택</option>
 		            </select>
 		        </td>
@@ -43,11 +45,11 @@
 	            </tr>
 	            <tr>
 	                <th class="tag">판매가</th>
-	                <td><input class="price" type="text" name="price" placeholder="숫자만 입력" required> 원</td>
+	                <td><input class="price" type="text" name="price" placeholder="숫자만 입력" oninput="calculateDiscountPrice()" required > 원</td>
 	                <th class="tag">즉시할인</th>
-	                <td><input class="price" type="text" name="discount" placeholder="숫자만 입력" required> 원 / %</td>
+	                <td><input class="price" type="text" name="discount" placeholder="숫자만 입력" oninput="calculateDiscountPrice()"> %</td>
 	                <th class="tag">즉시할인가</th>
-	                <td><input class="price" type="text" name="discountedPrice" placeholder="숫자만 입력" required> 원</td>
+	                <td><input class="price" type="text" name="discountPrice" placeholder="자동계산" readonly> 원</td>
 	            </tr>
 	            <tr>
 	                <th class="tag">재고수량</th>
@@ -62,36 +64,28 @@
 	                <th class="tag">대표 이미지</th>
 	                <td colspan="5">
 	                    <label class="fileUpload">
-	                        <input type="file" id="itemFile1" name="mainImage" onchange="fileupload(this)" style="display: none;">
-	                        <span>+</span>
+	                    	<span>+</span>
+	                        <input type="file"   accept="image/*" onchange="fileupload(this)" style="display: none;">
 	                    </label> 
 	                </td>
 	            </tr>
 	            <tr>
 	                <th class="tag">추가 이미지</th>
-	                <td colspan="5">
+	                <td colspan="5" class="sub-images">
 	                    <label class="fileUpload">
-	                        <input type="file" id="itemFile2" name="additionalImage1" onchange="fileupload(this)" style="display: none;">
-	                        <span>+</span>
+	                    	<span>+</span>
+	                        <input type="file"   accept="image/*" onchange="subFileupload(this)" style="display: none;">
 	                    </label> 
-	                    <label class="fileUpload">
-	                        <input type="file" id="itemFile3" name="additionalImage2" onchange="fileupload(this)" style="display: none;">
-	                        <span>+</span>
-	                    </label>
-	                    <label class="fileUpload">
-	                        <input type="file" id="itemFile4" name="additionalImage3" onchange="fileupload(this)" style="display: none;">
-	                        <span>+</span>
-	                    </label>
+	                    
 	                </td>
 	            </tr>
 
 	        </table>
 			<div class="form-buttons">
-				<button type="submit">상품등록</button>
+				<button class="submitbtn" type="submit">상품등록</button>
 				<button type="reset">취소</button>
 			</div>
 	    </form>
 	</div>
-	<script src="/js/category/category.js"></script>
 </main>
 </html>

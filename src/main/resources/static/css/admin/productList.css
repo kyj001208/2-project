@@ -1,0 +1,23 @@
+.productListTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+.productListTable th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+.productListTable th {
+    background-color: #f2f2f2;
+}
+.productListTable tr:hover {
+    background-color: #f5f5f5;
+}
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+.action-buttons button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
