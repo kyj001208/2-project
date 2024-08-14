@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/css/admin/order/member-order.css">
+<title>주문 내역</title>
+</head>
+<body>
+	<div class="box">
+		<h2>주문 내역</h2>
+		<span class="close" onclick="closeTooltip()">&times;</span>
+		<table class="memOd-table">
+			<thead>
+				<tr>
+					<th class="member">주문번호</th>
+					<th class="member">주문일자</th>
+					<th class="member">처리상태</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="order : ${orders}">
+					<td th:text="${order.orderNo}"></td>
+					<td th:text="${order.orderDate}"></td>
+					<td th:text="${order.status.roleName}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
