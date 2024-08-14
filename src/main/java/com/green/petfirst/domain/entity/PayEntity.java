@@ -34,7 +34,11 @@ public class PayEntity {
 	private long payNo; //결제테이블 번호
 	
 	@OneToOne
-	@JoinColumn(name = "marketNo", nullable = false)
-	private MarketEntity market; //장바구니 번호
+	@JoinColumn(name = "cartNo", nullable = false)
+	private CartProductEntity cartProduct; //장바구니 번호
 	
+	
+	private long paymentKey; //결제테이블 번호
+	
+	private long orderId;
 }
