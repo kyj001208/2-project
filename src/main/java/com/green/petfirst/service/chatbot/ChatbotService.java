@@ -1,19 +1,24 @@
 package com.green.petfirst.service.chatbot;
 
+
+import com.green.petfirst.domain.entity.ChatbotResponse;
+import com.green.petfirst.domain.repository.ChatbotResponseRepository;
 import kr.co.shineware.nlp.komoran.core.Komoran;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class ChatbotService {
 
     private final Komoran komoran;
+    private final ChatbotResponseRepository chatbotResponseRepository;
 
-    public String processMessage(String message) {
-        List<String> keywords = extractKeywords(message);
+    public String getResponse(String input) {
+        List<String> keywords = extractKeywords(input);
         return generateResponse(keywords);
     }
 
@@ -22,7 +27,25 @@ public class ChatbotService {
     }
 
     private String generateResponse(List<String> keywords) {
-        // 키워드를 기반으로 응답을 생성하는 로직을 구현하세요
-        return "키워드를 받았습니다: " + String.join(", ", keywords);
+        Optional<ChatbotResponse> bestMatch = findBestMatch(keywords);
+
+        if (bestMatch.isPresent()) {
+            return bestMatch.get().getResponseText();
+        } else {
+            return "죄송합니다. 해당 질문에 대한 답변을 찾을 수 없습니다.";
+        }
+    }
+
+    private Optional<ChatbotResponse> findBestMatch(List<String> keywords) {
+        List<ChatbotResponse> allResponses = chatbotResponseRepository.findAll();
+
+        return allResponses.stream()
+                .filter(response -> keywordsMatch(response.getKeywords(), keywords))
+                .findFirst();
+    }
+
+    private boolean keywordsMatch(String responseKeywords, List<String> inputKeywords) {
+        List<String> responseKeywordList = List.of(responseKeywords.split(","));
+        return inputKeywords.stream().anyMatch(responseKeywordList::contains);
     }
 }
