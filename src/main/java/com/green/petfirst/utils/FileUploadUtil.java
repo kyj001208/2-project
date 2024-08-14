@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.green.petfirst.domain.dto.product.ImgUploadDTO;
+
 import lombok.RequiredArgsConstructor;
 
 import software.amazon.awssdk.core.sync.RequestBody;
@@ -59,7 +61,7 @@ public class FileUploadUtil {
 		
 		Map<String, String> resultMap=new HashMap<>();
 		resultMap.put("url",url);
-		resultMap.put("bucketKey",bucketkey);
+		resultMap.put("tempKey",bucketkey);
 		resultMap.put("orgName",orgFileName);
 		return resultMap;
 	}
@@ -70,9 +72,9 @@ public class FileUploadUtil {
 				+ orgFileName.substring(index);// ".png"
 	}
 
-	public List<String> s3TempToImages(List<String> tempKeys) {
-		
-		List<String> uploadKeys=new ArrayList<>();
+	public ImgUploadDTO s3TempToImages(List<String> tempKeys) {
+		List<String> destinationKeys=new ArrayList<>();
+		List<String> uploadUrls=new ArrayList<>();
 		tempKeys.forEach(tempKey->{
 			//tempKey : ex (item/upload/temp/035c686e-4ef4-4c40-981e-8fe3542710dd.jpg)
 			String[] str=tempKey.split("/");
@@ -83,18 +85,22 @@ public class FileUploadUtil {
 					.sourceKey(tempKey)
 					.destinationBucket(bucket)
 					.destinationKey(destinationKey)
+					.acl(ObjectCannedACL.PUBLIC_READ)
 					.build();
 			
 			s3Client.copyObject(copyObjectRequest);
-			s3Client.deleteObject(builder->builder.bucket(bucket).bucket(tempKey)); //삭제할게요
+			s3Client.deleteObject(builder->builder.bucket(bucket).key(tempKey)); //삭제할게요
 			
 			String url=s3Client.utilities()
 					.getUrl(builder->builder.bucket(bucket).key(destinationKey))
 					.toString().substring(6);
-			uploadKeys.add(url);
+			uploadUrls.add(url);
+			destinationKeys.add(destinationKey);
 		});
 		
-		return uploadKeys;
+		return ImgUploadDTO.builder()
+				.uploadUrls(uploadUrls)
+				.uploadKeys(destinationKeys).build();
 		
 	}
 
