@@ -12,6 +12,6 @@ public interface OrderService {
 
 	void MemberOrderProcess(long memNo, Model model);
 
-	void OrderUpdateProcess(OrderUpdateDTO dto);
+	//void OrderUpdateProcess(OrderUpdateDTO dto);
 
 }
