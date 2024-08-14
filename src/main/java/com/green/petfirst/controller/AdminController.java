@@ -41,11 +41,4 @@ public class AdminController {
 		return "views/admin/excRef";
 	}
 	
-	@GetMapping("/admin/product_add")
-	public String product() {
-		return "views/admin/product";
-	}
-	
-	
-	
 }
