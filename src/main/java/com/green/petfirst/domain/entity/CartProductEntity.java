@@ -36,7 +36,7 @@ public class CartProductEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "marketNo", nullable = false)
-	private MarketEntity market; 
+	private MarketEntity market; //장바구니 번호
 	
 	@Column(nullable = false)
 	private long count; 

@@ -35,10 +35,17 @@ public class PayEntity {
 	
 	@OneToOne
 	@JoinColumn(name = "cartNo", nullable = false)
-	private CartProductEntity cartProduct; //장바구니 번호
+	private CartProductEntity cartProduct; //장바구니 상품 번호
 	
+	
+	private String recipient;//받는사람
+	
+	private String payAddress; //받는 주소
+	
+	private String totalPrice; //총금액
 	
 	private long paymentKey; //결제테이블 번호
 	
 	private long orderId;
+	
 }

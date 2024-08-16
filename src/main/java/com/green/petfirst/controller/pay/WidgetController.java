@@ -19,7 +19,7 @@ public class WidgetController {
 
     private final ObjectMapper objectMapper = new ObjectMapper(); // Jackson ObjectMapper
 
-    @PostMapping("/confirm")
+    @PostMapping("/sandbox-dev/api/v1/payments/confirm")
     public ResponseEntity<JsonNode> confirmPayment(@RequestBody String jsonBody) throws Exception {
 
         // JSON 요청 바디를 파싱합니다.
