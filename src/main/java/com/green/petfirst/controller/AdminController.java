@@ -3,7 +3,6 @@ package com.green.petfirst.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.green.petfirst.service.admin.AdminService;
@@ -34,11 +33,6 @@ public class AdminController {
 	    service.DeliverList(devNo, devTime, devComplete, devCompany, model);
 	    return "views/admin/deliver"; // AJAX를 위한 부분적 뷰 리턴
 	}
-	
-	@GetMapping("/admin/exchangeRefund")
-	public String exreList(Model model) {
-		service.exreListProcess(model);
-		return "views/admin/excRef";
-	}
+
 	
 }

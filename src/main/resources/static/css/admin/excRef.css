@@ -36,7 +36,7 @@ table tbody td {
 	text-align: center;
 }
 
-button.exchange-history, button.options {
+button.exchange-history, .refund-history, button.options {
 	padding: 5px 10px;
 	font-size: 14px;
 	color: white;
@@ -45,17 +45,12 @@ button.exchange-history, button.options {
 	cursor: pointer;
 }
 
-button.exchange-history {
+button.exchange-history, .refund-history {
 	background-color: var(--logo-brown);
 }
 
 button.options {
 	background-color: var(--grey);
-}
-
-select.exchange-status {
-	padding: 5px;
-	font-size: 14px;
 }
 
 /* 모달 스타일 */
@@ -82,7 +77,7 @@ select.exchange-status {
 
 .modal-content1 {
 	width: 550px;
-	height: 540px;
+	height: 500px;
 	margin-top: 200px;
 }
 

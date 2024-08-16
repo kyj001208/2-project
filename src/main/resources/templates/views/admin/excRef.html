@@ -3,223 +3,198 @@
 	th:replace="~{views/admin/layout::layout(~{::head}, ~{::main})}">
 <head>
 <meta charset="UTF-8">
+<meta name="_csrf" th:content="${_csrf.token}" />
+<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <link rel="stylesheet" href="/css/admin/excRef.css">
+<script th:src="@{/js/excRef.js}"></script>
 <title>환불</title>
-<script>
-	// 모달 열기
-	function openModal(modalId) {
-		document.getElementById(modalId).style.display = "block";
-	}
 
-	// 모달 닫기
-	function closeModal(modalId) {
-		document.getElementById(modalId).style.display = "none";
-	}
-	
-	function openTab(tabName) {
-        var i, tabcontent, tablinks;
-
-        // Hide all tab contents
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-
-        // Remove the 'active' class from all tabs
-        tablinks = document.querySelectorAll(".tab div");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].classList.remove("active");
-        }
-
-        // Show the current tab and add 'active' class
-        document.getElementById(tabName).style.display = "block";
-        event.currentTarget.classList.add("active");
-    }
-	
-</script>
 </head>
 
 <main>
-
-
 	<div class="tab">
-    <div onclick="openTab('details')" class="active">교환</div>
-    <div onclick="openTab('reviews')">환불</div>
+    <div onclick="openTab('exchange')" class="active">교환</div>
+    <div onclick="openTab('refund')">환불</div>
 </div>
 
-<div id="details" class="tabcontent" style="display: block;">
-    <div class="container">
-		<h1>교환</h1>
-		<div class="header">
-			<span>목록 결과 총 12 개</span>
-		</div>
-		<table>
-			<thead>
-				<tr>
-					<th>요청번호</th>
-					<th>관리</th>
-					<th>요청상태</th>
-					<th>교환 접수일시</th>
-					<th>주문번호</th>
-					<th>요청자</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="ex : ${exRef}">
-                        <td th:text="${ex.requestNo}">요청번호</td>
-					<td>
-						<button class="exchange-history"
-							onclick="openModal('exchangeModal')">교환상세</button>
-						<button class="options" onclick="openModal('optionsModal')">옵션</button>
-					</td>
-					<td th:text="${ex.requestStatus}">요청상태</td>
-                    <td th:text="${ex.requestDate}">요청날짜</td>
-                    <td th:text="${ex.order.orderNo}">주문번호</td>
-                    <td th:text="${ex.member.name}">회원명</td>
-				</tr>
-				<!-- 추가 행을 필요에 따라 더 추가하세요 -->
-			</tbody>
-		</table>
-	</div>
-
-	<!-- 교환내역 모달 -->
-	<div id="exchangeModal" class="modal">
-		<div class="modal-content1">
-			<span class="close" onclick="closeModal('exchangeModal')">&times;</span>
-			<h2>교환상세</h2>
-			<div class="exchange-info">
-				<table class="modal-table">
+	<div id="exchange" class="tabcontent" style="display: block;">
+		<div class="container">
+			<h1>교환</h1>
+			<div class="header"></div>
+			<table>
+				<thead>
 					<tr>
-                        <th class="tags">교환상태</th>
-                        <td class="detail" th:text="${exRef[0].requestStatus}">교환접수</td>
-                    </tr>
-                    <tr>
-                        <th class="tags">교환 요청자</th>
-                        <td class="detail" th:text="${exRef[0].member.name}">회원명</td>
-                    </tr>
-                    <tr>
-                        <th class="tags">교환 번호</th>
-                        <td class="detail" th:text="${exRef[0].requestNo}">12345</td>
-                    </tr>
-                    <tr>
-                        <th class="tags">주문일시</th>
-                        <td class="detail" th:text="${exRef[0].order.orderDate}">2022-01-06 (15:55:04)</td>
-                    </tr>
-                    <tr>
-                        <th class="tags">주문번호</th>
-                        <td class="detail" th:text="${exRef[0].order.orderNo}">2201070001</td>
-                    </tr>
-                    <tr>
-                        <th class="tags">교환 접수일시</th>
-                        <td class="detail" th:text="${exRef[0].requestDate}">2022-01-07 (16:19:25)</td>
-                    </tr>
-                    <tr>
-                        <th class="tags">사유</th>
-                        <td class="detail" th:text="${exRef[0].reason}">사유설명</td>
-                    </tr>
-				</table>
+						<th>요청번호</th>
+						<th>관리</th>
+						<th>요청상태</th>
+						<th>교환 접수일시</th>
+						<th>주문번호</th>
+						<th>요청자</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- 교환 테이블 -->
+					<tr th:each="ex : ${exRef}"
+						th:if="${ex.requestType.name() == 'EXCHANGE'}">
+						<td th:text="${ex.requestNo}">요청번호</td>
+						<td>
+							<button class="exchange-history"
+								th:onclick="'openModal(' + '\'exchangeModal\', \'' + ${ex.requestNo} + '\')'"
+								th:data-request-no="${ex.requestNo}"
+								th:data-request-status="${ex.requestStatus.roleName}"
+								th:data-request-date="${ex.requestDate}"
+								th:data-order-no="${ex.order.orderNo}"
+								th:data-member-name="${ex.member.name}"
+								th:data-reason="${ex.reason}">교환상세</button>
+							<button class="options" th:data-request-no="${ex.requestNo}" onclick="openOptionsModal('EXCHANGE', this)">옵션</button>
+						</td>
+						<td th:text="${ex.requestStatus.roleName}">요청상태</td>
+						<td th:text="${ex.requestDate}">요청날짜</td>
+						<td th:text="${ex.order.orderNo}">주문번호</td>
+						<td th:text="${ex.member.name}">회원명</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<!-- 교환내역 모달 -->
+		<div id="exchangeModal" class="modal">
+			<div class="modal-content1">
+				<span class="close" onclick="closeModal('exchangeModal')">&times;</span>
+				<h2>교환상세</h2>
+				<div class="exchange-info">
+					<table class="modal-table">
+						<tr>
+							<th class="tags">교환상태</th>
+							<td class="detail requestStatus"></td>
+						</tr>
+						<tr>
+							<th class="tags">교환 요청자</th>
+							<td class="detail memberName"></td>
+						</tr>
+						<tr>
+							<th class="tags">교환 번호</th>
+							<td class="detail requestNo"></td>
+						</tr>
+						<tr>
+							<th class="tags">요청 일시</th>
+							<td class="detail date"></td>
+						</tr>
+						<tr>
+							<th class="tags">주문번호</th>
+							<td class="detail orderNo"></td>
+						</tr>
+						<tr>
+							<th class="tags">사유</th>
+							<td class="detail reason"></td>
+						</tr>
+					</table>
+				</div>
 			</div>
-			<button onclick="closeModal('exchangeModal')">닫기</button>
+		</div>
+
+		<!-- 교환 옵션 모달 -->
+		<div id="exchangeOptionsModal" class="modal">
+			<div class="modal-content2">
+				<span class="close" onclick="closeModal('exchangeOptionsModal')">&times;</span>
+				<h2>교환 관리옵션</h2>
+				<div class="item">실행하실 항목을 선택하세요.</div>
+				<button id="exchangeApproveBtn" class="option-button"
+					onclick="updateStatus('EXCHANGE', 'EXCHANGE_DONE', $('#exchangeOptionsModal').data('requestNo'))">교환승인</button>
+				<button id="exchangeCancelBtn" class="option-button"
+					onclick="updateStatus('EXCHANGE', 'EXCHANGE_CANCELLED', $('#exchangeOptionsModal').data('requestNo'))">교환취소</button>
+			</div>
 		</div>
 	</div>
 
-	<!-- 주문 관리옵션 모달 -->
-	<div id="optionsModal" class="modal">
-		<div class="modal-content2">
-			<span class="close" onclick="closeModal('optionsModal')">&times;</span>
-			<h2>교환 관리옵션</h2>
-			<div class="item">실행하실 항목을 선택하세요.</div>
-			<button class="option-button" type="submit">교환승인</button>
-			<button class="option-button" type="submit">교환취소</button>
-		</div>
-	</div>
-</div>
-
-<div id="reviews" class="tabcontent">
+	<div id="refund" class="tabcontent">
    <div class="container">
-        <h1>환불</h1>
-        <div class="header">
-            <span>목록 결과 총 12 개</span>
+            <h1>환불</h1>
+            <div class="header"></div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>요청번호</th>
+                        <th>관리</th>
+                        <th>요청상태</th>
+                        <th>환불 접수일시</th>
+                        <th>주문번호</th>
+                        <th>요청자</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 환불 데이터만 렌더링 -->
+                    <tr th:each="ex : ${exRef}" th:if="${ex.requestType.name() == 'REFUND'}">
+					    <td th:text="${ex.requestNo}">요청번호</td>
+					    <td>	
+							<button class="refund-history"
+								th:onclick="'openModal(' + '\'refundModal\', \'' + ${ex.requestNo} + '\')'"
+								th:data-request-no="${ex.requestNo}"
+								th:data-request-status="${ex.requestStatus.roleName}"
+								th:data-request-date="${ex.requestDate}"
+								th:data-order-no="${ex.order.orderNo}"
+								th:data-member-name="${ex.member.name}"
+								th:data-reason="${ex.reason}">환불상세</button>
+							<button class="options" th:data-request-no="${ex.requestNo}" onclick="openOptionsModal('REFUND', this)">옵션</button>
+						</td>
+					    <td th:text="${ex.requestStatus.roleName}">요청상태</td>
+					    <td th:text="${ex.requestDate}">요청날짜</td>
+					    <td th:text="${ex.order.orderNo}">주문번호</td>
+					    <td th:text="${ex.member.name}">회원명</td>
+					</tr>
+                </tbody>
+            </table>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>요청번호</th>
-                    <th>관리</th>
-                    <th>요청상태</th>
-                    <th>환불 접수일시</th>
-                    <th>주문번호</th>
-                    <th>요청자</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="ex : ${exRef}">
-                        <td th:text="${ex.requestNo}">요청번호</td>
-                    <td>
-                        <button class="exchange-history" onclick="openModal('refundModal')">환불상세</button>
-                        <button class="options" onclick="openModal('refundOptionsModal')">옵션</button>
-                    </td>
-                    <td th:text="${ex.requestStatus}">요청상태</td>
-                    <td th:text="${ex.requestDate}">요청날짜</td>
-                    <td th:text="${ex.order.orderNo}">주문번호</td>
-                    <td th:text="${ex.member.name}">회원명</td>
-                </tr>
-                <!-- 추가 행을 필요에 따라 더 추가하세요 -->
-            </tbody>
-        </table>
-    </div>
 
     <!-- 환불내역 모달 -->
     <div id="refundModal" class="modal">
-        <div class="modal-content1">
-            <span class="close" onclick="closeModal('refundModal')">&times;</span>
-            <h2>환불상세</h2>
-            <div class="exchange-info">
-				<table class="modal-table">
-					<tr>
-                        <th class="tags">환불상태</th>
-                        <td class="detail" th:text="${exRef[0].requestStatus}">교환접수</td>
-                    </tr>
-                    <tr>
-                        <th class="tags">환불 요청자</th>
-                        <td class="detail" th:text="${exRef[0].member.name}">회원명</td>
-                    </tr>
-                    <tr>
-                        <th class="tags">환불 번호</th>
-                        <td class="detail" th:text="${exRef[0].requestNo}">12345</td>
-                    </tr>
-                    <tr>
-                        <th class="tags">주문일시</th>
-                        <td class="detail" th:text="${exRef[0].order.orderDate}">2022-01-06 (15:55:04)</td>
-                    </tr>
-                    <tr>
-                        <th class="tags">주문번호</th>
-                        <td class="detail" th:text="${exRef[0].order.orderNo}">2201070001</td>
-                    </tr>
-                    <tr>
-                        <th class="tags">환불 접수일시</th>
-                        <td class="detail" th:text="${exRef[0].requestDate}">2022-01-07 (16:19:25)</td>
-                    </tr>
-                    <tr>
-                        <th class="tags">사유</th>
-                        <td class="detail" th:text="${exRef[0].reason}">사유설명</td>
-                    </tr>
-				</table>
-			</div>
-            <button onclick="closeModal('refundModal')">닫기</button>
-        </div>
-    </div>
+	    <div class="modal-content1">
+	        <span class="close" onclick="closeModal('refundModal')">&times;</span>
+	        <h2>환불상세</h2>
+	        <div class="exchange-info">
+	            <table class="modal-table">
+	                <tr>
+	                    <th class="tags">환불상태</th>
+	                    <td class="detail requestStatus"></td>
+	                </tr>
+	                <tr>
+	                    <th class="tags">환불 요청자</th>
+	                    <td class="detail memberName"></td>
+	                </tr>
+	                <tr>
+	                    <th class="tags">환불 번호</th>
+	                    <td class="detail requestNo"></td>
+	                </tr>
+	                <tr>
+	                    <th class="tags">요청 일시</th>
+	                    <td class="detail date"></td>
+	                </tr>
+	                <tr>
+	                    <th class="tags">주문번호</th>
+	                    <td class="detail orderNo"></td>
+	                </tr>
+	                <tr>
+	                    <th class="tags">사유</th>
+	                    <td class="detail reason"></td>
+	                </tr>
+	            </table>
+	        </div>
+	    </div>
+	</div>
 
-    <!-- 환불옵션 모달 -->
-    <div id="refundOptionsModal" class="modal">
-        <div class="modal-content2">
-            <span class="close" onclick="closeModal('refundOptionsModal')">&times;</span>
-            <h2>환불 관리옵션</h2>
-            <div class="item">실행하실 항목을 선택하세요.</div>
-            <button class="option-button" type="submit">승인</button>
-            <button class="option-button" type="submit">취소</button>
-        </div>
+	    <!-- 환불 옵션 모달 -->
+	<div id="refundOptionsModal" class="modal">
+    <div class="modal-content2">
+        <span class="close" onclick="closeModal('refundOptionsModal')">&times;</span>
+        <h2>환불 관리옵션</h2>
+        <div class="item">실행하실 항목을 선택하세요.</div>
+        <button id="refundApproveBtn" class="option-button"
+            onclick="updateStatus('REFUND', 'REFUND_DONE', $('#refundOptionsModal').data('requestNo'))">승인</button>
+        <button id="refundCancelBtn" class="option-button"
+            onclick="updateStatus('REFUND', 'REFUND_CANCELLED', $('#refundOptionsModal').data('requestNo'))">취소</button>
     </div>
+</div>
 </div>
 </main>
 </html>
