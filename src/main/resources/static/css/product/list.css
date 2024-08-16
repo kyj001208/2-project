@@ -14,8 +14,13 @@
 	justify-content: flex-start;
 }
 
-
-
+.categorypage-wrap{
+	width: 1200px;
+    margin: 30px auto;
+}
+.categorypage-container {
+    display: flex; 
+}
 .sidebar {
     width: 250px;
     background-color: none;
@@ -90,6 +95,9 @@
     height: 230px;
     background-color: var(--grey);
     margin-bottom: 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .product h3 {

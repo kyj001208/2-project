@@ -2,10 +2,14 @@ package com.green.petfirst.domain.repository;
 
 import com.green.petfirst.domain.entity.ProductEntity;
 import com.green.petfirst.domain.entity.CategoryEntity;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
 
 import java.util.List;
 
@@ -34,4 +38,11 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 
     @Query("SELECT p FROM ProductEntity p LEFT JOIN FETCH p.images WHERE p.productNo = :productNo")
     ProductEntity findByProductNoWithImages(@Param("productNo") Long productNo);
+    
+    Page<ProductEntity> findAll(Pageable pageable);
+
+    
+    List<ProductEntity> findByCategory_categoryNo(Long categoryNo);
+    //List<ProductEntity> findByCategoryCategoryNo(Long categoryId);
+    List<ProductEntity> findByCategory_categoryNoIn(List<Long> categoryNoes);
 }

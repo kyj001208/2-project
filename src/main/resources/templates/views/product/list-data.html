@@ -1,0 +1,17 @@
+
+<div class="category-title flex">
+	<h2>신상품</h2>
+</div>
+<ol class="products">
+	<!--CategoryServiceProcess의 categoryProductListProcess메서드에서
+   	 model.addAttribute() 이름과 일치-->
+	<li  th:each="dto:${list}" class="product">
+		<a th:href="|/public/products/${dto.productNo}|">
+			<i class="img" th:style="|background-image: url(${dto.imgUrl});|" ></i>
+		</a>
+		<h3 th:text="${dto.productName}">상품명</h3>
+		<p class="price">
+			<span class="discount" th:text="${dto.discount+'%'}">28</span> <span
+				th:text="|${#numbers.formatInteger(dto.discountPrice,3,'COMMA')}원|">가격</span>
+		</p></li>
+</ol>
