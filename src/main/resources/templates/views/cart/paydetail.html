@@ -27,12 +27,14 @@
           customerKey,
         });
         // 비회원 결제
-        // const widgets = tossPayments.widgets({ customerKey: TossPayments.ANONYMOUS });
+      
+		const totalAmountText = localStorage.getItem('totalAmount') || '0';
+		const totalprice = parseFloat(totalAmountText.replace(/,/g, ''));
 
         // ------ 주문의 결제 금액 설정 ------
         await widgets.setAmount({
           currency: "KRW",
-          value: 10000,
+          value: totalprice,
         });
 
         await Promise.all([
@@ -52,12 +54,12 @@
         
           await widgets.requestPayment({
             orderId: uniqueOrderId,
-            orderName: "토스 티셔츠 외 2건",
+            orderName: "Petfir",
             successUrl: window.location.origin + "/petfir/pay/detail/success",
             failUrl: window.location.origin + "/petfir/pay/detail/fail",
-            customerEmail: "customer123@gmail.com",
-            customerName: "김토스",
-            customerMobilePhone: "01012341234",
+            //customerEmail: "customer123@gmail.com",
+         	//customerName: "김토스",
+            //customerMobilePhone: "01012341234",
            
           });
         });

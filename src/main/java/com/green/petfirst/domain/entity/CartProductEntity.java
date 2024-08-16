@@ -1,6 +1,10 @@
 package com.green.petfirst.domain.entity;
 
+import java.util.function.Function;
+
 import org.hibernate.annotations.DynamicUpdate;
+
+import com.green.petfirst.domain.dto.pay.CartListDTO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,19 +35,36 @@ public class CartProductEntity {
 	private long cartNo; 
 	
 	@ManyToOne
-	@JoinColumn(name = "productNo", nullable = false)
+	@JoinColumn(name = "productNo")
 	private ProductEntity product; 
 	
 	@ManyToOne
-	@JoinColumn(name = "marketNo", nullable = false)
+	@JoinColumn(name = "marketNo")
 	private MarketEntity market; //장바구니 번호
 	
-	@Column(nullable = false)
-	private long count; 
 	
-	@Column(nullable = false)
-	private long totalPrice; 
+	private String productName;  //상품명
 	
+	
+	
+	private String count; 
+	
+	
+	
+	private String price; 
+	
+	
+	private String totalprice;
+
+
+	public CartListDTO tolistDTO() {
+		
+		return CartListDTO.builder()
+				.productName(productName)
+				.count(count)
+				.price(price)
+				.build();
+	}
 	
 	
 	}

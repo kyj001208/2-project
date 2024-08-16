@@ -5,6 +5,9 @@
     <title>Product Detail</title>
     <link rel="stylesheet" href="/css/product_detail/product_detail.css">
     <script src="/js/product_detail.js"></script>
+    <script src="/js/pay/detailcart.js"></script>
+    <meta name="_csrf" th:content="${_csrf.token}" />
+	<meta name="_csrf_header" th:content="${_csrf.headerName}" />
 </head>
 <body>
 <header th:fragment="header" class="header">
@@ -14,7 +17,7 @@
     <div th:if="${errorMessage}" class="error-message">
         <p th:text="${errorMessage}"></p>
     </div>
-    <div th:if="${product != null}" class="product-detail">
+      <div th:if="${product != null}" class="product-detail" data-product-id="/*[[${product.no}]]*/"> <!-- 여기 수정 -->
         <div class="product-detail__left-column">
             <img class="product-detail__main-image" id="main-image"
                  th:if="${not #lists.isEmpty(product.images)}"
