@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="/css/cart/pay.css" />
 <link rel="stylesheet" href="/css/commons/common.css" />
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="/js/pay/cart.js"></script>
+<script src="/js/pay/payaddress.js"></script>
 <meta name="_csrf" th:content="${_csrf.token}" />
 <meta name="_csrf_header" th:content="${_csrf.headerName}" />
 </head>
@@ -62,22 +64,54 @@
 					
 					<div class="paycont">결제상품정보</div>
 					
-					<div class="user-paycontent">
-						<div class="pay_cotentname">사료</div>
-						<div class="pay-count">수량</div>
-						<div class="pay-price">13,900원</div>
-					</div>
-					
-						<div class="totalprice">
-						<div>
-						<span>총 상품금액</span>
+									<div>
+
+							<ul>
+								<li class="cart_lists">
+
+									<div>상품명</div>
+									<div>수량</div>
+									<div>가격</div>
+
+								</li>
+
+
+
+							</ul>
+
 						</div>
-						<div>0원</div>
-					  </div>
+
+
+						<!-- 뿌려주는 곳 -->
+						<div th:each="dto : ${list}">
+
+							<ul>
+								<li class="cart_lists">
+
+									<div th:text="${dto.productName}">상품명</div>
+									<div th:text="${dto.count}">수량</div>
+									<div class="cart-price" th:text="${dto.price}" data-price="${dto.price}">가격</div>
+
+								</li>
+
+
+
+							</ul>
+
+						</div>
+						
+						<div class="totalprice">
+							<div>
+								<span>총 상품금액  </span>
+							</div>
+							<div id=totalAmount>  </div>
+						</div>
+			
 
 						<div class="cartpay">
 
-							<button onclick="window.open('http://localhost:8080/petfir/pay/detail','window_name','width=600,height=700,location=no,status=no,scrollbars=yes,left=400,top=200');" type="button">결제하기</button>
+							<button onclick="window.open('http://localhost:8080/petfir/pay/detail','window_name','width=600,height=700,location=no,status=no,scrollbars=yes,left=400,top=200');"
+							type="button" class="paytossbtn">결제하기</button>
 						
 						</div>
 
