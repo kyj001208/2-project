@@ -28,7 +28,6 @@ public class AdminServiceProcess implements AdminService {
 	private final MemberRepository memberRep;
 	private final ProductRepository productRep;
 	private final DeliverRepository deliverRep;
-	private final ExchangeRefundRepository exreRep;
 	
 
 	@Override
@@ -77,12 +76,6 @@ public class AdminServiceProcess implements AdminService {
 	    model.addAttribute("devNo", devNo);
 	    model.addAttribute("devTime", devTime);
 	    model.addAttribute("devComplete", devComplete);
-	}
-
-	@Override
-	public void exreListProcess(Model model) {
-		List<ExchangeRefundEntity> exRe = exreRep.findAll();
-        model.addAttribute("exRef", exRe);
 	}
 
 }

@@ -55,5 +55,9 @@ public class ExchangeRefundEntity {
 	@ManyToOne
 	@JoinColumn(name = "orderNo", nullable = false)
 	private OrderEntity order; // 주문번호 (fk)
+
+	public void setStatus(RequestStatus requestStatus) {
+        this.requestStatus = requestStatus;
+    }
 	
 }

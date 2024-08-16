@@ -8,6 +8,4 @@ public interface AdminService {
 
 	void DeliverList(String devNo, String devTime, String devComplete, String devCompany, Model model);
 
-	void exreListProcess(Model model);
-
 }
