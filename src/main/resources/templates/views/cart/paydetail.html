@@ -47,8 +47,11 @@
 
         // ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
         button.addEventListener("click", async function () {
+        
+        	const uniqueOrderId = generateUniqueOrderId(); // 고유 주문번호 생성
+        
           await widgets.requestPayment({
-            orderId: "hOBBtpaHHviF0J34LFG0l",
+            orderId: uniqueOrderId,
             orderName: "토스 티셔츠 외 2건",
             successUrl: window.location.origin + "/petfir/pay/detail/success",
             failUrl: window.location.origin + "/petfir/pay/detail/fail",
@@ -59,6 +62,11 @@
           });
         });
       }
+      
+      function generateUniqueOrderId() {
+    	    // 고유 주문번호 생성 예시 (현재 시간 + 랜덤 숫자)
+    	    return 'order-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+    	}
     </script>
   </body>
 </html>

@@ -42,10 +42,9 @@ public class AdminOrderController {
         return "views/admin/orders/member-order"; // 회원의 모든 주문 내역을 보여줄 템플릿으로 매핑
     }
 	
-	@PutMapping("/admin/order")
-	public String OrderUpdate(@ModelAttribute OrderUpdateDTO dto) {
-		System.out.println(dto);
-		service.OrderUpdateProcess(dto);
-		return "redirect:/admin/order";
-	}
+	/*
+	 * @PutMapping("/admin/order") public String OrderUpdate(@ModelAttribute
+	 * OrderUpdateDTO dto) { System.out.println(dto);
+	 * service.OrderUpdateProcess(dto); return "redirect:/admin/order"; }
+	 */
 }

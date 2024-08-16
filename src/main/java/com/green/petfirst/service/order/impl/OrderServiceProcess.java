@@ -93,18 +93,16 @@ public class OrderServiceProcess implements OrderService{
 	    model.addAttribute("memNo", memNo);
 	}
 	
-	@Override
-	public void OrderUpdateProcess(OrderUpdateDTO dto) {
-	    // 주문 번호로 해당 주문을 조회
-	    OrderEntity order = orderRep.findById(dto.getOrderNo())
-	            .orElseThrow(() -> new RuntimeException("해당 주문을 찾을 수 없습니다: " + dto.getOrderNo()));
-
-	    // 주문 상태 업데이트
-	    order.setStatus(dto.getStatus());
-
-	    // 업데이트된 주문을 저장
-	    orderRep.save(order);
-	}
+	/*
+	 * @Override public void OrderUpdateProcess(OrderUpdateDTO dto) { // 주문 번호로 해당
+	 * 주문을 조회 OrderEntity order = orderRep.findById(dto.getOrderNo())
+	 * .orElseThrow(() -> new RuntimeException("해당 주문을 찾을 수 없습니다: " +
+	 * dto.getOrderNo()));
+	 * 
+	 * // 주문 상태 업데이트 order.setStatus(dto.getStatus());
+	 * 
+	 * // 업데이트된 주문을 저장 orderRep.save(order); }
+	 */
 
 	
 }

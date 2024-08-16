@@ -51,22 +51,7 @@
 					    <span th:onclick="'loadMemberOrder(' + ${order.memNo} + ', event); return false;'" th:text="${order.memNo}">회원번호</span>
 					</td>
                     <td th:text="${order.orderDate}">주문일자</td>
-                    <td>
-					    <select th:onchange="updateOrderStatus([[${order.status.roleName}]], this.value)">
-					        <option th:value="PENDING" th:text="'주문대기'" th:selected="${order.status.roleName == 'PENDING'}"></option>
-					        <option th:value="CONFIRMED" th:text="'주문확인'" th:selected="${order.status.roleName == 'CONFIRMED'}"></option>
-					        <option th:value="PROCESSING" th:text="'주문처리'" th:selected="${order.status.roleName == 'PROCESSING'}"></option>
-					        <option th:value="DELIVERED" th:text="'배송완료'" th:selected="${order.status.roleName == 'DELIVERED'}"></option>
-					        <option th:each="status : ${statusList}"
-					                th:value="${status}"
-					                th:text="${status == 'PENDING' ? '주문대기' : 
-					                         status == 'CONFIRMED' ? '주문확인' :
-					                         status == 'PROCESSING' ? '주문처리' :
-					                         status == 'DELIVERED' ? '배송완료' : status}"
-					                th:selected="${status == order.status.roleName}">
-					        </option>
-					    </select>
-					</td>
+                    <td th:text="${order.status.roleName}">주문일자</td>
                 </tr>
             </tbody>
         </table>
