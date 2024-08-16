@@ -45,5 +45,6 @@ public class ImageEntity {
 	
     @Column(columnDefinition = "text", nullable = false)
 	private String fileName; //파일이름
+    
 	
 }

@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -18,8 +19,8 @@ import java.util.List;
 public class Product_detailController {
     private final ProductService productService;
 
-    @GetMapping("/petfir/product-detail")
-    public String getProductDetail(@RequestParam(name = "productNo", required = false) Long productNo, Model model) {
+    @GetMapping("/public/products/{productNo}")
+    public String getProductDetail(@PathVariable ("productNo") Long productNo, Model model) {
         if (productNo != null) {
             try {
                 ProductEntity product = productService.getProductByNo(productNo);

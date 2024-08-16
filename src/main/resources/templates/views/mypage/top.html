@@ -17,12 +17,12 @@
                         <img src="/img/mypage/myprofile.jpg" alt="Profile">
                     </div>
                     <div class="user-name-wrap">
-                        <span class="user-name">
-                            <a href="/petfir/mypage/myinfo">
-                                유해리 님
-                                <i class="ri-settings-3-line"></i>
-                            </a>
-                        </span>
+               			<div sec:authorize="isAuthenticated()" class="logoutwrap">
+							<span>
+								<b sec:authentication="principal.name">이름</b>
+							</span>
+						</div>
+                       <a href="/petfir/mypage/myinfo"> <i class="ri-settings-3-line"></i></a>
                     </div>
                 </div>
                 <div class="mypage-btn-container">
@@ -44,7 +44,7 @@
                         </div>
                     </button>
                     </a>
-                    <a href="/petfir/mypage/coupon">
+                    <a href="#">
                     <button class="mypage-box-btn">
                         <div class="mypage-btn">
                             <span class="flex center">나의 쿠폰</span>

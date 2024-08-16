@@ -5,55 +5,66 @@
 	<meta charset="UTF-8">
 	<meta name="_csrf" th:content="${_csrf.token}" />
 	<meta name="_csrf_header" th:content="${_csrf.headerName}" />
-	<title>상품등록</title>
+	<link rel="stylesheet" href="/css/commons/common.css">
 	<link rel="stylesheet" href="/css/admin/productList.css">
-	<script src="/js/productAdd/productAdd.js"></script>
-	<script src="/js/fileupload.js"></script>
+	
 	
 </head>
 
 <main>
-	    <h1>상품 목록</h1>
-    <table class="productListTable">
-        <thead>
-            <tr>
-                <th>상품 ID</th>
-                <th>상품명</th>
-                <th>가격</th>
-                <th>재고</th>
-                <th>카테고리</th>
-                <th>액션</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>001</td>
-                <td>상품 A</td>
-                <td>₩10,000</td>
-                <td>50</td>
-                <td>전자제품</td>
-                <td>
-                    <div class="action-buttons">
-                        <button onclick="editProduct('001')">수정</button>
-                        <button onclick="deleteProduct('001')">삭제</button>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>002</td>
-                <td>상품 B</td>
-                <td>₩20,000</td>
-                <td>30</td>
-                <td>가구</td>
-                <td>
-                    <div class="action-buttons">
-                        <button onclick="editProduct('002')">수정</button>
-                        <button onclick="deleteProduct('002')">삭제</button>
-                    </div>
-                </td>
-            </tr>
-            <!-- 추가 상품 정보는 여기 추가 -->
-        </tbody>
-    </table>
+<div class="productListContainer">
+	<h1>상품 목록?</h1>
+	    <table class="productListTable">
+	        <thead>
+	            <tr>
+	                <th>상품 No</th>
+	                <th>카테고리 No</th>
+	                <th>상품명</th>
+	                <th>판매가</th>
+	                <th>할인(%)</th>
+	                <th>즉시할인가</th>
+	                <th>재고</th>
+	                <th></th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr th:each="product : ${products}">
+	                <td th:text="${product.productNo}"></td>
+	                <td th:text="${product.categoryNo}"></td>
+	                <td th:text="${product.productName}"></td>
+	                <td th:text="${product.price}"></td>
+	                <td th:text="${product.discount}"></td>
+	                <td th:text="${product.discountPrice}"></td>
+	                <td th:text="${product.quantity}"></td>
+	                <td>
+	                    <div class="action-buttons">
+	                        <button onclick="deleteProduct('001')">삭제</button>
+	                    </div>
+	                </td>
+	            </tr>
+	        </tbody>
+	    </table>
+	    <!-- 페이징 네비게이션 -->
+		<div class="page">
+		    <ul>
+		        <!-- 이전 버튼 -->
+		        <li th:if="${currentPage > 0}">
+		            <a th:href="@{/admin/productList(page=${currentPage - 1})}">이전</a>
+		        </li>
+		
+		        <!-- 페이지 번호들 -->
+		        <li th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+		            th:classappend="${i == currentPage} ? 'active'">
+		            <a th:href="@{/admin/productList(page=${i})}"
+		               th:text="${i + 1}">1</a>
+		        </li>
+		
+		        <!-- 다음 버튼 -->
+		        <li th:if="${currentPage < totalPages - 1}">
+		            <a th:href="@{/admin/productList(page=${currentPage + 1})}">다음</a>
+		        </li>
+		    </ul>
+		</div>
+    </div>
 </main>
 </html>

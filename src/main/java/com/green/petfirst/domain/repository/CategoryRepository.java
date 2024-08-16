@@ -18,4 +18,20 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
     List<CategoryEntity> findByDepthAndParent_CategoryNo(long depth, Long parentNo);
 	@Cacheable("categories")
     List<CategoryEntity> findByDepth(long depth);
+	
+	
+	@Cacheable("firstCategories")
+	List<CategoryEntity> findByParentIsNull();
+	
+	@Query("SELECT c FROM CategoryEntity c WHERE c.parent IS NULL")
+    List<CategoryEntity> findAllParentCategories();
+	
+	//childCategory
+    List<CategoryEntity> findByParent_categoryNo(Long ParentCategoryNo);
+    
+    
+	List<CategoryEntity> findByParentIsNullOrderByCategoryNo();
+    
+    
+    
 }

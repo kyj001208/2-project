@@ -51,19 +51,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
         
-document.getElementById('showMoreBtn').addEventListener('click', function() {
-    var gallery = document.querySelector('.product-gallery');
-    var visibleProducts = document.querySelectorAll('.product:not(.hidden)');
-    var hiddenProducts = document.querySelectorAll('.product.hidden');
 
-    visibleProducts.forEach(function(product, index) {
-        product.classList.add('hidden');
-        product.style.visibility = 'hidden';
-        hiddenProducts[index].classList.remove('hidden');
-        hiddenProducts[index].style.visibility = 'visible';
-    });
+/**/
+async function fetchTimerInfo() {
+           try {
+               const response = await fetch('/public/timer-info');
+               const timerData = await response.json();
 
-    // 버튼 숨기기
-    this.style.display = 'none';
-});
+               // 타이머 정보 업데이트
+               document.getElementById('timer').textContent = 
+                   `${String(timerData.hoursLeft).padStart(2, '0')}:${String(timerData.minutesLeft).padStart(2, '0')}:${String(timerData.secondsLeft).padStart(2, '0')}`;
+           } catch (error) {
+               console.error('Error fetching timer info:', error);
+           }
+       }
 
+       // 초기 타이머 정보 업데이트
+       fetchTimerInfo();
+
+       // 1초마다 타이머 정보 업데이트
+       setInterval(fetchTimerInfo, 1000);

@@ -8,8 +8,11 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.green.petfirst.domain.dto.product.ImageSaveDTO;
@@ -71,4 +74,25 @@ public class ProductAddServiceProcess implements ProductAddService {
 	public Map<String, String> s3TempUpload(MultipartFile itemFile) throws IOException {
 		return fileUploadUtil.s3TempUpload(itemFile);
 	}
+	// 페이징을 지원하는 상품 목록 조회
+    @Override
+    public Page<ProductAddDTO> getProductList(Pageable pageable) {
+        return productRepository.findAll(pageable).map(this::convertToDTO);
+    }
+
+    private ProductAddDTO convertToDTO(ProductEntity product) {
+        return ProductAddDTO.builder()
+            .productNo(product.getProductNo())
+            .categoryNo(product.getCategory().getCategoryNo())
+            .productName(product.getProductName())
+            .price(product.getPrice())
+            .productDetail(product.getProductDetail())
+            .quantity(product.getQuantity())
+            .discount(product.getDiscount())
+            .discountPrice(product.getDiscountPrice())
+            .build();
+    }
+
+    
+    
 }
