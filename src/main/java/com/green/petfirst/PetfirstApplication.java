@@ -17,7 +17,7 @@ public class PetfirstApplication {
 	
 	@Bean
 	 PasswordEncoder passwordEncoder() {
-		 return new BCryptPasswordEncoder(14);
+		 return new BCryptPasswordEncoder(13);
 	 }
 
 
