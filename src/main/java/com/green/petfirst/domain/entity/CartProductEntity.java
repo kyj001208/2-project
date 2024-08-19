@@ -17,8 +17,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 @DynamicUpdate
+@Setter
 @Getter
 @Builder
 @AllArgsConstructor
@@ -61,4 +64,8 @@ public class CartProductEntity {
 	        .count(count)
 	        .build();
 	}
+
+
+
+	
 }
