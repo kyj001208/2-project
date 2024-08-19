@@ -1,5 +1,6 @@
 package com.green.petfirst.service.product.impl;
 
+import java.awt.Image;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.green.petfirst.domain.dto.product.ImageSaveDTO;
 import com.green.petfirst.domain.dto.product.ImgUploadDTO;
 import com.green.petfirst.domain.dto.product.ProductAddDTO;
+import com.green.petfirst.domain.dto.product.ProductListDTO;
 import com.green.petfirst.domain.entity.CategoryEntity;
 import com.green.petfirst.domain.entity.ImageEntity;
 import com.green.petfirst.domain.entity.ProductEntity;
@@ -28,6 +31,8 @@ import com.green.petfirst.service.product.ProductAddService;
 import com.green.petfirst.utils.FileUploadUtil;
 
 import lombok.RequiredArgsConstructor;
+import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
 
 @Service
 @RequiredArgsConstructor
@@ -37,6 +42,7 @@ public class ProductAddServiceProcess implements ProductAddService {
     private final ImagesRepository imagesRepository;
     private final FileUploadUtil fileUploadUtil;//s3에 파일을 업로드하는 util
     private final CategoryRepository cateReop;
+    private final S3Client s3Client;
     
     @Value("${spring.cloud.aws.s3.upload-src}")
 	private String upload;
@@ -82,22 +88,41 @@ public class ProductAddServiceProcess implements ProductAddService {
 		return fileUploadUtil.s3TempUpload(itemFile);
 	}
 	// 페이징을 지원하는 상품 목록 조회
-    @Override
-    public Page<ProductAddDTO> getProductList(Pageable pageable) {
-        return productRepository.findAll(pageable).map(this::convertToDTO);
-    }
 
-    private ProductAddDTO convertToDTO(ProductEntity product) {
-        return ProductAddDTO.builder()
-            .productNo(product.getProductNo())
-            .categoryNo(product.getCategory().getCategoryNo())
-            .productName(product.getProductName())
-            .price(product.getPrice())
-            .productDetail(product.getProductDetail())
-            .quantity(product.getQuantity())
-            .discount(product.getDiscount())
-            .discountPrice(product.getDiscountPrice())
-            .build();
+	@Override
+	public Page<ProductListDTO> getProductList(Pageable pageable) {
+	    Page<ProductEntity> productList = productRepository.findAllOrderByProductNoDesc(pageable);
+	    
+	    // ProductEntity를 ProductListDTO로 매핑하여 리스트로 변환
+	    List<ProductListDTO> productDTOList = productList.stream()
+	            .map(ProductEntity::toProductListDTO)
+	            .collect(Collectors.toList());
+	    
+	    // 새로운 Page 객체 생성
+	    return new PageImpl<>(productDTOList, pageable, productList.getTotalElements());
+	}
+	// 상품 삭제
+	@Override
+	public void deleteProduct(long no) {
+       
+        productRepository.delete(productRepository.findByProductNo(no));	
+	}
+	 // 이미지 삭제
+	@Override
+	public void deleteImagesByProductNo(long productNo) {
+        // 상품 번호에 해당하는 모든 이미지를 조회
+        List<ImageEntity> images = imagesRepository.findByProduct_ProductNo(productNo);
+        for (ImageEntity image : images) {
+            // S3에서 이미지 파일 삭제
+            DeleteObjectRequest deleteObjectRequest = DeleteObjectRequest.builder()
+                .bucket("image-bucket-123") // S3 버킷 이름
+                .key(image.getBucketKey()) // 이미지의 S3 키
+                .build();
+            s3Client.deleteObject(deleteObjectRequest);
+
+            // 데이터베이스에서 이미지 정보 삭제
+            imagesRepository.delete(image);
+        }
     }
 
     

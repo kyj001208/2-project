@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{views/admin/layout::layout(~{::head}, ~{::main})}">
+<head>
+	<meta charset="UTF-8">
+	<meta name="_csrf" th:content="${_csrf.token}" />
+	<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+	<link rel="stylesheet" href="/css/commons/common.css">
+	<link rel="stylesheet" href="/css/admin/productList.css">
+	<script src="/js/productList.js"></script>  
+</head>
+
+<main>
+	<div class="productListContainer">
+		<h1>상품 목록</h1>
+	    <table class="productListTable">
+	    	
+		        <thead>
+		            <tr>
+		                <th>상품 No</th>
+		                <th>상품 이미지</th>
+		                <th>상품명</th>
+		                <th>판매가</th>
+		                <th>할인(%)</th>
+		                <th>즉시할인가</th>
+		                <th></th>
+		            </tr>
+		        </thead>
+		        <tbody>
+		            <tr th:each="product : ${products}">
+		                <td th:text="${product.productNo}"></td>
+		               	<td><i class="imgs" th:style="|background-image: url(${product.imgUrl});|"></i></td>
+		                <td th:text="${product.productName}"></td>
+		                <td th:text="|${#numbers.formatInteger(product.price,3,'COMMA')}원|"></td>
+		                <td th:text="${product.discount}"></td>
+		                <td th:text="|${#numbers.formatInteger(product.discountPrice,3,'COMMA')}원|"></td>
+		                <td>
+		                    <div class="action-buttons">
+		                    	 <form id="deleteForm_${product.productNo}" th:action="|/admin/${product.productNo}|" method="post" onsubmit="return btnDeleteClicked(this)">
+	                                <input type="hidden" name="_method" value="delete">
+	                                <button type="submit">삭제</button>
+                            	</form>
+		                    </div>
+		                </td>
+		            </tr>
+		        </tbody>
+		      
+	    </table>
+	    
+	    <!-- 페이징 네비게이션 -->
+		<div class="page">
+		    <ul>
+		        <!-- 첫 페이지로 이동 (`<<`) -->
+		        <li th:if="${currentPage > 0}">
+		            <a th:href="@{/admin/productList(page=${0})}">&laquo;</a>
+		        </li>
+		        
+		        <!-- 이전 페이지 블록으로 이동 (`<`) -->
+		        <li th:if="${startPage > 0}">
+		            <a th:href="@{/admin/productList(page=${startPage - 1})}">&lsaquo;</a>
+		        </li>
+		        
+		        <!-- 페이지 번호들 -->
+		        <li th:each="i : ${#numbers.sequence(startPage, endPage - 1)}"
+		            th:classappend="${i == currentPage} ? 'active'">
+		            <a th:href="@{/admin/productList(page=${i})}"
+		               th:text="${i + 1}">1</a>
+		        </li>
+		        
+		        <!-- 다음 페이지 블록으로 이동 (`>`) -->
+		        <li th:if="${endPage < totalPages}">
+		            <a th:href="@{/admin/productList(page=${endPage})}">&rsaquo;</a>
+		        </li>
+		        
+		        <!-- 마지막 페이지로 이동 (`>>`) -->
+		        <li th:if="${currentPage < totalPages - 1}">
+		            <a th:href="@{/admin/productList(page=${totalPages - 1})}">&raquo;</a>
+		        </li>
+		    </ul>
+		</div>
+
+    </div>
+</main>
+</html>

@@ -18,19 +18,28 @@
     margin-bottom: 10px;
 }
 
-.category-header {
+.category-header-1,
+.category-header-2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-#parent-categories>li>a {
+.category-header-1>a {
     display: inline-block;
     padding: 10px;
     color: var(--grey);
     text-decoration: none;
     font-weight: bold;
     font-size: 20px;
+}
+.category-header-2>a {
+    display: inline-block;
+    padding: 10px;
+    color: var(--grey);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
 }
 
 #parent-categories>li>i {

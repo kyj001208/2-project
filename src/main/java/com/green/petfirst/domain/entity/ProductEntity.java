@@ -51,7 +51,7 @@ public class ProductEntity {
     
     private long discountPrice;  // 즉시할인가
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ImageEntity> images;//수정한거
     
     
@@ -74,6 +74,8 @@ public class ProductEntity {
     			.imgUrl(imgUrl)
     			.build();
     }
+
+
     
 
 

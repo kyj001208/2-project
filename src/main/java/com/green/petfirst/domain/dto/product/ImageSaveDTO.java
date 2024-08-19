@@ -15,7 +15,8 @@ import lombok.ToString;
 @Setter
 @Getter
 public class ImageSaveDTO {
-
+	
+	private long productNo;
 	private List<String> tempKey; //버킷키
 	private List<String> orgName; //파일이름
 }
