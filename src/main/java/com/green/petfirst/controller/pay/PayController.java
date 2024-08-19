@@ -1,10 +1,13 @@
 package com.green.petfirst.controller.pay;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.green.petfirst.security.PetfirUserDetails;
 import com.green.petfirst.service.cart.CartSerive;
 
 import lombok.RequiredArgsConstructor;
@@ -22,10 +25,10 @@ public class PayController {
 	 * }
 	 */
 	
-	@GetMapping("/petfir/pay/detail")
-	public String paydetail() {
-		return "/views/cart/paydetail";
-	}
+	/*
+	 * @GetMapping("/petfir/pay/detail") public String paydetail() { return
+	 * "/views/cart/paydetail"; }
+	 */
 	
 	
 	
@@ -41,13 +44,18 @@ public class PayController {
 	}
 	
 	
-	@GetMapping("/petfir/pay")
-	public String paylist(Model model) {
+	@GetMapping("/petfir/pay/detail")
+	public String paylist( Model model, @AuthenticationPrincipal PetfirUserDetails user) {
 		
-		cartservice.listProcess(model);
-		return "/views/cart/pay";
+		cartservice.listProcess(user,model);
+		return "/views/cart/paydetail";
 	}
 	
+	//단건결제
+	@GetMapping("/petfir/pay/onepaydetail")
+	public String onePay() {
+		return "/views/cart/onepaydetail";
+	}
 	
 
 	
