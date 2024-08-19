@@ -6,128 +6,17 @@
 <title>PETFIR</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/css/product/list.css" />
+<link rel="stylesheet" href="/css/category/list.css" />
 <link rel="stylesheet" href="/css/commons/common.css" />
+<script src="/js/category/list.js"></script>
 <script th:inline="javascript">
-    document.addEventListener('DOMContentLoaded', function() {
-    	 loadCategoryAll();
-    	 loadCategoryProducts(/*[[${categoryNo}]]*/);
-    });
-    
-    function loadCategoryAll(){
-    	$.get(`/public/categories`, function(data){
- 			$("#category-menu").html(data);
- 		});
-    }
-    function loadCategoryProducts(categoryNo){
-		 $.get(`/public/categories/${categoryNo}/products`, function(data){
-			$("#product-content").html(data);
-		});
-	}
-    
-    /*
-    function createTag(dto) {
-	    let childCategoriesTag = '';
-	    
-	    // dto.depth가 3이 아닌 경우에만 childCategoriesTag를 포함
-	    if (dto.depth < 3) {
-	        childCategoriesTag = `<ul id="child-categories-${dto.categoryNo}" class="child-categories" ></ul>`;
-	    }
-	
-	    return `<li>
-	                <a  href="/public/categories/${dto.categoryNo}">${dto.categoryName}</a>
-	                ${childCategoriesTag}
-	            </li>`;
-	}
-	
-	
-	
-    function loadParentCategories(categoryNo, depth) {
-		
-		
-        $.get("/public/categories/parent", function(data) {
-            let parentList = $("#parent-categories");
-            parentList.empty();
-            data.forEach(function(category) {
-            	parentList.append(createTag(category));
-            	//하위카테고리 갖고오기
-            	loadChildCategories(category)
-            });
-        });
-        
-    }
-
-    function loadChildCategories(categoryNo) {
-		loadCategoryProducts(categoryNo);
-		
-        let childList = 
-        $.get(`/public/categories/${categoryNo}/children`, function(data) {
-            data.forEach(function(category) {
-                childList.append(createTag(category));
-            });
-        });
-    }
-	//*/
-  
+document.addEventListener('DOMContentLoaded', function() {
+    loadCategoryAll();
+    loadCategoryProducts(/*[[${categoryNo}]]*/);
+});
 </script>
 
-<style>
-	#category-menu{
-		min-width: 300px;
-	}
-	#product-content{
-		min-width: 900px;
-	}
-	#category-menu {
-        width: 300px;
-        background-color: #f8f9fa;
-        border-radius: 5px;
-        padding: 10px;
-    }
 
-    #parent-categories {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    #parent-categories li {
-        margin-bottom: 10px;
-    }
-
-    #parent-categories > li > a {
-        display: block;
-        padding: 10px;
-        background-color: #007bff;
-        color: white;
-        text-decoration: none;
-        border-radius: 3px;
-        transition: background-color 0.3s;
-    }
-
-    #parent-categories > li > a:hover {
-        background-color: #0056b3;
-    }
-
-    #parent-categories ul {
-        list-style-type: none;
-        padding-left: 20px;
-        margin-top: 5px;
-    }
-
-    #parent-categories ul li {
-        padding: 5px 0;
-    }
-
-    #parent-categories ul li a {
-        color: #333;
-        text-decoration: none;
-        transition: color 0.3s;
-    }
-
-    #parent-categories ul li a:hover {
-        color: #007bff;
-    }
-</style>
 </head>
 <body>
 <main>
@@ -139,19 +28,7 @@
 	        
     	</nav>
         <section id="product-content">
-        	<div class="category-title flex"><h2>신상품</h2></div>
-            <ol class="products">
-            	<!--CategoryServiceProcess의 categoryProductListProcess메서드에서
-            	 model.addAttribute() 이름과 일치-->
-	            <li th:each="dto:${list}" class="product" >
-	                <i class="img" th:style="|background-image: url(${dto.imgUrl});|"></i>
-	                <h3  th:text="${dto.productName}">상품명</h3>
-	                <p class="price">
-						<span class="discount" th:text="${dto.discount+'%'}">28</span>
-						<span th:text="|${#numbers.formatInteger(dto.discountPrice,3,'COMMA')}원|">가격</span>
-					</p>
-	            </li>
-        	</ol>
+
         </section>
     </div>
 </div>
