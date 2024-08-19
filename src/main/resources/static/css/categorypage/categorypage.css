@@ -13,19 +13,8 @@
 	width: 1200px;
 	justify-content: flex-start;
 }
-.categorypage-wrap{
-	display: flex;
-	justify-content: center;
-    min-width: 1200px;
-    margin: 30px 0;
-    
-    
-}
-.categorypage-container {
-    display: flex;
-    justify-content: center;
-    width: 1200px;   
-}
+
+
 
 .sidebar {
     width: 250px;

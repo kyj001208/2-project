@@ -1,5 +1,6 @@
 package com.green.petfirst.domain.dto.product;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -7,6 +8,7 @@ import lombok.ToString;
 @ToString
 @Setter
 @Getter
+@Builder
 public class ProductAddDTO {
 
 	private Long productNo; //상품번호

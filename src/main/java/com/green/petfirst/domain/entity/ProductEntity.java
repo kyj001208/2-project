@@ -3,6 +3,7 @@ package com.green.petfirst.domain.entity;
 import jakarta.persistence.*;
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.green.petfirst.domain.dto.product.ProductListDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -52,6 +53,26 @@ public class ProductEntity {
 
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
     private List<ImageEntity> images;//수정한거
-
+    
+    
+    public ProductListDTO toProductListDTO() {
+    	String imgUrl=null;
+    	if(images==null||images.isEmpty()) {
+    		//대체이미지 적용
+    		imgUrl="/img/no-img.jpg";
+    	}else {
+    		imgUrl=images.get(0).getImgUrl();
+    	}
+    	
+    	return ProductListDTO.builder()
+    			.productNo(productNo)
+    			.productName(productName)
+    			.price(price)
+    			.discount(discount)
+    			.discountPrice(discountPrice)
+    			
+    			.imgUrl(imgUrl)
+    			.build();
+    }
 
 }
