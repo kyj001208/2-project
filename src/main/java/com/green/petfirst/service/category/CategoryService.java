@@ -30,6 +30,11 @@ public interface CategoryService {
 	List<ProductListDTO> getNewProduct();
 
 	List<ProductListDTO> getReasonably();
+
+
+	ProductListDTO getToday(long productNo);
+
+
 	
 	
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
@@ -54,4 +55,7 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 	List<ProductEntity> findTop4ByOrderByProductNoDesc(); // 상품번 내림차순으로 상위 4개 상품 조회
 
 	List<ProductEntity> findTop4ByPriceLessThanEqual(Long discountPrice);
+	
+	Optional<ProductEntity> findByProductNo(long productNo);
+	
 }

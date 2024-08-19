@@ -2,6 +2,7 @@ $(document).ready(function() {
     loadRecommendedList();
 	loadNewList();
 	loadreasonablyProduct();
+	loadTodayProduct('33');
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -49,10 +50,17 @@ function loadreasonablyProduct() {
         $("#col-8").html(data);
     });
 }
+///////////////오늘만이가격/////////////////////////////////////////
+function loadTodayProduct(productNo) {
+	
+    $.get(`/public/index/today/${productNo}`, function(data) {
+        $("#col-6").html(data);
+    });
+}
         
 
 /**/
-async function fetchTimerInfo() {
+/*async function fetchTimerInfo() {
            try {
                const response = await fetch('/public/timer-info');
                const timerData = await response.json();
@@ -69,4 +77,4 @@ async function fetchTimerInfo() {
        fetchTimerInfo();
 
        // 1초마다 타이머 정보 업데이트
-       setInterval(fetchTimerInfo, 1000);
+       setInterval(fetchTimerInfo, 1000);*/
