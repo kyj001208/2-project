@@ -17,7 +17,6 @@
 
 /* 채팅 팝업 */
 .chat-popup {
-    display: none;
     position: fixed;
     bottom: 80px;
     right: 20px;
@@ -52,7 +51,7 @@
 /* 채팅 팝업 본문 */
 .chat-popup-body {
     padding: 10px;
-    height: 200px;
+    height: 330px;
     overflow-y: auto;
     border-bottom: 1px solid #ddd;
 }
@@ -73,6 +72,7 @@
     border-radius: 5px;
     padding: 5px;
     box-sizing: border-box;
+    resize: none;
 }
 
 /* 전송 버튼 */
@@ -90,17 +90,66 @@
     background-color: #0056b3;
 }
 
-/* 사용자 메시지 */
+/* 메시지 공통 스타일 */
 .chat-message {
-    margin: 5px 0;
+    max-width: 60%; /* 기존 80%에서 60%로 줄임 */
+    margin: 8px 0;  /* 여백을 조금 줄임 */
+    padding: 8px;   /* 패딩을 줄임 */
+    border-radius: 15px; /* 둥근 모서리 크기를 줄임 */
+    position: relative;
+    clear: both;
 }
 
+/* 사용자 메시지 */
 .chat-message.user {
-    text-align: right;
+    float: right;
+    background-color: #007bff;
+    color: white;
+    border-bottom-right-radius: 0;
 }
 
 /* 봇 메시지 */
 .chat-message.bot {
-    text-align: left;
-    color: #007bff;
+    float: left;
+    background-color: #f1f0f0;
+    color: black;
+    border-bottom-left-radius: 0;
+    margin-left: 40px; /* 아이콘과 메시지 사이의 간격을 유지 */
+}
+
+/* 봇 아이콘 */
+.chat-message.bot::before {
+    content: '';
+    position: absolute;
+    left: -40px; /* 아이콘 위치를 유지 */
+    top: 0;
+    width: 30px;
+    height: 30px;
+    background-image: url('/img/chatbot.png');  /* 봇 아이콘 이미지 경로를 지정해주세요 */
+    background-size: cover;
+    border-radius: 50%;
+}
+
+/* 말풍선 꼬리 */
+.chat-message::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent; /* 말풍선 꼬리 크기 조정 */
+}
+
+.chat-message.user::after {
+    bottom: 0.29px;
+    right: -6px;
+    border-left-color: #007bff;
+    border-right: 0;
+}
+
+.chat-message.bot::after {
+    bottom: 0.29px;
+    left: -6px;
+    border-right-color: #f1f0f0;
+    border-left: 0;
 }
