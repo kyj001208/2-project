@@ -35,8 +35,6 @@ public class AdminServiceProcess implements AdminService {
         long totalMembers = memberRep.countAllMembers();  // 총 회원 수 계산
         model.addAttribute("totalMembers", totalMembers);  // 모델에 총 회원 수 추가
         
-        List<ProductEntity> products = productRep.findAll();
-        model.addAttribute("products", products);
 	}
 
 	@Override

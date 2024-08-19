@@ -78,7 +78,7 @@ public class ProductController {
         model.addAttribute("currentPage", productPage.getNumber());  // 현재 페이지 번호
         model.addAttribute("totalPages", productPage.getTotalPages());  // 총 페이지 수
 
-        return "views/admin/productList";
+        return "views/admin/productAddList";
     }
     
     

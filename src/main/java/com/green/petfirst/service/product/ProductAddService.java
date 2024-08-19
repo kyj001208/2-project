@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.green.petfirst.domain.dto.product.ImageSaveDTO;
 import com.green.petfirst.domain.dto.product.ProductAddDTO;
+import com.green.petfirst.domain.dto.product.ProductListDTO;
 
 public interface ProductAddService {
 	void addProduct(ProductAddDTO productAddDTO, ImageSaveDTO imageDTO);

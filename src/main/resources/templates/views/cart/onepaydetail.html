@@ -45,54 +45,8 @@
 				name="phone" placeholder="전화번호"><br>
 		</div>
 	</div>
-	<div class="pay-right">
-
-		<div class="paycont">결제상품정보</div>
-
-		<div>
-
-			<ul>
-				<li class="cart_lists">
-
-					<div>상품명</div>
-					<div>수량</div>
-					<div>가격</div>
-
-				</li>
 
 
-
-			</ul>
-
-		</div>
-
-
-		<!-- 뿌려주는 곳 -->
-		<div th:each="dto : ${list}">
-
-			<ul>
-				<li class="cart_lists">
-
-					<div th:text="${dto.productName}">상품명</div>
-					<div th:text="${dto.count}">수량</div>
-					<div class="cart-price" th:text="${dto.discountPrice}"
-						data-price="${dto.price}">가격</div>
-
-				</li>
-
-
-
-			</ul>
-
-		</div>
-
-		<div class="totalprice">
-			<div>
-				<span>총 상품금액 </span>
-			</div>
-			<div id=totalAmount></div>
-		</div>
-	</div>
 
 	<!-- 결제 UI -->
 	<div id="payment-method"></div>
@@ -116,13 +70,13 @@
         });
         // 비회원 결제
       
-		const totalAmountText = localStorage.getItem('totalAmount') || '0';
-		const totalprice = parseFloat(totalAmountText.replace(/,/g, ''));
+		const urlParams = new URLSearchParams(window.location.search);
+    	const discountedPrice = parseFloat(urlParams.get('discountedPrice') || '0');
 
         // ------ 주문의 결제 금액 설정 ------
         await widgets.setAmount({
           currency: "KRW",
-          value: totalprice,
+          value: discountedPrice,
         });
 
         await Promise.all([
@@ -137,23 +91,19 @@
 
         // ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
         button.addEventListener("click", async function () {
-        	
+        
         	const uniqueOrderId = generateUniqueOrderId(); // 고유 주문번호 생성
-        debugger;
+        
           await widgets.requestPayment({
             orderId: uniqueOrderId,
             orderName: "Petfir",
             successUrl: window.location.origin + "/petfir/pay/detail/success",
-            //successUrl:'http://localhost:8080/petfir/pay/detail',
             failUrl: window.location.origin + "/petfir/pay/detail/fail",
             //customerEmail: "customer123@gmail.com",
          	//customerName: "김토스",
             //customerMobilePhone: "01012341234",
-            
            
           });
-          
-          debugger;
         });
       }
       

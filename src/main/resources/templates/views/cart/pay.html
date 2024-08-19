@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout::frame(~{this::head}, ~{this::main})}">
 
+<!-- 일단 필요없어서 대기중 -->
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -90,7 +91,7 @@
 
 									<div th:text="${dto.productName}">상품명</div>
 									<div th:text="${dto.count}">수량</div>
-									<div class="cart-price" th:text="${dto.price}" data-price="${dto.price}">가격</div>
+									<div class="cart-price" th:text="${dto.discountPrice}" data-price="${dto.price}">가격</div>
 
 								</li>
 

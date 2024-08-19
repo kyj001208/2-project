@@ -1,55 +1,54 @@
-//버튼 2를 누르면 transform='translate(-100vw)
-    
-document.addEventListener('DOMContentLoaded', function() {
-	document.querySelector('.btn2').addEventListener('click', function() {
-	document.querySelector('.banner-container').style.transform = 'translate(-100vw)';
-    });
-
-document.querySelector('.btn3').addEventListener('click', function() {
-    document.querySelector('.banner-container').style.transform = 'translate(-200vw)';
-    });
-    document.querySelector('.btn1').addEventListener('click', function() {
-	document.querySelector('.banner-container').style.transform = 'translate(0)';
-    });
+$(document).ready(function() {
+    loadRecommendedList();
+	loadNewList();
+	loadreasonablyProduct();
 });
 
 document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = 0;
     const totalBanners = 3; // 총 배너 개수
-    const container = document.querySelector('.banner-container');
-
+    const banners = document.querySelectorAll('.banner');
+    
     function moveToBanner(index) {
-        if (index >= totalBanners) {
-            currentIndex = 0; // 마지막 배너 후 첫 배너로 돌아가기
-        } else {
-            currentIndex = index;
-        }
-        container.style.transform = `translate(-${100 * currentIndex}vw)`;
+        // 현재 활성 배너의 클래스를 제거
+        banners[currentIndex].classList.remove('active');
+        
+        // 새 배너의 클래스를 추가
+        currentIndex = (index + totalBanners) % totalBanners; // 범위 내 인덱스 조정
+        banners[currentIndex].classList.add('active');
     }
 
     // 자동 배너 전환 함수
     function autoSlide() {
-        currentIndex++;
-        moveToBanner(currentIndex);
+        moveToBanner(currentIndex + 1);
     }
 
-    // 5초마다 배너 자동 전환 (5000ms = 5초)
+    // 3초마다 배너 자동 전환 (3000ms = 3초)
     setInterval(autoSlide, 3000);
 
-    document.querySelector('.btn1').addEventListener('click', function() {
-        moveToBanner(0); // 첫 번째 배너로 이동
-    });
 
-    document.querySelector('.btn2').addEventListener('click', function() {
-        moveToBanner(1); // 두 번째 배너로 이동
-    });
-
-    document.querySelector('.btn3').addEventListener('click', function() {
-        moveToBanner(2); // 세 번째 배너로 이동
-    });
+    // 초기 배너 표시
+    moveToBanner(currentIndex);
 });
-
-
+////////////////////////**/ *///////////////////////
+function loadRecommendedList() {
+	console.log("Loading recommended products..."); // 디버깅용 로그
+    $.get(`/public/index/recommendedProduct`, function(data) {
+        $("#col-5").html(data);
+    });
+}
+function loadNewList() {
+	
+    $.get(`/public/index/newProduct`, function(data) {
+        $("#col-7").html(data);
+    });
+}
+function loadreasonablyProduct() {
+	
+    $.get(`/public/index/reasonablyProduct`, function(data) {
+        $("#col-8").html(data);
+    });
+}
         
 
 /**/

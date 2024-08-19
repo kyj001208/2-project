@@ -30,7 +30,7 @@ function loadCategories(parentNo, depth, selectElement) {
     }
 
     // API 호출 URL 구성
-    const apiUrl = `/api/categories?depth=${depth}${parentNo !== null && parentNo !== '' ? `&parentNo=${parentNo}` : ''}`;
+    const apiUrl = `/admin/categories?depth=${depth}${parentNo !== null && parentNo !== '' ? `&parentNo=${parentNo}` : ''}`;
 
     // fetch로 API 호출
     fetch(apiUrl)

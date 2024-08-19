@@ -4,10 +4,12 @@
 <head th:fragment="head">
     <title>Product Detail</title>
     <link rel="stylesheet" href="/css/product_detail/product_detail.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/product_detail.js"></script>
     <script src="/js/pay/detailcart.js"></script>
+
     <meta name="_csrf" th:content="${_csrf.token}" />
-	<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
 </head>
 <body>
 <header th:fragment="header" class="header">
@@ -17,7 +19,7 @@
     <div th:if="${errorMessage}" class="error-message">
         <p th:text="${errorMessage}"></p>
     </div>
-      <div th:if="${product != null}" class="product-detail" data-product-id="/*[[${product.no}]]*/"> <!-- 여기 수정 -->
+      <div th:if="${product != null}" class="product-detail" th:attr="data-product-id=${product.productNo}"> <!-- 여기 수정 -->
         <div class="product-detail__left-column">
             <img class="product-detail__main-image" id="main-image"
                  th:if="${not #lists.isEmpty(product.images)}"
@@ -55,7 +57,7 @@
             </dl>
             <div class="product-info product-detail__buttons">
                 <button class="product-detail__cart-button">장바구니 담기</button>
-                <button class="product-detail__buy-button">바로구매</button>
+                <button onclick="window.open('http://localhost:8080/petfir/pay/onepaydetail','window_name','width=1000,height=800,location=no,status=no,scrollbars=yes,left=400,top=200');" type="button" class="product-detail__buy-button">결제하기</button>
             </div>
             <div class="prod-description">
                 <ul class="prod-description-attribute">
