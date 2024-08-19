@@ -20,15 +20,6 @@ public class MypageController {
 	public String getMyinfo() {
 		return "views/mypage/myinfo.html";
 	}
-	
-	@GetMapping("/petfir/mypage/mypet")
-	public String getMypet() {
-		return "views/mypage/mypet.html";
-	}
-	
-	@GetMapping("/petfir/mypage/coupon")
-	public String getCoupon() {
-		return "views/mypage/coupon.html";
-	}
+
 
 }

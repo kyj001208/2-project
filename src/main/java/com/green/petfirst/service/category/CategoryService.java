@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.green.petfirst.domain.dto.category.CategoryDTO;
+import com.green.petfirst.domain.dto.product.ProductListDTO;
 
 
 public interface CategoryService {
@@ -21,6 +22,14 @@ public interface CategoryService {
 	List<CategoryDTO> getChildCategories(Long parentCategoryNo);
 
 	List<CategoryDTO> getAllCategories();
+
+	String getCategoryName(Long categoryNo);
+
+	List<ProductListDTO> getRecommendedProducts();
+
+	List<ProductListDTO> getNewProduct();
+
+	List<ProductListDTO> getReasonably();
 	
 	
 }
