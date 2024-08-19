@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,6 +45,14 @@ public class IndexController {
 	    List<ProductListDTO> products = categoryService.getReasonably();
 	    model.addAttribute("products", products); // 모델에 데이터를 추가합니다.
 	    return "views/index/list-data"; 
+	}
+	
+	
+	@GetMapping("/public/index/today/{productNo}")
+	public String getToday(@PathVariable("productNo") long productNo, Model model) {
+	    ProductListDTO product = categoryService.getToday(productNo);
+	    model.addAttribute("product", product); // 모델에 데이터를 추가합니다.
+	    return "views/index/today-data"; // 뷰 이름을 반환합니다.
 	}
 	
 	

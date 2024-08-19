@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -101,15 +102,23 @@ public class ProductAddServiceProcess implements ProductAddService {
 	    // 새로운 Page 객체 생성
 	    return new PageImpl<>(productDTOList, pageable, productList.getTotalElements());
 	}
-	// 상품 삭제
 	@Override
-	public void deleteProduct(long no) {
-       
-        productRepository.delete(productRepository.findByProductNo(no));	
-	}
-	 // 이미지 삭제
-	@Override
-	public void deleteImagesByProductNo(long productNo) {
+    public void deleteProduct(long productNo) {
+        // 상품 번호로 ProductEntity를 조회
+        Optional<ProductEntity> optionalProduct = productRepository.findByProductNo(productNo);
+        
+        if (optionalProduct.isPresent()) {
+            ProductEntity product = optionalProduct.get();
+            // 상품 관련 이미지를 삭제
+            deleteImagesByProductNo(productNo);
+            // 상품 삭제
+            productRepository.delete(product);
+        }
+    }
+
+    // 이미지 삭제
+    @Override
+    public void deleteImagesByProductNo(long productNo) {
         // 상품 번호에 해당하는 모든 이미지를 조회
         List<ImageEntity> images = imagesRepository.findByProduct_ProductNo(productNo);
         for (ImageEntity image : images) {
@@ -124,7 +133,4 @@ public class ProductAddServiceProcess implements ProductAddService {
             imagesRepository.delete(image);
         }
     }
-
-    
-    
 }

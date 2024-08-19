@@ -2,7 +2,9 @@ package com.green.petfirst.service.category.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -193,6 +195,20 @@ public class CategoryServiceProcess implements CategoryService {
 				.map(ProductEntity::toProductListDTO)
 				.collect(Collectors.toList());
 	}
+
+	@Override
+	public ProductListDTO getToday(long productNo) {
+        // 상품 번호로 상품을 조회합니다.
+
+        // ProductEntity의 toProductListDTO 메서드를 사용하여 ProductListDTO로 변환합니다.
+        return productRepository.findByProductNo(productNo).map(ProductEntity::toProductListDTO).orElseThrow();
+    }
+
+
+
+
+
+
 
    
 }

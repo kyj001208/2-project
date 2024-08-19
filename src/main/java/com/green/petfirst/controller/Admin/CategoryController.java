@@ -55,7 +55,7 @@ public class CategoryController {
    
     @GetMapping("/public/categories/{categoryNo}/products")
     public String productList(@PathVariable("categoryNo") Long categoryNo,Model model) {
-    	categoryService.categoryProductListProcess(categoryNo,  model);
+    	categoryService.categoryProductListProcess(categoryNo, model);
     	String categoryName = categoryService.getCategoryName(categoryNo);
     	model.addAttribute("categoryName", categoryName);
         return "views/product/list-data";
