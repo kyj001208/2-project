@@ -4,16 +4,13 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/admin/petfir.css">
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script th:src="@{/js/admin/petfir.js}"></script>
 <title>PETFIR</title>
 </head>
 <main>
 	<div class="content">
-		<div class="today">오늘의 주요 현황</div>
-		<div class="stats">
-			<div class="stat-item">총 회원 수<br><span th:text="${totalMembers}"></span></div>
-			<div class="stat-item"> 가입한 회원 수 <br>1</div>
-			<div class="stat-item"> 탈퇴한 회원 수<br>2 </div>
-		</div>
+		<div id="chart_div"></div>
 		<div class="visitor-stats">
 		<div class="visitor">주간 방문자 현황</div>
 			<table>

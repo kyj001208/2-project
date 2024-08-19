@@ -8,9 +8,11 @@
 <link rel="stylesheet" href="/css/admin/order/order-detail.css">
 <link rel="stylesheet" href="/css/admin/order/order.css">
 <link rel="stylesheet" href="/css/admin/order/member-order.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script th:src="@{/js/order/detail.js}"></script>
-<script th:src="@{/js/order/order.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+<script th:src="@{/js/admin/order/detail.js}"></script>
+<script th:src="@{/js/admin/order/order.js}"></script>
 <title>주문목록</title>
 </head>
 
@@ -51,20 +53,50 @@
 					    <span th:onclick="'loadMemberOrder(' + ${order.memNo} + ', event); return false;'" th:text="${order.memNo}">회원번호</span>
 					</td>
                     <td th:text="${order.orderDate}">주문일자</td>
-                    <td th:text="${order.status.roleName}">주문일자</td>
-                </tr>
+                    <td>
+                        <select th:data-order-no="${order.orderNo}" onchange="updateOrderStatus(this)">
+                            <option th:each="status : ${T(com.green.petfirst.domain.entity.Status).values()}"
+                                    th:value="${status.name()}"
+                                    th:text="${status.roleName()}"
+                                    th:selected="${order.status.name() == status.name()}">
+                            </option>
+                        </select>
+                    </td>
+				</tr>
             </tbody>
         </table>
-        
-        <!-- 페이지네이션 추가 -->
-        <div class="pagination">
-            <a href="#" class="disabled">« </a>
-            <a href="#" class="active">1</a>
-            <a href="#" class="disabled">2</a>
-            <a href="#" class="disabled">3</a>
-            <a href="#">» </a>
-        </div>
-        <div class="tooltip" id="tooltip"></div>
+		<!-- 페이징 네비게이션 -->
+		<div class="page" th:if="${totalPages > 1}">
+		    <ul>
+		        <!-- 첫 페이지로 이동 (`<<`) -->
+		        <li th:if="${currentPage > 0}">
+		            <a th:href="@{/admin/order(page=${0})}">&laquo;</a>
+		        </li>
+		
+		        <!-- 이전 페이지 블록으로 이동 (`<`) -->
+		        <li th:if="${startPage > 0}">
+		            <a th:href="@{/admin/order(page=${startPage - 1})}">&lsaquo;</a>
+		        </li>
+		
+		        <!-- 페이지 번호들 -->
+		        <li th:each="i : ${#numbers.sequence(startPage, endPage - 1)}"
+		            th:classappend="${i == currentPage} ? 'active'">
+		            <a th:href="@{/admin/order(page=${i})}" th:text="${i + 1}">1</a>
+		        </li>
+		
+		        <!-- 다음 페이지 블록으로 이동 (`>`) -->
+		        <li th:if="${endPage < totalPages}">
+		            <a th:href="@{/admin/order(page=${endPage})}">&rsaquo;</a>
+		        </li>
+		
+		        <!-- 마지막 페이지로 이동 (`>>`) -->
+		        <li th:if="${currentPage < totalPages - 1}">
+		            <a th:href="@{/admin/order(page=${totalPages - 1})}">&raquo;</a>
+		        </li>
+		    </ul>
+		</div>
+
+		<div class="tooltip" id="tooltip"></div>
     </div>
 </main>
 </html>
