@@ -103,10 +103,9 @@ function updateStatus(requestType, action) {
             [header]: token
         },
         url: `/admin/exchangeRefund/${requestNo}`,
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            requestNo: requestNo,
+        type: 'PUT',
+        contentType: 'application/x-www-form-urlencoded',
+        data: $.param({
             requestStatus: requestStatus,
             requestType: requestType
         }),
@@ -121,3 +120,4 @@ function updateStatus(requestType, action) {
 
     closeModal(modalId);
 }
+

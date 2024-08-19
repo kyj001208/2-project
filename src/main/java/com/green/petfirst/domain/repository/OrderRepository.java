@@ -11,5 +11,4 @@ import com.green.petfirst.domain.entity.OrderEntity;
 public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
 
 	List<OrderEntity> findAllByMemberMemNo(long memNo);
-
 }
