@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:each="product : ${products}" class="swiper-slide">
+    <a th:href="@{'/public/products/' + ${product.productNo}}" class="swiper-slide-1">
+        <i class="product-image" th:if="${product.imgUrl != null}" th:style="|background-image: url(${product.imgUrl})|"></i>
+	</a>
+        <div class="col5-text">
+            <div class="col5-text1">
+                <span th:text="${product.productName ?: '상품명 없음'}">슈퍼마켓 마쉬멜로 4</span>
+            </div>
+            <div class="col5-text2">
+                
+               <del> <span class="original-price" th:text="${product.price != null} ? |${#numbers.formatInteger(product.price, 3, 'COMMA')}원| : '가격 정보 없음'">38,000</span></del>
+            </div>
+            <div class="col5-text3">
+                <span class="discount" th:text="${product.discount != null} ? |${product.discount}%| : '할인 정보 없음'">55%</span>
+                <span class="discount-price" th:text="${product.discountPrice != null} ? |${#numbers.formatInteger(product.discountPrice, 3, 'COMMA')}원| : '할인가 정보 없음'">17,100</span>
+            </div>
+        </div>
+    
+</div>
+</html>

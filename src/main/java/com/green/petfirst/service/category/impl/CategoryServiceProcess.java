@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.green.petfirst.domain.dto.category.CategoryDTO;
+import com.green.petfirst.domain.dto.product.ProductListDTO;
 import com.green.petfirst.domain.entity.CategoryEntity;
 import com.green.petfirst.domain.entity.ProductEntity;
 import com.green.petfirst.domain.repository.CategoryRepository;
@@ -26,10 +27,6 @@ public class CategoryServiceProcess implements CategoryService {
 
     private final CategoryRepository categoryRepository;
     private final ProductRepository productRepository;
-    
-    
-    
-    
 
     @Override
     @Transactional(readOnly = true)
@@ -66,7 +63,10 @@ public class CategoryServiceProcess implements CategoryService {
             		
         );
     }
-
+/**
+ * 상품 조회
+ */
+    
     @Transactional
 	@Override
 	public void categoryProductListProcess(Long categoryNo, Model model) {
@@ -76,12 +76,12 @@ public class CategoryServiceProcess implements CategoryService {
 		List<ProductEntity> list=null;
 		if (category.getParent() == null || category.getParent().getParent() == null) {
             // 1차 또는 2차 카테고리인 경우
-            List<Long> categoryNoes = getAllSubCategoryIds(category);
-            list=productRepository.findByCategory_categoryNoIn(categoryNoes);
+            List<Long> categoryNoes = getAllSubCategoryIds(category); 
+            list=productRepository.findByCategory_categoryNoIn(categoryNoes); //해당 카테고리와 그 하위 카테고리들에 속하는 모든 상품들을 가져와
 			
         } else {
             // 3차 카테고리인 경우
-        	list=productRepository.findByCategory_categoryNo(categoryNo);
+        	list=productRepository.findByCategory_categoryNo(categoryNo); //3차인 경우 하위 카테고리가 더 존재하지 않기 때문에, 단순히 해당 카테고리의 categoryNo에 일치하는 상품들만 조회
         }
 		
 		model.addAttribute("list", list.stream()
@@ -89,12 +89,13 @@ public class CategoryServiceProcess implements CategoryService {
 				.collect(Collectors.toList()));
 	}
     
-    /**
+    /** 
+     * 사이드 카테고리 메뉴 
      * 주어진 카테고리와 그 하위의 모든 카테고리 번호를 수집하는 메서드
      * @param category 시작 카테고리
      * @return 모든 하위 카테고리(자신 포함)의 번호 리스트
      */
-    private List<Long> getAllSubCategoryIds(CategoryEntity category) {
+    private List<Long> getAllSubCategoryIds(CategoryEntity category) { 
         // 결과를 저장할 빈 리스트 생성
         List<Long> categoryNoes = new ArrayList<>();
         
@@ -124,6 +125,7 @@ public class CategoryServiceProcess implements CategoryService {
     }
 
     /**
+     * 카테고리를 열면 최상위 카테고리 조회
      * 카테고리 목록을 불러오는 서비스
      * js에서 프론트 처리하도록 설계함.
      */
@@ -137,6 +139,7 @@ public class CategoryServiceProcess implements CategoryService {
 
 	
 	//부모카테고리가 일치하는 카테고리-parentCategoryNo의 하위카테고리
+	//카테고리별 상품 필터링
 	@Override
 	public List<CategoryDTO> getChildCategories(Long parentCategoryNo) {
 		
@@ -159,6 +162,37 @@ public class CategoryServiceProcess implements CategoryService {
         System.out.println("결과"+result.size());
         return result;
     }
+
+	@Override
+    public String getCategoryName(Long categoryNo) {
+        return categoryRepository.findById(categoryNo)
+            .map(CategoryEntity::getCategoryName)
+            .orElse("카테고리 없음");  // 기본값
+    }
+
+	@Override
+	public List<ProductListDTO> getRecommendedProducts() {
+	    List<ProductEntity> topDiscountedProducts = productRepository.findTop4ByOrderByDiscountDesc();
+	    return topDiscountedProducts.stream()
+	        .map(ProductEntity::toProductListDTO) // Entity를 DTO로 변환
+	        .collect(Collectors.toList());
+	}
+
+	@Override
+	public List<ProductListDTO> getNewProduct() {
+		List<ProductEntity> productNoDesc = productRepository.findTop4ByOrderByProductNoDesc();
+		return productNoDesc.stream()
+				.map(ProductEntity::toProductListDTO)
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<ProductListDTO> getReasonably() {
+		List<ProductEntity> discountprice = productRepository.findTop4ByPriceLessThanEqual(5000L);
+		return discountprice.stream()
+				.map(ProductEntity::toProductListDTO)
+				.collect(Collectors.toList());
+	}
 
    
 }

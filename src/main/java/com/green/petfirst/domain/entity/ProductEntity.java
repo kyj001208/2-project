@@ -74,5 +74,6 @@ public class ProductEntity {
     			.imgUrl(imgUrl)
     			.build();
     }
+    
 
 }

@@ -1,6 +1,7 @@
 package com.green.petfirst.domain.repository;
 
 import com.green.petfirst.domain.entity.ProductEntity;
+import com.green.petfirst.domain.dto.product.ProductListDTO;
 import com.green.petfirst.domain.entity.CategoryEntity;
 
 import org.springframework.data.domain.Page;
@@ -45,4 +46,10 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
     List<ProductEntity> findByCategory_categoryNo(Long categoryNo);
     //List<ProductEntity> findByCategoryCategoryNo(Long categoryId);
     List<ProductEntity> findByCategory_categoryNoIn(List<Long> categoryNoes);
+
+    List<ProductEntity> findTop4ByOrderByDiscountDesc();// 할인율 내림차순으로 상위 4개 상품 조회
+
+	List<ProductEntity> findTop4ByOrderByProductNoDesc(); // 상품번 내림차순으로 상위 4개 상품 조회
+
+	List<ProductEntity> findTop4ByPriceLessThanEqual(Long discountPrice);
 }

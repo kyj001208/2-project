@@ -42,26 +42,33 @@ public class ProductAddServiceProcess implements ProductAddService {
 	private String upload;
     
     @Override
-    public void addProduct(ProductAddDTO productAddDTO,ImageSaveDTO imageDTO) {
-    	ImgUploadDTO imgUploadDTO=fileUploadUtil.s3TempToImages(imageDTO.getTempKey()).addOrgNames(imageDTO.getOrgName());
-    	//CategoryEntity category=CategoryEntity.builder().categoryNo(productAddDTO.getCategoryNo()).build();
-    	CategoryEntity category=cateReop.findById(productAddDTO.getCategoryNo()).orElseThrow();
+    public void addProduct(ProductAddDTO productAddDTO, ImageSaveDTO imageDTO) {
+        // 카테고리 번호가 null인 경우 예외 처리
+        if (productAddDTO.getCategoryNo() == null) {
+            throw new IllegalArgumentException("카테고리 번호가 null입니다. 유효한 카테고리 번호를 입력하세요.");
+        }
+
+        // S3 이미지 업로드
+        ImgUploadDTO imgUploadDTO = fileUploadUtil.s3TempToImages(imageDTO.getTempKey()).addOrgNames(imageDTO.getOrgName());
+
+        // 카테고리 엔티티 조회
+        CategoryEntity category = cateReop.findById(productAddDTO.getCategoryNo())
+            .orElseThrow(() -> new IllegalArgumentException("해당 카테고리를 찾을 수 없습니다. 카테고리 번호: " + productAddDTO.getCategoryNo()));
+
         // DTO를 Entity로 변환
         ProductEntity productEntity = ProductEntity.builder()
-                .productName(productAddDTO.getProductName())
-                .price(productAddDTO.getPrice())
-                .productDetail(productAddDTO.getProductDetail())
-                .quantity(productAddDTO.getQuantity())
-                .discount(productAddDTO.getDiscount())
-                .discountPrice(productAddDTO.getDiscountPrice())
-                .category(category) // 카테고리 설정
-                .build();
+            .productName(productAddDTO.getProductName())
+            .price(productAddDTO.getPrice())
+            .productDetail(productAddDTO.getProductDetail())
+            .quantity(productAddDTO.getQuantity())
+            .discount(productAddDTO.getDiscount())
+            .discountPrice(productAddDTO.getDiscountPrice())
+            .category(category) // 대분류, 중분류, 소분류 설정
+            .build();
 
         // 상품 엔티티 저장
-               
         saveProductAndImages(productEntity, imgUploadDTO.toEntityList());
     }
-    
     @Transactional
 	private void saveProductAndImages(ProductEntity productEntity, List<ImageEntity> imageEntityList) {
 		productEntity= productRepository.save(productEntity);

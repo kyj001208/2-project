@@ -1,10 +1,16 @@
 package com.green.petfirst.domain.dto.product;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Builder
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProductListDTO {
 	
     private long productNo; //상품번호

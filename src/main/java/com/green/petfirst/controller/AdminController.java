@@ -16,12 +16,7 @@ public class AdminController {
 	
 	private final AdminService service;
 	
-	@GetMapping("/admin/petfir")
-	public String List(Model model) {
-		service.ListProcess(model);
-	    return "views/admin/petfir";
-	}
-	
+
 	
 	@GetMapping("/admin/deliver")
 	public String deliver(
