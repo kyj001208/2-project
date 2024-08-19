@@ -5,9 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +21,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.green.petfirst.domain.dto.product.ImageSaveDTO;
 import com.green.petfirst.domain.dto.product.ProductAddDTO;
+import com.green.petfirst.domain.dto.product.ProductListDTO;
 import com.green.petfirst.domain.entity.CategoryEntity;
+import com.green.petfirst.domain.entity.ProductEntity;
 import com.green.petfirst.domain.repository.CategoryRepository;
 import com.green.petfirst.service.admin.AdminService;
 import com.green.petfirst.service.product.ProductAddService;
@@ -69,18 +74,33 @@ public class ProductController {
     
     // 상품 목록 페이지로 이동하면서 페이징된 데이터를 전달
     @GetMapping("/admin/productList")
-    public String productList(Pageable pageable, Model model) {
-        // 페이징된 상품 목록 데이터 가져오기
-        Page<ProductAddDTO> productPage = productService.getProductList(pageable);
+    public String productList(@RequestParam(value = "page", defaultValue = "0") int page,
+                              @RequestParam(value = "size", defaultValue = "10") int size,
+                              Model model) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<ProductListDTO> productPage = productService.getProductList(pageable);
+        
+        int totalPages = productPage.getTotalPages();
+        int currentPage = productPage.getNumber();
+        int pageBlockSize = 5; // 한 번에 표시할 페이지 번호 수
 
-        // 모델에 페이징 데이터 추가
-        model.addAttribute("products", productPage.getContent());  // 현재 페이지의 상품 목록 데이터
-        model.addAttribute("currentPage", productPage.getNumber());  // 현재 페이지 번호
-        model.addAttribute("totalPages", productPage.getTotalPages());  // 총 페이지 수
-
-        return "views/admin/productAddList";
+        int startPage = (currentPage / pageBlockSize) * pageBlockSize;
+        int endPage = Math.min(startPage + pageBlockSize, totalPages);
+        
+        model.addAttribute("products", productPage.getContent());
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+        
+        return "views/admin/productList";
     }
     
-    
 	
+    @DeleteMapping("admin/{productNo}")
+    public String deleteProduct(@PathVariable("productNo") long productNo) {
+        productService.deleteImagesByProductNo(productNo);
+        productService.deleteProduct(productNo);
+        return "redirect:/admin/productList";
+    }
 }

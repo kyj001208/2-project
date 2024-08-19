@@ -37,10 +37,12 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
     // 재고 있는 상품 검색
     List<ProductEntity> findByQuantityGreaterThan(Long quantity);
 
+    /*상품목록, 리스트*/
     @Query("SELECT p FROM ProductEntity p LEFT JOIN FETCH p.images WHERE p.productNo = :productNo")
     ProductEntity findByProductNoWithImages(@Param("productNo") Long productNo);
     
-    Page<ProductEntity> findAll(Pageable pageable);
+    @Query("SELECT p FROM ProductEntity p ORDER BY p.productNo DESC")
+    Page<ProductEntity> findAllOrderByProductNoDesc(Pageable pageable);
 
     
     List<ProductEntity> findByCategory_categoryNo(Long categoryNo);

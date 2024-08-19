@@ -1,35 +1,46 @@
-.productListContainer{
-	width: 100%;
-	margin-bottom: 50px;
-	
-}
 
+.imgs{
+	display: block;
+	width: 70px;
+	height: 70px;
+	background-size: contain;
+}
 .productListContainer h1 {
 	font-size: 36px;
 	margin: 40px 0px 20px 80px;
 }
+.productListContainer {
+    width: 100%;
+    margin: 0 auto; /* 가운데 정렬을 위한 자동 여백 */
+    max-width: 1200px; /* 테이블이 최대 1200px 너비로 확장됨 */
+    padding: 0 20px; /* 좌우 여백 추가 (반응형 디자인을 고려) */
+}
 
 .productListTable {
-    width: 100%;
-    margin: 20px;
+    width: 100%; /* 테이블 너비를 부모 컨테이너에 맞게 조정 */
     border-collapse: collapse;
 }
+
 .productListTable th, td {
     padding: 10px;
     font-size: 20px;
-    text-align: left;
+    text-align: center;
     border-bottom: 1px solid #ddd;
 }
+
 .productListTable th {
     background-color: var(--sub-grey);
 }
+
 .productListTable tr:hover {
     background-color: var(--sub-grey);
 }
+
 .action-buttons {
     display: flex;
     gap: 10px;
 }
+
 .action-buttons button {
     padding: 5px 10px;
     cursor: pointer;
@@ -59,9 +70,7 @@
     text-decoration: none;
     padding: 10px 15px;
     font-size: 18px;
-    color: #333;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    color: var(--grey);
     transition: background-color 0.3s ease;
 }
 

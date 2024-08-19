@@ -21,7 +21,11 @@ public interface ProductAddService {
 	
 
 	// 페이징을 지원하는 상품 목록 조회
-	Page<ProductAddDTO> getProductList(Pageable pageable);
+	Page<ProductListDTO> getProductList(Pageable pageable);
+
+	void deleteProduct(long productNo);
+
+	void deleteImagesByProductNo(long productNo);
 
 	
 }
