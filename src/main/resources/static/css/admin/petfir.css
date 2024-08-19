@@ -30,18 +30,14 @@
     padding-left: 10px;
 }
 
-.visitor-stats, .inventory {
+.visitor-stats {
 	background-color: #fff;
 	padding: 20px;
 	width: 1550px;
+	padding-top: 50px;
 }
 
-.inv{
-	font-size: 30px;
-    padding-left: 15px;
-}
-
-.visitor-stats, .inventory, table{
+.visitor-stats, table{
 	margin-left: 10px;
 }
 

@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.green.petfirst.domain.dto.pay.CartSaveDTO;
+import com.green.petfirst.domain.dto.pay.CartUpdateDTO;
 import com.green.petfirst.security.PetfirUserDetails;
 import com.green.petfirst.service.cart.CartSerive;
 
@@ -44,6 +46,18 @@ public class CartController {
 		service.listProcess(user, model);
 		return "/views/cart/cart";
 	}
+	
+	@ResponseBody
+	@PutMapping("/petfir/cart/{no}")
+	public void updateService(@PathVariable("no")long no, @RequestBody CartUpdateDTO dto) {
+		
+		service.updateProcess(no, dto);
+		
+	}
+	
+	
+	
+	
 
 	@DeleteMapping("/petfir/cart/{no}")
 	public String delete(@PathVariable("no") long no) {

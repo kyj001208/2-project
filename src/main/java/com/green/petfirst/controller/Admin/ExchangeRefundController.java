@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -25,7 +25,7 @@ public class ExchangeRefundController {
 		return "views/admin/excRef";
 	}
 	
-	@PostMapping("/admin/exchangeRefund/{requestNo}")
+	@PutMapping("/admin/exchangeRefund/{requestNo}")
     @ResponseBody
     public void updateStatus(
     	    @PathVariable("requestNo") Long requestNo,

@@ -5,11 +5,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.green.petfirst.domain.dto.order.OrderDTO;
-import com.green.petfirst.domain.dto.order.OrderUpdateDTO;
 import com.green.petfirst.domain.entity.DeliverEntity;
 import com.green.petfirst.domain.entity.MemberEntity;
 import com.green.petfirst.domain.entity.OrderEntity;
@@ -28,34 +30,33 @@ public class OrderServiceProcess implements OrderService{
 	private final OrderRepository orderRep;
 	
 	@Override
-	public void OrderList(String orderNo, String memNo, String orderDate, Model model) {
-	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-	    LocalDate date = (orderDate != null && !orderDate.isEmpty()) ? LocalDate.parse(orderDate, formatter) : null;
+    public Page<OrderDTO> OrderList(String orderNo, String memNo, String orderDate, Pageable pageable) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = (orderDate != null && !orderDate.isEmpty()) ? LocalDate.parse(orderDate, formatter) : null;
+        
+        // 모든 주문 데이터를 필터링한 후 페이징 처리
+        List<OrderDTO> filteredOrders = orderRep.findAll().stream()
+                .filter(order ->
+                        (orderNo == null || orderNo.isEmpty() || String.valueOf(order.getOrderNo()).contains(orderNo))
+                        && (memNo == null || memNo.isEmpty() || String.valueOf(order.getMember().getMemNo()).contains(memNo))
+                        && (date == null || order.getOrderDate().isEqual(date))
+                )
+                .map(order -> OrderDTO.builder()
+                        .orderNo(order.getOrderNo())
+                        .memNo(order.getMember().getMemNo())
+                        .orderDate(order.getOrderDate())
+                        .status(order.getStatus())
+                        .build())
+                .collect(Collectors.toList());
 
-	    List<OrderEntity> orders = orderRep.findAll()
-	            .stream()
-	            .filter(order -> 
-	                    // 필터 조건이 없으면 모든 데이터 반환
-	                    (orderNo == null || orderNo.isEmpty() || String.valueOf(order.getOrderNo()).contains(orderNo))
-	                    && (memNo == null || memNo.isEmpty() || String.valueOf(order.getMember().getMemNo()).contains(memNo))
-	                    && (date == null || order.getOrderDate().isEqual(date))
-	            )
-	            .collect(Collectors.toList());
+        // 필터링된 데이터로 페이징 처리
+        int start = (int) pageable.getOffset();
+        int end = Math.min((start + pageable.getPageSize()), filteredOrders.size());
+        List<OrderDTO> pageContent = filteredOrders.subList(start, end);
 
-	    List<OrderDTO> orderDTOs = orders.stream()
-	            .map(order -> OrderDTO.builder()
-	                    .orderNo(order.getOrderNo())
-	                    .memNo(order.getMember().getMemNo())
-	                    .orderDate(order.getOrderDate())  // LocalDateTime 사용
-	                    .status(order.getStatus())
-	                    .build())
-	            .collect(Collectors.toList());
-
-	    model.addAttribute("orders", orderDTOs);
-	    model.addAttribute("orderNo", orderNo);
-	    model.addAttribute("memNo", memNo);
-	    model.addAttribute("orderDate", orderDate);
-	}
+        // 새로운 Page 객체 생성
+        return new PageImpl<>(pageContent, pageable, filteredOrders.size());
+    }
 
 	@Override
 	public void OrderDetailProcess(long orderNo, Model model) {
@@ -92,17 +93,18 @@ public class OrderServiceProcess implements OrderService{
 	    model.addAttribute("orders", orderDTOs);
 	    model.addAttribute("memNo", memNo);
 	}
-	
-	/*
-	 * @Override public void OrderUpdateProcess(OrderUpdateDTO dto) { // 주문 번호로 해당
-	 * 주문을 조회 OrderEntity order = orderRep.findById(dto.getOrderNo())
-	 * .orElseThrow(() -> new RuntimeException("해당 주문을 찾을 수 없습니다: " +
-	 * dto.getOrderNo()));
-	 * 
-	 * // 주문 상태 업데이트 order.setStatus(dto.getStatus());
-	 * 
-	 * // 업데이트된 주문을 저장 orderRep.save(order); }
-	 */
 
-	
+	@Override
+	public void OrderUpdateProcess(Long orderNo, Status status) {
+	    // 주문을 조회합니다
+	    OrderEntity order = orderRep.findById(orderNo)
+	            .orElseThrow(() -> new RuntimeException("해당 주문을 찾을 수 없습니다: " + orderNo));
+
+	    // 상태를 업데이트합니다
+	    order.setStatus(status);
+
+	    // 업데이트된 주문을 저장합니다
+	    orderRep.save(order);
+	}
+
 }

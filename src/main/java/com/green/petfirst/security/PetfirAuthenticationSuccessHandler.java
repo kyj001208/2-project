@@ -60,7 +60,7 @@ public class PetfirAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 		      
 		        
 		        if (hasAdminRole) {
-		            targetUrl = "/admin/product";  //이거 수정 필요
+		            targetUrl = "/admin/petfir";  //이거 수정 필요
 		        } 
 		        // 리다이렉트 수행
 		        redirectStrategy.sendRedirect(request, response, targetUrl);

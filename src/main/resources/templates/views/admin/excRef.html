@@ -7,7 +7,7 @@
 <meta name="_csrf_header" th:content="${_csrf.headerName}" />
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <link rel="stylesheet" href="/css/admin/excRef.css">
-<script th:src="@{/js/excRef.js}"></script>
+<script th:src="@{/js/admin/excRef.js}"></script>
 <title>환불</title>
 
 </head>
@@ -101,9 +101,9 @@
 				<h2>교환 관리옵션</h2>
 				<div class="item">실행하실 항목을 선택하세요.</div>
 				<button id="exchangeApproveBtn" class="option-button"
-					onclick="updateStatus('EXCHANGE', 'EXCHANGE_DONE', $('#exchangeOptionsModal').data('requestNo'))">교환승인</button>
+					onclick="updateStatus('EXCHANGE', 'APPROVE', $('#exchangeOptionsModal').data('requestNo'))">교환승인</button>
 				<button id="exchangeCancelBtn" class="option-button"
-					onclick="updateStatus('EXCHANGE', 'EXCHANGE_CANCELLED', $('#exchangeOptionsModal').data('requestNo'))">교환취소</button>
+					onclick="updateStatus('EXCHANGE', 'CANCEL', $('#exchangeOptionsModal').data('requestNo'))">교환취소</button>
 			</div>
 		</div>
 	</div>
@@ -184,17 +184,18 @@
 	</div>
 
 	    <!-- 환불 옵션 모달 -->
-	<div id="refundOptionsModal" class="modal">
-    <div class="modal-content2">
-        <span class="close" onclick="closeModal('refundOptionsModal')">&times;</span>
-        <h2>환불 관리옵션</h2>
-        <div class="item">실행하실 항목을 선택하세요.</div>
-        <button id="refundApproveBtn" class="option-button"
-            onclick="updateStatus('REFUND', 'REFUND_DONE', $('#refundOptionsModal').data('requestNo'))">승인</button>
-        <button id="refundCancelBtn" class="option-button"
-            onclick="updateStatus('REFUND', 'REFUND_CANCELLED', $('#refundOptionsModal').data('requestNo'))">취소</button>
-    </div>
-</div>
-</div>
+		<div id="refundOptionsModal" class="modal">
+			<div class="modal-content2">
+				<span class="close" onclick="closeModal('refundOptionsModal')">&times;</span>
+				<h2>환불 관리옵션</h2>
+				<div class="item">실행하실 항목을 선택하세요.</div>
+				<button id="refundApproveBtn" class="option-button"
+					onclick="updateStatus('REFUND', 'APPROVE', $('#refundOptionsModal').data('requestNo'))">환불승인</button>
+				<button id="refundCancelBtn" class="option-button"
+					onclick="updateStatus('REFUND', 'CANCEL', $('#refundOptionsModal').data('requestNo'))">환불취소</button>
+
+			</div>
+		</div>
+	</div>
 </main>
 </html>

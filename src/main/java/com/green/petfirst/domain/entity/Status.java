@@ -16,4 +16,3 @@ public enum Status {
         return roleName;
     }
 }
-
