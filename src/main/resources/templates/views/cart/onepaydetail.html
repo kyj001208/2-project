@@ -6,8 +6,8 @@
 <link rel="stylesheet" href="/css/commons/common.css" />
 <script src="https://js.tosspayments.com/v2/standard"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="/js/pay/cart.js"></script>
 <script src="/js/pay/payaddress.js"></script>
+<script src="/js/pay/onedetail.js"></script>
 
 </head>
 <body>
@@ -69,9 +69,10 @@
           customerKey,
         });
         // 비회원 결제
-      
-		const urlParams = new URLSearchParams(window.location.search);
-    	const discountedPrice = parseFloat(urlParams.get('discountedPrice') || '0');
+		
+		const totalPrice = localStorage.getItem('totalPrice') || '0';
+		const discountedPrice = parseInt(totalPrice.replace(/[^0-9]/g, ''), 10); // 숫자만 추출
+		
 
         // ------ 주문의 결제 금액 설정 ------
         await widgets.setAmount({
@@ -106,7 +107,11 @@
           });
         });
       }
-      
+	  
+	  
+	  
+	  
+      //새로운 주문번호 생성하는 함수
       function generateUniqueOrderId() {
     	    // 고유 주문번호 생성 예시 (현재 시간 + 랜덤 숫자)
     	    return 'order-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
