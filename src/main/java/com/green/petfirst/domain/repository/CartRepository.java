@@ -17,6 +17,8 @@ public interface CartRepository extends JpaRepository<CartProductEntity, Long>{
 
 	List<CartProductEntity> findByMarket_MarketNo(long marketNo);
 	
+	//void deleteByMarket_MarketNo(Long marketNo);
+	
 
 	
 

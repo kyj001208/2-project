@@ -58,7 +58,7 @@ public class CartController {
 	
 	
 	
-
+	//장바구니에서 개별 삭제하는 매핑
 	@DeleteMapping("/petfir/cart/{no}")
 	public String delete(@PathVariable("no") long no) {
 
@@ -66,5 +66,19 @@ public class CartController {
 		// 삭제 후 장바구니 페이지로 리다이렉트
 		return "redirect:/petfir/cart";
 	}
+	
+	
+	/*
+	@DeleteMapping("/petfir/clear")
+	public String deletCart(@AuthenticationPrincipal PetfirUserDetails user) {
+		
+		service.deleteCartProcess(user);
+		
+		return "";
+		
+		
+	}
+	*/
+	
 
 }
