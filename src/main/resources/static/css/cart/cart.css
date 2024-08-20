@@ -23,6 +23,7 @@
 	
 }
 
+
 .cart_top{
 	
 	display: flex;                   
@@ -52,6 +53,25 @@
 	
 	font-size: 20px;
 }
+
+
+.quantity > button{
+	
+	width:40px;
+	background-color: var(--sub-pink);
+	font-family: "Hi Melody", sans-serif;
+	font-size: 16px;
+	border-radius: 1em;
+	color: var(--grey);
+	border: none;
+	
+}
+
+.count{
+	width: 30px;
+	border: 1px solid var(--sub-gray);
+}
+
 
 .cart-d-btn{
 	

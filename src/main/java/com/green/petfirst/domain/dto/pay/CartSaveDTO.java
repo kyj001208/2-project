@@ -11,4 +11,5 @@ public class CartSaveDTO {
 	
 	private long productNo;
 	private int count;
+	private long totalPrice;
 }

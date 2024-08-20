@@ -44,12 +44,19 @@ public class PayController {
 	}
 	
 	
-	@GetMapping("/petfir/pay/detail")
+	@GetMapping("/petfir/pay")
 	public String paylist( Model model, @AuthenticationPrincipal PetfirUserDetails user) {
 		
 		cartservice.listProcess(user,model);
+		return "/views/cart/pay";
+	}
+	
+	@GetMapping("/petfir/pay/detail")
+	public String paydetalget( ) {
+		
 		return "/views/cart/paydetail";
 	}
+	
 	
 	//단건결제
 	@GetMapping("/petfir/pay/onepaydetail")

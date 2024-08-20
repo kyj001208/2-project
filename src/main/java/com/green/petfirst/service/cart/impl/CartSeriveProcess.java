@@ -36,7 +36,7 @@ public class CartSeriveProcess implements CartSerive {
 		ProductEntity product = productRepository.findById(dto.getProductNo())
 				.orElseThrow(() -> new RuntimeException("Product not found with id: " + dto.getProductNo()));
 		repository.save(CartProductEntity.builder().product(product)
-				.market(marketRepository.findByMember_email(email).orElseThrow()).count(dto.getCount()).build());
+				.market(marketRepository.findByMember_email(email).orElseThrow()).count(dto.getCount()).totalprice(dto.getTotalPrice()).build());
 	}
 
 	// 장바구니 조회 메서드
@@ -63,25 +63,41 @@ public class CartSeriveProcess implements CartSerive {
 	@Override
 	@Transactional
 	public void updateProcess(long cartProductId, CartUpdateDTO dto) {
-		// 1. 장바구니 상품 조회
-		CartProductEntity cartProduct = repository.findById(cartProductId)
-				.orElseThrow(() -> new RuntimeException("Cart product not found with id: " + cartProductId));
+	    // 1. 장바구니 상품 조회
+	    CartProductEntity cartProduct = repository.findById(cartProductId)
+	            .orElseThrow(() -> new RuntimeException("Cart product not found with id: " + cartProductId));
 
-		// 2. 상품 조회
-		ProductEntity product = cartProduct.getProduct();
-		if (product == null) {
-			throw new RuntimeException("Product not found for cart product with id: " + cartProductId);
-		}
+	    // 2. 상품 조회
+	    ProductEntity product = cartProduct.getProduct();
+	    if (product == null) {
+	        throw new RuntimeException("Product not found for cart product with id: " + cartProductId);
+	    }
 
-		// 3. 수량 업데이트
-		int newCount = dto.getCount();
-		if (newCount <= 0) {
-			throw new IllegalArgumentException("Count must be greater than zero.");
-		}
-		cartProduct.setCount(newCount);
+	    // 3. 수량 및 총 가격 업데이트
+	    int newCount = dto.getCount();
+	    double newTotalPrice = dto.getTotalprice();
+	    
+	    if (newCount <= 0) {
+	        throw new IllegalArgumentException("Count must be greater than zero.");
+	    }
+	    if (newTotalPrice < 0) {
+	        throw new IllegalArgumentException("Total price must be non-negative.");
+	    }
 
-		// 4. 장바구니 상품 저장
-		repository.save(cartProduct);
+	    // double을 long으로 변환 (소수점 버리기)
+	    long newTotalPriceLong = (long) Math.floor(newTotalPrice);
+
+	    // 빌더를 사용하여 새 객체를 생성
+	    CartProductEntity updatedCartProduct = CartProductEntity.builder()
+	            .cartNo(cartProductId) // 기존 ID 사용
+	            .product(product) // 기존 상품 사용
+	            .count(newCount) // 새로운 수량
+	            .totalprice(newTotalPriceLong) // 새로운 총 가격 (long 타입으로 변환)
+	            .build();
+
+	    // 4. 장바구니 상품 저장
+	    repository.save(updatedCartProduct);
 	}
+
 
 }

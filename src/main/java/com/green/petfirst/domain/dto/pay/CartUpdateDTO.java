@@ -10,5 +10,6 @@ public class CartUpdateDTO {
 	private int count;
 	//private long discountPrice;
 
+	private long totalprice;
 	
 }

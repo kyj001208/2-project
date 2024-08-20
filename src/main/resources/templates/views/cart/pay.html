@@ -2,20 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout::frame(~{this::head}, ~{this::main})}">
 
 <!-- 일단 필요없어서 대기중 -->
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="/css/cart/pay.css" />
-<link rel="stylesheet" href="/css/commons/common.css" />
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="/js/pay/cart.js"></script>
-<script src="/js/pay/payaddress.js"></script>
-<meta name="_csrf" th:content="${_csrf.token}" />
-<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="/css/cart/pay.css" />
+	<link rel="stylesheet" href="/css/commons/common.css" />
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="/js/pay.js"></script>
+	<script src="/js/pay/payaddress.js"></script>
+	<meta name="_csrf" th:content="${_csrf.token}" />
+	<meta name="_csrf_header" th:content="${_csrf.headerName}" />
 </head>
 
 <body>
-  <main>
+	<main>
 
 		<div class="pays">
 
@@ -26,46 +27,47 @@
 			<div class="pays1">
 
 				<form class="formtable">
-					
+
 					<div class="pay-left">
-					<div class="paytitle">배송지정보</div>
-					
-					<div class="payman">
-						<label for="payname">주문자</label>
-						<b sec:authentication="principal.name">이름</b>
-					</div>
-					
-					<div class="payname">
+						<div class="paytitle">배송지정보</div>
 
-					<label for="payname">받는분</label>
+						<div class="payman">
+							<label for="payname">주문자</label>
+							<b sec:authentication="principal.name">이름</b>
+						</div>
 
-					<input id="payname" type="text" name="payname"placeholder="이름" >
+						<div class="payname">
 
-					</div>
-					
-					<div class="payaddress">
+							<label for="payname">받는분</label>
 
-					<label for="payaddress">배송주소</label>
-					<input type="text" id="sample6_postcode" placeholder="우편번호" >
-					<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" id="payaddressbtn"><br>
-					<input type="text" id="sample6_address" placeholder="주소" name="address"><br>
-					<input type="text" id="sample6_extraAddress" placeholder="참고사항">
-					<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="addressdetail">
+							<input id="payname" type="text" name="payname" placeholder="이름">
 
+						</div>
+
+						<div class="payaddress">
+
+							<label for="payaddress">배송주소</label>
+							<input type="text" id="sample6_postcode" placeholder="우편번호">
+							<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"
+								id="payaddressbtn"><br>
+							<input type="text" id="sample6_address" placeholder="주소" name="address"><br>
+							<input type="text" id="sample6_extraAddress" placeholder="참고사항">
+							<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="addressdetail">
+
+						</div>
+
+						<div class="paynumber">
+							<label for="paynumber">휴대전화</label>
+							<input id="paynumber" type="text" name="phone" placeholder="전화번호"><br>
+						</div>
 					</div>
-					
-					<div class="paynumber">
-					<label for="paynumber">휴대전화</label>
-					<input id="paynumber" type="text" name="phone" placeholder="전화번호" ><br>
-					</div>
-					</div>
-					
-				
-				<div class="pay-right">
-					
-					<div class="paycont">결제상품정보</div>
-					
-									<div>
+
+
+					<div class="pay-right">
+
+						<div class="paycont">결제상품정보</div>
+
+						<div>
 
 							<ul>
 								<li class="cart_lists">
@@ -91,7 +93,8 @@
 
 									<div th:text="${dto.productName}">상품명</div>
 									<div th:text="${dto.count}">수량</div>
-									<div class="cart-price" th:text="${dto.discountPrice}" data-price="${dto.price}">가격</div>
+									<div class="cart-price" th:text="${dto.totalprice}" data-price="${dto.totalprice}">
+										가격</div>
 
 								</li>
 
@@ -100,48 +103,50 @@
 							</ul>
 
 						</div>
-						
+
 						<div class="totalprice">
 							<div>
-								<span>총 상품금액  </span>
+								<span>총 상품금액</span>
 							</div>
-							<div id=totalAmount>  </div>
-						</div>
-			
+							<div id="totalAmount">0.00원</div>
+					</div>
 
-						<div class="cartpay">
 
-							<button onclick="window.open('http://localhost:8080/petfir/pay/detail','window_name','width=600,height=700,location=no,status=no,scrollbars=yes,left=400,top=200');"
+					<div class="cartpay">
+
+						<button
+							onclick="window.open('http://localhost:8080/petfir/pay/detail','window_name','width=1000,height=800,location=no,status=no,scrollbars=yes,left=400,top=200');"
 							type="button" class="paytossbtn">결제하기</button>
-						
-						</div>
 
 					</div>
-				
-				
-			</form>
-
-				
-
 
 			</div>
-			
-			<div class="shopcart-dogs">
+
+
+			</form>
+
+
+
+
+		</div>
+
+		<div class="shopcart-dogs">
 			<div><img src="/img/cart-pay/cat.jpg" id="dog1"></div>
 			<div><img src="/img/cart-pay/dog1.jpg" id="dog1"></div>
 			<div><img src="/img/cart-pay/dog2.jpg" id="dog1"></div>
 			<div><img src="/img/cart-pay/dog3.jpg" id="dog1"></div>
 			<div><img src="/img/cart-pay/rabbit.jpg" id="dog1"></div>
 			<div><img src="/img/cart-pay/dog4.jpg" id="dog1"></div>
-			</div>
-			
-			
 		</div>
-		
+
+
+		</div>
+
 
 	</main>
-	
+
 
 
 </body>
+
 </html>

@@ -19,9 +19,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-@DynamicUpdate
 @Setter
+@DynamicUpdate
 @Getter
 @Builder
 @AllArgsConstructor
@@ -51,7 +50,7 @@ public class CartProductEntity {
 
 	//private String price;
 
-	//private String totalprice;
+	private long totalprice;
 
 	public CartListDTO tolistDTO() {
 	    ProductListDTO productDTO = product.toProductListDTO();
@@ -59,7 +58,7 @@ public class CartProductEntity {
 	        .cartNo(cartNo)
 	        .product(productDTO)
 	        .productName(productDTO.getProductName())
-	        .discountPrice(productDTO.getDiscountPrice())
+	        .totalprice(totalprice)
 	        .imgUrl(productDTO.getImgUrl())  // ProductListDTO에서 이미지 URL 가져오기
 	        .count(count)
 	        .build();
