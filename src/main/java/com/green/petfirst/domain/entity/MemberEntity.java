@@ -5,7 +5,7 @@ import java.util.Set;
 
 import org.hibernate.annotations.DynamicUpdate;
 
-
+import com.green.petfirst.domain.dto.login.MemberDTO;
 import com.green.petfirst.security.Role;
 
 import jakarta.persistence.CollectionTable;
@@ -65,7 +65,14 @@ public class MemberEntity {
 	
 	private String petBreed;
 	
-	
+    public MemberDTO toDTO() {
+        return MemberDTO.builder()
+                .id(this.memNo)
+                .userId(this.userId)
+                .email(this.email)
+                .address(this.address)
+                .build();
+    }
 	
 	
 	///////////////////////////////////////////////Role 권한 관련 ////////////////////////////////////////////////////////////////////////

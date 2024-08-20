@@ -7,10 +7,18 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.green.petfirst.domain.entity.MemberEntity;
 import com.green.petfirst.security.Role;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Setter
 public class MemberDTO {
+	
+	private long id;
 	
 	private String userId; 
 	
@@ -42,6 +50,7 @@ public class MemberDTO {
 				.roles(Set.of(Role.PETFIR))
 				.build();
 	}
+
 
 
 

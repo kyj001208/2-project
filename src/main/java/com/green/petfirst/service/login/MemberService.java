@@ -9,4 +9,6 @@ public interface MemberService {
 
 	void saveSocial(MemberEntity entity);
 
+	MemberDTO finById(Long id);
+
 }
