@@ -39,4 +39,6 @@ public interface ChatbotResponseRepository extends JpaRepository<ChatbotResponse
      */
     @Query("SELECT cr FROM ChatbotResponse cr WHERE LOWER(cr.keywords) LIKE LOWER(CONCAT('%', :input, '%'))")
     List<ChatbotResponse> findByKeywordsContaining(@Param("input") String input);
+
+    List<ChatbotResponse> findByContextId(String currentContextId);
 }
