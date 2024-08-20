@@ -3,6 +3,7 @@ package com.green.petfirst.service.admin.impl;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
@@ -11,12 +12,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.green.petfirst.domain.dto.deliver.DeliverDTO;
 import com.green.petfirst.domain.entity.DeliverEntity;
 import com.green.petfirst.domain.entity.MemberEntity;
+import com.green.petfirst.domain.entity.OrderEntity;
 import com.green.petfirst.domain.repository.DeliverRepository;
 import com.green.petfirst.domain.repository.MemberRepository;
+import com.green.petfirst.domain.repository.OrderRepository;
 import com.green.petfirst.service.admin.AdminService;
+import com.nimbusds.jose.shaded.gson.Gson;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,6 +31,7 @@ public class AdminServiceProcess implements AdminService {
 
 	private final MemberRepository memberRep;
 	private final DeliverRepository deliverRep;
+	private final OrderRepository orderRep;
 	
 
 	@Override
@@ -75,5 +81,19 @@ public class AdminServiceProcess implements AdminService {
 
 	    return new PageImpl<>(pageContent, pageable, filteredList.size());
 	}
+	
+	@Override
+	public void salesProcess(Model model) {
+	    List<Object[]> productQuantities = orderRep.findProductQuantities();
 
+	    List<Map<String, Object>> salesData = productQuantities.stream()
+	            .map(row -> Map.of(
+	                "productName", row[0],
+	                "quantity", row[1]
+	            ))
+	            .collect(Collectors.toList());
+
+	    // JSON 문자열로 변환
+	    ObjectMapper objectMapper = new ObjectMapper();
+	}
 }
