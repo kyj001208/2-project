@@ -1,6 +1,8 @@
 
 package com.green.petfirst.service.login.impl;
 
+import java.util.Optional;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +45,17 @@ public class MemberServiceProcess implements MemberService {
 	            .member(entity)
 	            .build();
 	        marketRepository.save(market);
+	    }
+
+	    @Override
+	    public MemberDTO finById(Long id) {
+	        // Optional로 감싸진 MemberEntity를 가져와서 존재하는지 확인
+	        Optional<MemberEntity> optionalMemberEntity = repository.findById(id);
+	        
+	        // optional이 존재하면 MemberEntity를 DTO로 변환하여 반환
+	        return optionalMemberEntity
+	            .map(MemberEntity::toDTO)
+	            .orElseThrow(() -> new RuntimeException("Member not found with id: " + id));
 	    }
 
 }

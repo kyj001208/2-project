@@ -2,7 +2,8 @@ $(document).ready(function() {
     loadRecommendedList();
 	loadNewList();
 	loadreasonablyProduct();
-	loadTodayProduct('33');
+	loadTodayProduct('123');
+	
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -60,7 +61,7 @@ function loadTodayProduct(productNo) {
         
 
 /**/
-/*async function fetchTimerInfo() {
+async function fetchTimerInfo() {
            try {
                const response = await fetch('/public/timer-info');
                const timerData = await response.json();
@@ -77,4 +78,4 @@ function loadTodayProduct(productNo) {
        fetchTimerInfo();
 
        // 1초마다 타이머 정보 업데이트
-       setInterval(fetchTimerInfo, 1000);*/
+       setInterval(fetchTimerInfo, 1000);
