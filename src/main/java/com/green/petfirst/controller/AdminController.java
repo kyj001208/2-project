@@ -40,7 +40,7 @@ public class AdminController {
 	        @RequestParam(value = "devComplete", required = false) String devComplete,
 	        @RequestParam(value = "devCompany", required = false) String devCompany,
 	        @RequestParam(value = "page", defaultValue = "0") int page,
-	        @RequestParam(value = "size", defaultValue = "10") int size,
+	        @RequestParam(value = "size", defaultValue = "12") int size,
 	        Model model) {
 
 	    Pageable pageable = PageRequest.of(page, size);
