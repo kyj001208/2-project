@@ -16,7 +16,7 @@ public class CartListDTO {
 	private ProductListDTO product;
 	private int count;
 	private String productName;
-	private long discountPrice;
+	private long totalprice;
 	private String imgUrl;
 
 }

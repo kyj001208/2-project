@@ -58,7 +58,7 @@
                                     <button type="button">+</button>
                                 </div>
 
-                               <div class="cart-price" th:text="${dto.discountPrice}" th:data-price="${dto.discountPrice}">가격</div>
+                               <div class="cart-price" th:text="${dto.totalprice}" th:data-price="${dto.totalprice}">가격</div>
 
                                 <div class="cart-delete">
                                     <form th:id="'deleteForm-' + ${dto.cartNo}" th:action="@{'/petfir/cart/' + ${dto.cartNo}}" method="post">
@@ -84,8 +84,10 @@
                 </div>
 
                 <div class="cartpay">
-                    <button onclick="window.open('http://localhost:8080/petfir/pay/detail','window_name','width=1000,height=800,location=no,status=no,scrollbars=yes,left=400,top=200');"
-                        type="button" class="paytossbtn">결제하기</button>
+					
+					<a href="/petfir/pay"><button class="paytossbtn"> 결제하기</button></a>
+                   <!-- <button onclick="window.open('http://localhost:8080/petfir/pay/detail','window_name','width=1000,height=800,location=no,status=no,scrollbars=yes,left=400,top=200');"
+                        type="button" class="paytossbtn">결제하기</button>-->
                 </div>
             </div>
 
