@@ -5,7 +5,7 @@ $(document).ready(function() {
 
     // 페이지 로드 시 총 금액 계산
     calculateTotalAmount();
-    saveTotalAmount(); // 총 금액을 localStorage에 저장
+  
 
     function updateQuantity(element, isIncreasing, cartNo) {
         const $li = $(element).closest('.cart_lists');
@@ -68,17 +68,20 @@ $(document).ready(function() {
 
         prices.forEach(function(priceElement) {
             const textPrice = priceElement.textContent.trim();
-            const price = parseFloat(textPrice.replace(/,/g, ''));
+            const price = parseFloat(textPrice.replace(/,/g, '').replace('원', ''));
             if (!isNaN(price)) {
                 totalAmount += price;
             }
         });
 
         document.getElementById('totalAmount').innerText = totalAmount.toLocaleString() + '원';
+    	saveTotalAmount(); // 총 금액을 localStorage에 저장
     }
 
     function saveTotalAmount() {
+		//총 금액을 표시하는 html 요소에서 텍스트를 가져옵니다
         const totalAmountText = document.getElementById('totalAmount').textContent.trim();
+        //총 금액 문자열에서 원 기호와 쉼표를 제거합니다
         localStorage.setItem('totalAmount', totalAmountText.replace(/원$/, '').replace(/,/g, ''));
     }
 

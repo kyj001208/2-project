@@ -73,7 +73,10 @@ public class CartSeriveProcess implements CartSerive {
 	        throw new RuntimeException("Product not found for cart product with id: " + cartProductId);
 	    }
 
-	    // 3. 수량 및 총 가격 업데이트
+	    // 3. 상점 조회
+	    MarketEntity market = cartProduct.getMarket(); // 현재 장바구니 항목에서 상점 정보 가져오기
+
+	    // 4. 수량 및 총 가격 업데이트
 	    int newCount = dto.getCount();
 	    double newTotalPrice = dto.getTotalprice();
 	    
@@ -91,11 +94,12 @@ public class CartSeriveProcess implements CartSerive {
 	    CartProductEntity updatedCartProduct = CartProductEntity.builder()
 	            .cartNo(cartProductId) // 기존 ID 사용
 	            .product(product) // 기존 상품 사용
+	            .market(market) // 기존 상점 사용
 	            .count(newCount) // 새로운 수량
 	            .totalprice(newTotalPriceLong) // 새로운 총 가격 (long 타입으로 변환)
 	            .build();
 
-	    // 4. 장바구니 상품 저장
+	    // 5. 장바구니 상품 저장
 	    repository.save(updatedCartProduct);
 	}
 

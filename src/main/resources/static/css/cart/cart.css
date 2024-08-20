@@ -93,7 +93,7 @@
 
 	justify-content: center;
 
-	padding-top: 10px;
+	padding-top: 20px;
 	
 }
 
@@ -119,6 +119,7 @@
 
 .cart-menu-b{
 	
+	padding-top: 20px;
 	display: flex;
 	text-align: center;
 	justify-content: center;
@@ -131,10 +132,12 @@
 .cartpay{
 	
 	text-align: center;
+	padding-bottom: 30px;
+	padding-top: 20px;
 	
 }
 
-.cartpay-btn{
+.paytossbtn{
 	
 	width: 300px;
 	background-color: var(--sub-pink);
@@ -143,6 +146,7 @@
 	border-radius: 1em;
 	color: var(--grey);
 	border: none;
+	
 }
 
 /* ///////////////////////////////////아래 강아지들//////////////////// */
