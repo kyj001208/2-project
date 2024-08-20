@@ -1,15 +1,24 @@
 package com.green.petfirst.service.event;
 
+import com.green.petfirst.domain.entity.Event;
+import com.green.petfirst.domain.repository.EventRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EventService {
 
-    public List<String> getAllEvents() {
-        // 실제로는 데이터베이스나 외부 API에서 데이터를 가져오겠지만
-        // 예제를 위해 간단한 리스트를 반환합니다.
-        return List.of("이벤트 1", "이벤트 2", "이벤트 3");
+    @Autowired
+    private EventRepository eventRepository;
+
+    public List<Event> getAllEvents() {
+        return eventRepository.findAll();
+    }
+
+    public Optional<Event> getEventById(Long id) {
+        return eventRepository.findById(id);
     }
 }

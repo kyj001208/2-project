@@ -45,7 +45,9 @@ public class SecurityConfig {
 	            		.requestMatchers("/","/public/**","/sandbox-dev/api/v1/payments/confirm").permitAll()
 	            		.requestMatchers("/petfir/**").hasAnyRole("PETFIR", "SOCIALUSER","ADMIN")
 						.requestMatchers("/chatbot/**").permitAll() // 웹소켓 엔드포인트 허용
-	            		.requestMatchers("/admin/**").hasRole("ADMIN") 
+						.requestMatchers("/event/**").permitAll()
+	            		.requestMatchers("/admin/**").hasRole("ADMIN")
+
 	                    .anyRequest().authenticated() 
 	                
 	            )
