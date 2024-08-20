@@ -188,17 +188,11 @@
 /* 회원정보 섹션 스타일 */
 .member-info {
     min-width: 800px;
-    margin: 20px auto;
+    margin: 30px;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.mypage-wrap {
-    width: 950px;
-    display: flex;
-    flex-direction: column;
 }
 
 .mypage h2 {
@@ -233,7 +227,7 @@
     margin-top: 20px;
 }
 
-.mypage-wrap button {
+.mypage-main button {
     font-family: "Hi Melody", sans-serif !important;
     font-style: normal;
     font-weight: bold;

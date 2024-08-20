@@ -1,13 +1,12 @@
 
 package com.green.petfirst.service.login.impl;
 
-import java.util.Optional;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.green.petfirst.domain.dto.login.MemberDTO;
+import com.green.petfirst.domain.dto.login.MemberUpdateDTO;
 import com.green.petfirst.domain.entity.MarketEntity;
 import com.green.petfirst.domain.entity.MemberEntity;
 import com.green.petfirst.domain.repository.MarketRepository;
@@ -58,18 +57,13 @@ public class MemberServiceProcess implements MemberService {
 	}
 
 	@Override
-	public void updateMember(MemberDTO dto) {
-		MemberEntity member = repository.findByEmail(dto.getEmail())
-				.orElseThrow(() -> new RuntimeException("수정할 회원 정보를 찾을 수 없습니다."));
-		member.setEmail(dto.getEmail());
-		member.setUserId(dto.getUserId());
-		member.setPhone(dto.getPhone());
-		member.setAddress(dto.getAddress());
-		member.setPetName(dto.getPetName());
-		member.setPetBreed(dto.getPetBreed());
-
-		repository.save(member);
-		
+	@Transactional //"조회+ update" 를 한단위로 처리함
+	public void updateMember(String email,MemberUpdateDTO dto) {
+		repository.findByEmail(email)
+				.orElseThrow(() -> new RuntimeException("수정할 회원 정보를 찾을 수 없습니다."))
+				.updateInfo(dto);
+				
+				
 	}
 
 }
