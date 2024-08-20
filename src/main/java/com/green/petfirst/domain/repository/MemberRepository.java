@@ -17,5 +17,8 @@ public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
 
 	@Query("SELECT COUNT(m) FROM MemberEntity m")
     long countAllMembers();
+
+
 	
+	Optional<MemberEntity> findByEmail(String email);
 }

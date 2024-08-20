@@ -24,10 +24,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 
 @DynamicUpdate
+@Setter
 @Getter
 @Builder
 @AllArgsConstructor
@@ -70,7 +72,10 @@ public class MemberEntity {
                 .id(this.memNo)
                 .userId(this.userId)
                 .email(this.email)
+                .phone(this.phone)
                 .address(this.address)
+                .petName(this.petName)
+                .petBreed(this.petBreed)
                 .build();
     }
 	

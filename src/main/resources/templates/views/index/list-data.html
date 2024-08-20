@@ -9,7 +9,7 @@
             </div>
             <div class="col5-text2">
                 
-               <del> <span class="original-price" th:text="${product.price != null} ? |${#numbers.formatInteger(product.price, 3, 'COMMA')}원| : '가격 정보 없음'">38,000</span></del>
+               <del><span class="original-price" th:text="${product.price != null} ? |${#numbers.formatInteger(product.price, 3, 'COMMA')}원| : '가격 정보 없음'">38,000</span></del>
             </div>
             <div class="col5-text3">
                 <span class="discount" th:text="${product.discount != null} ? |${product.discount}%| : '할인 정보 없음'">55%</span>
