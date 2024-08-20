@@ -3,6 +3,8 @@
 	th:replace="~{views/admin/layout::layout(~{::head}, ~{::main})}">
 <head>
 <meta charset="UTF-8">
+<meta name="_csrf" th:content="${_csrf.token}" />
+<meta name="_csrf_header" th:content="${_csrf.headerName}" />
 <link rel="stylesheet" href="/css/admin/petfir.css">
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script th:src="@{/js/admin/petfir.js}"></script>
@@ -10,80 +12,8 @@
 </head>
 <main>
 	<div class="content">
-		<div id="chart_div"></div>
-		<div class="visitor-stats">
-		<div class="visitor">주간 방문자 현황</div>
-			<table>
-				<thead>
-					<tr>
-						<th>날짜</th>
-						<th>신규방문</th>
-						<th>재방문</th>
-						<th>순방문자</th>
-						<th>전체방문</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>(금)</td>
-						<td>1</td>
-						<td>2</td>
-						<td>1</td>
-						<td>3</td>
-					</tr>
-					<tr>
-						<td>(목)</td>
-						<td>2</td>
-						<td>2</td>
-						<td>1</td>
-						<td>4</td>
-					</tr>
-					<tr>
-						<td>(수)</td>
-						<td>1</td>
-						<td>1</td>
-						<td>0</td>
-						<td>2</td>
-					</tr>
-					<tr>
-						<td>(화)</td>
-						<td>2</td>
-						<td>0</td>
-						<td>0</td>
-						<td>4</td>
-					</tr>
-					<tr>
-						<td>(월)</td>
-						<td>1</td>
-						<td>0</td>
-						<td>2</td>
-						<td>2</td>
-					</tr>
-					<tr>
-						<td>(일)</td>
-						<td>2</td>
-						<td>3</td>
-						<td>1</td>
-						<td>5</td>
-					</tr>
-					<tr>
-						<td>(토)</td>
-						<td>2</td>
-						<td>0</td>
-						<td>1</td>
-						<td>2</td>
-					</tr>
-					<tr>
-						<th>주간 합계</th>
-						<th>11</th>
-						<th>8</th>
-						<th>6</th>
-						<th>22</th>
-					</tr>
-					<!-- 나머지 행들 -->
-				</tbody>
-			</table>
-		</div>
+		<div id="donutchart" style="width: 900px; height: 500px;"></div>
+
 	</div>
 </main>
 </html>

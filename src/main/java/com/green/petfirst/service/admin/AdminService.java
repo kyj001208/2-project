@@ -13,4 +13,6 @@ public interface AdminService {
 	Page<DeliverDTO> getDeliverList(String devNo, String devTime, String devComplete, String devCompany,
 			Pageable pageable);
 
+	void salesProcess(Model model);
+
 }
