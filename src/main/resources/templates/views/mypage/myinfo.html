@@ -2,65 +2,57 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout::frame(~{this::head}, ~{this::main})}">
 
 <head>
-<meta charset="UTF-8">
-<title>PETFIR</title>
-<link rel="stylesheet" href="/css/mypage/mypage.css" />
-<link rel="stylesheet" href="/css/commons/common.css" />
+    <meta charset="UTF-8">
+    <meta name="_csrf" th:content="${_csrf.token}" />
+	<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+    <title>PETFIR</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/js/mypage/mypage.js"></script>
+    <link rel="stylesheet" href="/css/mypage/mypage.css" />
+    <link rel="stylesheet" href="/css/commons/common.css" />
 </head>
 <body>
-<main class="mypage">
+	<main class="mypage">
+        <div th:replace="~{views/mypage/top}"></div>
+        <div class="mypage-main-container">
+            <div th:replace="~{views/mypage/sidebar}"></div>
+            <div class="mypage-wrap">
+                <h2>회원정보</h2>
+				<form id="member-form" action="/petfir/mypage/update" method="post">
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                    <div class="member-info">
+                        <div class="text-wrap">
+                            <p>이메일: </p>
+                            <span th:text="${dto.email}">이메일</span>
+                            
+                            <p>아이디: </p>
+                            <span th:text="${dto.userId}">아이디</span>
 
-<div th:replace="~{views/mypage/top}"></div>
-	<div class="mypage-main-container">
-<div th:replace="~{views/mypage/sidebar}"></div>
-		
-		<div class="mypage-main">
-		<h2>회원정보</h2>
-			<div class="myinfo-container">
-        
-        
-        <div class="section">
-            <h2>나의 정보</h2>
-            <div class="info">
-                <div class="info-item">
-                    <span class="label">이메일</span>
-                    <span class="value">test1234@testmail.com</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">기본정보</span>
-                    <span class="value">김여름(여, 1999년)</span>
-                    <button class="edit-btn">수정</button>
-                </div>
-                <div class="info-item">
-                    <span class="label">휴대전화</span>
-                    <span class="value">01045694222</span>
-                    <button class="edit-btn">수정</button>
-                </div>
-            </div>
+                            <p>전화번호: </p>
+                            <span class="display" th:text="${dto.phone}">전화번호</span>
+                            <input class="edit" type="text" name="phone" th:value="${dto.phone}" style="display:none;" />
 
-        </div>
+                            <p>주소: </p>
+                            <span class="display" th:text="${dto.address}">주소</span>
+                            <input class="edit" type="text" name="address" th:value="${dto.address}" style="display:none;" />
 
-        <div class="section">
-            <h2>내 새꾸</h2>
-            <div class="dog-list">
-                <div class="dog-card">
-                    <span class="dog-name">럭키</span>
-              
-                    <span class="dog-breed">말티푸 | 여아</span>
-                </div>
-                <div class="add-dog">
-                    <button class="add-dog-btn">강아지 등록하기</button>
-                </div>
+                            <p>반려동물 이름: </p>
+                            <span class="display" th:text="${dto.petName}">반려동물 이름</span>
+                            <input class="edit" type="text" name="petName" th:value="${dto.petName}" style="display:none;" />
+
+                            <p>반려동물 품종: </p>
+                            <span class="display" th:text="${dto.petBreed}">반려동물 품종</span>
+                            <input class="edit" type="text" name="petBreed" th:value="${dto.petBreed}" style="display:none;" />
+                        </div>
+                    </div>
+                    <div class="btn-wrap">
+                        <button type="button" id="edit-btn">정보 수정</button>
+                        <button type="submit" id="update-btn" style="display:none;">저장</button>
+                        <button type="button" id="cancel-btn" style="display:none;">취소</button>
+                    </div>
+                </form>
             </div>
         </div>
-    </div>
-			
-			
-			
-		</div>
-		
-	</div>
-
-</main>
+	</main>
 </body>
 </html>

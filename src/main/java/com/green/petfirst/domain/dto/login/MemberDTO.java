@@ -9,11 +9,13 @@ import com.green.petfirst.security.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Builder
+@Getter
 @NoArgsConstructor
+@Builder
 @AllArgsConstructor
 @Setter
 public class MemberDTO {
@@ -39,6 +41,7 @@ public class MemberDTO {
 	public MemberEntity toEntity(PasswordEncoder pass) {
 		
 		return MemberEntity.builder()
+				.memNo(this.id)
 				.userId(userId)
 				.password(pass.encode(password))
 				.name(name)
@@ -50,10 +53,5 @@ public class MemberDTO {
 				.roles(Set.of(Role.PETFIR))
 				.build();
 	}
-
-
-
-
-	
 
 }
