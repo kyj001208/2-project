@@ -4,8 +4,6 @@ import org.springframework.stereotype.Service;
 
 import com.green.petfirst.domain.dto.pay.PaySaveDTO;
 import com.green.petfirst.domain.entity.CartProductEntity;
-import com.green.petfirst.domain.entity.MarketEntity;
-import com.green.petfirst.domain.entity.MemberEntity;
 import com.green.petfirst.domain.entity.PayEntity;
 import com.green.petfirst.domain.repository.CartRepository;
 import com.green.petfirst.domain.repository.MarketRepository;
@@ -17,18 +15,19 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Service
 public class PayServiceProccess implements PayService {
-
-	private final PayRepository repository; // 결제 레포지토리
-	private final CartRepository cartrepository; // 장바구니 상품 레포지토리
-
-	@Override
+	
+	private final PayRepository repository; //결제 레포지토리
+	private final CartRepository cartrepository; //장바구니 상품 레포지토리
+	
 	public void saveProcess(PaySaveDTO dto) {
-		for (String cartNoStr : dto.getCartNo()) {
-			long cartNo = Long.parseLong(cartNoStr); // 문자열을 long으로 변환
-			CartProductEntity cartProduct = cartrepository.findById(cartNo)
-					.orElseThrow(() -> new RuntimeException("Cart not found with id " + cartNo));
+	    if (dto.getCartNo().isEmpty()) {
+	        throw new RuntimeException("No Cart ID provided");
+	    }
+	    Long cartNo = dto.getCartNo().get(0); // 첫 번째 장바구니 번호를 사용
+	    CartProductEntity cartproduct = cartrepository.findById(cartNo)
+	        .orElseThrow(() -> new RuntimeException("Cart not found with id " + cartNo));
 
-			repository.save(dto.toEntity(cartProduct));
-		}
+	    repository.save(dto.toEntity(cartproduct));
 	}
+
 }

@@ -52,12 +52,12 @@ $(document).ready(function() {
 			}),
 			success: function(response) {
 				// 성공 시의 처리
-				alert('결제가 완료되었습니다.');
+				
 
 			},
 			error: function(xhr, status, error) {
 				// 실패 시의 처리
-				alert('결제 처리 중 오류가 발생했습니다.');
+				
 			}
 		});
 	});

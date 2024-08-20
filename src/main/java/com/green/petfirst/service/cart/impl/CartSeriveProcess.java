@@ -103,5 +103,23 @@ public class CartSeriveProcess implements CartSerive {
 	    repository.save(updatedCartProduct);
 	}
 
+	/*//전체 초기화 메서드
+	@Transactional
+	 @Override
+	    public void deleteCartProcess(PetfirUserDetails user) {
+	        // 사용자의 장바구니를 조회
+	        MarketEntity market = marketRepository.findByMember_email(user.getEmail())
+	                .orElseThrow(() -> new RuntimeException("Market not found for the user"));
+	        long marketNo = market.getMarketNo();
 
-}
+	        // marketNo에 해당하는 장바구니 항목을 삭제
+	        repository.deleteByMarket_MarketNo(marketNo);
+	    }
+	    
+	    */
+	}
+
+	
+
+
+

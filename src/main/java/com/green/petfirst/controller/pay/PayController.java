@@ -13,6 +13,8 @@ import com.green.petfirst.domain.dto.pay.PaySaveDTO;
 import com.green.petfirst.security.PetfirUserDetails;
 import com.green.petfirst.service.cart.CartSerive;
 import com.green.petfirst.service.cart.PayService;
+import com.green.petfirst.service.category.CategoryService;
+import com.green.petfirst.service.product.ProductService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -27,14 +29,15 @@ public class PayController {
 	
 	private final CartSerive cartservice;
 	private final PayService payservice;
+	private final ProductService productService;
 	
-	
+	//토스용
 	@GetMapping("/petfir/pay/detail/success")
 	public String paysuccess() {
 		return "/views/cart/success";
 	}
 	
-	
+	//토스용
 	@GetMapping("/petfir/pay/detail/fail")
 	public String payFail() {
 		return "/views/cart/fail";
@@ -58,6 +61,8 @@ public class PayController {
 	//단건결제
 	@GetMapping("/petfir/pay/onepaydetail")
 	public String onePay() {
+		
+		
 		return "/views/cart/onepaydetail";
 	}
 	
