@@ -5,12 +5,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.green.petfirst.domain.dto.pay.PaySaveDTO;
 import com.green.petfirst.security.PetfirUserDetails;
 import com.green.petfirst.service.cart.CartSerive;
+import com.green.petfirst.service.cart.PayService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @RequiredArgsConstructor
@@ -19,17 +26,7 @@ public class PayController {
 	
 	
 	private final CartSerive cartservice;
-	
-	/*
-	 * @GetMapping("/petfir/pay") public String login() { return "/views/cart/pay";
-	 * }
-	 */
-	
-	/*
-	 * @GetMapping("/petfir/pay/detail") public String paydetail() { return
-	 * "/views/cart/paydetail"; }
-	 */
-	
+	private final PayService payservice;
 	
 	
 	@GetMapping("/petfir/pay/detail/success")
@@ -64,6 +61,15 @@ public class PayController {
 		return "/views/cart/onepaydetail";
 	}
 	
+	
+	@ResponseBody
+	@PostMapping("/petfir/paySaveDoc")
+	public String paySave(@RequestBody PaySaveDTO dto) {
+		
+		payservice.saveProcess(dto);
+		
+		return "";
+	}
 
 	
 	

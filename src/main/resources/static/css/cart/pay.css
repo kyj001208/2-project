@@ -44,10 +44,11 @@
 	padding-bottom: 20px;
 }
 
-.totalprice{
+.paytotalprice{
 	
+	padding-top:20px;
 	display: flex;
-	padding-bottom: 20px;
+	padding-bottom: 30px;
 	padding: 10px 0; /* 위아래 여백 설정 */
 	justify-content: center;
 }
@@ -81,6 +82,21 @@
 
 .cartpay{
 	
+	text-align: center;
+	padding-bottom: 30px;
+	padding-top: 20px;
+	
+}
+
+.paytossbtn{
+	
+	width: 300px;
+	background-color: var(--sub-pink);
+	font-family: "Hi Melody", sans-serif;
+	font-size: 16px;
+	border-radius: 1em;
+	color: var(--grey);
+	border: none;
 	
 }
 
