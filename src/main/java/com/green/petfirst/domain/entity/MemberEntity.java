@@ -6,6 +6,7 @@ import java.util.Set;
 import org.hibernate.annotations.DynamicUpdate;
 
 import com.green.petfirst.domain.dto.login.MemberDTO;
+import com.green.petfirst.domain.dto.login.MemberUpdateDTO;
 import com.green.petfirst.security.Role;
 
 import jakarta.persistence.CollectionTable;
@@ -37,7 +38,6 @@ import lombok.Setter;
 @Table(name = "member")
 @Entity
 public class MemberEntity {
-	
 	
 
 	@Id
@@ -79,7 +79,13 @@ public class MemberEntity {
                 .build();
     }
 	
-	
+	public MemberEntity updateInfo(MemberUpdateDTO dto) {
+		phone=dto.getPhone();
+		address=dto.getAddress();
+		petBreed=dto.getPetBreed();
+		petName=dto.getPetName();
+		return this;
+	}
 	///////////////////////////////////////////////Role 권한 관련 ////////////////////////////////////////////////////////////////////////
 	
 	@Enumerated(EnumType.STRING)
