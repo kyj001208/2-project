@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{views/commons/layout :: frame(pHead=~{::head}, pMain=~{::main}, pHeader=~{::header}, pFooter=~{::footer})}">
+<head th:fragment="head">
+  <title>이벤트 페이지</title>
+  <link rel="stylesheet" href="/css/event/event.css">
+</head>
+<body>
+<header th:replace="~{fragments/header :: header}"></header>
+<main class="container" th:fragment="main">
+  <h1 class="page-title">이벤트</h1>
+  <div class="event-header">
+    <h2 class="event-title">첫 구매 특별 혜택!</h2>
+    <h3 class="event-subtitle">신규 회원을 위한 특별한 할인 혜택</h3>
+  </div>
+  <ul class="event-list">
+    <li th:each="event : ${events}">
+      <span th:text="${event}"></span>
+    </li>
+  </ul>
+  <img src="https://funnc-event-maker-static.s3.ap-northeast-2.amazonaws.com/cbc81770-4d82-11ef-a4a8-23d010255f27.jpg" class="event-image">
+</main>
+<footer th:fragment="footer" class="footer">
+  <!-- Footer content can be defined or included here -->
+</footer>
+</body>
+</html>
