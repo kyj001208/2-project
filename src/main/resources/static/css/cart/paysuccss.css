@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap');
+
 .w-100 {
 width: 100%;
 }
@@ -129,4 +131,22 @@ text-align: right;
 
 .color-grey {
 color: #b0b8c1;
+}
+
+#successDiv{
+	
+	padding-bottom: 30px;
+	padding-top: 20px;
+	
+}
+
+#successBtn{
+	width: 200px;
+	height:40px;
+	background-color: #F7EEE4;
+	font-family: "Hi Melody", sans-serif;
+	font-size: 16px;
+	border-radius: 1em;
+	color: #777777;
+	border: none;
 }
