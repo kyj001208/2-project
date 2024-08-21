@@ -52,7 +52,8 @@ $(document).ready(function() {
                 quantity: quantities
 			}),
 			success: function(response) {
-				// 성공 시의 처리
+				
+				//window.location.href = 'http://localhost:8080/petifr/pay';
 				
 
 			},

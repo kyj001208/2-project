@@ -28,8 +28,7 @@
 			<h2 class="title">결제를 완료했어요</h2>
 			<div class="response-section w-100">
 				<div class="flex justify-between">
-					<span class="response
-					-label">결제 금액</span> <span id="amount"
+					<span class="response-label">결제 금액</span> <span id="amount"
 						class="response-text"></span>
 				</div>
 				<div class="flex justify-between">
@@ -41,9 +40,14 @@
 						id="paymentKey" class="response-text"></span>
 				</div>
 			</div>
-
 		</div>
 	</div>
 	
+	<!-- 숨겨진 확인 버튼 -->
+	<div id="successDiv" class="successdiv" style="display: none;">
+		<button id="successBtn" class="successbtn">확인</button>
+	</div>
+	
+	<script src="/js/pay/success.js"></script>
 </body>
 </html>

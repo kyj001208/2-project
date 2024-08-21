@@ -44,3 +44,28 @@ async function confirmPayment() {
 
 const confirmPaymentButton = document.getElementById('confirmPaymentButton');
 confirmPaymentButton.addEventListener('click', confirmPayment);
+
+
+/////////////////////////확인버튼//////////////////////////
+document.addEventListener("DOMContentLoaded", function() {
+            const confirmPaymentButton = document.getElementById('confirmPaymentButton');
+            const successDiv = document.getElementById('successDiv');
+            const successBtn = document.getElementById('successBtn');
+            
+            // 결제 승인 버튼 클릭 이벤트
+            confirmPaymentButton.addEventListener('click', function() {
+           
+                // 결제 승인 후 확인 버튼 표시
+                successDiv.style.display = 'block';
+            });
+            
+            // 확인 버튼 클릭 이벤트
+            successBtn.addEventListener('click', function() {
+                // 부모 창(메인 창)으로 제어를 이동
+                if (window.opener) {
+                    window.opener.location.href = '/petfir/mypage/orders'; // 메인 페이지 URL로 변경
+                    window.close(); // 현재 창 닫기
+                }
+            });
+        });
+

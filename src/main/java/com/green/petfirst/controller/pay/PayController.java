@@ -62,7 +62,6 @@ public class PayController {
 	@GetMapping("/petfir/pay/onepaydetail")
 	public String onePay() {
 		
-		
 		return "/views/cart/onepaydetail";
 	}
 	

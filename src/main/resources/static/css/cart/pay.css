@@ -53,6 +53,14 @@
 	justify-content: center;
 }
 
+.onepaydetail{
+	
+	display: flex;
+}
+
+.payment_css{
+	width: 100%;
+}
 
 
 .cart_lists{
@@ -98,6 +106,16 @@
 	color: var(--grey);
 	border: none;
 	
+}
+
+#payment-button{
+	width: 300px;
+	background-color: var(--sub-pink);
+	font-family: "Hi Melody", sans-serif;
+	font-size: 16px;
+	border-radius: 1em;
+	color: var(--grey);
+	border: none;
 }
 
 
