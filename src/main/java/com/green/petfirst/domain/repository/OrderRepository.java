@@ -1,5 +1,6 @@
 package com.green.petfirst.domain.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,4 +18,6 @@ public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
 	           "FROM OrderEntity o " +
 	           "GROUP BY o.product.productName")
 	    List<Object[]> findProductQuantities();
+
+    List<OrderEntity> findByOrderDateBetween(LocalDate startDate, LocalDate endDate);
 }
