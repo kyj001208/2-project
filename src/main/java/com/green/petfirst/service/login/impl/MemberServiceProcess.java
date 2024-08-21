@@ -66,4 +66,10 @@ public class MemberServiceProcess implements MemberService {
 				
 	}
 
+	@Override
+	public void myOrdersProcess(Model model, String email) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

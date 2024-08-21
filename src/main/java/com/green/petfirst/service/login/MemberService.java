@@ -16,5 +16,7 @@ public interface MemberService {
 
 	void updateMember(String email,MemberUpdateDTO dto);
 
+	void myOrdersProcess(Model model, String email);
+
 
 }

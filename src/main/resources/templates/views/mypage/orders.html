@@ -1,31 +1,93 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout::frame(~{this::head}, ~{this::main})}">
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{views/commons/layout::frame(~{this::head}, ~{this::main})}">
 
 <head>
 <meta charset="UTF-8">
 <title>PETFIR</title>
+<script src="/js/mypage/order.js"></script>
 <link rel="stylesheet" href="/css/mypage/mypage.css" />
 <link rel="stylesheet" href="/css/commons/common.css" />
 </head>
 <body>
-<main class="mypage">
+	<main class="mypage">
 
-<div th:replace="~{views/mypage/top}"></div>
-	<div class="mypage-main-container">
-<div th:replace="~{views/mypage/sidebar}"></div>
-		
-		<div class="mypage-main">
-			<h2>주문·배송</h2>
-			<div>
-				<div class="order-container">
-					<span><i class="ri-shopping-bag-3-line"></i></span>
-					<span>주문 및 배송조회 가능한 내역이 없습니다.</span>
+		<div th:replace="~{views/mypage/top}"></div>
+		<div class="mypage-main-container">
+			<div th:replace="~{views/mypage/sidebar}"></div>
+
+			<div class="mypage-main">
+				<h2>주문·배송</h2>
+				<div>
+					<table class="order-table">
+						<thead>
+							<tr>
+								<th>주문번호</th>
+								<th>상품명</th>
+								<th>수량</th>
+								<th>가격</th>
+								<th>주문일자</th>
+								<th>상태</th>
+								<th>상세보기</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>20230821-001</td>
+								<td>사료 외1건</td>
+								<td>1</td>
+								<td>₩1,000,000</td>
+								<td>2024-08-20</td>
+								<td>배송중</td>
+								<td><button class="details-btn" onclick="showOrderDetails('20230821-001')">상세보기</button></td>
+							</tr>
+							<tr>
+								<td>20230821-002</td>
+								<td>장난감 외2건</td>
+								<td>2</td>
+								<td>₩200,000</td>
+								<td>2024-08-19</td>
+								<td>배송완료</td>
+								<td><button class="details-btn" onclick="showOrderDetails('20230821-002')">상세보기</button></td>
+							</tr>
+							<tr>
+								<td>20230821-003</td>
+								<td>영양제 외1건</td>
+								<td>1</td>
+								<td>₩2,500,000</td>
+								<td>2024-08-18</td>
+								<td>주문접수</td>
+								<td><button class="details-btn" onclick="showOrderDetails('20230821-003')">상세보기</button></td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div id="order-details" class="order-details hidden">
+						<h2>주문 상세 정보</h2>
+						<p>
+							<strong>주문번호:</strong> <span id="order-no"></span>
+						</p>
+						<p>
+							<strong>상품명:</strong> <span id="product-name"></span>
+						</p>
+						<p>
+							<strong>수량:</strong> <span id="quantity"></span>
+						</p>
+						<p>
+							<strong>가격:</strong> <span id="price"></span>
+						</p>
+						<p>
+							<strong>주문일자:</strong> <span id="order-date"></span>
+						</p>
+						<p>
+							<strong>상태:</strong> <span id="status"></span>
+						</p>
+						<button onclick="hideOrderDetails()">닫기</button>
+					</div>
 				</div>
 			</div>
 		</div>
-		
-	</div>
+	</main>
 
-</main>
 </body>
 </html>

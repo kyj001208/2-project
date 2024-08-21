@@ -26,7 +26,8 @@ public class MypageController {
 	private final MemberService service;
 	
 	@GetMapping("/petfir/mypage/orders")
-	public String getMypage() {
+	public String getMyOrders(Model model, @AuthenticationPrincipal PetfirUserDetails user) {
+		service.myOrdersProcess(model, user.getEmail());
 		return "views/mypage/orders.html";
 	}
 	

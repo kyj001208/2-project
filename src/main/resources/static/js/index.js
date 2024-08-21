@@ -3,7 +3,7 @@ $(document).ready(function() {
     loadRecommendedList();
     loadNewList();
     loadreasonablyProduct();
-    loadTodayProduct('23');
+    loadTodayProduct('123');
    
     // 배너 슬라이드
     let currentIndex = 0;
@@ -28,51 +28,54 @@ $(document).ready(function() {
     }
 
     // 타이머 코드
-function initTimer() {
-    const timerElement = document.getElementById('timer');
+    function initTimer() {
+        const timerElement = document.getElementById('timer');
 
-    if (!timerElement) {
-        console.error("타이머 요소를 찾을 수 없습니다.");
-        return;
-    }
+        if (timerElement) {
+            let now = new Date();
+            let start = new Date();
+            start.setHours(10, 0, 0, 0); // 오전 10시로 설정
+            let end = new Date(start.getTime() + 24 * 60 * 60 * 1000); // 24시간 후
 
-    const now = new Date();
-    const start = new Date();
-    start.setHours(10, 0, 0, 0); // 오전 10시로 설정
-    const end = new Date(start.getTime() + 24 * 60 * 60 * 1000); // 24시간 후
+            function startTimer() {
+                let interval = setInterval(() => {
+                    now = new Date();
+                    let timeLeft = end - now;
 
-    if (now >= start && now <= end) {
-        startTimer();
-    } else if (now < start) {
-        const delay = start - now;
-        setTimeout(startTimer, delay);
-    } else {
-        timerElement.textContent = "타이머는 이미 종료되었습니다.";
-    }
+                    if (timeLeft <= 0) {
+                        clearInterval(interval);
+                        timerElement.textContent = "타이머 종료";
+                    } else {
+                        let hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+                        let minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
+                        let seconds = Math.floor((timeLeft / 1000) % 60);
 
-    function startTimer() {
-        const interval = setInterval(() => {
-            const now = new Date();
-            const timeLeft = end - now;
+                        let formattedTime = 
+                            String(hours).padStart(2, '0') + ":" +
+                            String(minutes).padStart(2, '0') + ":" +
+                            String(seconds).padStart(2, '0');
 
-            if (timeLeft <= 0) {
-                clearInterval(interval);
-                timerElement.textContent = "타이머 종료";
-            } else {
-                const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
-                const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
-                const seconds = Math.floor((timeLeft / 1000) % 60);
-
-                timerElement.textContent = 
-                    `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                        timerElement.textContent = formattedTime;
+                    }
+                }, 1000);
             }
-        }, 1000);
+
+            if (now >= start && now <= end) {
+                startTimer();
+            } else if (now < start) {
+                let delay = start - now;
+                setTimeout(startTimer, delay);
+            } else {
+                timerElement.textContent = "타이머는 이미 종료되었습니다.";
+            }
+        } else {
+            console.error("타이머 요소를 찾을 수 없습니다.");
+        }
     }
-}
 
     //상품리스트
     function loadRecommendedList() {
-        /*console.log("Loading recommended products...");*/
+        console.log("Loading recommended products...");
         $.get(`/public/index/recommendedProduct`, function(data) {
             $("#col-5").html(data);
         });
