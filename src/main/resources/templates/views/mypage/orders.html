@@ -47,10 +47,10 @@
 									<span th:text="${dto.quantity}"></span>
 								</td>
 								<td>
-									<span th:text="${dto.unitPrice}"></span>
+									<span th:text="|${#numbers.formatInteger(dto.unitPrice,3,'COMMA')}원|">가격</span>
 								</td>
 								<td>
-									<span th:text="${dto.total}"></span>
+									<span th:text="|${#numbers.formatInteger(dto.total,3,'COMMA')}원|">가격</span>
 								</td>
 								<td>
 									<span th:text="${dto.orderDate}"></span>

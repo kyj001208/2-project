@@ -14,15 +14,57 @@
 	<div class="mypage-main-container" id="mypageContainer">
 		<div th:replace="~{views/mypage/sidebar}"></div>
 		
-		<div class="mypage-main">
-			<h2>교환·환불</h2>
-			<div>
-				<div class="order-container">
-					<span><i class="ri-shopping-bag-3-line"></i></span>
-					<span>교환 및 환불 가능한 내역이 없습니다.</span>
+			<div class="mypage-main">
+				<h2>교환·환불</h2>
+				<div>
+					<table class="order-table">
+						<thead>
+							<tr>
+								<th>상품이미지</th>
+								<th>주문번호</th>
+								<th>상품명</th>
+								<th>수량</th>
+								<th>가격</th>
+								<th>총가격</th>
+								<th>주문일자</th>
+								<th>상태</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="dto:${list}">
+								<td>
+									<img alt="이미지" th:src="${dto.product.imgUrl}" height="100px">
+								</td>
+								<td>
+									<span th:text="${dto.orderNo}"></span>
+								</td>
+								<td>
+									<span th:text="${dto.product.productName}"></span>
+								</td>
+								<td>
+									<span th:text="${dto.quantity}"></span>
+								</td>
+								<td>
+									<span th:text="|${#numbers.formatInteger(dto.unitPrice,3,'COMMA')}원|">가격</span>
+								</td>
+								<td>
+									<span th:text="|${#numbers.formatInteger(dto.total,3,'COMMA')}원|">가격</span>
+								</td>
+								<td>
+									<span th:text="${dto.orderDate}"></span>
+								</td>
+								<td>
+									<span th:text="${dto.status.roleName}"></span>
+								</td>
+								
+							</tr>
+							
+						</tbody>
+					</table>
+								
 				</div>
 			</div>
-		</div>
 		
 	</div>
 
