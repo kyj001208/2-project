@@ -8,7 +8,7 @@
 	   	 model.addAttribute() 이름과 일치-->
 		<li  th:each="dto:${list}" class="product">
 			<a th:href="|/public/products/${dto.productNo}|">
-				<img class="thumbnail" th:src="${dto.imgUrl}" alt="Product Image">
+				<img class="img" th:src="${dto.imgUrl}" alt="Product Image">
 				
 			</a>
 			<h3 th:text="${dto.productName}">상품명</h3>

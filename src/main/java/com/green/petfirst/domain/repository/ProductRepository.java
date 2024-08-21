@@ -58,4 +58,8 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 	
 	Optional<ProductEntity> findByProductNo(long productNo);
 	
+	//상품검색
+    List<ProductEntity> findByProductNameContainingOrProductDetailContaining(String productName, String productDetail);
+    
+    
 }

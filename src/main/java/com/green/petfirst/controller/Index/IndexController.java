@@ -55,27 +55,4 @@ public class IndexController {
 	    return "views/index/today-data"; // 뷰 이름을 반환합니다.
 	}
 	
-    static class TimerInfo {
-        private long hoursLeft;
-        private long minutesLeft;
-        private long secondsLeft;
-
-        public TimerInfo(long hoursLeft, long minutesLeft, long secondsLeft) {
-            this.hoursLeft = hoursLeft;
-            this.minutesLeft = minutesLeft;
-            this.secondsLeft = secondsLeft;
-        }
-
-        public long getHoursLeft() {
-            return hoursLeft;
-        }
-
-        public long getMinutesLeft() {
-            return minutesLeft;
-        }
-
-        public long getSecondsLeft() {
-            return secondsLeft;
-        }
-    }
 }
