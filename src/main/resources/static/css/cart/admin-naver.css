@@ -1,0 +1,40 @@
+
+.jojicdo-container{
+	display: flex;
+	padding-top: 30px;
+}
+
+.jogido-menu{
+	
+	width:100%; 
+	border-right: 1px solid var(--sub-gray);
+	padding-left: 20px;
+}
+
+.jogido-menu >a {
+	
+	font-size: 30px;
+	display: block;
+	padding-bottom: 20px;
+}
+
+.jojicdo-listss{
+	
+	line-height: 1.6;
+}
+
+
+.jojicdo-listss> tbody > tr:nth-child(1) > td:nth-child(1){
+	font-size: 20px;
+	padding-bottom: 20px;
+}
+
+.jogicmem-main{
+	
+	width: 100%;
+}
+
+.jogic-title {
+	
+	display: flex;
+}
