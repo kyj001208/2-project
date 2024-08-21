@@ -29,7 +29,10 @@ ext {
 }
 
 dependencies {
-
+	
+	// https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
+	implementation 'org.apache.poi:poi-ooxml:5.3.0'
+	
 	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
 	
 		// https://mvnrepository.com/artifact/io.awspring.cloud/spring-cloud-aws-starter

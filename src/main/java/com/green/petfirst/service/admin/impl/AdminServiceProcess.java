@@ -77,17 +77,17 @@ public class AdminServiceProcess implements AdminService {
 
 	@Override
 	public Map<String, Long> SalesDataProcess(LocalDate startDate, LocalDate endDate) {
-		
-		List<OrderEntity> orders = orderRep.findByOrderDateBetween(startDate, endDate);
-        Map<String, Long> salesData = new HashMap<>();
+	    List<OrderEntity> orders = orderRep.findByOrderDateBetween(startDate, endDate);
+	    Map<String, Long> salesData = new HashMap<>();
 
-        for (OrderEntity order : orders) {
-            String orderDate = order.getOrderDate().toString();
-            long total = order.getTotal();
-            salesData.merge(orderDate, total, Long::sum);
-        }
+	    for (OrderEntity order : orders) {
+	        String orderDate = order.getOrderDate().toString(); // 날짜를 문자열로 변환
+	        long total = order.getTotal();
+	        salesData.merge(orderDate, total, Long::sum);
+	    }
 
-        return salesData;
-    }
+	    return salesData;
+	}
+
 
 }

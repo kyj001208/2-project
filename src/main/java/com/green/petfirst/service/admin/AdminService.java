@@ -17,5 +17,5 @@ public interface AdminService {
 			Pageable pageable);
 
 	Map<String, Long> SalesDataProcess(LocalDate startDate, LocalDate endDate);
-
-}
+	
+	}
