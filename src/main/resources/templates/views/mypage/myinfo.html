@@ -6,6 +6,7 @@
     <meta name="_csrf" th:content="${_csrf.token}" />
 	<meta name="_csrf_header" th:content="${_csrf.headerName}" />
     <title>PETFIR</title>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="/js/mypage/mypage.js"></script>
     <link rel="stylesheet" href="/css/mypage/mypage.css" />
@@ -21,26 +22,48 @@
 				<form id="member-form" action="/petfir/mypage/update" method="post">
 					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                     <div class="member-info">
+                    	                <div class="profile-container">
+                    <div class="myprofile">
+                        <img src="/img/mypage/myprofile.jpg" alt="Profile">
+                    </div>
+                    <div class="user-name-wrap">
+               			<div sec:authorize="isAuthenticated()" class="logoutwrap">
+							<span class="user-name">
+								<b sec:authentication="principal.name">이름</b>
+								<span>님</span>
+							</span>
+						</div>
+                    </div>
+                </div>
                         <div class="text-wrap">
-                            <p>이메일: </p>
+                            <p>✿ 이메일: </p>
                             <span th:text="${dto.email}">이메일</span>
                             
-                            <p>아이디: </p>
+                            <p>✿ 아이디: </p>
                             <span th:text="${dto.userId}">아이디</span>
 
-                            <p>전화번호: </p>
+                            <p>✿ 전화번호: </p>
                             <span class="display" th:text="${dto.phone}">전화번호</span>
                             <input class="edit" type="text" name="phone" th:value="${dto.phone}" style="display:none;" />
 
-                            <p>주소: </p>
+                            <p>✿ 주소: </p>
                             <span class="display" th:text="${dto.address}">주소</span>
-                            <input class="edit" type="text" name="address" th:value="${dto.address}" style="display:none;" />
-
-                            <p>반려동물 이름: </p>
+                            
+							
+							<input class="edit" id="sample6_postcode" type="text" placeholder="우편번호" style="display:none;">
+							<input class="edit" id="sample6_postcode_btn" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="display:none;"><br>
+							<input class="edit" id="sample6_address" type="text" name="address" th:value="${dto.address}" style="display:none;" /><br>
+							<input class="edit" id="sample6_detailAddress" type="text" placeholder="상세주소" style="display:none;">
+							<input class="edit" type="text" id="sample6_extraAddress" placeholder="참고항목" style="display:none;">
+						
+						</div>
+							
+						<div class="text-wrap">
+                            <p>✿ 반려동물 이름: </p>
                             <span class="display" th:text="${dto.petName}">반려동물 이름</span>
                             <input class="edit" type="text" name="petName" th:value="${dto.petName}" style="display:none;" />
 
-                            <p>반려동물 품종: </p>
+                            <p>✿ 반려동물 품종: </p>
                             <span class="display" th:text="${dto.petBreed}">반려동물 품종</span>
                             <input class="edit" type="text" name="petBreed" th:value="${dto.petBreed}" style="display:none;" />
                         </div>

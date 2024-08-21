@@ -62,7 +62,7 @@
 }
 .profile-container>div{
 	display: flex;
-	width: 100%;
+	
 	margin: 10px;
 }
 
@@ -182,6 +182,65 @@
 	font-size: 20px;
 }
 
+/*주문내역*/
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.order-table th,
+.order-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid var(--sub-grey);
+}
+
+.order-table th {
+    background-color: var(--sub-pink);
+    color: var(--grey);
+}
+
+.order-table tr:hover {
+    background-color: var(--sub-grey);
+}
+
+.details-btn {
+    background-color: var(--sub-pink);
+    color: var(--grey);
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+
+.order-details {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid var(--sub-grey);
+    border-radius: 8px;
+}
+
+.order-details.hidden {
+    display: none;
+}
+
+.order-details button {
+    margin-top: 20px;
+    background-color: var(--sub-pink);
+    color: var(--grey);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+
+
+
+
 
 /* 회원 정보 수정 */
 
@@ -189,7 +248,7 @@
 .member-info {
     min-width: 800px;
     margin: 30px;
-    padding: 20px;
+    padding: 50px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -241,4 +300,15 @@
     cursor: pointer;
     margin: 0 10px;
     transition: background-color 0.3s ease;
+}
+
+#sample6_postcode_btn{
+	font-family: "Hi Melody", sans-serif !important;
+	background-color: var(--logo-brown);
+	color: var(--white);
+	border: 1px solid var(--sub-pink);
+	border-radius: 20px;
+	cursor: pointer;
+	font-size: 18px;
+	
 }
