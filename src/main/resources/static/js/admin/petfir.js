@@ -70,11 +70,25 @@ function formatDate(date) {
 }
 
 function downloadExcel() {
-	let endDate = new Date();
-	let startDate = new Date(endDate);
-	startDate.setDate(startDate.getDate() - 7);
+    let endDate = new Date();
+    let startDate = new Date(endDate);
+    startDate.setDate(startDate.getDate() - 7);
 
-	let url = `/api/exportSalesData?startDate=${formatDate(startDate)}&endDate=${formatDate(endDate)}`;
-	window.location.href = url; // 이 URL을 호출하면 브라우저에서 엑셀 파일을 다운로드합니다.
+    let url = `/api/downloadSalesReport?startDate=${formatDate(startDate)}&endDate=${formatDate(endDate)}`;
+
+    fetch(url, { method: 'GET' })
+        .then(response => response.blob())
+        .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'sales_report.xlsx'; // 다운로드할 파일 이름
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        })
+        .catch(error => console.error('Error downloading the file:', error));
 }
+
 
