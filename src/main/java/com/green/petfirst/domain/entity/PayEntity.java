@@ -1,5 +1,6 @@
 package com.green.petfirst.domain.entity;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,6 +17,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
@@ -23,7 +25,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Setter
 @DynamicUpdate
 @Getter
 @Builder
@@ -37,23 +41,30 @@ public class PayEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long payNo; // 결제테이블 번호
 
-	@OneToOne
-	@JoinColumn(name = "cartNo")
-	private CartProductEntity cartProduct; // 장바구니 상품 번호
-	
-	
-	@OneToOne
-	@JoinColumn(name = "MarketNo")
-	private CartProductEntity market; // 장바구니 상품 번호
-
+	//@OneToOne
+	//@JoinColumn(name = "cartNo")
+	//private CartProductEntity cartProduct; // 장바구니 상품 번호
+	/*
+	@JoinColumn(name = "productNo")
+	@OneToMany
+	@Builder.Default
+	private List<ProductEntity> products=new ArrayList<>();
 	// priave MarketEntity market; //장바구니
+	
+	public PayEntity addProducts(ProductEntity productEntity) {
+		products.add(productEntity);
+		return this;
+	}
+	*/
 
 	private String recipient;// 받는사람
 
 	private String payAddress; // 받는 주소
 	
 	private String phoneNum;
-
+	private long payTotal;
+	
+	/*
 	@ElementCollection
 	@CollectionTable(name = "pay_product_details", joinColumns = @JoinColumn(name = "pay_no"))
 	@Column(name = "productName")
@@ -63,7 +74,7 @@ public class PayEntity {
 	@CollectionTable(name = "pay_product_details", joinColumns = @JoinColumn(name = "pay_no"))
 	@Column(name = "totalPrice")
 	private List<String> totalPrice; // 가격 리스트
-
+	*/
 	private long paymentKey; // 결제테이블 번호
 
 	private long orderId;

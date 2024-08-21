@@ -68,7 +68,7 @@ public class CartController {
 	}
 	
 	
-	/*
+	
 	@DeleteMapping("/petfir/clear")
 	public String deletCart(@AuthenticationPrincipal PetfirUserDetails user) {
 		
@@ -78,7 +78,7 @@ public class CartController {
 		
 		
 	}
-	*/
+	
 	
 
 }

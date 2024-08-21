@@ -20,7 +20,7 @@ public interface CartSerive {
 
 	void updateProcess(long no, CartUpdateDTO dto);
 
-	//void deleteCartProcess(PetfirUserDetails user);
+	void deleteCartProcess(PetfirUserDetails user);
 
 	
 

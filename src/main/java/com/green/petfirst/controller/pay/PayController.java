@@ -69,9 +69,9 @@ public class PayController {
 	
 	@ResponseBody
 	@PostMapping("/petfir/paySaveDoc")
-	public String paySave(@RequestBody PaySaveDTO dto) {
+	public String paySave(@RequestBody PaySaveDTO dto,@AuthenticationPrincipal PetfirUserDetails user) {
 		
-		payservice.saveProcess(dto);
+		payservice.saveProcess(dto, user.getEmail());
 		
 		return "";
 	}

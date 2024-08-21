@@ -64,13 +64,13 @@ public class OrderServiceProcess implements OrderService{
 	            .orElseThrow(() -> new RuntimeException("해당 주문을 찾을 수 없습니다: " + orderNo));
 
 	    // 주문에 연결된 배송, 결제, 상품, 회원 정보를 가져와야 합니다.
-	    DeliverEntity deliver = order.getDeliver();
+	    //DeliverEntity deliver = order.getDeliver();
 	    ProductEntity product = order.getProduct();
 	    MemberEntity member = order.getMember();
 
 	    // 모델에 추가
 	    model.addAttribute("order", order);
-	    model.addAttribute("deliver", deliver);
+	    //model.addAttribute("deliver", deliver);
 	    model.addAttribute("product", product);
 	    model.addAttribute("member", member);
 	}

@@ -4,6 +4,6 @@ import com.green.petfirst.domain.dto.pay.PaySaveDTO;
 
 public interface PayService {
 
-	void saveProcess(PaySaveDTO dto);
+	void saveProcess(PaySaveDTO dto, String email);
 
 }
