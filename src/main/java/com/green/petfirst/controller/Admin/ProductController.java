@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+
 import com.green.petfirst.domain.dto.product.ImageSaveDTO;
 import com.green.petfirst.domain.dto.product.ProductAddDTO;
 import com.green.petfirst.domain.dto.product.ProductListDTO;
+import com.green.petfirst.domain.dto.product.ProductSearchDTO;
 import com.green.petfirst.domain.entity.CategoryEntity;
 import com.green.petfirst.domain.entity.ProductEntity;
 import com.green.petfirst.domain.repository.CategoryRepository;
@@ -102,5 +104,13 @@ public class ProductController {
         productService.deleteImagesByProductNo(productNo);
         productService.deleteProduct(productNo);
         return "redirect:/admin/productList";
+    }
+    
+    @GetMapping("/public/search")
+    public String searchProducts(@RequestParam("keyword") String keyword, Model model) {
+        List<ProductSearchDTO> dto = productService.searchProducts(keyword);
+        model.addAttribute("list", dto);
+        model.addAttribute("keyword", keyword);  // 키워드를 모델에 추가
+        return "views/product/list-search"; // 검색 결과를 보여줄 뷰
     }
 }

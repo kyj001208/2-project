@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{views/commons/layout::frame(~{this::head}, ~{this::main})}">
+
+<head>
+<meta charset="UTF-8">
+<title>PETFIR</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="/css/product/list.css" />
+<link rel="stylesheet" href="/css/category/list.css" />
+<link rel="stylesheet" href="/css/commons/common.css" />
+<script src="/js/category/list.js"></script>
+<script th:inline="javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    loadCategoryAll();
+    
+});
+</script>
+</head>
+<body>
+	<main>
+		<div th:replace="~{views/categorypage/top}"></div>
+
+		<div class="categorypage-wrap">
+			<div class="categorypage-container">
+				<nav id="category-menu"></nav>
+				<div>
+					<div class="category-title">
+					
+						<h2 th:text="'\' '+ ${keyword}+'\''+' 검색결과'">검색결과</h2>
+					</div>
+					<ol class="products">
+						<!--CategoryServiceProcess의 categoryProductListProcess메서드에서
+	   	 					model.addAttribute() 이름과 일치-->
+						<li th:each="dto:${list}" class="product">
+						<a th:href="|/public/products/${dto.productNo}|"> 
+							<img class="img" th:src="@{${dto.imgUrl}}" alt="Product Image">
+						</a>
+							<h3 th:text="${dto.productName}">상품명</h3> 
+							<del>
+								<span th:text="|${#numbers.formatInteger(dto.price,3,'COMMA')}원|">판매가</span>
+							</del>
+							<p class="price">
+								<span class="discount" th:text="${dto.discount+'%'}">할인률</span> 
+								<span th:text="|${#numbers.formatInteger(dto.discountPrice,3,'COMMA')}원|">할인가격</span>
+							</p>
+						</li>
+					</ol>
+				</div>
+
+			</div>
+		</div>
+	</main>
+</body>
+</html>

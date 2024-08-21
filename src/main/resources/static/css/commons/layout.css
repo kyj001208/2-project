@@ -165,7 +165,8 @@ a.logo {
     background-color: transparent; /* 배경 투명 */
 }
 
-.search-form .search-button {
+.searchbtn {
+	border: none;
     background-color: var(--white); /* 버튼 배경색 */
     padding: 10px 15px; /* 내부 여백 */
     display: flex;

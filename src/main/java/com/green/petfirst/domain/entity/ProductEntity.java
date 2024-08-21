@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.DynamicUpdate;
 
 import com.green.petfirst.domain.dto.product.ProductListDTO;
+import com.green.petfirst.domain.dto.product.ProductSearchDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -77,8 +78,25 @@ public class ProductEntity {
     }
 
 
-
-
+    public ProductSearchDTO toProductSearchDTO() {
+    	String imgUrl=null;
+    	if(images==null||images.isEmpty()) {
+    		//대체이미지 적용
+    		imgUrl="/img/no-img.jpg";
+    	}else {
+    		imgUrl=images.get(0).getImgUrl();
+    	}
+    	
+    	return ProductSearchDTO.builder()
+    			.productDetail(productDetail)
+    			.productName(productName)
+    			.productNo(productNo)
+    			.discount(discount)
+    			.discountPrice(discountPrice)
+    			.price(price)
+    			.imgUrl(imgUrl)
+    			.build();
+    }
 
     
 

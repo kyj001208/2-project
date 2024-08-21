@@ -22,6 +22,7 @@ import com.green.petfirst.domain.dto.product.ImageSaveDTO;
 import com.green.petfirst.domain.dto.product.ImgUploadDTO;
 import com.green.petfirst.domain.dto.product.ProductAddDTO;
 import com.green.petfirst.domain.dto.product.ProductListDTO;
+import com.green.petfirst.domain.dto.product.ProductSearchDTO;
 import com.green.petfirst.domain.entity.CategoryEntity;
 import com.green.petfirst.domain.entity.ImageEntity;
 import com.green.petfirst.domain.entity.ProductEntity;
@@ -132,5 +133,13 @@ public class ProductAddServiceProcess implements ProductAddService {
             // 데이터베이스에서 이미지 정보 삭제
             imagesRepository.delete(image);
         }
+    }
+    
+	@Override
+    public List<ProductSearchDTO> searchProducts(String keyword) {
+        List<ProductEntity> productSearch = productRepository.findByProductNameContainingOrProductDetailContaining(keyword, keyword);
+        return productSearch.stream()
+                .map(ProductEntity::toProductSearchDTO)
+                .collect(Collectors.toList());
     }
 }

@@ -8,12 +8,15 @@
                 <div class="loginwrap2"></div>
             </div>
             <div class="search-container ">
-            	<form action="#" method="get" target="_blank" class="search-form">
-	                <input name="search-input" placeholder="검색해보세요..." type="text">
+            
+            	<form action="/public/search" method="get" class="search-form">
+	                <input name="keyword" placeholder="검색해보세요..." type="text">
 	                <div class="search-button">
-	                	<i class="ri-search-line"></i>
+	                	<button class="searchbtn" type="submit"><i class="ri-magic-fill"></i></button>
 	                </div>
                 </form>
+                
+                
             </div>
             <div class="loginwrap">
             	<span sec:authorize="isAnonymous()">

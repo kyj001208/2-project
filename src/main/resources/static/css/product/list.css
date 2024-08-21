@@ -62,13 +62,14 @@
 
 /*//////////상품목록///////////*/
 .category-title {
-    display: flex;
-    justify-content: space-between; /* 자식 요소들 간의 간격을 설정 */
+
+   
     
     padding: 20px 0; /* 위, 아래 패딩을 추가하여 공간을 확보 */
     border-bottom: 1px solid #ddd; /* 아래에 경계선을 추가하여 분리 */
 }
 .category-title h2 {
+
     font-size: 24px;
     margin: 0;
 }
@@ -115,8 +116,3 @@
     font-weight: bold;
 }
 /*////////////////////*/
-.thumbnail {
-    max-width: 100px; /* 썸네일의 최대 너비 설정 */
-    height: auto;     /* 비율 유지 */
-    object-fit: cover; /* 이미지를 박스에 맞게 자르기 */
-}

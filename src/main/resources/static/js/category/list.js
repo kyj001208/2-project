@@ -76,34 +76,4 @@ function loadChildCategories(categoryNo) {
     });
 }
 
-// 썸네일 생성 및 로딩
-document.addEventListener("DOMContentLoaded", function() {
-    const thumbnails = document.querySelectorAll('img.thumbnail');
 
-    thumbnails.forEach(thumbnail => {
-        const src = thumbnail.getAttribute('data-src');
-        if (src) {
-            const img = new Image();
-            img.onload = function() {
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-                const maxDimension = 100; // 썸네일의 최대 너비/높이
-                
-                // 이미지 비율에 맞춰 캔버스 크기 설정
-                if (img.width > img.height) {
-                    canvas.width = maxDimension;
-                    canvas.height = (img.height / img.width) * maxDimension;
-                } else {
-                    canvas.height = maxDimension;
-                    canvas.width = (img.width / img.height) * maxDimension;
-                }
-
-                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-                // 썸네일을 data URL로 변환하고 이미지 src에 설정
-                thumbnail.src = canvas.toDataURL('image/jpeg');
-            };
-            img.src = src;
-        }
-    });
-});
