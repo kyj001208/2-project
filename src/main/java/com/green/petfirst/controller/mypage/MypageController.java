@@ -32,8 +32,15 @@ public class MypageController {
 	}
 	
 	@GetMapping("/petfir/mypage/return")
-	public String getMyReturn() {
-		return "views/mypage/return.html";
+	public String getMyRefunds(Model model, @AuthenticationPrincipal PetfirUserDetails user) {
+	    // 로그인한 사용자의 이메일을 가져옵니다.
+	    String email = user.getEmail();
+
+	    // 사용자 정보를 조회하고 상태가 "교환환불"인 주문 내역만 필터링합니다.
+	    service.myRefundsProcess(email, model);
+
+	    // 마이페이지의 상단 부분으로 이동합니다.
+		return "views/mypage/return";
 	}
 	
 	//마이정보 조회

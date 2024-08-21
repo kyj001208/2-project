@@ -96,4 +96,22 @@ public class MemberServiceProcess implements MemberService {
 		
 	}
 
+	@Override
+	public void myRefundsProcess(String email, Model model) {
+	       // 이메일로 사용자 주문 내역을 조회합니다.
+        List<OrderListDTO> orders = orderRepository.findByMember_email(email).stream()
+        .map(OrderEntity::toOrderListDTO).collect(Collectors.toList());
+
+        // 상태가 "교환환불"인 주문만 필터링합니다.
+        List<OrderListDTO> list = orders.stream()
+        		.filter(order -> order.getStatus() == Status.EXCHANGE || order.getStatus() == Status.REFUND)
+                .collect(Collectors.toList());
+
+        // 필터링된 주문 내역을 모델에 추가합니다.
+        model.addAttribute("list", list);
+		
+	}
+
+
+
 }

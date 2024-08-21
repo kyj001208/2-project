@@ -20,5 +20,7 @@ public interface MemberService {
 
 	void mydataProcess(String email, Model model);
 
+	void myRefundsProcess(String email, Model model);
+
 
 }
