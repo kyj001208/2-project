@@ -1,35 +1,80 @@
-google.charts.load("current", { packages: ["corechart"] });
-google.charts.setOnLoadCallback(drawChart);
+google.charts.load('current', { packages: ['corechart'] });
+google.charts.setOnLoadCallback(initChart);
 
-function drawChart() {
-	fetch('/api/salesData?startDate=2024-08-07&endDate=2024-08-13')
-		.then(response => {
-			if (!response.ok) {
-				throw new Error('Network response was not ok');
-			}
-			return response.json();
-		})
+let chart;
+let dataTable;
+let options;
+
+function initChart() {
+	dataTable = new google.visualization.DataTable();
+	dataTable.addColumn('date', 'Date');
+	dataTable.addColumn('number', 'Sales');
+
+	options = {
+		title: 'Daily Sales',
+		curveType: 'function',
+		legend: { position: 'bottom' },
+		hAxis: {
+			title: 'Date',
+			format: 'MM-dd',
+			gridlines: { count: 7 },
+			minorGridlines: { count: 0 }
+		},
+		vAxis: {
+			title: 'Sales'
+		},
+		pointSize: 5,
+		explorer: {
+			actions: ['dragToZoom', 'rightClickToReset'],
+			axis: 'horizontal',
+			keepInBounds: true,
+			maxZoomIn: 4.0
+		}
+	};
+
+	chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+	updateChart();
+
+	const fiveMinutes = 300000;
+	setInterval(updateChart, fiveMinutes);
+}
+
+function updateChart() {
+	let endDate = new Date();
+	let startDate = new Date(endDate);
+	startDate.setDate(startDate.getDate() - 7);
+
+	let url = `/api/salesData?startDate=${formatDate(startDate)}&endDate=${formatDate(endDate)}`;
+
+	fetch(url)
+		.then(response => response.json())
 		.then(data => {
-			console.log(data); // 데이터를 콘솔에서 확인
+			dataTable.removeRows(0, dataTable.getNumberOfRows());
 
-			// 날짜와 판매량을 담은 2차원 배열 생성
-			var chartData = [['Date', 'Sales']];
-			for (const [dateStr, sales] of Object.entries(data)) {
-				var dateObj = new Date(dateStr);
-				chartData.push([dateObj, sales]);
-			}
+			Object.entries(data).forEach(([date, sales]) => {
+				let dateObj = new Date(date + 'T00:00:00');
+				dataTable.addRow([dateObj, sales]);
+			});
 
-			var dataTable = google.visualization.arrayToDataTable(chartData);
+			// 날짜순으로 정렬
+			dataTable.sort([{ column: 0 }]);
 
-			var options = {
-				title: 'Daily Sales',
-				hAxis: { title: 'Date', format: 'yyyy-MM-dd' },
-				vAxis: { title: 'Sales' },
-				legend: { position: 'none' }
-			};
-
-			var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
 			chart.draw(dataTable, options);
 		})
-		.catch(error => console.error('Fetch error:', error));
+		.catch(error => console.error('Error:', error));
 }
+
+function formatDate(date) {
+	return date.toISOString().split('T')[0];
+}
+
+function downloadExcel() {
+	let endDate = new Date();
+	let startDate = new Date(endDate);
+	startDate.setDate(startDate.getDate() - 7);
+
+	let url = `/api/exportSalesData?startDate=${formatDate(startDate)}&endDate=${formatDate(endDate)}`;
+	window.location.href = url; // 이 URL을 호출하면 브라우저에서 엑셀 파일을 다운로드합니다.
+}
+
