@@ -9,6 +9,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -29,13 +31,14 @@ import lombok.NoArgsConstructor;
 public class OrderEntity {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long orderNo; // 교환/환불(pk)
 	
+	/*
 	@OneToOne
-	@JoinColumn(name = "devNo", nullable = false)
-	private DeliverEntity deliver; // 배송번호 (fk)
-	
-	@OneToOne
+	@JoinColumn(name = "devNo") private DeliverEntity deliver; // 배송번호 (fk)
+	*/	
+	@ManyToOne
 	@JoinColumn(name = "payNo", nullable = false)
 	private PayEntity pay; // 결제번호 (fk)
 	

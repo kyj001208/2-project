@@ -9,5 +9,7 @@ import com.green.petfirst.domain.entity.PayEntity;
 
 public interface PayRepository extends JpaRepository<PayEntity, Long>{
 
+	//List<PayEntity> findByCartProductNo(long cartNo); //여기 수정 
+
 
 }

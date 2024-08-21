@@ -94,7 +94,7 @@
 								<li class="cart_lists">
 									<div class="cartNo" th:text="${dto.cartNo}" style="display:none;"></div>
 									<div th:text="${dto.productName}" class="pay-name">상품명</div>
-									<div th:text="${dto.count}">수량</div>
+									<div class="pay-count" th:text="${dto.count}" th:attr="data-count=${dto.count}">수량</div>
 									<div class="pay-price" th:text="${dto.totalprice}" th:attr="data-price=${dto.totalprice}">
 									    가격
 									</div>
@@ -119,7 +119,7 @@
 
 						<button
 							onclick="window.open('http://localhost:8080/petfir/pay/detail','window_name','width=1000,height=800,location=no,status=no,scrollbars=yes,left=400,top=200');"
-							type="button" class="paytossbtn">결제하기</button>
+							type="button" class="paytossbtn" id="paytossbtn">결제하기</button>
 
 					</div>
 
