@@ -13,9 +13,9 @@
   <h1 class="event-page-title">진행 중인 이벤트</h1>
   <ul class="event-items-list">
     <li th:each="event : ${events}" class="event-item">
-      <a th:href="@{'/event/' + ${event.id}}">
+      <a th:href="@{'/public/event/' + ${event.id}}">
         <img th:src="${event.imageUrl}" th:alt="${event.title}" class="event-image">
-        <h2 th:text="${event.title}" class="event-title"></h2>
+        <h3 th:text="${event.title}" class="event-title"></h3>
         <p th:text="${event.description}" class="event-description"></p>
         <p class="event-date" th:text="${#temporals.format(event.startDate, 'yyyy-MM-dd')} + ' ~ ' + ${#temporals.format(event.endDate, 'yyyy-MM-dd')}"></p>
       </a>
