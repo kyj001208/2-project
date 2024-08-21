@@ -18,5 +18,7 @@ public interface MemberService {
 
 	void myOrdersProcess(Model model, String email);
 
+	void mydataProcess(String email, Model model);
+
 
 }

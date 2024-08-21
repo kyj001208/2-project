@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.green.petfirst.domain.dto.order.OrderListDTO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -71,6 +73,18 @@ public class OrderEntity {
 	public void setStatus(Status status) {
 		this.status = status;
 		
+	}
+	
+	public OrderListDTO toOrderListDTO() {
+		return OrderListDTO.builder()
+				.orderNo(orderNo)
+				.product(product.toProductListDTO())
+				.quantity(quantity)
+				.unitPrice(unitPrice)
+				.total(total)
+				.orderDate(orderDate)
+				.status(status)
+				.build();
 	}
 	
 	

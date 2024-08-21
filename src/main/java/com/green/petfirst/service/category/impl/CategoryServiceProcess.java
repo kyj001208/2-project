@@ -74,6 +74,7 @@ public class CategoryServiceProcess implements CategoryService {
 	public void categoryProductListProcess(Long categoryNo, Model model) {
 		// 1차-2차-3차 상품은 연결이 3차에만 연결됨
 		CategoryEntity category=categoryRepository.findById(categoryNo).orElseThrow();
+		
 		//FetchType.LAZY 이기에 session이 유지되어야한다.  //@Transactional 적용함
 		List<ProductEntity> list=null;
 		if (category.getParent() == null || category.getParent().getParent() == null) {
@@ -89,6 +90,26 @@ public class CategoryServiceProcess implements CategoryService {
 		model.addAttribute("list", list.stream()
 				.map(ProductEntity::toProductListDTO)
 				.collect(Collectors.toList()));
+		//String categoryName = category.getCategoryName();
+    	//model.addAttribute("cate", category.toCategoryDTO());
+		/////////////////////////////////////////////////
+		
+		List<CategoryDTO> cateList=new ArrayList<>();
+		CategoryDTO categoryDTO=category.toCategoryDTO();
+		cateList.add(categoryDTO);
+		
+		
+		CategoryEntity cate=category;
+		while((cate=cate.getParent())!=null){
+			categoryDTO=cate.toCategoryDTO();
+			cateList.add(categoryDTO);
+		}
+		
+		Collections.reverse(cateList);//리스트 순서를 역순으로처리
+		
+		model.addAttribute("cateList", cateList);
+		
+		 
 	}
     
     /** 

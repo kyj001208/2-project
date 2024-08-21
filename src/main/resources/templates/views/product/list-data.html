@@ -1,7 +1,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <section id="product-content">
 	<div class="category-title flex">
-		<h2 th:text="${categoryName}"></h2>
+		<th:block th:each="cate,iterStat:${cateList}">
+		<a th:if="${cate}" th:href="|/public/categories/${cate.categoryNo}|">
+			<h2 th:text="${cate.categoryName}"></h2>
+		</a>
+		<span th:if="${not iterStat.last}" style="padding: 0 1em;">&gt;</span>
+		</th:block>
+		
 	</div>
 	<ol class="products">
 		<!--CategoryServiceProcess의 categoryProductListProcess메서드에서
