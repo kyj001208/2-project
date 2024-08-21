@@ -30,8 +30,10 @@ ext {
 
 dependencies {
 	
-	// https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
-	implementation 'org.apache.poi:poi-ooxml:5.3.0'
+    implementation 'org.apache.poi:poi:5.3.0'
+    implementation 'org.apache.poi:poi-ooxml:5.3.0'
+    implementation 'org.apache.poi:poi-ooxml-schemas:4.1.2' // 경우에 따라 필요한 경우도 있습니다.
+    implementation 'org.apache.xmlbeans:xmlbeans:5.2.1' // 경우에 따라 필요한 경우도 있습니다.
 	
 	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
 	

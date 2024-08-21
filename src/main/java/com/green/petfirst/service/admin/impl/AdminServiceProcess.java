@@ -2,9 +2,7 @@ package com.green.petfirst.service.admin.impl;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
@@ -16,10 +14,8 @@ import org.springframework.ui.Model;
 import com.green.petfirst.domain.dto.deliver.DeliverDTO;
 import com.green.petfirst.domain.entity.DeliverEntity;
 import com.green.petfirst.domain.entity.MemberEntity;
-import com.green.petfirst.domain.entity.OrderEntity;
 import com.green.petfirst.domain.repository.DeliverRepository;
 import com.green.petfirst.domain.repository.MemberRepository;
-import com.green.petfirst.domain.repository.OrderRepository;
 import com.green.petfirst.service.admin.AdminService;
 
 import lombok.RequiredArgsConstructor;
@@ -30,7 +26,6 @@ public class AdminServiceProcess implements AdminService {
 
 	private final MemberRepository memberRep;
 	private final DeliverRepository deliverRep;
-	private final OrderRepository orderRep;
 
 	@Override
 	public void ListProcess(Model model) {
@@ -74,20 +69,5 @@ public class AdminServiceProcess implements AdminService {
 
 		return new PageImpl<>(pageContent, pageable, filteredList.size());
 	}
-
-	@Override
-	public Map<String, Long> SalesDataProcess(LocalDate startDate, LocalDate endDate) {
-	    List<OrderEntity> orders = orderRep.findByOrderDateBetween(startDate, endDate);
-	    Map<String, Long> salesData = new HashMap<>();
-
-	    for (OrderEntity order : orders) {
-	        String orderDate = order.getOrderDate().toString(); // 날짜를 문자열로 변환
-	        long total = order.getTotal();
-	        salesData.merge(orderDate, total, Long::sum);
-	    }
-
-	    return salesData;
-	}
-
 
 }
