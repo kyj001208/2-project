@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout::frame(~{this::head}, ~{this::main})}">
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{views/commons/layout-mypage::frame(~{this::head}, ~{this::#mypageContainer})}">
 
 <head>
     <meta charset="UTF-8">
@@ -7,15 +8,14 @@
 	<meta name="_csrf_header" th:content="${_csrf.headerName}" />
     <title>PETFIR</title>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="/js/mypage/mypage.js"></script>
     <link rel="stylesheet" href="/css/mypage/mypage.css" />
     <link rel="stylesheet" href="/css/commons/common.css" />
 </head>
 <body>
 	<main class="mypage">
-        <div th:replace="~{views/mypage/top}"></div>
-        <div class="mypage-main-container">
+        
+        <div class="mypage-main-container" id="mypageContainer">
             <div th:replace="~{views/mypage/sidebar}"></div>
             <div class="mypage-main">
                 <h2>회원정보</h2>

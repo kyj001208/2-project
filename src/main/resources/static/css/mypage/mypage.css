@@ -109,7 +109,7 @@
 .mypage-main-container {
     display: flex;
    	min-width: 1200px;
-    height: 100vh; /* 화면 전체 높이 */
+    min-height: 100vh; /* 화면 전체 높이 */
 }
 
 /* 사이드바 스타일 */
@@ -194,6 +194,12 @@
     padding: 12px;
     text-align: center;
     border-bottom: 1px solid var(--sub-grey);
+    vertical-align:middle;
+}
+.order-table td>*{
+	 display: flex;
+    align-items: center;
+    
 }
 
 .order-table th {

@@ -1,16 +1,24 @@
 
 package com.green.petfirst.service.login.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.green.petfirst.domain.dto.login.MemberDTO;
 import com.green.petfirst.domain.dto.login.MemberUpdateDTO;
+import com.green.petfirst.domain.dto.order.OrderListDTO;
 import com.green.petfirst.domain.entity.MarketEntity;
 import com.green.petfirst.domain.entity.MemberEntity;
+import com.green.petfirst.domain.entity.OrderEntity;
+import com.green.petfirst.domain.entity.Status;
 import com.green.petfirst.domain.repository.MarketRepository;
 import com.green.petfirst.domain.repository.MemberRepository;
+import com.green.petfirst.domain.repository.OrderRepository;
+import com.green.petfirst.domain.repository.PayRepository;
 import com.green.petfirst.service.login.MemberService;
 
 import jakarta.transaction.Transactional;
@@ -22,6 +30,7 @@ public class MemberServiceProcess implements MemberService {
 
 	private final MemberRepository repository;
 	private final MarketRepository marketRepository;
+	private final OrderRepository orderRepository; 
 	private final PasswordEncoder pass;
 	
 	@Override
@@ -68,7 +77,22 @@ public class MemberServiceProcess implements MemberService {
 
 	@Override
 	public void myOrdersProcess(Model model, String email) {
-		// TODO Auto-generated method stub
+		List<OrderListDTO> list=orderRepository.findByMember_email(email).stream()
+		.map(OrderEntity::toOrderListDTO).collect(Collectors.toList());
+		model.addAttribute("list", list);
+	}
+
+	@Override
+	public void mydataProcess(String email, Model model) {
+		List<OrderListDTO> list=orderRepository.findByMember_email(email).stream()
+		.map(OrderEntity::toOrderListDTO).collect(Collectors.toList());
+								
+		model.addAttribute("PENDING", list.stream().filter(dto->dto.getStatus()==Status.PENDING).count());
+		model.addAttribute("CONFIRMED", list.stream().filter(dto->dto.getStatus()==Status.CONFIRMED).count());
+		model.addAttribute("PROCESSING", list.stream().filter(dto->dto.getStatus()==Status.PROCESSING).count());
+		model.addAttribute("DELIVERED", list.stream().filter(dto->dto.getStatus()==Status.DELIVERED).count());
+		model.addAttribute("EXCHANGE", list.stream().filter(dto->dto.getStatus()==Status.EXCHANGE ).count() );
+		model.addAttribute("REFUND", list.stream().filter(dto->dto.getStatus()==Status.REFUND).count());
 		
 	}
 

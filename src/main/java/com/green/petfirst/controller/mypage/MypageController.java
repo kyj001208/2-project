@@ -28,7 +28,7 @@ public class MypageController {
 	@GetMapping("/petfir/mypage/orders")
 	public String getMyOrders(Model model, @AuthenticationPrincipal PetfirUserDetails user) {
 		service.myOrdersProcess(model, user.getEmail());
-		return "views/mypage/orders.html";
+		return "views/mypage/orders";
 	}
 	
 	@GetMapping("/petfir/mypage/return")
@@ -62,5 +62,17 @@ public class MypageController {
         // 사용자 정보를 업데이트합니다.
         service.updateMember(email,dto);
     }
+	
+	@GetMapping("/petfir/mypage/mydata")
+	public String mydata(Model model, @AuthenticationPrincipal PetfirUserDetails user) {
+	    // 로그인한 사용자의 이메일을 가져옵니다.
+	    String email = user.getEmail();
+
+	    // 사용자 정보를 조회하는 서비스 메서드를 호출합니다.
+	    service.mydataProcess(email, model);
+
+	    // 마이정보 페이지로 이동합니다.
+	    return "views/mypage/top";
+	}
 
 }

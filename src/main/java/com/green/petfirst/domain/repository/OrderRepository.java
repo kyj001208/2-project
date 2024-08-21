@@ -20,4 +20,6 @@ public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
 	    List<Object[]> findProductQuantities();
 
     List<OrderEntity> findByOrderDateBetween(LocalDate startDate, LocalDate endDate);
+
+	List<OrderEntity> findByMember_email(String email);
 }
