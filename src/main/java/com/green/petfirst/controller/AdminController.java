@@ -29,10 +29,9 @@ public class AdminController {
 	}
 	
 	@GetMapping("/admin/SaleStatus")
-    public String Sales(Model model) {
-        service.salesProcess(model);
-        return "views/admin/saleStatus";
-    }
+	public String Sales(Model model) {
+	    return "views/admin/saleStatus";
+	}
 	
 	@GetMapping("/admin/deliver")
 	public String deliver(

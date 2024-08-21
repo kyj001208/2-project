@@ -1,5 +1,8 @@
 package com.green.petfirst.service.admin;
 
+import java.time.LocalDate;
+import java.util.Map;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.ui.Model;
@@ -13,6 +16,6 @@ public interface AdminService {
 	Page<DeliverDTO> getDeliverList(String devNo, String devTime, String devComplete, String devCompany,
 			Pageable pageable);
 
-	void salesProcess(Model model);
+	Map<String, Long> SalesDataProcess(LocalDate startDate, LocalDate endDate);
 
 }
