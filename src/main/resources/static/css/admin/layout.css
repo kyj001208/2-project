@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap');
+
+
 body {
 	display: block;
 	line-height: 1.6;
@@ -160,4 +163,24 @@ main>.wrap {
 
 #menu-list>.wrap dl dt {
 	cursor: pointer;
+}
+
+
+/* /////////////////////////////////조직도////////////////// */
+
+.jogicdodiv{
+	
+	border-top: 1px solid rgba(255, 255, 255, .15);
+	padding-top: 15px;
+	padding-left: 10px;
+}
+
+#jogicdobtn{
+	
+	font-family: "Hi Melody", sans-serif !important;
+	border: none;
+	background: none;
+	font-size: 16px;
+	color:  #fff;
+	font-weight: 700;
 }

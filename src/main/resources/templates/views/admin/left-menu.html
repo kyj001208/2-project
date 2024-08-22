@@ -77,8 +77,25 @@
 						<div>
 							<a href="#">Q&A 리스트</a>			
 						</div>
+						
+					
 					</dd>
 				</dl>
+				
+					<div class="jogicdodiv">
+						
+						<form action="https://auth.worksmobile.com/oauth2/v2.0/authorize">
+						<input type="hidden" name="client_id" th:value="${@environment.getProperty('naver.client.id')}">
+						<input type="hidden" name="redirect_uri"
+							th:value="${@environment.getProperty('naver.client.redirect-uri')}">
+						<input type="hidden" name="scope" th:value="${@environment.getProperty('naver.client.scope')}">
+						<input type="hidden" name="response_type" value="code">
+						<input type="hidden" name="state" value="orgunit.read">
+						<button id="jogicdobtn">조직도</button>
+
+					</form>
+						
+				</div>
 			</div>
 		</section>
 		<script>
