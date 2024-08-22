@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout::frame(~{this::head}, ~{this::main})}">
-	<head>
-	    <link rel="stylesheet" href="/css/cs/notice.css">
-	</head>
-	<main>
-		<h1>공지사항 리스트</h1>
-		<div class="wrap container">
-			<p class="page-title">공지사항 리스트</p>
-			<section id="notice-list">
-				<h1>컨텐츠</h1>
-				<div class="contents"></div>
-			</section>
-		</div>
-	</main>
+    <head>
+        <!-- 공지사항 페이지를 위한 스타일 시트 연결 -->
+        <link rel="stylesheet" href="/css/cs/notice.css">
+    </head>
+    <main>
+        <!-- 공지사항 리스트 페이지의 메인 제목 -->
+        <h1>공지사항 리스트</h1>
+        <div class="wrap container">
+            <!-- 공지사항 리스트의 제목 -->
+            <p class="page-title">공지사항 리스트</p>
+            <section id="notice-list">
+                <!-- 섹션의 제목 -->
+                <h1>컨텐츠</h1>
+                <!-- 공지사항 내용이 들어갈 영역 -->
+                <div class="contents"></div>
+            </section>
+        </div>
+    </main>
 </html>

@@ -1,0 +1,294 @@
+@charset "UTF-8";
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap');
+
+* {box-sizing: border-box;} /*헤더영향*/
+button{
+	border: none; 
+    margin-top: 10px;
+    display: flex; /* 아이콘과 텍스트를 수직으로 배치할 수 있도록 설정 */
+    flex-direction: column; /* 아이콘이 텍스트 위에 위치하도록 설정 */
+    align-items: center; /* 가운데 정렬 */
+    justify-content: center; /* 세로 가운데 정렬 */
+    border-radius: 5px;
+    padding: 10px; /* 버튼 내부 여백 조정 */
+    background-color: #f4f4f4;	
+    overflow: hidden;
+	}
+body {
+	font-family: "Hi Melody", sans-serif !important;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 16px;
+	line-height: 1.6
+	
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* faq css */
+.topbar{
+	width: 100vw;
+	min-width: 960px;
+}
+h1 {
+	position: absolute;
+	left: -9999px
+}
+
+.page-title {
+	font-size: 20px;
+	font-weight: 700;
+	color: #222;
+	padding-bottom: 30px;
+	border-bottom: 1px solid #ebebeb;
+	margin-bottom: 10px;
+}
+
+main{
+	width: calc(100vw - 200px);
+	padding-top: 70px;
+}
+
+main>.wrap {
+	padding: 40px 40px 0 40px;
+	min-width: 760px;
+}
+
+#summernote ~ .note-editor{
+	width: 100%;
+}
+#summernote ~ .note-editor>.note-editing-area {
+	height: 350px;
+}
+
+#faq-update #summernote ~ .note-editor>.note-editing-area {
+	height: auto;
+}
+
+/* ##faq 등록-관리자#### */
+
+#faq-update>.contents form>ul>li,
+#faq-write>.contents>form>ul>li {
+	margin: 20px 0;
+	display: flex;
+}
+#faq-update>.contents form>ul>li>label,
+#faq-write>.contents>form>ul>li>label {
+	display: block;
+	margin-right: 30px; 
+}
+#faq-update>.contents form>ul>li>input,
+#faq-write>.contents>form>ul>li>input {
+	width: 100%
+}
+#faq-update>.contents form>ul>li>textarea,
+#faq-write>.contents>form>ul>li>textarea {
+	width: 100%
+}
+.btn-style{
+	min-width: 120px; 
+	padding: 10px 16px; 
+	color: #fff;
+	background-color: #F46B3F;
+	margin: 0 5px;
+	font-weight: 700;
+	text-align: center;
+}
+	
+
+
+/* #################################################### */
+/* ##faq 리스트-관리자#### */
+/* #################################################### */
+
+#faq-admin-list>.button-container{
+	min-width: 800px;
+}
+#faq-admin-list>.button-container button{
+	width: 100%;
+	font-size: 12px;
+	letter-spacing: -1px;
+}
+#faq-admin-list>.button-container .active{
+	background-color: #F46B3F;
+}
+
+#faq-admin-list>.contents {
+	min-width: 800px;
+	margin-top: 30px;
+}
+
+
+#faq-admin-list>.contents>table tr td {
+	padding: 14px 16px 13px 16px;
+	border-bottom: 1px solid #d9d9d9;
+	text-align: center;
+}
+
+#faq-admin-list>.contents>table>thead>tr>td {
+	border-bottom: 1px solid #bbb;
+	font-weight: 700;
+}
+
+#faq-admin-list>.contents>table>thead>tr>td.no {
+	width: 100px;
+}
+
+#faq-admin-list>.contents>table>thead>tr>td.title {
+	width: 550px;
+}
+
+#faq-admin-list>.contents>table>tbody>tr>td.title {
+	text-align: left;
+}
+
+#faq-admin-list>.contents>table>thead>tr>td.create-at {
+	width: 150px;
+}
+
+#faq-admin-list>.contents>ol.paginate {
+	margin-top: 30px;
+}
+
+#faq-admin-list>.contents>ol.paginate>li {
+	margin: 0 2px;
+}
+
+#faq-admin-list>.contents>ol.paginate>li>a {
+	min-width: 30px;
+	height: 30px;
+	padding: 0 10px;
+	border: 1px solid #e9e9e9;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	line-height: 1;
+}
+
+#faq-admin-list>.contents>ol.paginate>li>a:hover {
+	background-color: #333;
+	color: #fff;
+}
+/* #################################################### */
+/* ##faq 상세페이지#### */
+/* #################################################### */
+
+
+/* 수정 버튼 클릭 시 수정 모드 전환 */
+.edit-mode #notice-detail {
+    display: none; /* 기존 제목과 등록일 숨기기 */
+}
+
+.edit-mode #notice-update {
+    display: block; /* 수정 폼 보이기 */
+}
+
+#faq-update {
+    display: none; /* 기본적으로 숨김 상태 */
+}
+
+/* faq 제목과 등록일을 수평으로 배치 */
+#faq-detail .title-date-container {
+    display: flex; /* 제목과 등록일을 수평으로 배치 */
+    justify-content: space-between; /* 제목과 등록일 사이의 공간을 최대화 */
+    align-items: center; /* 제목과 등록일을 수직으로 중앙 정렬 */
+    border-bottom: 1px solid #ccc; /* 제목 아래에 구분선 추가 */
+    padding-bottom: 10px; /* 제목과 구분선 사이의 여백 */
+    margin-bottom: 20px; /* 제목과 내용 사이의 여백 */
+}
+
+/* 제목 스타일 */
+#faq-detail .faq-title-text {
+    font-size: 25px; /* 제목 크기 */
+    font-weight: bold; /* 제목 두께 */
+    margin-right: 20px; 
+}
+
+/* 등록일 스타일 */
+#faq-detail .faq-date {
+    font-size: 14px; /* 등록일 폰트 크기 */
+    color: gray; /* 등록일 텍스트 색상 */
+}
+
+/* 내용 박스 스타일 */
+#faq-detail .faq-content {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 30px; 
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 800px; 
+    height: 500px;
+    max-width: 1200px; 
+    margin: 0 auto 40px; 
+    text-align: left; 
+}
+/* 버튼 컨테이너 여백 설정 */
+.button-container {
+    display: flex; /* 버튼들을 가로로 정렬 */
+    overflow-x: auto;
+    gap: 10px; /* 버튼 간의 간격 설정 */
+    justify-content: flex-start;
+    padding: 2px;
+    
+}
+/*faq 아이콘이미지*/
+button .icon {
+	fill: #333;
+    width: 24px; /* 원하는 사이즈로 조정 */
+    height: 24px; /* 원하는 사이즈로 조정 */
+    margin-bottom: 8px;  /* 아이콘과 텍스트 사이의 간격 */
+
+}
+button:hover {
+    background-color: #F46B3F33; /* 호버 시 배경 색상 변화 */
+     color: #fff;
+}
+.faq-button {
+   	border: none; 
+    margin-bottom: 10px;
+    display: flex; /* 아이콘과 텍스트를 수직으로 배치할 수 있도록 설정 */
+    flex-direction: column; /* 아이콘이 텍스트 위에 위치하도록 설정 */
+    align-items: center; /* 가운데 정렬 */
+    justify-content: center; /* 세로 가운데 정렬 */
+    border-radius: 5px;
+    font-size: 12px; /* 버튼 텍스트 크기 조정 */
+    padding: 10px; /* 버튼 내부 여백 조정 */
+    background-color: #f4f4f4;	
+    overflow: hidden;
+    width: 105px;
+}
+
+/* FAQ 항목 내용과 버튼 사이에 여백 추가 */
+.well {
+    position: relative;
+}
+
+/* 버튼을 잘 정렬된 상태로 하단에 배치 */
+.faq-actions {
+    margin-top: 15px;
+    text-align: right;
+}
+
+.faq-actions .edit-btn,
+.faq-actions .delete-btn {
+    margin-left: 5px;
+}
+
+.faq-actions .edit-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+.faq-actions .delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+
+

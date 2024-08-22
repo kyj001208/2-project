@@ -29,8 +29,7 @@ public class MarketEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long marketNo; //장바구니번호
 	
-	@Column(nullable = false)
-	private long totalPrice; 
+	
 	
 	@OneToOne
 	@JoinColumn(name = "memNo", nullable = false)

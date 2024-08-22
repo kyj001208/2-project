@@ -52,7 +52,7 @@ public class MemberEntity {
 	private String name; //이름
 	
 	@Column(nullable = false)
-	private String adress; //주소
+	private String address; //주소
 	
 	@Column(nullable = false)
 	private String phone;

@@ -270,6 +270,7 @@ nav>ul>li>a:hover {
     padding-top: 50px; /* 푸터 안쪽 여백 */
     display: flex;
     justify-content: center;
+    margin-top: 40px;
   
 }
 

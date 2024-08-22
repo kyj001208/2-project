@@ -1,18 +1,28 @@
 @charset "UTF-8";
-/* 공지사항 css */
-h1{position: absolute;left: -9999px}
-.page-title{
-	font-size: 20px;
-	color: #222;
-	padding: 30px 0;
-	border-bottom:1px solid #ebebeb;
+/* 공지사항 관련 CSS */
+
+/* h1 요소를 화면 밖으로 숨깁니다 */
+h1 {
+    position: absolute; /* 절대 위치 지정 */
+    left: -9999px; /* 화면에서 보이지 않도록 왼쪽으로 이동 */
 }
-input,textarea{box-sizing: border-box;}
+
+/* 페이지 제목 스타일 */
+.page-title {
+    font-size: 20px; /* 폰트 크기 설정 */
+    color: #222; /* 텍스트 색상 설정 */
+    padding: 30px 0; /* 상하 여백 설정 */
+    border-bottom: 1px solid #ebebeb; /* 하단에 회색 구분선 추가 */
+}
+
+/* 입력 필드와 텍스트 영역의 박스 크기 설정 */
+input, textarea {
+    box-sizing: border-box; /* 테두리와 패딩을 포함하여 크기 계산 */
+}
+
+/* 컨테이너 클래스: 중앙 정렬 */
 .container {
-    margin: 0 auto;
+    margin: 0 auto; /* 자동 여백으로 수평 중앙 정렬 */
 }
 
-/* ##공지사항 리스트#### */
-
-
-
+/* ##공지사항 리스트 스타일 추가 부분 (아직 정의되지 않음) */

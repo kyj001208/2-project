@@ -2,47 +2,55 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/admin/layout::layout(~{this::head}, ~{this::main})}">
 
 <head>
-    <link rel="stylesheet" href="/css/cs/notice-admin.css">
+	<!-- 공지사항 관리자 페이지를 위한 스타일 시트 연결 -->
+	<link rel="stylesheet" href="/css/cs/notice-admin.css">
 </head>
 <main id="cs">
-    <h1>공지사항 리스트-관리자</h1>
-    <div class="wrap">
-        <p class="page-title">공지사항 리스트</p>
-        <section id="notice-admin-list">
-            <h1>컨텐츠</h1>
-            <div class="contents">
-                <table>
-                    <thead>
-                        <tr>
-                            <td class="no">번호</td>
-                            <td class="title">제목</td>
-                            <td class="create-at">등록일</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="dto:${list}">
-                            <td th:text="${dto.noticeNo}">번호</td>
-                            <td class="title">
-                                <a th:href="|/admin/customer/notices/${dto.noticeNo}|" th:text="${dto.title}">제목</a>
-                            </td>
-                            <td th:text="${dto.createAt.toLocalDate}">등록일</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <ol class="paginate flex center">
-                    <li>
-                        <a href="#">&lt;</a>
-                    </li>
-                    <li th:each="pno:${#numbers.sequence(1,10)}">
-                        <a href="#">[[${pno}]]</a>
-                    </li>
-                    <li>
-                        <a href="#">&gt;</a>
-                    </li>
-                </ol>
-            </div>
-        </section>
-    </div>
+	<h1>공지사항 리스트-관리자</h1>
+	<div class="wrap">
+		<p class="page-title">공지사항 리스트</p>
+		<section id="notice-admin-list">
+			<h1>컨텐츠</h1>
+			<div class="contents">
+				<table>
+					<thead>
+						<!-- 테이블 헤더: 번호, 제목, 등록일 -->
+						<tr>
+							<td class="no">번호</td>
+							<td class="title">제목</td>
+							<td class="create-at">등록일</td>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- 공지사항 리스트 출력 -->
+						<tr th:each="dto : ${list}">
+							<td th:text="${dto.no}">번호</td>
+							<td class="title">
+								<!-- 공지사항 상세 페이지로 링크 -->
+								<a th:href="|/admin/customer/notices/detail/${dto.no}|" a th:text="${dto.title}">
+							</td>
+							<!-- 등록일을 표시 (LocalDate 형식) -->
+							<td th:text="${dto.createdAt.toLocalDate}">등록일</td>
+						</tr>
+					</tbody>
+				</table>
+				<ol class="paginate flex center">
+					<li>
+						<!-- 이전 페이지로 이동 -->
+						<a href="#">&lt;</a>
+					</li>
+					<!-- 페이지 번호 출력 -->
+					<li th:each="pno:${#numbers.sequence(1,10)}">
+						<a href="#">[[${pno}]]</a>
+					</li>
+					<li>
+						<!-- 다음 페이지로 이동 -->
+						<a href="#">&gt;</a>
+					</li>
+				</ol>
+			</div>
+		</section>
+	</div>
 </main>
 
 </html>
