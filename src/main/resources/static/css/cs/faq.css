@@ -1,0 +1,133 @@
+@charset "UTF-8";
+h1{position: absolute;left: -9999px}
+button{
+	border: none; 
+    margin-top: 10px;
+    display: flex; /* 아이콘과 텍스트를 수직으로 배치할 수 있도록 설정 */
+    flex-direction: column; /* 아이콘이 텍스트 위에 위치하도록 설정 */
+    align-items: center; /* 가운데 정렬 */
+    justify-content: center; /* 세로 가운데 정렬 */
+    border-radius: 5px;
+    padding: 10px; /* 버튼 내부 여백 조정 */
+    background-color: #f4f4f4;	
+    overflow: hidden;
+	}
+.page-title{
+	font-size: 20px;
+	color: #222;
+	padding: 30px 0;
+	border-bottom:1px solid #ebebeb;
+}
+input,textarea{box-sizing: border-box;}
+.container {
+    margin: 0 auto;
+    
+}
+/* 버튼 컨테이너 여백 설정 */
+.button-container {
+    display: flex; /* 버튼들을 가로로 정렬 */
+    overflow-x: auto;
+    gap: 10px; /* 버튼 간의 간격 설정 */
+    justify-content: flex-start;
+    padding: 2px;
+    
+}
+/*faq 아이콘이미지*/
+button .icon {
+	fill: #333;
+    width: 24px; /* 원하는 사이즈로 조정 */
+    height: 24px; /* 원하는 사이즈로 조정 */
+    margin-bottom: 8px;  /* 아이콘과 텍스트 사이의 간격 */
+
+}
+button:hover {
+    background-color: #F46B3F33; /* 호버 시 배경 색상 변화 */
+     color: #fff;
+}
+.faq-button {
+   	border: none; 
+    margin-bottom: 10px;
+    display: flex; /* 아이콘과 텍스트를 수직으로 배치할 수 있도록 설정 */
+    flex-direction: column; /* 아이콘이 텍스트 위에 위치하도록 설정 */
+    align-items: center; /* 가운데 정렬 */
+    justify-content: center; /* 세로 가운데 정렬 */
+    border-radius: 5px;
+    font-size: 12px; /* 버튼 텍스트 크기 조정 */
+    padding: 10px; /* 버튼 내부 여백 조정 */
+    background-color: #f4f4f4;	
+    overflow: hidden;
+    width: 105px;
+}
+
+#faq-list>.contents{
+	padding: 50px 0;
+}
+
+.contents>.button-container{
+	min-width: 800px;
+}
+.contents>.button-container button{
+	width: 100%;
+	font-size: 12px;
+	letter-spacing: -1px;
+}
+.contents>.button-container .active{
+	background-color: #F46B3F;
+}
+
+.contents>.contents {
+	min-width: 800px;
+	margin-top: 30px;
+}
+
+
+.contents>.contents>table tr td {
+	padding: 14px 16px 13px 16px;
+	border-bottom: 1px solid #d9d9d9;
+	text-align: center;
+}
+
+.contents>.contents>table>thead>tr>td {
+	border-bottom: 1px solid #bbb;
+	font-weight: 700;
+}
+
+.contents>.contents>table>thead>tr>td.no {
+	width: 100px;
+}
+
+.contents>.contents>table>thead>tr>td.title {
+	width: 550px;
+}
+
+.contents>.contents>table>tbody>tr>td.title {
+	text-align: left;
+}
+
+.contents>.contents>table>thead>tr>td.create-at {
+	width: 150px;
+}
+
+.contents>.contents>ol.paginate {
+	margin-top: 30px;
+}
+
+.contents>.contents>ol.paginate>li {
+	margin: 0 2px;
+}
+
+.contents>.contents>ol.paginate>li>a {
+	min-width: 30px;
+	height: 30px;
+	padding: 0 10px;
+	border: 1px solid #e9e9e9;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	line-height: 1;
+}
+
+.contents>.contents>ol.paginate>li>a:hover {
+	background-color: #333;
+	color: #fff;
+}

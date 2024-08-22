@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/admin/layout::layout(~{this::head}, ~{this::main})}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/customer/layout::layout(~{this::head}, ~{this::main})}">
 
 <head>
-	<!-- 공지사항 관리자 페이지를 위한 스타일 시트 연결 -->
-	<link rel="stylesheet" href="/css/cs/notice-admin.css">
+	<!-- 사용자 페이지 스타일 시트 연결 -->
+
+	<!-- <link rel="stylesheet" href="/css/cs/qna-user.css"> -->
+
 </head>
 <main id="cs">
-	<h1>공지사항 리스트-관리자</h1>
+	<h1>Q&A 리스트 - 사용자</h1>
 	<div class="wrap">
-		<p class="page-title">공지사항 리스트</p>
-		<section id="notice-admin-list">
+		<p class="page-title">Q&A 리스트</p>
+		<section id="qna-user-list">
 			<h1>컨텐츠</h1>
 			<div class="contents">
 				<table>
@@ -22,12 +24,13 @@
 						</tr>
 					</thead>
 					<tbody>
-						<!-- 공지사항 리스트 출력 -->
+						<!-- Q&A 리스트 출력: 각각의 DTO 객체를 반복 -->
 						<tr th:each="dto : ${list}">
-							<td th:text="${dto.no}">번호</td>
+							<td th:text="${dto.qnaNo}">번호</td>
 							<td class="title">
-								<!-- 공지사항 상세 페이지로 링크 -->
-								<a th:href="|/admin/customer/notices/detail/${dto.no}|" a th:text="${dto.title}">
+								<!-- Q&A 상세 페이지로 링크 -->
+								<a th:href="|{/petfir/customer/qna/{qnaNo}(qnaNo=${dto.qnaNo})}|"
+									th:text="${dto.title}">제목</a>
 							</td>
 							<!-- 등록일을 표시 (LocalDate 형식) -->
 							<td th:text="${dto.createdAt.toLocalDate}">등록일</td>
@@ -40,7 +43,7 @@
 						<a href="#">&lt;</a>
 					</li>
 					<!-- 페이지 번호 출력 -->
-					<li th:each="pno:${#numbers.sequence(1,10)}">
+					<li th:each="pno : ${#numbers.sequence(1,10)}">
 						<a href="#">[[${pno}]]</a>
 					</li>
 					<li>

@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+p {
+	margin: 0;
+}
+.faq-list-wrap {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.faq-list-wrap *{
+	font-weight: 400;
+	font-size: 16px;
+}
+.faq-list-wrapul>.faq-list,
+.faq-list-wrap>.faq-list {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+.faq-list-wrapul>.faq-list{
+	border-top: 2px solid #ddd;
+	padding: 20px 0;
+	font-weight:700;
+}
+
+.faq-list-wrapul>.faq-list dl,
+.faq-list-wrap>.faq-list dl {
+    margin: 0;
+}
+.faq-list-wrapul>.faq-list dl dt,
+.faq-list-wrap>.faq-list dl dt{
+	display: flex;
+}
+.faq-list-wrapul>.faq-list dl dt .division,
+.faq-list-wrap>.faq-list dl dt .division{
+	width: 150px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.faq-list-wrapul>.faq-list dl dt .title-wrap{
+	display: flex;
+	justify-content: center;
+	min-width: 700px;
+}
+.faq-list-wrap>.faq-list dl dt .title-wrap {
+	width: calc(100% - 150px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px 0;
+}
+.faq-list-wrap>.faq-list dl dt .title-wrap .title{
+	display: flex;
+	align-items: center;
+}
+.faq-list-wrap>.faq-list dl dt .title-wrap .title::before{
+	content: "Q";
+	display:inline-flex;
+	justify-content: center;
+	align-items: center;
+	width: 30px;
+	height:30px;
+	border-radius:15px;
+	margin-right:10px;
+	font-family: "Roboto";
+    font-size: 18px;
+    color: #FFF;
+    background-color: #F46B3F;
+}
+.faq-list-wrap>.faq-list dl dt + dd.faq-content{
+	display: none;
+	background-color: #e9e9e9;
+	padding: 20px 0;
+	padding-left: 150px;
+}
+.faq-list-wrap>.faq-list dl dt.active + dd.faq-content{
+	display: flex;
+}
+
+.faq-list-wrap>.faq-list dd.faq-content::before{
+	content: "A";
+	display:inline-flex;
+	justify-content: center;
+	align-items: center;
+	flex-basis: 30px; /* 너비 또는 높이를 고정 */
+    flex-shrink: 0; /* 축소되지 않도록 설정 */
+	width: 30px;
+	height:30px;
+	border-radius:15px;
+	margin-right:10px;
+	font-family: "Roboto";
+    font-size: 18px;
+    color: #FFF;
+    background-color: #7BDBD1;
+}
+
+.faq-list-wrap>.faq-list dl dt .title-wrap .arrow {
+    transition: transform 0.3s ease;
+}
+
+.faq-list-wrap>.faq-list dl dt.active .title-wrap .arrow {
+    transform: rotate(180deg);
+}

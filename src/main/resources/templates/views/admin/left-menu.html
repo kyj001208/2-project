@@ -51,10 +51,10 @@
 							<span>FAQ</span>
 						</p>
 						<div>
-							<a href="#">FAQ 등록</a>
+							<a href="/admin/customer/faq/new">FAQ 등록</a>
 						</div>
 						<div>
-							<a>FAQ 리스트</a>						
+							<a href="/admin/customer/faq">FAQ 리스트</a>						
 						</div>
 						<p class="sub">
 							<span>공지사항</span>
@@ -69,10 +69,10 @@
 							<span>Q&A</span>
 						</p>
 						<div>
-							<a href="#">Q&A 등록</a>
+							<a href="/admin/customer/qna/new">Q&A 등록</a>
 						</div>
 						<div>
-							<a href="#">Q&A 리스트</a>			
+							<a href="/admin/customer/qna">Q&A 리스트</a>			
 						</div>
 						
 					
@@ -97,12 +97,12 @@
 		</section>
 		<script>
 			document.addEventListener('DOMContentLoaded', function() {
-	            var dts = document.querySelectorAll('.wrap dl dt');
+	            var dts = document.querySelectorAll('#menu-list>.wrap dl dt');
 
 	            // 페이지 로드 시 상태 복원
 	            var activeDlIndex = localStorage.getItem('activeDlIndex');
 	            if (activeDlIndex !== null) {
-	                var activeDl = document.querySelectorAll('.wrap dl')[activeDlIndex];
+	                var activeDl = document.querySelectorAll('#menu-list>.wrap dl')[activeDlIndex];
 	                activeDl.classList.add('active');
 	            }
 
@@ -119,7 +119,7 @@
 	                    }
 
 	                    // 다른 모든 dl 요소들이 열려있다면 닫습니다.
-	                    var allDl = document.querySelectorAll('.wrap dl');
+	                    var allDl = document.querySelectorAll('#menu-list>.wrap dl');
 	                    allDl.forEach(function(dl, i) {
 	                        if (dl !== currentDl) {
 	                            dl.classList.remove('active');

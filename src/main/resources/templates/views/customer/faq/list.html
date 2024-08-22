@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout::frame(~{this::head}, ~{this::main})}">
+	<head>
+	    <link rel="stylesheet" href="/css/cs/faq.css">
+		<link rel="stylesheet" href="/css/cs/faq-list.css">
+		<script src="/js/faq-public.js"></script>
+		<script src="/js/faqFetchApi.js"></script>pt>
+	</head>
+	<main>
+		<h1>faq 리스트</h1>
+		<div class="wrap container">
+			<p class="page-title">faq 리스트</p>
+			<section id="faq-list">
+				<h1>컨텐츠</h1>
+				<div class="contents">
+					<div class="button-container flex between">
+				        <button type="button" class="active">
+				          <img class="icon" src="/img/faq/회원.svg" alt="회원 서비스">회원 서비스
+				        </button>
+				        <button type="button" >
+				          <img class="icon" src="/img/faq/결제.svg" alt="주문/결제">주문/결제
+				        </button>
+				        <button type="button" >
+				          <img class="icon" src="/img/faq/배송.svg" alt="배송">배송
+				        </button>
+				        <button type="button">
+				          <img class="icon" src="/img/faq/교환.svg" alt="취소/반품/교환">취소/반품/교환
+				        </button>
+				        <button type="button">
+				          <img class="icon" src="/img/faq/혜택.svg" alt="혜택">혜택
+				        </button>
+				        <button type="button">
+				          <img class="icon" src="/img/faq/쿠폰.svg" alt="할인 쿠폰">할인 쿠폰
+				        </button>
+					</div>
+					<div class="contents">
+						<div class="content active">
+							<ul class="faq-list-wrapul">
+								<li class="faq-list">
+									<dl>
+										<dt>
+											<div class="division" >구분</div>
+											<div class="title-wrap">
+												<p class="title" >질문</p>
+											</div>
+											
+										</dt>
+									</dl>
+								</li>
+							</ul>
+							<div id="list-data-area">
+								<ol  class="faq-list-wrap">
+									<li class="faq-list" th:each="dto:${list}">
+										<dl>
+											<dt>
+												<div class="division" th:text="${dto.division}">구분</div>
+												<div class="title-wrap">
+													<p class="title" th:text="${dto.title}">제목1</p>
+													<span class="arrow">▼</span>
+												</div>
+												
+											</dt>
+											<dd class="faq-content" th:utext="${dto.content}">내용1</dd>
+										</dl>
+									</li>
+								</ol>
+							</div>
+						</div>
+				</div>
+			</section>
+		</div>
+	</main>
+</html>

@@ -1,0 +1,18 @@
+<div id="list-data-area">
+	<ol  class="faq-list-wrap">
+		<li class="faq-list" th:each="dto:${list}">
+			<dl>
+				<dt>
+					<div class="division" th:text="${dto.division}">구분</div>
+					<div class="title-wrap">
+						<p class="title" th:text="${dto.title}">제목1</p>
+						<span class="arrow">▼</span>
+					</div>
+					
+				</dt>
+				<dd class="faq-content" th:utext="${dto.content}">내용1</dd>
+			</dl>
+		</li>
+	</ol>
+</div>
+
