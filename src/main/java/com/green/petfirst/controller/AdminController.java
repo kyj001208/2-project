@@ -28,11 +28,6 @@ public class AdminController {
 		return "views/admin/petfir";
 	}
 	
-	@GetMapping("/admin/SaleStatus")
-	public String Sales(Model model) {
-	    return "views/admin/saleStatus";
-	}
-	
 	@GetMapping("/admin/deliver")
 	public String deliver(
 	        @RequestParam(value = "devNo", required = false) String devNo,
