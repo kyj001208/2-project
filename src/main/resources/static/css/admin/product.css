@@ -84,8 +84,9 @@ input[type="file"] {
 
 .form-buttons {
 	display: flex;
+	justify-content: center;
 	gap: 20px;
-	margin-left: 710px;
+	
 }
 
 button {
