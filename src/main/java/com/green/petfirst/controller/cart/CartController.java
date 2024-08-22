@@ -47,6 +47,7 @@ public class CartController {
 		return "/views/cart/cart";
 	}
 	
+	
 	@ResponseBody
 	@PutMapping("/petfir/cart/{no}")
 	public void updateService(@PathVariable("no")long no, @RequestBody CartUpdateDTO dto) {
@@ -66,6 +67,9 @@ public class CartController {
 		// 삭제 후 장바구니 페이지로 리다이렉트
 		return "redirect:/petfir/cart";
 	}
+	
+	
+	
 	
 	
 	

@@ -8,7 +8,8 @@ import lombok.Setter;
 public class CartUpdateDTO {
 	
 	private int count;
-	//private long discountPrice;
+	
+	private long cartNo;
 
 	private long totalprice;
 	

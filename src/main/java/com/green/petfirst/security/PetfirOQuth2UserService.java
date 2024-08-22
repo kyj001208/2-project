@@ -19,7 +19,6 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class PetfirOQuth2UserService  extends DefaultOAuth2UserService{
 	
-	
 	private final PasswordEncoder pass;
 	private final MemberService service;
 
@@ -33,17 +32,13 @@ public class PetfirOQuth2UserService  extends DefaultOAuth2UserService{
 		System.out.println(registrationId);
 		//인증정보를 제공하는 폼이 다르다 그러기위해 아이디로 구별
 		
-		
 		Map<String, Object> attributes=oAuth2User.getAttributes(); //구글기준임 (네이버랑 카카오는 다를수 있어요)
-		
 		
 		for(String attributeName:attributes.keySet()) {
 			System.out.print(attributeName+":");	
 			System.out.println(attributes.get(attributeName));	
 		}
 		
-
-
 		
 		return socialUser(oAuth2User,registrationId ); //커스텀 유저 디테일즈에 포함됌
 	}
@@ -77,14 +72,11 @@ public class PetfirOQuth2UserService  extends DefaultOAuth2UserService{
 			name = (String) response.get("name");
 
 		}
-
-		// 회원가입되지 않고 소셜정보만 있는 회원
+	
 
 		MemberEntity entity = MemberEntity.builder()
 
 				.email(email).name(name)
-
-				// 소셜유저는 password는 의미없지만 임의의 password를 부여한 상황임
 
 				.password(pass.encode(String.valueOf(System.currentTimeMillis())))
 
