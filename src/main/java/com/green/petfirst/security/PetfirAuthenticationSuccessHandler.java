@@ -57,9 +57,10 @@ public class PetfirAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 		        boolean hasAdminRole = authorities.stream()
 		                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN")); //어드민
 		       
+		      
 		        
 		        if (hasAdminRole) {
-		            targetUrl = "/admin/petfir";
+		            targetUrl = "/admin/petfir";  //이거 수정 필요
 		        } 
 		        // 리다이렉트 수행
 		        redirectStrategy.sendRedirect(request, response, targetUrl);

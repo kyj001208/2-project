@@ -1,0 +1,36 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<script type="text/javascript">
+
+</script>
+<div class="wrapper">
+	<h2>오늘만 이가격</h2>
+	<p>매일 오전 10시, 한정특가</p>
+	<div class="inner-wrap flex">
+		<div class="col-6img">
+			<a th:href="@{'/public/products/' + ${product.productNo}}"> <i
+				class="todayimg" th:if="${product.imgUrl != null}"
+				th:style="|background-image: url(${product.imgUrl})|"></i>
+			</a>
+		</div>
+		<div class="col-6-text">
+			<div class="flex middle">
+				<i class="ri-time-fill"></i> <span class="time" id="timer">00:00:00</span>
+			</div>
+			<div class="col-6-text-inner">
+				<div class="flex middle">
+					<p id="product-name" th:text="${product.productName}">상품이름</p>
+				</div>
+				<div class="flex middle">
+					<p id="discount" class="dis-per" th:text="${product.discount+'%'}">할인률</p>
+					<p id="original-price" class="dis-pri"
+						th:text="|${#numbers.formatInteger(product.discountPrice,3,'COMMA')}원|">할인가</p>
+					<del>
+						<p id="price"
+							th:text="|${#numbers.formatInteger(product.price,3,'COMMA')}원|">판매가</p>
+					</del>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</html>

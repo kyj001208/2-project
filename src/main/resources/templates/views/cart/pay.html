@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout::frame(~{this::head}, ~{this::main})}">
 
+<!-- 일단 필요없어서 대기중 -->
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="/css/cart/pay.css" />
-<link rel="stylesheet" href="/css/commons/common.css" />
-<meta name="_csrf" th:content="${_csrf.token}" />
-<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="/css/cart/pay.css" />
+	<link rel="stylesheet" href="/css/commons/common.css" />
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="/js/pay/payaddress.js"></script>
+	
+	<meta name="_csrf" th:content="${_csrf.token}" />
+	<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+	<script src="/js/pay/paylocal.js"></script>
 </head>
 
 <body>
-  <main>
+	<main>
 
 		<div class="pays">
 
@@ -21,28 +28,128 @@
 
 			<div class="pays1">
 
-				
+				<form class="formtable">
 
-				
+					<div class="pay-left">
+						<div class="paytitle">배송지정보</div>
 
+						<div class="payman">
+							<label for="payname">주문자</label>
+							<b sec:authentication="principal.name" id="payman">이름</b>
+						</div>
+
+						<div class="payname">
+
+							<label for="recipient">받는분</label>
+
+							<input id="recipient" type="text" name="recipient" placeholder="이름" required>
+
+						</div>
+
+						<div class="payaddress">
+
+							<label for="payaddress">배송주소</label>
+							<input type="text" id="sample6_postcode" placeholder="우편번호" required>
+							<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"
+								id="payaddressbtn" required><br>
+							<input type="text" id="sample6_address" placeholder="주소" name="address" required><br>
+							<input type="text" id="sample6_extraAddress" placeholder="참고사항">
+							<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="addressdetail" required>
+
+						</div>
+
+						<div class="paynumber">
+							<label for="paynumber">휴대전화</label>
+							<input id="paynumber" type="text" name="phone" placeholder="전화번호" required><br>
+						</div>
+					</div>
+
+
+					<div class="pay-right">
+
+						<div class="paycont">결제상품정보</div>
+
+						<div>
+
+							<ul>
+								<li class="cart_lists">
+
+									<div>상품명</div>
+									<div>수량</div>
+									<div>가격</div>
+
+								</li>
+
+
+
+							</ul>
+
+						</div>
+
+
+						<!-- 뿌려주는 곳 -->
+						<div th:each="dto : ${list}">
+
+							<ul>
+								<li class="cart_lists">
+									<div class="cartNo" th:text="${dto.cartNo}" style="display:none;"></div>
+									<div th:text="${dto.productName}" class="pay-name">상품명</div>
+									<div class="pay-count" th:text="${dto.count}" th:attr="data-count=${dto.count}">수량</div>
+									<div class="pay-price" th:text="${dto.totalprice}" th:attr="data-price=${dto.totalprice}">
+									    가격
+									</div>
+
+								</li>
+
+
+
+							</ul>
+
+						</div>
+
+						<div class="paytotalprice">
+							<div>
+								<span>총 상품금액</span>
+							</div>
+							<div id="totalAmount">0.00원</div>
+						</div>
+
+
+					<div class="cartpay">
+
+						<button
+							onclick="window.open('http://localhost:8080/petfir/pay/detail','window_name','width=1000,height=800,location=no,status=no,scrollbars=yes,left=400,top=200');"
+							type="button" class="paytossbtn" id="paytossbtn">결제하기</button>
+
+					</div>
 
 			</div>
-			
-			<div class="shopcart-dogs">
+
+
+			</form>
+
+
+
+
+		</div>
+
+		<div class="shopcart-dogs">
 			<div><img src="/img/cart-pay/cat.jpg" id="dog1"></div>
 			<div><img src="/img/cart-pay/dog1.jpg" id="dog1"></div>
 			<div><img src="/img/cart-pay/dog2.jpg" id="dog1"></div>
 			<div><img src="/img/cart-pay/dog3.jpg" id="dog1"></div>
 			<div><img src="/img/cart-pay/rabbit.jpg" id="dog1"></div>
 			<div><img src="/img/cart-pay/dog4.jpg" id="dog1"></div>
-			</div>
-			
-			
 		</div>
-		
+
+
+		</div>
+
 
 	</main>
 
 
+
 </body>
+
 </html>

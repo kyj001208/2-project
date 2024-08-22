@@ -1,0 +1,96 @@
+#category-menu {
+	min-width: 300px;
+}
+
+#product-content {
+	min-width: 900px;
+}
+
+#category-menu {
+	width: 300px;
+	background-color: var(--white);
+	border-radius: 5px;
+	padding: 10px;
+}
+
+#parent-categories li {
+    width: 150px;
+    margin-bottom: 10px;
+}
+
+.category-header-1,
+.category-header-2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.category-header-1>a {
+    display: inline-block;
+    padding: 10px;
+    color: var(--grey);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+}
+.category-header-2>a {
+    display: inline-block;
+    padding: 10px;
+    color: var(--grey);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#parent-categories>li>i {
+    display: inline-block;
+    text-align: center;
+    color: var(--grey);
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#parent-categories>li>a:hover {
+	color: var(--logo-brown);
+}
+
+#parent-categories ul {
+	list-style-type: none;
+	padding-left: 20px;
+	margin-top: 5px;
+}
+
+#parent-categories ul li {
+	padding: 5px 0;
+}
+
+#parent-categories ul li a {
+	color: var(--grey);
+	text-decoration: none;
+	transition: color 0.3s;
+}
+
+#parent-categories ul li i {
+	color: var(--grey);
+	text-decoration: none;
+	text-align: center;
+	vertical-align: middle; /* 글씨와 수직으로 정렬 */
+	
+}
+
+#parent-categories ul li a:hover {
+	color: var(--logo-brown);
+}
+/********토글처리************/
+.hidden {
+    display: none;
+}
+
+.toggle-icon {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.toggle-icon.rotated {
+    transform: rotate(180deg);
+}

@@ -37,6 +37,212 @@
 	margin-left: 10px;            
 }
 
+.user-paycontent{
+	
+	display: flex;
+	padding-left: 15px;
+	padding-bottom: 20px;
+}
+
+.paytotalprice{
+	
+	padding-top:20px;
+	display: flex;
+	padding-bottom: 30px;
+	padding: 10px 0; /* 위아래 여백 설정 */
+	justify-content: center;
+}
+
+.onepaydetail{
+	
+	display: flex;
+}
+
+.payment_css{
+	width: 100%;
+}
+
+
+.cart_lists{
+	
+
+	
+	display: flex;
+
+	justify-content: center;
+
+	padding-top: 10px;
+	
+}
+
+.cart_lists >div{
+	
+	  white-space: nowrap;
+
+	  flex: 1; /* 동일한 너비로 나누기 */
+
+	  text-align: center; /* 가운데 정렬 */
+
+	  border-bottom: 1px solid #ccc; /* 아래쪽 테두리 설정 */
+
+	  padding: 10px 0; /* 위아래 여백 설정 */
+}
+
+.cartpay{
+	
+	text-align: center;
+	padding-bottom: 30px;
+	padding-top: 20px;
+	
+}
+
+.paytossbtn{
+	
+	width: 300px;
+	background-color: var(--sub-pink);
+	font-family: "Hi Melody", sans-serif;
+	font-size: 16px;
+	border-radius: 1em;
+	color: var(--grey);
+	border: none;
+	
+}
+
+#payment-button{
+	width: 300px;
+	background-color: var(--sub-pink);
+	font-family: "Hi Melody", sans-serif;
+	font-size: 16px;
+	border-radius: 1em;
+	color: var(--grey);
+	border: none;
+}
+
+
+/* /////////////////////////////////////////////////////////////////////////////////// */
+
+
+
+.formtable{
+	
+	display: flex;
+	
+}
+
+.paytitle, .paycont{
+	
+	font-size: 25px;
+	padding: 2em;
+	text-align: center;
+}
+
+.pay-left, .pay-right{
+	
+	width: 100%;
+	height: 500px;
+	justify-content: center;
+	
+}
+
+.pay-left{
+	
+	border-right: 1px solid var(--sub-grey);
+}
+
+#paynumber, #payname, #sample6_address,  #sample6_extraAddress, #sample6_detailAddress {
+	
+	font-family: "Hi Melody", sans-serif;
+	width: 200px;
+	border: 1px solid var(--sub-grey);
+	font-size: 18px;
+	
+}
+
+#sample6_postcode{
+	
+		
+	font-family: "Hi Melody", sans-serif;
+	width: 150px;
+	border: 1px solid var(--sub-grey);
+	font-size: 18px;
+	
+}
+
+#recipient{
+	
+	font-family: "Hi Melody", sans-serif;
+	width: 150px;
+	border: 1px solid var(--sub-grey);
+	font-size: 18px;
+	
+	
+}
+
+#payaddressbtn{
+	
+	margin-left: 20px;
+	border: none;
+	width: 100px;
+	background-color: var(--sub-pink);
+	font-family: "Hi Melody", sans-serif;
+	font-size: 16px;
+	border-radius: 1em;
+	color: var(--grey);
+}
+
+.pay-btn{
+	
+	margin-left: 20px;
+	border: none;
+	width: 100px;
+	background-color: var(--sub-pink);
+	font-family: "Hi Melody", sans-serif;
+	font-size: 16px;
+	border-radius: 1em;
+	color: var(--grey);
+}
+
+
+.payname, .payaddress, .payman{
+	
+	padding-bottom: 20px;
+}
+
+.payman >label{
+	
+	width: 100px;
+	display: inline-block;
+	padding-left: 10px;
+}
+
+
+.payname  >label{
+	
+	width: 100px;
+	display: inline-block;
+	padding-left: 10px;
+}
+
+.payaddress >label{
+	
+	width: 100px;
+	display: inline-block;
+	padding-left: 10px;
+}
+
+.paynumber >label{
+	
+	width: 100px;
+	display: inline-block;
+	padding-left: 10px;
+}
+
+ #sample6_address, #sample6_extraAddress, #sample6_detailAddress{
+	
+	margin-left: 105px;
+}
+
+
 
 /* ///////////////////////////////////아래 강아지들//////////////////// */
 .shopcart-dogs {

@@ -1,0 +1,85 @@
+
+.imgs{
+	display: block;
+	width: 70px;
+	height: 70px;
+	background-size: contain;
+}
+.productListContainer h1 {
+	font-size: 36px;
+	margin: 40px 0px 20px 80px;
+}
+.productListContainer {
+    width: 100%;
+    margin: 0 auto; /* 가운데 정렬을 위한 자동 여백 */
+    max-width: 1200px; /* 테이블이 최대 1200px 너비로 확장됨 */
+    padding: 0 20px; /* 좌우 여백 추가 (반응형 디자인을 고려) */
+}
+
+.productListTable {
+    width: 100%; /* 테이블 너비를 부모 컨테이너에 맞게 조정 */
+    border-collapse: collapse;
+}
+
+.productListTable th, td {
+    padding: 10px;
+    font-size: 20px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.productListTable th {
+    background-color: var(--sub-grey);
+}
+
+.productListTable tr:hover {
+    background-color: var(--sub-grey);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.action-buttons button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* 페이지 네비게이션을 가운데 정렬하고 간격을 줍니다. */
+.page {
+    display: flex;
+    justify-content: center; /* 가운데 정렬 */
+    margin-top: 20px; /* 위쪽에 간격 추가 */
+}
+
+.page > ul {
+    display: flex;
+    justify-content: center; /* 가운데 정렬 */
+    align-items: center; /* 수직 정렬 */
+    gap: 10px; /* 페이지 링크 사이에 간격 추가 */
+    list-style-type: none; /* 기본 리스트 스타일 제거 */
+    padding: 0;
+}
+
+.page > ul > li {
+    margin: 0 5px; /* 각 리스트 아이템에 간격 추가 */
+}
+
+.page > ul > li > a {
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 18px;
+    color: var(--grey);
+    transition: background-color 0.3s ease;
+}
+
+.page > ul > li > a:hover {
+    background-color: var(--sub-grey);
+}
+
+.page > ul > li.active > a {
+    background-color: var(--grey);
+    color: white;
+    border-color: var(--grey);
+}

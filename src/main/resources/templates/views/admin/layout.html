@@ -18,8 +18,13 @@ th:fragment="layout(pHead,pMain)">
         </div>
         <div class="user-profile">
         	<img class="profile" src="/img/logo.png">
-            <span class="name">회원명</span>
-            <img class="logout" src="/img/logout.png">
+           	<b sec:authentication="principal.name">이름</b>
+        <form action="/logout" method="post">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />			
+			<button type="submit" class="logout_btn" >
+				<img class="logo">
+			</button>
+		</form>
         </div>
     </div>
 	<div class="flex">

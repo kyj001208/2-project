@@ -1,21 +1,21 @@
 package com.green.petfirst.domain.entity;
 
+import jakarta.persistence.*;
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.green.petfirst.domain.dto.product.ProductListDTO;
+import com.green.petfirst.domain.dto.product.ProductSearchDTO;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+import java.util.List;
+import java.util.Optional;
+
+@ToString
 @DynamicUpdate
 @Getter
 @Builder
@@ -52,6 +52,53 @@ public class ProductEntity {
     private long discount;  // 즉시할인
     
     private long discountPrice;  // 즉시할인가
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<ImageEntity> images;//수정한거
+    
+    
+    public ProductListDTO toProductListDTO() {
+    	String imgUrl=null;
+    	if(images==null||images.isEmpty()) {
+    		//대체이미지 적용
+    		imgUrl="/img/no-img.jpg";
+    	}else {
+    		imgUrl=images.get(0).getImgUrl();
+    	}
+    	
+    	return ProductListDTO.builder()
+    			.productNo(productNo)
+    			.productName(productName)
+    			.price(price)
+    			.discount(discount)
+    			.discountPrice(discountPrice)
+    			
+    			.imgUrl(imgUrl)
+    			.build();
+    }
+
+
+    public ProductSearchDTO toProductSearchDTO() {
+    	String imgUrl=null;
+    	if(images==null||images.isEmpty()) {
+    		//대체이미지 적용
+    		imgUrl="/img/no-img.jpg";
+    	}else {
+    		imgUrl=images.get(0).getImgUrl();
+    	}
+    	
+    	return ProductSearchDTO.builder()
+    			.productDetail(productDetail)
+    			.productName(productName)
+    			.productNo(productNo)
+    			.discount(discount)
+    			.discountPrice(discountPrice)
+    			.price(price)
+    			.imgUrl(imgUrl)
+    			.build();
+    }
+
+    
 
 
 }

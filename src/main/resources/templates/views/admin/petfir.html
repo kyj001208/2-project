@@ -2,26 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	th:replace="~{views/admin/layout::layout(~{::head}, ~{::main})}">
 <head>
+<title>PETFIR</title>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/admin/petfir.css">
-<title>PETFIR</title>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script th:src="@{/js/admin/petfir.js}"></script>
+
 </head>
 <main>
+<div class="container">
 	<div class="content">
-		<div class="today">오늘의 주요 현황</div>
-		<div class="stats">
-			<div class="stat-item">
-				총회원수<br>3546
-			</div>
-			<div class="stat-item">
-				가입한 회원 수<br>4
-			</div>
-			<div class="stat-item">
-				탈퇴한 회원 수<br>10
+		<!-- 첫 번째 섹션: 오늘의 주요 현황 -->
+		<div class="section">
+			<div class="section-title">오늘의 주요 현황</div>
+			<div class="stats">
+				<div class="stat-item">총 회원 수<br><span th:text="${totalMembers}"></span></div>
+				<div class="stat-item">가입한 회원 수<br>1</div>
+				<div class="stat-item">탈퇴한 회원 수<br>2</div>
 			</div>
 		</div>
-		<div class="visitor-stats">
-		<div class="visitor">방문자 현황</div>
+
+		<!-- 두 번째 섹션: 주간 방문자 현황 -->
+		<div class="section">
+			<div class="section-title">주간 방문자 현황</div>
 			<table>
 				<thead>
 					<tr>
@@ -34,94 +37,102 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td>오늘 (금)</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
+						<td>(금)</td>
+						<td>1</td>
+						<td>2</td>
+						<td>1</td>
+						<td>3</td>
 					</tr>
 					<tr>
-						<td>어제 (목)</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
+						<td>(목)</td>
+						<td>2</td>
+						<td>2</td>
+						<td>1</td>
+						<td>4</td>
 					</tr>
 					<tr>
-						<td>오늘 (수)</td>
+						<td>(수)</td>
+						<td>1</td>
+						<td>1</td>
 						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
+						<td>2</td>
 					</tr>
 					<tr>
-						<td>어제 (화)</td>
+						<td>(화)</td>
+						<td>2</td>
 						<td>0</td>
 						<td>0</td>
-						<td>0</td>
-						<td>0</td>
+						<td>4</td>
 					</tr>
 					<tr>
-						<td>오늘 (월)</td>
+						<td>(월)</td>
+						<td>1</td>
 						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
+						<td>2</td>
+						<td>2</td>
 					</tr>
 					<tr>
-						<td>어제 (일)</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
+						<td>(일)</td>
+						<td>2</td>
+						<td>3</td>
+						<td>1</td>
+						<td>5</td>
 					</tr>
 					<tr>
-						<td>오늘 (토)</td>
+						<td>(토)</td>
+						<td>2</td>
 						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
+						<td>1</td>
+						<td>2</td>
 					</tr>
 					<tr>
 						<th>주간 합계</th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
-					</tr>
-					<!-- 나머지 행들 -->
-				</tbody>
-			</table>
-		</div>
-		<div class="inventory">
-			<div class="inv">재고 목록</div>
-			<table>
-				<thead>
-					<tr>
-						<th>상품번호</th>
-						<th>상품명</th>
-						<th>남은 수량</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>10</td>
-						<td>사료</td>
-						<td>1000</td>
-					</tr>
-					<tr>
-						<td>25</td>
-						<td>장난감</td>
-						<td>800</td>
-					</tr>
-					<tr>
-						<td>35</td>
-						<td>간식</td>
-						<td>500</td>
+						<th>11</th>
+						<th>8</th>
+						<th>6</th>
+						<th>22</th>
 					</tr>
 				</tbody>
 			</table>
 		</div>
+
+	
+		<div class="section">
+			<div class="section-title">판매현황</div>
+			<button onclick="downloadExcel()">엑셀 다운로드</button>
+			<div class="content">
+				<div id="chart_div" style="width: 600px; height: 300px;"></div>
+			</div>
+		</div>
+
+		
+		<div class="section">
+			<div class="section-title">고객문의</div>
+			 <div class="comment-list">
+        <div class="comment-item">
+            <div class="comment-text">[교환문의] 사이즈 교환하고싶어요.</div>
+            <div class="comment-info">
+                <span class="username">USER</span> | 
+                <span class="date">2024-05-03 15:59</span>
+            </div>
+        </div>
+        <div class="comment-item">
+            <div class="comment-text">[상품문의] 1:1 문의</div>
+            <div class="comment-info">
+                <span class="username">USER2</span> | 
+                <span class="date">2024-05-03 14:44</span>
+            </div>
+        </div>
+        <div class="comment-item">
+            <div class="comment-text">[배송문의] 언제 발송되는지 문의합니다.</div>
+            <div class="comment-info">
+                <span class="username">USER3</span> | 
+                <span class="date">2024-09-30 19:24</span>
+            </div>
+        </div>
+    </div>
+		</div>
+	</div>
 	</div>
 </main>
 </html>

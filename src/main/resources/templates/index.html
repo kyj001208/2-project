@@ -1,323 +1,133 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout::frame(~{this::head}, ~{this::main})}">
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{views/commons/layout::frame(~{this::head}, ~{this::main})}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/js/index.js"></script>    
-    <title>PETFIR</title>
+<meta charset="UTF-8">
+<title>PETFIR</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/css/commons/index.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+
+
 </head>
 <body>
-    
 
-<main class="index-main">
-	<div class="banner-wrap">
-	  <div class="banner-container">
-	  
-		<div class="banner">
-			<div class="col-2">
-				<h1>오늘 주문시 내일 도착보장 서비스</h1>
-				<p>오늘 주문하면 내일 집으로, <br> 2만원 이상 구매시 무료배송 혜택까지!</p>
-				<a href="#" class="banner-btn">쇼핑하기</a>
+
+	<main class="index-main">
+		<div class="banner-wrap">
+			<div class="banner-container">
+
+				<div class="banner">
+					<div class="col-2">
+						<h1>오늘 주문시 내일 도착보장 서비스</h1>
+						<p>
+							오늘 주문하면 내일 집으로, <br> 2만원 이상 구매시 무료배송 혜택까지!
+						</p>
+						<a href="#" class="banner-btn">쇼핑하기</a>
+					</div>
+
+					<div class="col-2">
+						<img src="img/row1.png" alt="">
+					</div>
+				</div>
+
+				<div class="banner">
+					<div class="col-2">
+						<h1>쿠폰팩부터 적립까지!</h1>
+						<p>
+							회원제도의 모든것 <br> 정기 쿠폰팩 | 적립
+						</p>
+						<a href="#" class="banner-btn">더 알아보기</a>
+					</div>
+
+					<div class="col-2">
+						<img src="img/row2.png" alt="">
+					</div>
+				</div>
+
+				<div class="banner">
+					<div class="col-2">
+						<h1>놓치면 후회할 가격!</h1>
+						<p>
+							임박 특가 <br> 한정수량 | 최대 90% 할인
+						</p>
+						<a href="#" class="banner-btn">쇼핑하기</a>
+					</div>
+
+					<div class="col-2">
+						<img src="img/row3.png" alt="">
+					</div>
+				</div>
+
 			</div>
-		            
-				<div class="col-2">
-					<img src="img/row1.png" alt="">
-				</div>
-			</div>
-		
-			<div class="banner">
-				<div class="col-2">
-					<h1>쿠폰팩부터 적립까지!</h1>
-					<p>회원제도의 모든것 <br> 정기 쿠폰팩 | 적립 </p>
-					<a href="#" class="banner-btn">더 알아보기</a>
-				</div>
-			            
-				<div class="col-2">
-					<img src="img/row2.png" alt="">
-				</div>
-			</div>
-		
-			<div class="banner">
-				<div class="col-2">
-					<h1>놓치면 후회할 가격!</h1>
-					<p>임박 특가 <br> 한정수량 | 최대 90% 할인</p>
-					<a href="#" class="banner-btn">쇼핑하기</a>
-				</div>
-			            
-				<div class="col-2">
-					<img src="img/row3.png" alt="">
-				</div>
-			</div>
 
 		</div>
-			<div class="banner-bottom-btn flex center">
-				<button class="btn1"></button>
-				<button class="btn2"></button>
-				<button class="btn3"></button>
-			</div>
-	</div>
 
-	
-  	<div class="wrapper">      
-		<div class="category flex">
-			<ul class="col-3">
-				<li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAACXBIWXMAAAsTAAALEwEAmpwYAAAJWklEQVR4nO1cC6wcZRUe34jP+AIUMWp8a/DJwzdiYsRXQYhEjWDVisSW3jlnbkWRtRgRTAAblESjRjAYvend8++2VmqoV1urGOqTBvBy9/93L1S8go9YxbZU1pz/P//e6XRm7+52d3YK8yWTm535554zZ85//vP6JwhKlChRokSJEiVKlCiRL4yCs7XChlG42xB+d35q4rHBmKDXw3MM4TpDcLsm+I9R2OZDK7zPKLhTK7xRK1g1u2nlE4MiwFTxZK1wv2dUmP36WHihcJl9iTFesg5NcLeu4fuCcWJmpvJIo/D3wtAVzRq+wQkQTN68GBWdYgj3CC/VRjV8Y2NqzZP89V31ypFWO1W0XCvcLnz+TxOsyJvXGNNwnjAyx9NWE35S3vC2XPmYqRxhFM5b2oRrlxrfbgcP0woiTfiAJri/ofDtQd7YOVV5tCFoWaZrcAbbFKNwgX83Cd+fJy+NGnzavTj4NQun1/s04eflhc/fvRkeN1ouk8QVfkSI/5GZNgouFw34ef4zAW9xtMNl/dxn+Sa8SZ7jsiBPsKAc4Wj5HRQ+m+0P2xSjwlflycecil4rAljY8Y0Vj0obowl+oQl/xbMmea1F8BqextYe5rWoNOprjmP7wSvezqnzH28UXOI0AKaCnGEIr3YLB16ZNUYT7BRbvSr1uoKLxXvYrxVclPUihoYGhR/3q50wYPh3g+A9QY5gjdIK7rW8TE8cv4R7wzbyzrgWasItvODZRYXw0kU3DG7VFH2gPXXWI0bCuFF4nWjc+U0FLxXbd8/I31ySjxqcIQ/8O/7NGsZTuVWbfFl8nBOQ00Kj4KOd+9ntIfyJ/91U8C5NqGP+7J8N4VcM4SuHyrhWuMMSqeLJhvBcIfb9IGcYhXVHO7yAtYU1TAR6YgrPn+jFxZrdtPIx1h0jmE0EBzcOjXGt8G/8T2enLny6JviyEPlckCMatVVHGYX7+GA+2JcTPv6U5srcVf3MU+1iQfjA/IaJZy31/0Vr/x4T4D+GxrxRsNcKkN+Wgmtkapw3NAK98TAhZkTxb/8i+W/WPaxFzk+Fj/VCQyvc1NFCwpuGLkAXfcAVQiQcGoFeeCD4g9A9/QC3qgrvzLqHp7po07d6oXF7PXyaUdgUBblkaMxrgl121a2vOY4FZ5zduSbICexr+oXLr6qSDWq3qvj8TL4VvNlHLL3QmZuGl4uy7OM4emgPoAl+6t0Wn0AwhHf0E0YdCgzhV4Xmus45ycKwX5p1X0tFz/Sr61I02K7yMwmdq4fJP7/JL4nWXdWuVB7u336jih8ORgx2lYyCv1pbVo9enTQradGGB5scsZP/7UajWYO3acK7RNjb2dYP9SEa1ckT/Ju0zmwNzhGD/i9OIwUjhCH8oI/BE+fvsS+xtuqorHtvU9ETZArvjb8Qu4pXJ0/QhCuNgq0x92Ub28GhP4QLwp0RZ/8qcF79d0Td9xgKPzuK7AY7yIbwL5ZuDc6JX/NJAV2N3pJ1f6MavrDDo8Ib2DXJSLgu8CrP+c5hP8MiMwrOlGl8L791O5UJr5QY2Z63MXJ18iWD0mDtZp/NhmIE3+SpJw9YZ3rxsd6d0gorWf9PU/iOFGHts7wS3Mw0bHQzUzkiyANGwQZhmvy5JoWncvYjwWST42V2ZHtJt2em4W22Jz0qMBSd1lnMMmJYn3iQaXx57jnAJGanJ4/1UYkmvDR+jW2hIfiet00DHhxpLHC8yhkTmYLb2E4lebGhnKyabMuS15s1eG68XsIuWFAEsKC0rXilh3P8YA2aeEVr/ernjdSmWF6id/s0vSEADt944bBJAvEU/JF34qMrtArf6+2TJvh2N1dieDRtYeigxICvdaRqdCcJjO2gaGhYTXS5uTzCuqyp7K5Fp7hV1vKzWyv4JcfqzocsqADbti7iaxPRaXnSztLGNBRWgIbgrTKFf5M77S7aeNgIUCu4SlZAHC8f2droC+rFFCA534+TC+PkI6mNcYG6awUVoJEQa24anhEUCEmBFlmAe3yWOigwCinAXfXKkRJi3RcUHIUU4Oz05LGyAu8atRvyoBSgnp44XgS4c9RuyKFgfmriKSLA3UGRoGvRWZIt+VFQYJjaxEnC561BkWAWO7O+GBQYvoKYZwGsvyKTgjPztH/93MtJ304GujZxUlAUGLrgyVxj4M4mri3kaf96vddly+HHkkjdEBQJTRV+yFevggLCJVrh2sIlUpPtD7rPGNhW81zj4785k6wVrOeUEydBh8Wbre0q2BzPCY46qdsXOMvs6hSwt98QzhB8IbXu4RKz1zUpfP2gNtB1akXLff2Yw0yfZC2UADXB18Su/KDv1LvbYnA/lyG5Hc01C8HPEtnkW+ymmAzbmmUDpXHSF482ywJi97KMrGlyEO3zi0cr0dDYDVzmNAr+Ke7ERcnrcxuiF3RaNxZby/bbgjdrLYXLtIpexAXvLj3RUv2Ds327SeEEqBVc76YHXNvrPdzNars+nWB+mNZLw0UgrXAmVg69vmtlL2VXgBdgfLoWSoDsR3nbx+XCoAe4JiSxSQpv4AREcgwvINw5JWMWuIzJ513/DZyoCSfdigpbNeFtWXFtmrB8TbkQAtSEv5UpeHFv42GFb/7hTv60ql2jDq9b7MXDeVMPX7zU/z1sBdhrbbU5vfoY7lrwXQXc1ZV8AJ7GdqeR3+emcHsvLbhxPvoSYKIlZCxYKiW0g8uHVfyUD53Y7nHLR3IcN0P6MFDs2bp+Ct4POgHO8O5NwnPjWwXS0vwsJHa8Y/t5FwaJo7MFeLCwDgsBmlhvXWcrRNoDxpqPeHvEoD14fQlQ/MuCCxC91p0uhfau47gTdBR8dBVgTm3IXbGUYII+xw2bjzRhlQI8RAEWqhZyuGhgMAKaDwkBmpTzpQAfSgJsiwPb67hR8dHL2LGA94NYN2R69THx83rx+zHc17zWh2dZ46QB8rK0xEI/fPAOpAPOxxrJzUY8Ouvc2OATltxOmzi/UhNuTH78ZslxBDcP8rUjv/tSE6yJn493YXEqTDaFH3QuGBe4aVsY2cMpplZSAzbi0fF0U0/jCKBfPjpbGzjTU4ML+eMXB1YL3c56/2mC+DnORwbjBBfR41pmDvUgaA3Ix9pB6A11A/WgkG8MbOn+vSrY2qDoTdz24T/MkzVuUD54j7DbS5K5dSuleIVbhiuNEiVKlChRokSJEiVKBP3i/3nDc/lVt+8CAAAAAElFTkSuQmCC">
-	 				<a href="/public/shop/dogs">강아지 샵</a></li>
-				<li><img src="data:image/png;base64,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">
-					<a href="#">고양이 샵</a></li>
-				<li><img src="data:image/png;base64,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">
-					<a href="#">기타동물 샵</a></li>
-				<li><img src="data:image/png;base64,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">
-					<a href="#">고객센터</a>
-				</li>
-			</ul>
-		</div>
-    <div class="col-4container">
-    <div class="col-4">
-    	<h1>인기있는 샘플이 100원부터!</h1>
-    	<p>샘플체험</p>
-    </div>
-    <div class="col-4img">
-    	<img src="img/col-4img.png" alt="">
-    </div>
-    </div>
-    
-   <div class="flex between">
-	   <h2>이 상품 어때요?</h2>
-	    <button id="showMoreBtn">더 보기</button>
-    </div>
-	<div class="col-5 flex">
-		
-		
-		
-		<div class="swiper-slide">
-			<a class="swiper-slide-1">
-				<div><img class="col5-1-img" src="img/col5-1.jpg"></div>
-				
-				<div class="col5-text">
-					<div class="col5-text1">
-						<span>슈퍼마켓 마쉬멜로 1</span>
-						<button class="btn-cart"><i class="ri-shopping-basket-line"></i></button>
-					</div>
-					<div class="col5-text2">
-						<span>할인가 </span>
-						<span class="original-price"><del>38,000</del></span>
-					</div>
-					<div class="col5-text3">
-						<span>55%</span>
-						<span class="discount-price]">17,100</span>
-					</div>
-				</div>
-			</a>
-		</div>
-		
-		<div class="swiper-slide">
-			<a class="swiper-slide-1">
-				<div><img class="col5-1-img" src="img/col5-1.jpg"></div>
-				
-				<div class="col5-text">
-					<div class="col5-text1">
-						<span>슈퍼마켓 마쉬멜로 2</span>
-						<button class="btn-cart"><i class="ri-shopping-basket-line"></i></button>
-					</div>
-					<div class="col5-text2">
-						<span>할인가 </span>
-						<span class="original-price"><del>38,000</del></span>
-					</div>
-					<div class="col5-text3">
-						<span>55%</span>
-						<span class="discount-price]">17,100</span>
-					</div>
-				</div>
-			</a>
-		</div>
-		
-		<div class="swiper-slide">
-			<a class="swiper-slide-1">
-				<div><img class="col5-1-img" src="img/col5-1.jpg"></div>
-				
-				<div class="col5-text">
-					<div class="col5-text1">
-						<span>슈퍼마켓 마쉬멜로 3</span>
-						<button class="btn-cart"><i class="ri-shopping-basket-line"></i></button>
-					</div>
-					<div class="col5-text2">
-						<span>할인가 </span>
-						<span class="original-price"><del>38,000</del></span>
-					</div>
-					<div class="col5-text3">
-						<span>55%</span>
-						<span class="discount-price]">17,100</span>
-					</div>
-				</div>
-			</a>
-		</div>
-		
-		<div class="swiper-slide">
-			<a class="swiper-slide-1">
-				<div><img class="col5-1-img" src="img/col5-1.jpg"></div>
-				
-				<div class="col5-text">
-					<div class="col5-text1">
-						<span>슈퍼마켓 마쉬멜로 4</span>
-						<button class="btn-cart"><i class="ri-shopping-basket-line"></i></button>
-					</div>
-					<div class="col5-text2">
-						<span>할인가 </span>
-						<span class="original-price"><del>38,000</del></span>
-					</div>
-					<div class="col5-text3">
-						<span>55%</span>
-						<span class="discount-price]">17,100</span>
-					</div>
-				</div>
-			</a>
-		</div>
-		<div class="swiper-slide hidden">
-			<a class="swiper-slide-1">
-				<div><img class="col5-1-img" src="img/col5-1.jpg"></div>
-				
-				<div class="col5-text">
-					<div class="col5-text1">
-						<span>슈퍼마켓 마쉬멜로 5</span>
-						<button class="btn-cart"><i class="ri-shopping-basket-line"></i></button>
-					</div>
-					<div class="col5-text2">
-						<span>할인가 </span>
-						<span class="original-price"><del>38,000</del></span>
-					</div>
-					<div class="col5-text3">
-						<span>55%</span>
-						<span class="discount-price]">17,100</span>
-					</div>
-				</div>
-			</a>
-		</div>
-		
-		<div class="swiper-slide hidden">
-			<a class="swiper-slide-1">
-				<div><img class="col5-1-img" src="img/col5-1.jpg"></div>
-				
-				<div class="col5-text">
-					<div class="col5-text1">
-						<span>슈퍼마켓 마쉬멜로 6</span>
-						<button class="btn-cart"><i class="ri-shopping-basket-line"></i></button>
-					</div>
-					<div class="col5-text2">
-						<span>할인가 </span>
-						<span class="original-price"><del>38,000</del></span>
-					</div>
-					<div class="col5-text3">
-						<span>55%</span>
-						<span class="discount-price]">17,100</span>
-					</div>
-				</div>
-			</a>
-		</div>
-		
-		<div class="swiper-slide hidden">
-			<a class="swiper-slide-1">
-				<div><img class="col5-1-img" src="img/col5-1.jpg"></div>
-				
-				<div class="col5-text">
-					<div class="col5-text1">
-						<span>슈퍼마켓 마쉬멜로 7</span>
-						<button class="btn-cart"><i class="ri-shopping-basket-line"></i></button>
-					</div>
-					<div class="col5-text2">
-						<span>할인가 </span>
-						<span class="original-price"><del>38,000</del></span>
-					</div>
-					<div class="col5-text3">
-						<span>55%</span>
-						<span class="discount-price]">17,100</span>
-					</div>
-				</div>
-			</a>
-		</div>
-		
-		<div class="swiper-slide hidden">
-			<a class="swiper-slide-1">
-				<div><img class="col5-1-img" src="img/col5-1.jpg"></div>
-				
-				<div class="col5-text">
-					<div class="col5-text1">
-						<span>슈퍼마켓 마쉬멜로 8</span>
-						<button class="btn-cart"><i class="ri-shopping-basket-line"></i></button>
-					</div>
-					<div class="col5-text2">
-						<span>할인가 </span>
-						<span class="original-price"><del>38,000</del></span>
-					</div>
-					<div class="col5-text3">
-						<span>55%</span>
-						<span class="discount-price]">17,100</span>
-					</div>
-				</div>
-			</a>
-		</div>
 
-	</div>
-
-   </div>         
-
-	<div class="col-6">
 		<div class="wrapper">
-		<h2>오늘만 이가격</h2>
-		<p>매일 오전 10시, 한정특가</p>
-		<div class="inner-wrap flex">
-			<div class="col-6img">
-    			<img src="img/col-6.jpg" alt="">
-    		</div>
-			<div class="col-6-text">
-				<div class="flex middle">
-					<i class="ri-time-fill"></i>
-	    			<span class="time">09:40:57</span>
-	    		</div>
-	    	<div class="col-6-text-inner">
-	    		<div class="flex middle">
-	    			<p>로얄캐닌 푸들 어덜트 500g 피모관리</p>
-	    		</div>
-	    		<div class="flex middle">
-	    			<p class="dis-per">20%</p><p class="dis-pri">8,350원</p><p><del>10,400원</del></p>
-	    		</div>
-	    	</div>
-    		</div>
-		</div>
-		</div>
-	</div>
+			<div class="category">
+				<ul class="col-3">
+					<li><img
+						src="data:image/png;base64,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">
+						<a href="/public/categories/1">강아지 샵</a></li>
+					<li><img
+						src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAACXBIWXMAAAsTAAALEwEAmpwYAAAIfklEQVR4nO1ca4wkVRUuFR+ADxRQUXEFwkvQqDHGFyo/REgMsASIgkSCCS/dx9Q5Pbvra/yhCQ8JKCSACUaQZ7tT5/TsZt014hiXhV0FwsLqbman7+lu2SySACvgY1d2x5x7b83U9PT0THdVT/fs1JdUMlVz695TX517z73fPdVBkCNHjhw5cuTIkSNHjt5HdfXy44VxvSF8VQi2SoSf6bZN8wYj65a82TCWhXEsPgzjCyPFVUd327Z5ASG8xBJHsHXHUHiUIfiDJZHgsm7b1vOQ4YG3GIJtlrASfNNeY1ij5xUOL+22fT2NaoQnCMOfnLfhk4/feeUbRwb7PyAMe4Vx3+ggvDtN/UL4ZyHcrF6d1la1ReszjL8P5hq1Yt+hVS68b3QQTheCLxkOlxnCtUqSH+/KGkS0rBDc7Qm9N02b24oDbxofU/3QkIo8xmfi+oJOYqx40RuEwvOF8R5DuF0YX0kGh8kH7BWCXzwbrTxS7zWEV/mx718xoZkQ6ElsJyjVk9dRAk2EZxnCvzYiyzC+ZAifNQyPGsJfVgi+FRNnSWf8niE8oGXLEX4jrS0xgYbgfwmbnm6FxDryOuuBUoJVhmG/IwtGDWG/dtltxWvfOsNDLtYH8yS/Vi7Bd7KwZ8IDYW+5tPQ9CRKfMVHhi/aFMQ4LY0U93h1oDOHDQuF3DcMXkuR5MjtDoJLnidtvGL6vxtfP8/TN26Dhx0Ad63SuN+GhMColPDsrm5IE6rkj0UX7Fg9Lnn3OThBYLoVf9sTtNxFcHBtfYfy2IXzMriyaGKjR1xAuUZKztKuewEQk3WwY/qZeVqbCGWY1LNo1NHCYHuWhFR9UzzOEPxCCHVo2ORPInEA/dlk3Nww/1GuVweXHGMbHJw/g+F9heN51bXhEGO6wASPqPzXoEBoRmBaZE2g4PNd7kVEPUqNj8gzBLvXI7Vx4W9AFzAsChfBXvtKV7hyu9R63M4vJaycINBR+RQOHEFQbjbkSwTn2fxpcIjyrsx7o5nlj5RJ+1J8/Zs8ZLgy6jOkItORNzA2r9fcJw98T47PptAf+UyscWbfk7e4cXk6etwKhZUfYeSRDQVchbr5oo2ZNGPZoW4bgRT23YynjJiH8jRDeYqM6F86sFfve1RKBjLWmBDJIhz0Q/uMJsxE0XnVsn+W4Vy6ueIft9oS/i5d1qQ/CnUqq7YrTd+GaPSI4p94md58lsaZlO03gLquaDC4/xjUAW2wjJbig2X1WMCD8Weyx/tgnDH+0D8+FK1RQrTB8eCeFxyrR6tW6crHC61B4ip2CEFymE2JdDvrgNeUl6OR8bGDg9WmfdXh44JDYziArqDJhjfSDrWFYGo8t1bUr31lfXruYMNxoGP/tx5gDwrDB6oG07IgspLEKhZ8Vhut9IHBErsX3zvAcm4RxY9Myq2GRfyHltHZOGEzwI99tbtFz7crC+JQ3XMeaxbs3wOG1NX3vd2VhzzhxBEVd6gUdwthY8LpxYbZUuKjpczBuVFmtWRnv7To9+21mRpaj8CQlQwf3eAB3eh4+1USB2VIp4eeCOYCucPwLeziDl/GId5bLs7PQvb2HfMS6b/IeBywVgr9od3XRU7tqeL4aM6t6h8JTVJkeXVM4sV3bVMgQwueSanc7iGU2YfyHaptBlvAK8vP+7dyqqnKQATQQeaMXp6onCr8eR2NdObVpxz7taeWo8NWgEyhH4efHhVOCrVl1UX05WdRjCH6cUItu1qg+0z0aBIXh57FGaRgHgk5COPx4UnQ0BE8YQixH/Z9KG2Gt1khwU5o63GTbT3MIXjaEt1stklZ8KFZj9G/ncXDHZCUdrg7mcH93IKnzJYxoGuWawavY29Pap/NKw7gu9qrZHsFcY/cGOFwYvmYI7tJAktYQ7XJaZ1b2aWCymh/jerc01ECHr/q1/Xph6KuU4LiuEViPnjFkvtotGRhiGH6i+7JZK9cLh0CC23TzKYt17YIkcEHbLb1iyHy1WzIwRCfnhmC3TtqDOcJBRaCo7ue0xlUqn9n9GE3E9Gq1nS7p/nQGsliWdveMIUJ4q6+nSa6NS8ycSdCdS7t7yQM3JpaJu9XbytT3EZ1gq1qty62J/+MBifCaXrA7E0hKQ1RR1iQhX89QnJSUhObi+P/XYilfswwa1WdKeJ7fAnjFZirU7X1kZXfvEMhwvfesJ+vzbhQ6N7TpGpa48FwhvMG3uXG6ZIBJ3V49ttEe8cFAoJT6Pu20PHxtlAufbFRGU4Fj71M90gqp02QlTGROIDrB1W9LMGzJ0u5MIW0aohlViS7500ZlfMLQFNV5ujZ9+vBY7Ml+H8fm72Rld+aQNgyx25cEI14IfbRR1/W5OG5nkHE4ucybnsCp11sp2xVIi4aodD7uVYybGm2R6hamzUxw3vOc5mDPps2DmsBqhCcYxvsTc7p1jXRA55242Zd5SQg/Nts2DzoCdwyFR/mNm4cSUxU7yNcrL17kvC7emNfN8zixaUESaFxGQGI6MUFgs7JuLxrvbTQfXFAESkweQVE3fTQPZqayGo11BZK2zXbLdgXShYfJCaxDTiDnHtg2JO/C6SA5gTmBXYXkHpgT2FVI7oE5gV2F5B6YDsbn4yXzo/XvWBhot2yrbc7jtTDYHOpqqf+0+Np4/l3d92qtlG3eptsK0Hvja/ZzC7f/sWdS2fgTtcTPAUx8oT65bFcgjHd6ueoJm6LBhZP9r3YoKXe3W7Z5m/Cg99q1WkdlqPAJ/0mZXnsgWdYwkve2e5Q4t88Cv/ZlB4NuY6S46uh4f2PKD1GshkXtlp3xGxZVq6dmL9RUNmvwScWeRm1qPUEvoKpZ74Q3+B9/qKkXTGdcK2VnQeL92vXdvjHcOF2GvvN0iFyejX4ZioM9Q16OHDly5MiRI0eOHMECwf8BomIm0kjhDfUAAAAASUVORK5CYII=">
+						<a href="/public/categories/2">고양이 샵</a></li>
+					<li><img
+						src="data:image/png;base64,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">
+						<a href="/public/categories/11">기타동물 샵</a></li>
+					<li><img
+						src="data:image/png;base64,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">
+						<a href="#">고객센터</a></li>
+				</ul>
+			</div>
+			<div class="col-4container">
+				<div class="col-4">
+					<h1>인기있는 샘플이 100원부터!</h1>
+					<p>샘플체험</p>
+				</div>
+				<div class="col-4img">
+					<img src="img/col-4img.png" alt="">
+				</div>
+			</div>
 
-	<div class="col-7">
-		<div class="col-7-container">
-		   	<div class="flex between">
-		    	<h2>신상품</h2>
-		    	<button id="showMoreBtn">더 보기</button>
-		    </div>
-			<div class="flex">
-				<div class="imgbox">1</div>
-				<div class="imgbox">2</div>
-				<div class="imgbox">3</div>
-				<div class="imgbox">4</div>
-		    </div>
-	    </div>
-	</div>
+			<div class="flex between">
+				<h2>이 상품 어때요?</h2>
+				<button id="showMoreBtn">더 보기</button>
+			</div>
+			<div class="col-5 flex" id="col-5"></div>
 
-	<div class="col-8">
-		<div class="col-8-container">
-		   	<div class="flex between">
-		    	<h2>랭킹</h2>
-		    	<button id="showMoreBtn">더 보기</button>
-		    </div>
-			<div class="flex">
-				<div class="imgbox"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAABF0lEQVR4nO2ZMUoEMRSGcxAtZS8iedt6Bw/gIbyCeShYWSiyDNb2VsIWgo2tgiAsrNuKfDKKuogKmWKSwP/Bg+nm//JeUiQhCCFEtRxENt2YpcjKDcasFFmlSJeMyeDwyViMHdx/ihiLoykb2QL9ypcO758VOc8WKDE2/rfA85AOUFMFCZg6gEYoh9Ij49Vs4il0e3Bz0ZjA6S5cn8DygS+aELg6hKc7fqUJgf9oRuD1Be7n8HjboMDlPhzvfHzPzxoU8LWSgKkDaITW0SbOQaeQ6RhFx6hXVCGX0oFdAlZ+1V0jZA1v4lTR5W4ylkMEutLB/btm+QLGpJYHDt9mKwyhfxnpHxf6+/nRw8f3f84GhxdCiDAGb4LQq+3jAU5QAAAAAElFTkSuQmCC"></div>
-				<div class="imgbox"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAABxUlEQVR4nO2ZvUvDQBjG7w/RUfqPSK4iOAgOujopdtbVzUlwMOcHIn5Dm3ZQBBGlKrhoBgUFP6qgg4q20JYqlDZ5JIaSplo0ablc8R54lhsuz+/ufXMhR4iUlJSUsJpW0M4oNFVBnlGAp1UFeVVBQqUI+Q6vUmR4B2e1IBSZuTDaPANYKx90eFaxgqhngCDKhtUHyPnZAYhkIgGo3AHIEvKif93EsWHgeh8opAHTAD6ywKMO7Iy3AEByEjBKqKvzuMAA2og7vFEGck+AabohtIigAKkDJ2S5CESH7PG9CTfA6YqgAIW0E/LuyBmf6bJ3o6LLbUEBNkeBrTHbG4PO+GIfgKoy0lcFBWB1rK9X1Y8pcA+wHxyPuBv7NulvHhIEwFI/kH9xwls9sjzQIgALvcBbyglffLcPOL/zEZ4A8z3A80XVeVCyG7yROQkvgNlu4OHE/d4/nGq8HAkXgDBwtesOfxZrPDzjBaCv1X752H3wevPdQgLcH+PPkgC/qRl120wTrwo6MJMANPhVZ7KEaAs3sSrQz12VIusHIBF0cOZY8w5AERLlgoN1ooP4kXUzYl0uWP/nuYdXvp6p+Q4vJSUlRXjoE1vt1P+TgB46AAAAAElFTkSuQmCC"></div>
-				<div class="imgbox"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACDUlEQVR4nO2ZzUtUURjG7x+iy/AfiXvsC6Qkgjat2hSGhOAiCKmFC3fRPc74wRgUpeOoRFFSiYoSA0a4EPxYpKKIOOVHmvkxPzlehpkzlDBHnHuE88CzORfuPL/zvu+Zy72e5+Tk5GStnvtUSkEy8NmUAsrpwGcz8EkFgirj8IEgU+7gshhEkIlXU1EygNr5qMPLnH26SwaIom3k/wE2TCqATfYcgHAVwLVQKYq6ZaQbYmG2UwMNMDcC2xnIHsLuFqxMwVgM2q5ZXoFvrzlRmR+QuGUpwLtHeli1+yrw3219fXbIUoCZz3r41INwveN6CJLTwR7Er1oI0HMP3jaG7n+oX/veo1chcdNCAHmCFyfy4X+vgay2HODFbfjaAekEzKcLBwM+NVs6A7LAqoWKtbcDH5rM7+lFDaC0NAldth6jssDtNZC8D331MPIM/mzkIVanz8EMyCKPBnoleussBBiPh4Or/PGJfu39Yx1g8KmFAOtL+YCqZV7eCddjl2FuWAfI/clJmwDSXXrI/V1YnoStVX395zy02jgDsStFZ/4/pJ5Q39w1myPvrAGU1c5+aQl3Xj3zKGWz8GsBJl5BZ61ZeBnVKdR5A1ovnf4+Mupj1AEIVwHOXwsFFr3cDQTrJgCpqIPLvJOlAwiqbPnAIS9ywTOR+jKiPi6o9/NlD+8f/2bSOLyTk5OTVw4dAcnC1xyl5PK8AAAAAElFTkSuQmCC"></div>
-				<div class="imgbox"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAABY0lEQVR4nO2ZsUoDQRCG90G0lLyI7AraWuoj2Bp8D3cxjUGt5EyhZ+EDaHF9CIhoYyGRYHIiMQTzh/U0eyoBb9G7HZgf/mab+7+dmSt2hGCxWKxgtSuxaBQiLZEaBZRpLZFqiZZWqHmH1wq9soOb7yAKvcYKFgoD2JuvOrz5tMRxYYAq2sbMBxj4VAAhWTCA4gqAW6iIqm4ZE8IQH24A4yFmmrwRA7i9dOHJAcQ7X8OTAthbBZ7uCQMkzVzoCTGAo01gPMoCP3SAxxtiAHdX7uZPtoDuNSGAODe47Tg7IwPQWHOD+5oC++vEAJIDF7RzAZzVM/dzfyPbVvbsdDtAgNELfi2fSoj/BnjuEgdImkD7/KeHg3zyj/M4QAAzx2SG2DAAwqzAX1kwgOIKgFuoiMgPsQ7ocVcr9H0AWlUHN85RcQCFWigLDrOMJeEjuxmxywX7Pl96ePn+zcg7PIvFYokyNAUMcNqz/i9vggAAAABJRU5ErkJggg=="></div>
-		    </div>
-	    </div>
-	</div>
-            
-        </main>
-<script src="/js/index.js"></script>    
+		</div>
+
+		
+		<div class="col-6" id="col-6" >
+		
+		</div>
+		
+		<div class="col-7">
+			<div class="col-7-container">
+				<div class="flex between">
+					<h2>신상품</h2>
+					<button id="showMoreBtn">더 보기</button>
+				</div>
+				<div class="flex" id="col-7"></div>
+			</div>
+		</div>
+
+		<div class="col-8">
+			<div class="col-8-container">
+				<div class="flex between">
+					<h2>5천원이하 장바구니 꿀템!</h2>
+
+					<button id="showMoreBtn">더 보기</button>
+				</div>
+				<div class="flex" id="col-8"></div>
+			</div>
+		</div>
+
+	</main>
+
 </body>
 </html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{views/admin/layout::layout(~{::head}, ~{::main})}">
+<head>
+<meta charset="UTF-8">
+<meta name="_csrf" th:content="${_csrf.token}" />
+<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+<link rel="stylesheet" href="/css/admin/order/order-detail.css">
+<link rel="stylesheet" href="/css/admin/order/order.css">
+<link rel="stylesheet" href="/css/admin/order/member-order.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+<script th:src="@{/js/admin/order/detail.js}"></script>
+<script th:src="@{/js/admin/order/order.js}"></script>
+<title>주문목록</title>
+</head>
+
+<main>
+    <div class="container">
+        <h1>주문목록</h1>
+        <!-- 검색 및 필터링 폼 -->
+        <form th:action="@{/admin/order}" method="get">
+            <div class="filter-group">
+                <label for="orderNo">주문번호:</label>
+                <input type="text" id="orderNo" name="orderNo" th:value="${orderNo}">
+                
+                <label for="memNo">회원번호:</label>
+                <input type="text" id="memNo" name="memNo" th:value="${memNo}">
+                
+                <label for="orderDate">주문일자:</label>
+                <input type="date" id="orderDate" name="orderDate" th:value="${orderDate}">
+                
+                <button type="submit">검색</button>
+            </div>
+        </form>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th class="order">주문번호</th>
+                    <th class="order">회원번호</th>
+                    <th class="order">주문일자</th>
+                    <th class="order">처리상태</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="order : ${orders}">
+                    <td>
+                        <span th:onclick="'loadOrderDetail(' + ${order.orderNo} + ', event); return false;'" th:text="${order.orderNo}">주문번호</span>
+                    </td>
+                    <td>
+					    <span th:onclick="'loadMemberOrder(' + ${order.memNo} + ', event); return false;'" th:text="${order.memNo}">회원번호</span>
+					</td>
+                    <td th:text="${order.orderDate}">주문일자</td>
+                    <td>
+                        <select th:data-order-no="${order.orderNo}" onchange="updateOrderStatus(this)">
+                            <option th:each="status : ${T(com.green.petfirst.domain.entity.Status).values()}"
+                                    th:value="${status.name()}"
+                                    th:text="${status.roleName()}"
+                                    th:selected="${order.status.name() == status.name()}">
+                            </option>
+                        </select>
+                    </td>
+				</tr>
+            </tbody>
+        </table>
+		<!-- 페이징 네비게이션 -->
+		<div class="page" th:if="${totalPages > 1}">
+		    <ul>
+		        <!-- 첫 페이지로 이동 (`<<`) -->
+		        <li th:if="${currentPage > 0}">
+		            <a th:href="@{/admin/order(page=${0})}">&laquo;</a>
+		        </li>
+		
+		        <!-- 이전 페이지 블록으로 이동 (`<`) -->
+		        <li th:if="${startPage > 0}">
+		            <a th:href="@{/admin/order(page=${startPage - 1})}">&lsaquo;</a>
+		        </li>
+		
+		        <!-- 페이지 번호들 -->
+		        <li th:each="i : ${#numbers.sequence(startPage, endPage - 1)}"
+		            th:classappend="${i == currentPage} ? 'active'">
+		            <a th:href="@{/admin/order(page=${i})}" th:text="${i + 1}">1</a>
+		        </li>
+		
+		        <!-- 다음 페이지 블록으로 이동 (`>`) -->
+		        <li th:if="${endPage < totalPages}">
+		            <a th:href="@{/admin/order(page=${endPage})}">&rsaquo;</a>
+		        </li>
+		
+		        <!-- 마지막 페이지로 이동 (`>>`) -->
+		        <li th:if="${currentPage < totalPages - 1}">
+		            <a th:href="@{/admin/order(page=${totalPages - 1})}">&raquo;</a>
+		        </li>
+		    </ul>
+		</div>
+
+		<div class="tooltip" id="tooltip"></div>
+    </div>
+</main>
+</html>

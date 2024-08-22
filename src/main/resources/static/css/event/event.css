@@ -1,0 +1,88 @@
+h3 {
+    font-size: 24px;
+}
+.event-image{
+    width : 900px;
+    height : 250px;
+}
+/* 이벤트 페이지 특정 스타일 */
+.event-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.event-page-title {
+    text-align: center;
+    color: var(--point-purple);
+    margin: 20px 0;
+    font-size: 2.5em;
+}
+
+.event-header-box {
+    background-color: var(--sub-pink);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.event-header-title {
+    color: var(--logo-new);
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.event-header-subtitle {
+    color: var(--grey);
+    font-size: 1.2em;
+}
+
+.event-items-list {
+    margin-bottom: 30px;
+}
+
+.event-items-list li {
+    background-color: var(--white);
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.event-image-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 30px auto;
+    padding: 0 50px;
+}
+
+.event-main-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .event-container {
+        padding: 10px;
+    }
+
+    .event-page-title {
+        font-size: 2em;
+    }
+
+    .event-header-title {
+        font-size: 1.5em;
+    }
+
+    .event-header-subtitle {
+        font-size: 1em;
+    }
+
+    .event-image-wrapper {
+        padding: 0 20px;
+    }
+}

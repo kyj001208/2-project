@@ -1,12 +1,6 @@
     <div class="nav-rootbar">
         <nav class="nav-container">
-            <ol class="flex middel">
-                <li>홈</li>
-                <li>></li>
-                <li>마이페이지</li>
-                <li>></li>
-                <li>주문·배송</li>
-            </ol>
+
         </nav>
     </div>
     <div class="top-box">
@@ -17,12 +11,13 @@
                         <img src="/img/mypage/myprofile.jpg" alt="Profile">
                     </div>
                     <div class="user-name-wrap">
-                        <span class="user-name">
-                            <a href="/petfir/mypage/myinfo">
-                                유해리 님
-                                <i class="ri-settings-3-line"></i>
-                            </a>
-                        </span>
+               			<div sec:authorize="isAuthenticated()" class="logoutwrap">
+							<span class="user-name">
+								<b sec:authentication="principal.name">이름</b>
+								<span>님</span>
+							</span>
+						</div>
+                       <a href="/petfir/mypage/myinfo"> <i class="ri-settings-3-line"></i></a>
                     </div>
                 </div>
                 <div class="mypage-btn-container">
@@ -31,25 +26,25 @@
 	                        <div class="mypage-btn">
 	                            <span class="flex center">주문·배송</span>
 	                            <i class="ri-shopping-bag-3-line"></i>
-	                            <strong>0</strong>
+	                            <strong th:text="${PROCESSING}">2</strong>
 	                        </div>
 	                    </button>
                     </a>
-                    <a href="#">
+                    <a href="/petfir/mypage/orders">
                     <button class="mypage-box-btn">
                         <div class="mypage-btn">
-                            <span class="flex center">좋아요</span>
-                            <i class="ri-heart-3-line"></i>
-                            <strong>0</strong>
+                            <span class="flex center">배송완료</span>
+                            <i class="ri-shopping-bag-3-line"></i>
+                            <strong th:text="${DELIVERED}">1</strong>
                         </div>
                     </button>
                     </a>
-                    <a href="/petfir/mypage/coupon">
+                    <a href="/petfir/mypage/return">
                     <button class="mypage-box-btn">
                         <div class="mypage-btn">
-                            <span class="flex center">나의 쿠폰</span>
-                            <i class="ri-coupon-3-line"></i>
-                            <strong>0</strong>
+                            <span class="flex center">교환·환불</span>
+                            <i class="ri-exchange-line"></i>
+                            <strong th:text="${DELIVERED+REFUND}">0</strong>
                         </div>
                     </button>
                     </a>

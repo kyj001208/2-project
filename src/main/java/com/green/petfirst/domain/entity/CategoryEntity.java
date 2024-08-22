@@ -3,10 +3,12 @@ package com.green.petfirst.domain.entity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale.Category;
+import java.util.stream.Collectors;
 
 import org.hibernate.annotations.DynamicUpdate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.green.petfirst.domain.dto.category.CategoryDTO;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -48,8 +50,21 @@ public class CategoryEntity {
     private long depth;  // 카테고리 계층
     
     @Builder.Default //children 리스트의 기본 값
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
-    
+    @OneToMany( mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CategoryEntity> children = new ArrayList<>();  // 자식 카테고리들
 
+    
+    public CategoryDTO toCategoryDTO() {
+    	
+    	return CategoryDTO.builder()
+    			.categoryNo(categoryNo)
+    			.categoryName(categoryName)
+    			.depth(depth)
+    			//.parentNo(parent.getCategoryNo())
+    			.children(children.stream()
+    					.map(CategoryEntity::toCategoryDTO)
+    					.collect(Collectors.toList()))
+    			.build();
+    }
+    
 }

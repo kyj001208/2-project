@@ -5,10 +5,14 @@ import java.time.LocalDate;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.green.petfirst.domain.dto.order.OrderListDTO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -29,19 +33,24 @@ import lombok.NoArgsConstructor;
 public class OrderEntity {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long orderNo; // 교환/환불(pk)
 	
+	/*
 	@OneToOne
-	@JoinColumn(name = "devNo", nullable = false)
-	private DeliverEntity deliver; // 배송번호 (fk)
-	
-	@OneToOne
+	@JoinColumn(name = "devNo") private DeliverEntity deliver; // 배송번호 (fk)
+	*/	
+	@ManyToOne
 	@JoinColumn(name = "payNo", nullable = false)
-	private PayEntity pay; // 주문번호 (fk)
+	private PayEntity pay; // 결제번호 (fk)
 	
 	@ManyToOne
 	@JoinColumn(name = "productNo", nullable = false)
-	private ProductEntity product; // 주문번호 (fk)
+	private ProductEntity product; // 상품번호 (fk)
+	
+	@ManyToOne
+	@JoinColumn(name = "memNo", nullable = false)
+	private MemberEntity member; // 회원번호 (fk)
 	
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
@@ -56,6 +65,27 @@ public class OrderEntity {
 	
 	@Column(nullable = false)
 	private long total;
+	
+	@CreationTimestamp
+	@Column(columnDefinition = "timestamp", nullable = false)
+	private LocalDate orderDate; //주문일자
+
+	public void setStatus(Status status) {
+		this.status = status;
+		
+	}
+	
+	public OrderListDTO toOrderListDTO() {
+		return OrderListDTO.builder()
+				.orderNo(orderNo)
+				.product(product.toProductListDTO())
+				.quantity(quantity)
+				.unitPrice(unitPrice)
+				.total(total)
+				.orderDate(orderDate)
+				.status(status)
+				.build();
+	}
 	
 	
 }

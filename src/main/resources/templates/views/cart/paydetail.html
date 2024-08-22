@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="/css/cart/paydetail.css" />
+<link rel="stylesheet" href="/css/commons/common.css" />
+<script src="https://js.tosspayments.com/v2/standard"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="/js/pay/cart.js"></script>
+<script src="/js/pay/payaddress.js"></script>
+
+</head>
+<body>
+
+	
+
+	<!-- 결제 UI -->
+	<div id="payment-method"></div>
+	<!-- 이용약관 UI -->
+	<div id="agreement"></div>
+	<!-- 결제하기 버튼 -->
+	<div class="paymentdiv">
+		<button class="button" id="payment-button" style="margin-top: 30px">결제하기</button>
+	</div>
+
+	<script>
+      main();
+
+      async function main() {
+        const button = document.getElementById("payment-button");
+        // ------  결제위젯 초기화 ------
+        const clientKey = "test_gck_docs_Ovk5rk1EwkEbP0W43n07xlzm";
+        const tossPayments = TossPayments(clientKey);
+        // 회원 결제
+        const customerKey = "tegVV6IjZsKL_ce9s5d17";
+        const widgets = tossPayments.widgets({
+          customerKey,
+        });
+        // 비회원 결제
+      
+		const totalAmountText = localStorage.getItem('totalAmount') || '0';
+		const totalprice = parseFloat(totalAmountText.replace(/,/g, ''));
+
+        // ------ 주문의 결제 금액 설정 ------
+        await widgets.setAmount({
+          currency: "KRW",
+          value: totalprice,
+        });
+
+        await Promise.all([
+          // ------  결제 UI 렌더링 ------
+          widgets.renderPaymentMethods({
+            selector: "#payment-method",
+            variantKey: "DEFAULT",
+          }),
+          // ------  이용약관 UI 렌더링 ------
+          widgets.renderAgreement({ selector: "#agreement", variantKey: "AGREEMENT" }),
+        ]);
+
+        // ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
+        button.addEventListener("click", async function () {
+        	
+        	const uniqueOrderId = generateUniqueOrderId(); // 고유 주문번호 생성
+        debugger;
+          await widgets.requestPayment({
+            orderId: uniqueOrderId,
+            orderName: "Petfir",
+            successUrl: window.location.origin + "/petfir/pay/detail/success",
+            //successUrl:'http://localhost:8080/petfir/pay/detail',
+            failUrl: window.location.origin + "/petfir/pay/detail/fail",
+            //customerEmail: "customer123@gmail.com",
+         	//customerName: "김토스",
+            //customerMobilePhone: "01012341234",
+            
+           
+          });
+          
+          debugger;
+        });
+      }
+      
+      function generateUniqueOrderId() {
+    	    // 고유 주문번호 생성 예시 (현재 시간 + 랜덤 숫자)
+    	    return 'order-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+    	}
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout::frame(~{this::head}, ~{this::main})}">
+
+<head>
+<meta charset="UTF-8">
+<title>PETFIR</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="/css/product/list.css" />
+<link rel="stylesheet" href="/css/category/list.css" />
+<link rel="stylesheet" href="/css/commons/common.css" />
+<script src="/js/category/list.js"></script>
+<script th:inline="javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    loadCategoryAll();
+    loadCategoryProducts(/*[[${categoryNo}]]*/);
+});
+</script>
+
+
+</head>
+<body>
+<main>
+<div th:replace="~{views/categorypage/top}"></div>
+
+
+<div class="categorypage-wrap">
+	<div class="categorypage-container">
+ 		<nav id="category-menu">
+	        
+    	</nav>
+        <section id="product-content">
+
+        </section>
+    </div>
+</div>
+</main>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{views/admin/layout::layout(~{::head}, ~{::main})}">
+    
+<head>
+    <link rel="stylesheet" href="/css/cart/admin-naver.css">
+    <link rel="stylesheet" href="/css/commons/common.css" />
+    <style>
+        /* Add CSS here */
+    </style>
+</head>
+
+<main class="jogicdo-mains">
+
+    <section class="jogido-menu">
+        <a class="org-title">조직도</a>
+        <table class="jojicdo-listss">
+            <tr th:each="dto:${list}">
+                <td th:text="${dto.orgUnitName}" class="org-unit-name"></td>
+                <td></td>
+            </tr>
+        </table>
+        <hr>
+    </section>
+
+    <section class="jogicmem-main">
+        <a class="mem-title">구성원 목록</a>
+        <div class="jogocmem-list">
+            <ul class="mem-header">
+                <li class="jogic-title">
+                    <div>번호</div>
+                    <div>이름</div>
+                    <div>팀명</div>
+                    <div>직급</div>
+                    <div>자리번호</div>
+                </li>
+            </ul>
+            <div class="jojic-lists">
+                <ul>
+                    <li class="th-contacts" th:each="mem:${mem}">
+                        <div th:text="${mem.jogicdoNo}">번호</div>
+                        <div th:text="${mem.jogicdoName}">이름</div>
+                        <div th:text="${mem.jogicdoTeam}">조직명</div>
+                        <div th:text="${mem.jogicdoPosition}">직급</div>
+                        <div th:text="${mem.jogicdoNum}">연락처</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+</html>

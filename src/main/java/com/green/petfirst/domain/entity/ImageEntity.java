@@ -32,6 +32,11 @@ public class ImageEntity {
     @JoinColumn(name = "productNo")
 	private ProductEntity product; //상품번호
     
+    public ImageEntity product(ProductEntity product) {
+    	this.product=product;
+    	return this;
+    }
+    
     @Column(columnDefinition = "blob", nullable = false)
 	private String imgUrl; //이미지url
     
@@ -40,5 +45,6 @@ public class ImageEntity {
 	
     @Column(columnDefinition = "text", nullable = false)
 	private String fileName; //파일이름
+    
 	
 }

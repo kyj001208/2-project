@@ -2,7 +2,6 @@ package com.green.petfirst.domain.entity;
 
 import org.hibernate.annotations.DynamicUpdate;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,9 +27,7 @@ public class MarketEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long marketNo; //장바구니번호
-	
-	
-	
+
 	@OneToOne
 	@JoinColumn(name = "memNo", nullable = false)
 	private MemberEntity member; //이름

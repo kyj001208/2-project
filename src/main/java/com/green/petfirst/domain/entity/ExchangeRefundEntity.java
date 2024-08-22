@@ -1,7 +1,6 @@
 package com.green.petfirst.domain.entity;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
@@ -18,8 +17,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 
 @Builder
@@ -56,5 +53,9 @@ public class ExchangeRefundEntity {
 	@ManyToOne
 	@JoinColumn(name = "orderNo", nullable = false)
 	private OrderEntity order; // 주문번호 (fk)
+
+	public void setStatus(RequestStatus requestStatus) {
+        this.requestStatus = requestStatus;
+    }
 	
 }

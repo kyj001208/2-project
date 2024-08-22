@@ -1,0 +1,175 @@
+.container {
+	width: 100%;
+	padding: 20px;
+	font-size: 24px;
+}
+
+h1 {
+	font-size: 36px;
+	margin: 40px 0px 0px 100px;
+}
+
+.header {
+	margin: 20px 0px 30px 130px;
+}
+
+table {
+	width: 80%;
+	border-collapse: collapse;
+	margin-top: 10px;
+	margin-left: 180px;
+}
+
+table thead th {
+	background-color: #f1f1f1;
+	padding: 10px;
+	border: 1px solid #ddd;
+	vertical-align: middle;
+	text-align: center;
+	width: 150px;
+}
+
+table tbody td {
+	padding: 10px;
+	border: 1px solid #ddd;
+	vertical-align: middle;
+	text-align: center;
+}
+
+button.exchange-history, .refund-history, button.options {
+	padding: 5px 10px;
+	font-size: 14px;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+button.exchange-history, .refund-history {
+	background-color: var(--logo-brown);
+}
+
+button.options {
+	background-color: var(--grey);
+}
+
+/* 모달 스타일 */
+.modal {
+	display: none; /* 기본적으로 숨김 */
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	padding-top: 60px;
+}
+
+.modal-content1, .modal-content2 {
+	background-color: #f2f2f2;
+	margin: 5% auto;
+	padding: 20px;
+	width: 80%;
+	max-width: 600px;
+	border: 1px solid #9d9d9d;
+}
+
+.modal-content1 {
+	width: 550px;
+	height: 500px;
+	margin-top: 200px;
+}
+
+.modal-content2 {
+	width: 500px;
+	height: 250px;
+	margin-top: 300px;
+}
+
+.close {
+	color: black;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover, .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.tags {
+	background-color: black;
+	vertical-align: middle;
+	text-align: center;
+	color: white;
+}
+
+.detail{
+	background-color: #f9f9f9;
+}
+
+h2 {
+	font-size: 36px;
+}
+
+.item {
+	font-size: 24px;
+	padding: 10px 0 15px 20px;
+}
+
+.option-button {
+	display: inline-block;
+	width: 200px;
+	height: 70px;
+	padding: 10px;
+	margin: 5px 0;
+	margin-left: 20px;
+	border: 1px solid #ddd;
+	background-color: #fcfcfc;
+	cursor: pointer;
+	font-size: 16px;
+	border-radius: 4px;
+}
+
+th, .detail {
+	padding: 10px;
+	border: 1px solid black;
+	text-align: left;
+}
+
+.modal-table {
+	margin: 20px 0 20px 60px;
+	font-size: 20px;
+}
+/* /////////////////// */
+.tab {
+	display: flex;
+	cursor: pointer;
+	padding: 10px;
+	background-color: var(--sub-grey);
+	border-bottom: none;
+}
+
+.tab div {
+	flex: 1;
+	padding: 14px 16px;
+	text-align: center;
+}
+
+.tab div:hover {
+	background-color: var(--grey);
+	color : white;
+}
+
+div.active {
+	background-color: white;
+}
+
+.tabcontent {
+	display: none;
+	padding: 16px;
+	border-top: none;
+}

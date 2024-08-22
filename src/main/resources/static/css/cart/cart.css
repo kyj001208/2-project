@@ -23,6 +23,7 @@
 	
 }
 
+
 .cart_top{
 	
 	display: flex;                   
@@ -49,24 +50,28 @@
 
 .cart-check{
 	
-	height: 100px;
+	
 	font-size: 20px;
 }
 
-.cart-menu-m{
+
+.quantity > button{
 	
-	justify-content:space-between;
-	display: flex;
-	padding-bottom: 30px;
-	height: 300px;
-	margin: 1em;
+	width:40px;
+	background-color: var(--sub-pink);
+	font-family: "Hi Melody", sans-serif;
+	font-size: 16px;
+	border-radius: 1em;
+	color: var(--grey);
+	border: none;
 	
 }
 
-.cart-title{
-	
-	display: flex;
+.count{
+	width: 30px;
+	border: 1px solid var(--sub-gray);
 }
+
 
 .cart-d-btn{
 	
@@ -80,9 +85,41 @@
 	
 }
 
+.cart_lists{
+	
+
+	
+	display: flex;
+
+	justify-content: center;
+
+	padding-top: 20px;
+	
+}
+
+.cart_lists >div{
+	
+	  white-space: nowrap;
+
+	  flex: 1; /* 동일한 너비로 나누기 */
+
+	  text-align: center; /* 가운데 정렬 */
+
+	  border-bottom: 1px solid #ccc; /* 아래쪽 테두리 설정 */
+
+	  padding: 10px 0; /* 위아래 여백 설정 */
+}
+
+.cart_imgs{
+	height: 150px;
+	width: 150px;
+}
+
+
 
 .cart-menu-b{
 	
+	padding-top: 20px;
 	display: flex;
 	text-align: center;
 	justify-content: center;
@@ -95,10 +132,12 @@
 .cartpay{
 	
 	text-align: center;
+	padding-bottom: 30px;
+	padding-top: 20px;
 	
 }
 
-.cartpay-btn{
+.paytossbtn{
 	
 	width: 300px;
 	background-color: var(--sub-pink);
@@ -107,6 +146,7 @@
 	border-radius: 1em;
 	color: var(--grey);
 	border: none;
+	
 }
 
 /* ///////////////////////////////////아래 강아지들//////////////////// */
@@ -136,3 +176,28 @@
 	object-fit: cover;
 	border-radius: 1em;
 }
+
+
+
+
+/* /////////////////////////////////////////// */
+
+/* 모달 대화상자 스타일 */
+		.modal {
+			display: none;
+			/* 초기에는 숨김 상태 */
+			position: fixed;
+			/* 화면에 고정 */
+			left: 50%;
+			/* 화면 가운데 정렬 */
+			top: 50%;
+			transform: translate(-50%, -50%);
+			border: 1px solid #ccc;
+			background-color: #fff;
+			padding: 20px;
+			z-index: 1000;
+			/* 다른 요소들보다 위에 오도록 설정 */
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+
+		}

@@ -13,6 +13,10 @@ h1 {
 	margin: 40px 0px 20px 80px;
 }
 
+.filter-group{
+	margin-left: 615px;
+}
+
 table {
 	width: 85%;
 	border-collapse: collapse;
@@ -37,20 +41,41 @@ table td {
 	height: 48px;
 }
 
-/* 페이지네이션 스타일 추가 */
-.pagination {
-	display: flex;
-	justify-content: center;
-	margin-top: 20px;
+/* 페이지 네비게이션을 가운데 정렬하고 간격을 줍니다. */
+.page {
+    display: flex;
+    justify-content: center; /* 가운데 정렬 */
+    margin-top: 20px; /* 위쪽에 간격 추가 */
 }
 
-.pagination a {
-	text-decoration: none;
-	padding: 0px 10px;
-	margin: 0 5px;
-	color: var(--grey);
+.page > ul {
+    display: flex;
+    justify-content: center; /* 가운데 정렬 */
+    align-items: center; /* 수직 정렬 */
+    gap: 10px; /* 페이지 링크 사이에 간격 추가 */
+    list-style-type: none; /* 기본 리스트 스타일 제거 */
+    padding: 0;
 }
 
-.pagination a:hover {
-	background-color: #d9d9d9;
+.page > ul > li {
+    margin: 0 5px; /* 각 리스트 아이템에 간격 추가 */
 }
+
+.page > ul > li > a {
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 18px;
+    color: var(--grey);
+    transition: background-color 0.3s ease;
+}
+
+.page > ul > li > a:hover {
+    background-color: var(--sub-grey);
+}
+
+.page > ul > li.active > a {
+    background-color: var(--grey);
+    color: white;
+    border-color: var(--grey);
+}
+

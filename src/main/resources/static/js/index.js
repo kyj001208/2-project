@@ -1,69 +1,104 @@
-//버튼 2를 누르면 transform='translate(-100vw)
-    
-document.addEventListener('DOMContentLoaded', function() {
-	document.querySelector('.btn2').addEventListener('click', function() {
-	document.querySelector('.banner-container').style.transform = 'translate(-100vw)';
-    });
-
-document.querySelector('.btn3').addEventListener('click', function() {
-    document.querySelector('.banner-container').style.transform = 'translate(-200vw)';
-    });
-    document.querySelector('.btn1').addEventListener('click', function() {
-	document.querySelector('.banner-container').style.transform = 'translate(0)';
-    });
-});
-
-document.addEventListener('DOMContentLoaded', function() {
+$(document).ready(function() {
+    // 로드할 함수들
+    loadRecommendedList();
+    loadNewList();
+    loadreasonablyProduct();
+    loadTodayProduct('123');
+   
+    // 배너 슬라이드
     let currentIndex = 0;
     const totalBanners = 3; // 총 배너 개수
-    const container = document.querySelector('.banner-container');
+    const banners = document.querySelectorAll('.banner');
 
     function moveToBanner(index) {
-        if (index >= totalBanners) {
-            currentIndex = 0; // 마지막 배너 후 첫 배너로 돌아가기
-        } else {
-            currentIndex = index;
+        if (banners.length > 0) {
+            banners[currentIndex].classList.remove('active');
+            currentIndex = (index + totalBanners) % totalBanners;
+            banners[currentIndex].classList.add('active');
         }
-        container.style.transform = `translate(-${100 * currentIndex}vw)`;
     }
 
-    // 자동 배너 전환 함수
     function autoSlide() {
-        currentIndex++;
+        moveToBanner(currentIndex + 1);
+    }
+
+    if (banners.length > 0) {
+        setInterval(autoSlide, 3000);
         moveToBanner(currentIndex);
     }
 
-    // 5초마다 배너 자동 전환 (5000ms = 5초)
-    setInterval(autoSlide, 3000);
+    // 타이머 코드
+    function initTimer() {
+        const timerElement = document.getElementById('timer');
 
-    document.querySelector('.btn1').addEventListener('click', function() {
-        moveToBanner(0); // 첫 번째 배너로 이동
-    });
+        if (timerElement) {
+            let now = new Date();
+            let start = new Date();
+            start.setHours(10, 0, 0, 0); // 오전 10시로 설정
+            let end = new Date(start.getTime() + 24 * 60 * 60 * 1000); // 24시간 후
 
-    document.querySelector('.btn2').addEventListener('click', function() {
-        moveToBanner(1); // 두 번째 배너로 이동
-    });
+            function startTimer() {
+                let interval = setInterval(() => {
+                    now = new Date();
+                    let timeLeft = end - now;
 
-    document.querySelector('.btn3').addEventListener('click', function() {
-        moveToBanner(2); // 세 번째 배너로 이동
-    });
+                    if (timeLeft <= 0) {
+                        clearInterval(interval);
+                        timerElement.textContent = "타이머 종료";
+                    } else {
+                        let hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+                        let minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
+                        let seconds = Math.floor((timeLeft / 1000) % 60);
+
+                        let formattedTime = 
+                            String(hours).padStart(2, '0') + ":" +
+                            String(minutes).padStart(2, '0') + ":" +
+                            String(seconds).padStart(2, '0');
+
+                        timerElement.textContent = formattedTime;
+                    }
+                }, 1000);
+            }
+
+            if (now >= start && now <= end) {
+                startTimer();
+            } else if (now < start) {
+                let delay = start - now;
+                setTimeout(startTimer, delay);
+            } else {
+                timerElement.textContent = "타이머는 이미 종료되었습니다.";
+            }
+        } else {
+            console.error("타이머 요소를 찾을 수 없습니다.");
+        }
+    }
+
+    //상품리스트
+    function loadRecommendedList() {
+        console.log("Loading recommended products...");
+        $.get(`/public/index/recommendedProduct`, function(data) {
+            $("#col-5").html(data);
+        });
+    }
+
+    function loadNewList() {
+        $.get(`/public/index/newProduct`, function(data) {
+            $("#col-7").html(data);
+        });
+    }
+
+    function loadreasonablyProduct() {
+        $.get(`/public/index/reasonablyProduct`, function(data) {
+            $("#col-8").html(data);
+        });
+    }
+
+    function loadTodayProduct(productNo) {
+        $.get(`/public/index/today/${productNo}`, function(data) {
+            $("#col-6").html(data);
+            
+            // 동적 내용 삽입 후 타이머 초기화
+            initTimer();
+        });
+    }
 });
-
-
-        
-document.getElementById('showMoreBtn').addEventListener('click', function() {
-    var gallery = document.querySelector('.product-gallery');
-    var visibleProducts = document.querySelectorAll('.product:not(.hidden)');
-    var hiddenProducts = document.querySelectorAll('.product.hidden');
-
-    visibleProducts.forEach(function(product, index) {
-        product.classList.add('hidden');
-        product.style.visibility = 'hidden';
-        hiddenProducts[index].classList.remove('hidden');
-        hiddenProducts[index].style.visibility = 'visible';
-    });
-
-    // 버튼 숨기기
-    this.style.display = 'none';
-});
-

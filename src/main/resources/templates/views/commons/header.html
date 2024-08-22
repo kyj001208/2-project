@@ -8,12 +8,15 @@
                 <div class="loginwrap2"></div>
             </div>
             <div class="search-container ">
-            	<form action="#" method="get" target="_blank" class="search-form">
-	                <input name="search-input" placeholder="검색해보세요..." type="text">
+            
+            	<form action="/public/search" method="get" class="search-form">
+	                <input name="keyword" placeholder="검색해보세요..." type="text">
 	                <div class="search-button">
-	                	<i class="ri-search-line"></i>
+	                	<button class="searchbtn" type="submit"><i class="ri-magic-fill"></i></button>
 	                </div>
                 </form>
+                
+                
             </div>
             <div class="loginwrap">
             	<span sec:authorize="isAnonymous()">
@@ -51,18 +54,19 @@
                     <ul class="flex category">
                         <li class="category-toggle"><a href="#">카테고리<i class="ri-arrow-down-s-fill"></i></a>
                             <ul class="subcategory-list">
-                                <li><a href="/public/shop/dogs">강아지샵</a></li>
-                                <li><a href="/public/shop/cats">고양이샵</a></li>
-                                <li><a href="/public/shop/others">기타동물샵</a></li>
-                                <li><a href="/public/shop/new">신상품</a></li>
-                                <li><a href="/public/shop/ranking">랭킹</a></li>
+                                <li><a href="/public/categories/1">강아지샵</a></li>
+                                <li><a href="/public/categories/2">고양이샵</a></li>
+                                <li><a href="/public/categories/11">기타동물샵</a></li>
                                 <li><a href="/public/shop/faq">FAQs</a></li>
+                                <li><a href="/public/events">이벤트</a></li> <!-- 이벤트 탭 추가 -->
                             </ul>
                         </li>
                         <li><a href="/">Home</a></li>
-                        <li><a href="/public/shop/new">신상품</a></li>
-                        <li><a href="/public/shop/ranking">랭킹</a></li>
+                        <li><a href="/public/categories/1">강아지샵</a></li>
+                        <li><a href="/public/categories/2">고양이샵</a></li>
+                        <li><a href="/public/categories/11">기타동물샵</a></li>
                         <li><a href="/public/shop/faq">FAQs</a></li>
+                        <li><a href="/public/events">이벤트</a></li> <!-- 이벤트 탭 추가 -->
                     </ul>
                 </nav>
                 <button class="image-button"><img src="/img/btnimg.png" alt=""></button>

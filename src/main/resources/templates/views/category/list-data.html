@@ -1,0 +1,25 @@
+<ul id="parent-categories">
+	<li th:each="dto:${list}">
+		<!-- 1차카테고리 -->
+		<div class="category-header-1">
+			<a th:href="|/public/categories/${dto.categoryNo}|">[[${dto.categoryName}]]</a>
+			<i class="ri-arrow-down-s-line toggle-icon"></i>
+		</div>
+		<ul th:id="|child-categories-${dto.categoryNo}|" class="child-categories hidden">
+			<li th:each="sub:${dto.children}">
+				<!-- 2차카테고리 -->
+				<div class="category-header-2">
+					<a th:href="|/public/categories/${sub.categoryNo}|">[[${sub.categoryName}]]</a>
+					<i class="ri-arrow-down-s-line toggle-icon"></i>
+				</div>
+				<ul th:id="|child-categories-${sub.categoryNo}|" class="child-categories hidden">
+					<li th:each="last:${sub.children}">
+						<!-- 3차카테고리 -->
+						<a th:href="|/public/categories/${last.categoryNo}|">[[${last.categoryName}]]</a>
+						
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+</ul>

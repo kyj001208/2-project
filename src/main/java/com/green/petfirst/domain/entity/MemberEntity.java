@@ -5,7 +5,8 @@ import java.util.Set;
 
 import org.hibernate.annotations.DynamicUpdate;
 
-
+import com.green.petfirst.domain.dto.login.MemberDTO;
+import com.green.petfirst.domain.dto.login.MemberUpdateDTO;
 import com.green.petfirst.security.Role;
 
 import jakarta.persistence.CollectionTable;
@@ -24,10 +25,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 
 @DynamicUpdate
+@Setter
 @Getter
 @Builder
 @AllArgsConstructor
@@ -36,28 +39,27 @@ import lombok.NoArgsConstructor;
 @Entity
 public class MemberEntity {
 	
-	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long memNo;
 	
-	@Column(nullable = false, unique = true)
+	@Column(unique = true)
 	private String userId; //아이디
 	
 	@Column(nullable = false)
 	private String password; //비빌번호
 	
-	@Column(nullable = false)
+	
 	private String name; //이름
 	
-	@Column(nullable = false)
+	
 	private String address; //주소
 	
-	@Column(nullable = false)
+	
 	private String phone;
 	
-	@Column(nullable = false, unique = true)
+	
 	private String email;
 	
 	
@@ -65,9 +67,25 @@ public class MemberEntity {
 	
 	private String petBreed;
 	
+    public MemberDTO toDTO() {
+        return MemberDTO.builder()
+                .id(this.memNo)
+                .userId(this.userId)
+                .email(this.email)
+                .phone(this.phone)
+                .address(this.address)
+                .petName(this.petName)
+                .petBreed(this.petBreed)
+                .build();
+    }
 	
-	
-	
+	public MemberEntity updateInfo(MemberUpdateDTO dto) {
+		phone=dto.getPhone();
+		address=dto.getAddress();
+		petBreed=dto.getPetBreed();
+		petName=dto.getPetName();
+		return this;
+	}
 	///////////////////////////////////////////////Role 권한 관련 ////////////////////////////////////////////////////////////////////////
 	
 	@Enumerated(EnumType.STRING)

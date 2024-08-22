@@ -1,93 +1,116 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{views/commons/layout::frame(~{this::head}, ~{this::main})}">
+<html xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{views/commons/layout::frame(~{this::head}, ~{this::main})}">
 
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="/css/cart/cart.css" />
-<link rel="stylesheet" href="/css/commons/common.css" />
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+	<meta name="_csrf" th:content="${_csrf.token}"/>
+	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <link rel="stylesheet" href="/css/cart/cart.css" />
+    <link rel="stylesheet" href="/css/commons/common.css" />
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="/js/pay/cart.js"></script>
+	
+	
+
 </head>
 
 <body>
-  <main>
+    <main>
+        <div class="shopcart-top">
+            <div class="cart_top">
+                <img src="/img/cart-pay/shopping.png" id="cartimage">
+                <div class="cart_name">쇼핑Cart</div>
+            </div>
 
-		<div class="shopcart-top">
+            <div class="shopcart1">
+                <div class="cart-menu-t">
+                  
+                    <div>
+                        <ul>
+                            <li class="cart_lists">
+                                <div>상품사진</div>
+                                <div>상품명</div>
+                                <div>수량</div>
+                                <div>가격</div>
+                                <div>삭제 여부</div>
+                            </li>
+                        </ul>
+                    </div>
 
-			<div class="cart_top">
-				<img src="/img/cart-pay/shopping.png" id="cartimage">
-				<div class="cart_name">쇼핑Cart</div>
-			</div>
+                    <!-- 뿌려주는 곳 -->
+                    <div th:each="dto : ${list}">
+                        <ul>
+                            <li class="cart_lists">
+                                <div class="cartNo" th:text="${dto.cartNo}" style="display:none;"></div>
+                                <div th:text="${dto.marketNo}" style="display:none;"></div>
+                                <img th:src="${dto.imgUrl}" class="cart_imgs">
+                                <div th:text="${dto.productName}">상품명</div>
 
-			<div class="shopcart1">
+                                <!-- 수량 조정 버튼과 입력 필드 -->
+                                <div class="quantity">
+                                    <button type="button">-</button>
+                                    <input type="text" class="count" th:value="${dto.count}" readonly />
+                                    <button type="button">+</button>
+                                </div>
 
-				<form>
-					<div class="cart-menu-t">
-						<div class="cart-check">
-							<span>전체선택</span>
+                               <div class="cart-price" th:text="${dto.totalprice}" th:data-price="${dto.totalprice}">가격</div>
 
-						</div>
+                                <div class="cart-delete">
+                                    <form th:id="'deleteForm-' + ${dto.cartNo}" th:action="@{'/petfir/cart/' + ${dto.cartNo}}" method="post">
+                                        <input type="hidden" name="_method" value="delete">
+                                        <button type="button" class="cart-d-btn" th:onclick="|deletebtnClicked(${dto.cartNo})|">삭제</button>
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-						<div class="cart-menu-m">
-							<div class="cart-title">
-								<img src="/img/cart-pay/shopping.png" id="cartimage">
-								<div class="cart_name">사료</div>
+                <div class="cart-menu-b">
+                    <div class="totalprice">
+                        <div>
+                            <span>총 상품금액</span>
+                        </div>
+                        <div id="totalAmount">0.00원</div>
+                    </div>
+                    <div class="deliverprice">
+                        <span>총 배송비</span><br> <span>무료</span>
+                    </div>
+                </div>
 
-							</div>
-							<div class="cart-count">
-								<div>카운트ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ</div>
+                <div class="cartpay">
+					
+					<a href="/petfir/pay"><button class="paytossbtn" > 결제하기</button></a>
+                   <!-- <button onclick="window.open('http://localhost:8080/petfir/pay/detail','window_name','width=1000,height=800,location=no,status=no,scrollbars=yes,left=400,top=200');"
+                        type="button" class="paytossbtn">결제하기</button>-->
+                </div>
+            </div>
 
-							</div>
-							<div class="cart-price">13,900원</div>
-							<div class="cart-delete">
-								<button class="cart-d-btn">삭제</button>
-							</div>
-						</div>
-
-						<div class="cart-menu-b">
-							<div class="totalprice">
-								<div>
-									<span>총 상품금액</span>
-								</div>
-								<div>0원</div>
-							</div>
-
-							<div class="deliverprice">
-								<span>총 배송비</span><br> <span>무료</span>
-							</div>
-
-
-
-						</div>
-
-						<div class="cartpay">
-
-							<a href="/petfir/pay"><button type="button" class="cartpay-btn">결제하기</button></a>
-
-						</div>
-
-
-					</div>
-
-				</form>
-
-
-			</div>
-			
-			<div class="shopcart-dogs">
-			<div><img src="/img/cart-pay/cat.jpg" id="dog1"></div>
-			<div><img src="/img/cart-pay/dog1.jpg" id="dog1"></div>
-			<div><img src="/img/cart-pay/dog2.jpg" id="dog1"></div>
-			<div><img src="/img/cart-pay/dog3.jpg" id="dog1"></div>
-			<div><img src="/img/cart-pay/rabbit.jpg" id="dog1"></div>
-			<div><img src="/img/cart-pay/dog4.jpg" id="dog1"></div>
-			</div>
-			
-			
-		</div>
-		
-
-	</main>
-
-
+            <div class="shopcart-dogs">
+                <div>
+                    <img src="/img/cart-pay/cat.jpg" id="dog1">
+                </div>
+                <div>
+                    <img src="/img/cart-pay/dog1.jpg" id="dog1">
+                </div>
+                <div>
+                    <img src="/img/cart-pay/dog2.jpg" id="dog1">
+                </div>
+                <div>
+                    <img src="/img/cart-pay/dog3.jpg" id="dog1">
+                </div>
+                <div>
+                    <img src="/img/cart-pay/rabbit.jpg" id="dog1">
+                </div>
+                <div>
+                    <img src="/img/cart-pay/dog4.jpg" id="dog1">
+                </div>
+            </div>
+        </div>
+    </main>
+	
 </body>
 </html>

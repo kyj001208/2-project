@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{views/commons/layout :: frame(pHead=~{::head}, pMain=~{::main}, pHeader=~{::header}, pFooter=~{::footer})}">
+<head th:fragment="head">
+    <title th:text="${event.title + ' - 이벤트 상세'}">이벤트 상세</title>
+    <link rel="stylesheet" href="/css/event/event-detail.css">
+</head>
+<body>
+<header th:fragment="header" class="header">
+    <div class="header__title">Header Content</div>
+</header>
+<main class="event-detail-container" th:fragment="main">
+    <h1 class="event-title" th:text="${event.title}"></h1>
+    <img th:src="${event.imageUrl}" th:alt="${event.title}" class="event-image">
+    <p class="event-description" th:text="${event.description}"></p>
+    <p class="event-date" th:text="'이벤트 기간: ' + ${#temporals.format(event.startDate, 'yyyy-MM-dd')} + ' ~ ' + ${#temporals.format(event.endDate, 'yyyy-MM-dd')}"></p>
+    <div class="event-content">
+        <!-- 이벤트 상세 내용 -->
+        <h2>이벤트 상세 내용</h2>
+        <pre th:text="${event.eventDetails}" class="event-details"></pre>
+    </div>
+    <a href="/public/events" class="back-button">이벤트 목록으로 돌아가기</a>
+</main>
+<footer th:fragment="footer" class="footer">
+    <!-- Footer content -->
+</footer>
+</body>
+</html>

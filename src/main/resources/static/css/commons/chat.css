@@ -1,6 +1,13 @@
 /* chat.css */
 
-/* 채팅 아이콘 컨테이너 */
+:root {
+    --primary-color: #FF9999; /* 부드러운 핑크 */
+    --secondary-color: #FFD699; /* 부드러운 오렌지 */
+    --background-color: #FFF5E6; /* 연한 크림색 */
+    --text-color: #4A4A4A; /* 부드러운 회색 */
+    --border-radius: 20px; /* 더 둥근 모서리 */
+}
+
 .chat-icon-container {
     position: fixed;
     bottom: 20px;
@@ -9,98 +16,155 @@
     z-index: 1000;
 }
 
-/* 채팅 아이콘 */
 .chat-icon {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* 채팅 팝업 */
 .chat-popup {
-    display: none;
     position: fixed;
-    bottom: 80px;
+    bottom: 90px;
     right: 20px;
-    width: 300px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    width: 320px;
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--logo-new);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
-/* 채팅 팝업 헤더 */
 .chat-popup-header {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    background-color: #f4f4f4;
+    align-items: center;
+    padding: 15px;
+    background-color: var(--logo-new);
+    color: white;
 }
 
-/* 채팅 팝업 닫기 버튼 */
 .chat-popup-close-btn {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 16px;
-    color: #000;
+    font-size: 20px;
+    color: white;
 }
 
-/* 채팅 팝업 본문 */
 .chat-popup-body {
-    padding: 10px;
-    height: 200px;
+    padding: 15px;
+    height: 370px;
     overflow-y: auto;
-    border-bottom: 1px solid #ddd;
+    background-color: white;
 }
 
-/* 채팅 팝업 푸터 */
 .chat-popup-footer {
     padding: 10px;
-    border-top: 1px solid #ddd;
+    background-color: var(--background-color);
     display: flex;
-    flex-direction: column;
+    align-items: center;
 }
 
-/* 채팅 입력창 */
 .chat-input {
-    width: 100%;
-    height: 50px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 5px;
-    box-sizing: border-box;
+    flex-grow: 1;
+    height: 40px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 20px;
+    padding: 5px 15px;
+    font-size: 14px;
+    resize: none;
+    outline: none; /* 기본 focus 효과 제거 */
 }
 
-/* 전송 버튼 */
 .chat-send-btn {
-    margin-top: 10px;
-    padding: 5px 10px;
-    background-color: #007bff;
-    color: white;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
     border: none;
-    border-radius: 5px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .chat-send-btn:hover {
-    background-color: #0056b3;
+    background-color: var(--primary-color);
 }
 
-/* 사용자 메시지 */
 .chat-message {
-    margin: 5px 0;
+    max-width: 70%;
+    margin: 10px 0;
+    padding: 10px 15px;
+    border-radius: 18px;
+    position: relative;
+    clear: both;
+    font-size: 14px;
+    line-height: 1.4;
 }
 
 .chat-message.user {
-    text-align: right;
+    float: right;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border-bottom-right-radius: 0;
 }
 
-/* 봇 메시지 */
 .chat-message.bot {
-    text-align: left;
-    color: #007bff;
+    float: left;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border-bottom-left-radius: 0;
+    margin-left: 45px;
+}
+
+.chat-message.bot::before {
+    content: '';
+    position: absolute;
+    left: -45px;
+    top: 0;
+    width: 35px;
+    height: 35px;
+    background-image: url('/img/chatbot.png');  /* 반려동물 테마의 봇 아이콘 */
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: 2px solid  var(--logo-new);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.chat-message::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+}
+
+.chat-message.user::after {
+    right: -10px;
+    border-left-color:  var(--secondary-color);
+    border-right: 0;
+}
+
+.chat-message.bot::after {
+    left: -10px;
+    border-right-color: var(--secondary-color);
+    border-left: 0;
+}
+
+/* 전송 버튼 아이콘 */
+.chat-send-btn::before {
+    content: '➤';
+    font-size: 20px;
 }

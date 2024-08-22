@@ -1,0 +1,99 @@
+.container {
+	width: 100%;
+	padding: 20px;
+	background-color: #fff;
+}
+
+main {
+	font-size: 24px;
+}
+
+.filter-group{
+	margin-left: 760px;
+}
+
+h1 {
+	font-size: 36px;
+	margin: 40px 0px 20px 80px;
+}
+
+span{
+	cursor: pointer;
+}
+
+table {
+	width: 85%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+	margin-left: 130px;
+}
+
+table th, table td {
+	border: 1px solid #ddd;
+	padding: 5px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+table .order {
+	background-color: #f2f2f2;
+	height: 70px;
+	width: 200px;
+}
+
+table td {
+	height: 48px;
+}
+
+/* 페이지 네비게이션을 가운데 정렬하고 간격을 줍니다. */
+.page {
+    display: flex;
+    justify-content: center; /* 가운데 정렬 */
+    margin-top: 20px; /* 위쪽에 간격 추가 */
+}
+
+.page > ul {
+    display: flex;
+    justify-content: center; /* 가운데 정렬 */
+    align-items: center; /* 수직 정렬 */
+    gap: 10px; /* 페이지 링크 사이에 간격 추가 */
+    list-style-type: none; /* 기본 리스트 스타일 제거 */
+    padding: 0;
+}
+
+.page > ul > li {
+    margin: 0 5px; /* 각 리스트 아이템에 간격 추가 */
+}
+
+.page > ul > li > a {
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 18px;
+    color: var(--grey);
+    transition: background-color 0.3s ease;
+}
+
+.page > ul > li > a:hover {
+    background-color: var(--sub-grey);
+}
+
+.page > ul > li.active > a {
+    background-color: var(--grey);
+    color: white;
+    border-color: var(--grey);
+}
+
+
+
+/* 툴팁 스타일 */
+.tooltip {
+	display: none; /* 기본적으로 숨김 */
+	position: absolute;
+	z-index: 1000;
+	max-width: 1000px;
+	/* 기타 스타일 추가 가능 */
+}
+
+.show-tooltip {
+	display: block; /* 툴팁 보이기 */
+}

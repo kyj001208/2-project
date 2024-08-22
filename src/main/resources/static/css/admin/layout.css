@@ -1,11 +1,36 @@
-body{display: block; line-height: 1.6;}
-dl dt,dl p,dl dd, dl span{line-height: 1.6}
+@import url('https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap');
+
+
+body {
+	display: block;
+	line-height: 1.6;
+}
+
+dl dt, dl p, dl dd, dl span {
+	line-height: 1.6
+}
+
 .logo {
 	display: flex;
 	align-items: center;
 	height: 73px;
 }
 
+b{
+	font-size: 24px;
+	margin-right: 25px;
+}
+
+.logout_btn {
+	width: 50px; /* 버튼의 너비 */
+	height: 50px; /* 버튼의 높이 */
+	border: none;
+	background: url(/img/logout.png) no-repeat center center;
+	background-size: contain; /* 이미지 크기 조정 */
+	cursor: pointer;
+	text-align: center;
+	line-height: 100px; /* 텍스트를 버튼 중앙에 위치시키기 위한 설정 */
+}
 
 .sidebar {
 	width: 200px;
@@ -43,9 +68,7 @@ dl dt,dl p,dl dd, dl span{line-height: 1.6}
 	left: 0;
 	z-index: 1000;
 	height: 70px;
-
 }
-
 
 .user-profile {
 	display: flex;
@@ -57,19 +80,12 @@ dl dt,dl p,dl dd, dl span{line-height: 1.6}
 	border-radius: 50%;
 }
 
-.logout {
-	margin-right : 40px;
-	margin-left : 30px;
-	height: 45px;
-	width: 35px;
+.shopname {
+	color: var(--logo-new);
+	font-size: 24px;
 }
 
-.shopname{
-	color : var(--logo-new)
-}
-
-
-main{
+main {
 	width: calc(100vw - 200px);
 	padding-top: 70px;
 }
@@ -79,63 +95,92 @@ main>.wrap {
 	min-width: 760px;
 }
 
+#admin-menu h1 {
+	position: absolute;
+	left: -9999px;
+}
 
-#admin-menu h1{position: absolute;left: -9999px;}
-
-#admin-menu>.wrap{
-	padding-top:70px;
+#admin-menu>.wrap {
+	padding-top: 70px;
 	width: 200px;
+	min-height: 100vh;
 	height: 100%;
-	min-height:100vh;
-	background-color: rgba(0,10,30,1);
+	background-color: rgba(0, 10, 30, 1);
 	color: #fff;
-	font-size: 16px;	
+	font-size: 16px;
 }
-#admin-menu>.wrap a{
-	color: #fff;
 
+#admin-menu>.wrap a {
+	color: #fff;
 }
-#menu-top{
+
+#menu-top {
 	padding: 40px 20px;
 	font-weight: 700;
 }
-#menu-list>.wrap dl{
-	border-top: 1px solid rgba(255,255,255,.15);
+
+#menu-list>.wrap dl {
+	border-top: 1px solid rgba(255, 255, 255, .15);
 	margin: 0;
 }
-#menu-list>.wrap dl dt:hover{
+
+#menu-list>.wrap dl dt:hover {
 	background-color: var(--logo-new);
 }
-#menu-list>.wrap dl dt{
+
+#menu-list>.wrap dl dt {
 	font-weight: 700;
 	padding: 1em 0;
-	padding-left:1em;
+	padding-left: 1em;
 }
-#menu-list>.wrap dl dd{
+
+#menu-list>.wrap dl dd {
 	padding: 0 1em;
 	display: none;
 	transition: all 3s;
 }
+
 #menu-list>.wrap dl.active dd {
-    display: block;
-    transition: all 3s;
+	display: block;
+	transition: all 3s;
 }
 
-#menu-list>.wrap dl dd:not(.sub) a:hover{
+#menu-list>.wrap dl dd:not(.sub) a:hover {
 	background-color: var(--logo-new);
 }
-#menu-list>.wrap dl dd:not(.sub) a{
+
+#menu-list>.wrap dl dd:not(.sub) a {
 	font-size: 16px;
 	padding: .5em 1em;
 	display: block;
 }
-#menu-list>.wrap dl p.sub{
+
+#menu-list>.wrap dl p.sub {
 	font-size: 15px;
-	color: rgba(255,255,255,0.5);
+	color: rgba(255, 255, 255, 0.5);
 	margin: 0;
 }
 
 #menu-list>.wrap dl dt {
-    cursor: pointer;
+	cursor: pointer;
 }
 
+
+/* /////////////////////////////////조직도////////////////// */
+
+.jogicdodiv{
+	
+	border-top: 1px solid rgba(255, 255, 255, .15);
+	padding-top: 15px;
+	padding-left: 10px;
+}
+
+#jogicdobtn{
+	
+	font-family: "Hi Melody", sans-serif !important;
+	border: none;
+	background: none;
+	font-size: 16px;
+	color:  #fff;
+	font-weight: 700;
+}

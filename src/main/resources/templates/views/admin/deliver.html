@@ -4,12 +4,36 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/admin/deliver.css">
-<title>배송관리</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<title>배송내역</title>
 </head>
-
 <main>
 	<div class="container">
 		<h1>배송관리</h1>
+		<form th:action="@{/admin/deliver}" method="get">
+		    <div class="filter-group">
+		        <label for="devNo">배송번호:</label>
+		        <input type="text" id="devNo" name="devNo" th:value="${devNo}">
+		        
+		        <label for="devTime">배송일자:</label>
+		        <input type="date" id="devTime" name="devTime" th:value="${devTime}">
+		        
+		        <label for="devComplete">배송완료일자:</label>
+        		<input type="date" id="devComplete" name="devComplete" th:value="${devComplete}">
+		        
+		        <label for="devCompany">배송업체:</label>
+		        <select id="devCompany" name="devCompany">
+		            <option value="">전체</option>
+		            <option th:each="company : ${companies}" 
+		                    th:value="${company}" 
+		                    th:text="${company}" 
+		                    th:selected="${company == selectedCompany}"></option>
+		        </select>
+		
+		        <button type="submit">검색</button>
+		    </div>
+		</form>
+		
 		<table>
 			<thead>
 				<tr>
@@ -21,122 +45,46 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>1</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>4</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>5</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>6</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>7</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>8</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>10</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>11</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>12</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>13</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>14</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>15</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<!-- 나머지 행들 -->
-			</tbody>
+                <tr th:each="deliver : ${delivers}">
+                    <td th:text="${deliver.devNo}"></td>
+                    <td th:text="${deliver.address}"></td> <!-- 주소는 추가 데이터 처리 필요 -->
+                    <td th:text="${deliver.devCompany}"></td>
+                    <td th:text="${deliver.devTime}"></td>
+                    <td th:text="${deliver.devComplete}"></td>
+                </tr>
+            </tbody>
 		</table>
 		<!-- 페이지네이션 추가 -->
-        <div class="pagination">
-            <a href="#" class="disabled">« </a>
-            <a href="#" class="active">1</a>
-            <a href="#" class="disabled">2</a>
-            <a href="#" class="disabled">3</a>
-            <a href="#">» </a>
-        </div>
+		<div class="page" th:if="${totalPages > 1}">
+		    <ul>
+		        <!-- 첫 페이지로 이동 (`<<`) -->
+		        <li th:if="${currentPage > 0}">
+		            <a th:href="@{/admin/deliver(page=${0})}">&laquo;</a>
+		        </li>
+		
+		        <!-- 이전 페이지 블록으로 이동 (`<`) -->
+		        <li th:if="${startPage > 0}">
+		            <a th:href="@{/admin/deliver(page=${startPage - 1})}">&lsaquo;</a>
+		        </li>
+		
+		        <!-- 페이지 번호들 -->
+		        <li th:each="i : ${#numbers.sequence(startPage, endPage - 1)}"
+		            th:classappend="${i == currentPage} ? 'active'">
+		            <a th:href="@{/admin/deliver(page=${i})}"
+		               th:text="${i + 1}">1</a>
+		        </li>
+		
+		        <!-- 다음 페이지 블록으로 이동 (`>`) -->
+		        <li th:if="${endPage < totalPages}">
+		            <a th:href="@{/admin/deliver(page=${endPage})}">&rsaquo;</a>
+		        </li>
+		
+		        <!-- 마지막 페이지로 이동 (`>>`) -->
+		        <li th:if="${currentPage < totalPages - 1}">
+		            <a th:href="@{/admin/deliver(page=${totalPages - 1})}">&raquo;</a>
+		        </li>
+		    </ul>
+		</div>
 	</div>
 </main>
 </html>

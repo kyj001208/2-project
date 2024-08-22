@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<section id="product-content">
+	<div class="category-title flex">
+		<th:block th:each="cate,iterStat:${cateList}">
+		<a th:if="${cate}" th:href="|/public/categories/${cate.categoryNo}|">
+			<h2 th:text="${cate.categoryName}"></h2>
+		</a>
+		<span th:if="${not iterStat.last}" style="padding: 0 1em;">&gt;</span>
+		</th:block>
+		
+	</div>
+	<ol class="products">
+		<!--CategoryServiceProcess의 categoryProductListProcess메서드에서
+	   	 model.addAttribute() 이름과 일치-->
+		<li  th:each="dto:${list}" class="product">
+			<a th:href="|/public/products/${dto.productNo}|">
+				<img class="img" th:src="${dto.imgUrl}" alt="Product Image">
+				
+			</a>
+			<h3 th:text="${dto.productName}">상품명</h3>
+			<del><span th:text="|${#numbers.formatInteger(dto.price,3,'COMMA')}원|">판매가</span></del>
+			<p class="price">
+				
+				<span class="discount" th:text="${dto.discount+'%'}">28</span> 
+				<span th:text="|${#numbers.formatInteger(dto.discountPrice,3,'COMMA')}원|">가격</span>
+			</p></li>
+	</ol>
+	
+</section>
+</html>
