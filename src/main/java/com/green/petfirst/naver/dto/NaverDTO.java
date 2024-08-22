@@ -5,7 +5,7 @@ import lombok.ToString;
 
 @ToString
 @Getter
-public class NaverTokenDTO {
+public class NaverDTO {
 	
 	private String access_token;
 	private String expires_in;
