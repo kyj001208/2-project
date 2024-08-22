@@ -10,7 +10,9 @@ import org.springframework.ui.Model;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.green.petfirst.naver.dto.NaverTokenDTO;
+import com.green.petfirst.domain.entity.JogicdoEntity;
+import com.green.petfirst.domain.repository.JogicdoRepository;
+import com.green.petfirst.naver.dto.NaverDTO;
 import com.green.petfirst.naver.dto.ResponseResultDTO;
 
 import lombok.RequiredArgsConstructor;
@@ -19,9 +21,10 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
-public class NaverCpService {
+public class NaverService {
 	
 	private final OpenApiUtil openApiUtil;
+	private final JogicdoRepository repository;
 	
 
 	@Value("${naver.client.id}")
@@ -39,7 +42,7 @@ public class NaverCpService {
 		
 		//접근을 위해 토큰을 생성 
 		String responResult=getAccessToken(code);
-		NaverTokenDTO result=openApiUtil.objectMapper(responResult, new TypeReference<NaverTokenDTO>(){}); 
+		NaverDTO result=openApiUtil.objectMapper(responResult, new TypeReference<NaverDTO>(){}); 
 		
 		String accessToken=result.getAccess_token();
 		
@@ -91,6 +94,13 @@ public class NaverCpService {
 		//요청하는것 //아래에서 토근만 추출해야함 
 		return openApiUtil.request(apiUrl, headers, method, null); //요청하고 나서 응답을 받습니다
 		
+	}
+
+
+	public void listProcess(Model model) {
+	
+		model.addAttribute("mem",repository.findAll().stream()
+		 .map(JogicdoEntity::toListDTO).collect(Collectors.toList()));
 	}
 
 

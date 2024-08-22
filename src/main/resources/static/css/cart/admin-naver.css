@@ -1,40 +1,170 @@
-
-.jojicdo-container{
-	display: flex;
-	padding-top: 30px;
+/* Main Container */
+.jogicdo-mains {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    min-height: calc(100vh - 60px); /* Adjust if necessary for header height */
 }
 
-.jogido-menu{
+/* Left Section - 조직도 */
+.jogido-menu {
+    flex: 1;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+.jogido-menu a.org-title {
+    font-size: 36px; /* Make the title larger */
+    font-weight: bold;
+    display: block;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.jogido-menu .org-unit-name {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.jogido-menu .jojicdo-listss {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.jogido-menu .jojicdo-listss td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+/* Right Section - 구성원 목록 */
+.jogicmem-main {
+    flex: 2;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.jogocmem-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.mem-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.mem-header {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.mem-header li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.mem-header li div {
+    flex: 1;
+    text-align: center;
+    padding: 5px;
+}
+
+/* List Items */
+.jojic-lists {
+    margin-top: 20px;
+}
+
+.jojic-lists ul {
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+
+.jojic-lists li.th-contacts {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.jojic-lists li.th-contacts div {
+    flex: 1;
+    text-align: center;
+    padding: 5px;
+}
+
+/* ///////////////////////////////////////////////////////////////////////////////// */
+
+
+.jojicdo-listss  > tbody > tr:nth-child(1) > td.org-unit-name{
 	
-	width:100%; 
-	border-right: 1px solid var(--sub-gray);
+	font-weight: 700;
+	font-size: 20px;
+}
+
+
+
+
+.jojicdo-listss  > tbody > tr:nth-child(3) > td.org-unit-name{
+	
 	padding-left: 20px;
 }
 
-.jogido-menu >a {
+
+.jojicdo-listss  > tbody > tr:nth-child(4) > td.org-unit-name{
+	padding-left: 20px;
+}
+
+
+.jojicdo-listss  > tbody > tr:nth-child(6) > td.org-unit-name{
 	
-	font-size: 30px;
-	display: block;
-	padding-bottom: 20px;
+		padding-left: 20px;
 }
 
-.jojicdo-listss{
+
+
+.jojicdo-listss  > tbody > tr:nth-child(7) > td.org-unit-name{
 	
-	line-height: 1.6;
+		padding-left: 20px;
 }
 
 
-.jojicdo-listss> tbody > tr:nth-child(1) > td:nth-child(1){
-	font-size: 20px;
-	padding-bottom: 20px;
-}
 
-.jogicmem-main{
+.jojicdo-listss  > tbody > tr:nth-child(9) > td.org-unit-name{
 	
-	width: 100%;
+		padding-left: 20px;
 }
 
-.jogic-title {
+.jojicdo-listss  > tbody > tr:nth-child(10) > td.org-unit-name{
 	
-	display: flex;
+		padding-left: 20px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
