@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const password = passwordInput.value;
         const confirmPassword = confirmPasswordInput.value;
 
-        //(영문 대소문자/숫자/특수문자 1가지 이상 조합,8자~16자)
+        //(영문 대소문자/숫자/특수문자 1가지 이상 조합,8자~15자)
         const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()_+[\]{};':"\\|,.<>/?])[A-Za-z\d!@#$%^&*()_+[\]{};':"\\|,.<>/?]{8,15}$/;
 
         if (!passwordRegex.test(password)) {

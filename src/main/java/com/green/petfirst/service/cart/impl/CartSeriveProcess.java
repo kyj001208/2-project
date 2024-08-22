@@ -31,7 +31,7 @@ public class CartSeriveProcess implements CartSerive {
 	private final ProductRepository productRepository; // 상품
 	private final PayRepository payrepository;
 
-	// 장바구니 추가 메서드
+	// 장바구니 저장 메서드
 	@Override
 	@Transactional
 	public void saveProcess(CartSaveDTO dto, String email) {

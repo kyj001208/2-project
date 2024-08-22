@@ -168,6 +168,16 @@
 	
 }
 
+#recipient{
+	
+	font-family: "Hi Melody", sans-serif;
+	width: 150px;
+	border: 1px solid var(--sub-grey);
+	font-size: 18px;
+	
+	
+}
+
 #payaddressbtn{
 	
 	margin-left: 20px;
