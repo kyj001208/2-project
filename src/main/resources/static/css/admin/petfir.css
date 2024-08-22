@@ -1,8 +1,35 @@
-.content {
-	padding: 0 40px 40px 40px;
-	font-size: 24px;
+
+
+/* 각 섹션 스타일 */
+.section {
+	border: 1px solid var(--sub-grey);
+	padding: 20px;
+	border-radius: 8px;
+	
+	max-width: 800px;
+	max-height: 450px;
+	margin-bottom: 20px;
 }
 
+.section-title {
+	font-size: 1.5em;
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+/* 전체 레이아웃 */
+.content {
+	margin-top: 50px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: auto auto;
+	gap: 3px;
+	padding: 0 40px 40px 40px;
+	font-size: 20px;
+}
+.container{
+	width: 100%;
+	
+}
 .today {
     font-size: 30px;     /* 글씨 크기 조절 */
     padding-left: 45px;
@@ -12,12 +39,12 @@
 .stats {
 	display: grid;
     grid-template-columns: repeat(3, 1fr); /* 세 개의 동일한 너비의 열 생성 */
-    gap: 15px; /* 그리드 항목 간의 간격 */
+    gap: 5px; /* 그리드 항목 간의 간격 */
     border: 2px solid #ddd;
     padding: 20px;
     margin-bottom: 20px;
-    margin-left: 65px;
-    width: 1500px;
+    margin-left: 5px;
+    
 }
 
 .stat-item {
@@ -42,17 +69,53 @@
 }
 
 table {
-	width: 1550px;
+	font-size: small;
+	width: 100%;
 	border-collapse: collapse;
 	margin-bottom: 20px;
 }
 
 table th, table td {
+	
 	border: 1px solid #ddd;
 	padding: 5px;
 	text-align: center;
 }
 
 table th {
-	background-color: #f2f2f2;
+	background-color:var(--sub-grey);
+}
+/**/
+.comment-list {
+    width: 100%; /* 원하는 크기로 조정 가능 */
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.comment-item {
+    margin-bottom: 15px;
+}
+
+.comment-text {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.comment-info {
+    font-size: 12px;
+    color: #888;
+}
+
+.username {
+    font-weight: bold;
+}
+
+.date {
+    color: #aaa;
+}
+
+.comment-item:last-child {
+    margin-bottom: 0;
 }
