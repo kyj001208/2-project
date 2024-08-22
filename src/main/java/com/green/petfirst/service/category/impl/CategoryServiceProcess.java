@@ -78,13 +78,13 @@ public class CategoryServiceProcess implements CategoryService {
 		//FetchType.LAZY 이기에 session이 유지되어야한다.  //@Transactional 적용함
 		List<ProductEntity> list=null;
 		if (category.getParent() == null || category.getParent().getParent() == null) {
-            // 1차 또는 2차 카테고리인 경우
+            // 1차 또는 2차 카테고리인 경우 해당 카테고리와 그 하위 카테고리들에 속하는 모든 상품들을 조회
             List<Long> categoryNoes = getAllSubCategoryIds(category); 
-            list=productRepository.findByCategory_categoryNoIn(categoryNoes); //해당 카테고리와 그 하위 카테고리들에 속하는 모든 상품들을 가져와
+            list=productRepository.findByCategory_categoryNoIn(categoryNoes); 
 			
         } else {
-            // 3차 카테고리인 경우
-        	list=productRepository.findByCategory_categoryNo(categoryNo); //3차인 경우 하위 카테고리가 더 존재하지 않기 때문에, 단순히 해당 카테고리의 categoryNo에 일치하는 상품들만 조회
+        	//3차인 경우 하위 카테고리가 더 존재하지 않기 때문에, 단순히 해당 카테고리의 categoryNo에 일치하는 상품들만 조회
+        	list=productRepository.findByCategory_categoryNo(categoryNo); 
         }
 		
 		model.addAttribute("list", list.stream()
@@ -97,7 +97,6 @@ public class CategoryServiceProcess implements CategoryService {
 		List<CategoryDTO> cateList=new ArrayList<>();
 		CategoryDTO categoryDTO=category.toCategoryDTO();
 		cateList.add(categoryDTO);
-		
 		
 		CategoryEntity cate=category;
 		while((cate=cate.getParent())!=null){
@@ -224,12 +223,6 @@ public class CategoryServiceProcess implements CategoryService {
         // ProductEntity의 toProductListDTO 메서드를 사용하여 ProductListDTO로 변환합니다.
         return productRepository.findByProductNo(productNo).map(ProductEntity::toProductListDTO).orElseThrow();
     }
-
-
-
-
-
-
 
    
 }
