@@ -26,7 +26,7 @@ public class EventController {
     }
 
     @GetMapping("/public/event/{id}")
-    public String eventDetail(@PathVariable Long id, Model model) {
+    public String eventDetail(@PathVariable("id") Long id, Model model) {
         Optional<Event> eventOpt = eventService.getEventById(id);
         if (eventOpt.isPresent()) {
             model.addAttribute("event", eventOpt.get());
