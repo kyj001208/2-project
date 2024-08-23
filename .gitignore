@@ -7,6 +7,9 @@ build/
 !**/src/test/**/build/
 
 application.properties
+application-aws.properties
+application-oauth2.properties
+
 
 ### STS ###
 .apt_generated
